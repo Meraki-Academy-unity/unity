@@ -2,7 +2,7 @@ const db = require("../../db")
 
 
 
-const createTravelPlane = (req,res) => {
+const createTravelPlans = (req,res) => {
     const query = `INSERT INTO travel_plans (title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?)`;
     const {title , start_date , finish_date , countries , activities , requirements , details , images , estimated_budget} = req.body
     const data = [title , start_date , finish_date , countries, activities , requirements , details , images , estimated_budget];
@@ -18,5 +18,5 @@ const createTravelPlane = (req,res) => {
 
 
 module.exports = {
-  createTravelPlane,
+  createTravelPlans,
 };
