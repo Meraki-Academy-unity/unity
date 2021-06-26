@@ -9,12 +9,14 @@ const addActivity = (req, res) => {
     db.query(query, data, (err, results) => {
         if (err) throw err;
         res.status(201).json(results)
-        // res.json("added complete")
+        //res.json("added complete")
     });
 };
-const getAllActivities = (req, res) => {   
-    const query = 'SELECT activities FROM  activities INNER JOIN  users ON  activities.location=users.currently_in AND users.id=user_id';
-    db.query(query, (err, result) => {
+const getAllActivities = (req, res) => {
+    const id = req.params.id;
+    const query = 'SELECT * FROM  activities INNER JOIN  users ON  users.currently_in=activities.location AND users.id=?';
+    data = [id]
+    db.query(query,data, (err, result) => {
         if (err) throw err;
         console.log('RESULT: ', result);
         res.json(result)
