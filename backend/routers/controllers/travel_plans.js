@@ -32,6 +32,15 @@ const createTravelPlans = (req,res) => {
     });
   }
 
+  const deleteTravelPlansById = (req,res) =>{
+    const query = `Delete FROM travel_plans  WHERE id=?`
+    const data = req.params.id
+    db.query(query,data, (err, results) => {
+      if(err) throw err ;
+      res.status(201)
+      res.json(results)
+    });
+  }
 
 
 
@@ -39,7 +48,8 @@ const createTravelPlans = (req,res) => {
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
-  getTravelPlansById
+  getTravelPlansById,
+  deleteTravelPlansById
 };
 
 
