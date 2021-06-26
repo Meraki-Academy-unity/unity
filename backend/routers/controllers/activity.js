@@ -12,10 +12,21 @@ const addActivity = (req, res) => {
         // res.json("added complete")
     });
 };
+ const getAllActivities = (req, res) => {
+    const query = 'SELECT * FROM activities';
+    db.query(query, (err, result) => {
+        if (err) throw err;
+        console.log('RESULT: ', result);
+        res.json(result)
+    });
+};
+
+
 
 
 
 
 module.exports = {
     addActivity,
+    getAllActivities,
 };
