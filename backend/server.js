@@ -6,6 +6,7 @@ const db = require("./db/db");
 const app = express();
 
 //routers
+const signUp = require("./routers/routes/auth/signUp");
 
 //built-in middlewares
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 //app routers
+app.use("/signUp", signUp);
 
 const PORT = process.env.PORT || 5000;
 
