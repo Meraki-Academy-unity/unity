@@ -1,4 +1,4 @@
-const db = require("../../db")
+const db = require("../../db/db")
 
 
 
@@ -20,3 +20,6 @@ const createTravelPlans = (req,res) => {
 module.exports = {
   createTravelPlans,
 };
+
+
+
