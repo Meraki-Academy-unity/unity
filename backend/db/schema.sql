@@ -19,12 +19,12 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL,
     region VARCHAR(255), 
     currently_in VARCHAR(255),
-    birth_date DATE NOT NULL,
+    birth_date DATE DEFAULT NULL,
     language VARCHAR(255), 
     gender VARCHAR(255) ,
     profile_image VARCHAR(255) ,
     is_completed BOOLEAN DEFAULT 0,    
-    role_id INT,
+    role_id INT DEFAULT 1,
     is_deleted TINYINT DEFAULT 0,
     FOREIGN KEY (role_id) REFERENCES roles(id),
     PRIMARY KEY (id)
@@ -130,11 +130,11 @@ CREATE TABLE Friend_List (
     PRIMARY KEY(id)
 );
 
-INSERT INTO roles (role) VALUES ('user')
-INSERT INTO roles (role) VALUES ('admin')
+INSERT INTO roles (role) VALUES ('user');
+INSERT INTO roles (role) VALUES ('admin');
 
-INSERT INTO status (status) VALUES ('in preparation')
-INSERT INTO status (status) VALUES ('ongoing')
-INSERT INTO status (status) VALUES ('completed')
+INSERT INTO status (status) VALUES ('in preparation');
+INSERT INTO status (status) VALUES ('ongoing');
+INSERT INTO status (status) VALUES ('completed');
 
 
