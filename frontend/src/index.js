@@ -10,10 +10,10 @@ import store from "./reducers";
 
 ReactDOM.render(
   // The provider will enable the child components to access the store
-  // <Provider store={store}>
-  <Router>
-    <App />
-  </Router>,
-  // </Provider>
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
