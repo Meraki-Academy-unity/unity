@@ -54,15 +54,21 @@ CREATE TABLE perferences(
 CREATE TABLE activities (
     id INT AUTO_INCREMENT NOT NULL,
     title VARCHAR(255)  NOT NULL,
-    date DATE NOT NULL,
+    start_date DATE NOT NULL,
+    finish_date DATE NOT NULL,
     location VARCHAR(255) NOT NULL,
-    description VARCHAR(255), 
+    details VARCHAR(255), 
+    requirements VARCHAR(255) ,
+    activities VARCHAR(255) ,
+    images VARCHAR(255) ,
     estimated_budget INT,
+    comment_id INT,
     status_id INT,
     user_id INT,
     creation_time  DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id ) REFERENCES users(id ),
     FOREIGN KEY (status_id) REFERENCES status(id),
+    FOREIGN KEY (comment_id) REFERENCES activity_comments(id)
     PRIMARY KEY(id)
 );
 
@@ -96,8 +102,19 @@ CREATE TABLE travel_plans(
     status_id INT,
     creation_time  DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id ) REFERENCES users(id),
-    FOREIGN KEY (comment_id) REFERENCES activity_comments(id),
+    FOREIGN KEY (comment_id) REFERENCES travel_plans_comments(id),
     FOREIGN KEY (status_id) REFERENCES status(id),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE travel_plans_comments(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT,
+    travel_plans_id INT,
+    content VARCHAR(255) NOT NULL,
+    is_deleted TINYINT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (travel_plans_id) REFERENCES travel_plans(id),
     PRIMARY KEY(id)
 );
 
