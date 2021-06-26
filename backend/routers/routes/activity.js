@@ -6,5 +6,4 @@ const activitiesRouter = express.Router();
 
 activitiesRouter.post("/:id",addActivity); 
 
-
 module.exports =activitiesRouter;
