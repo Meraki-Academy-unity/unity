@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS `meraki_academy_project_5`; 
+DROP DATABASE IF EXISTS `meraki_academy_project_5`;
 CREATE DATABASE `meraki_academy_project_5`;
 use `meraki_academy_project_5`;
 
@@ -130,5 +130,6 @@ CREATE TABLE Friend_List (
     PRIMARY KEY(id)
 );
 
-
+INSERT INTO roles (role) VALUES ('user')
+INSERT INTO roles (role) VALUES ('admin')
 
