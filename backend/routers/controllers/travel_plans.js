@@ -21,6 +21,16 @@ const createTravelPlans = (req,res) => {
       res.json(results)
     });
   }
+  
+  const getTravelPlansById = (req,res) =>{
+    const query = `SELECT * FROM travel_plans WHERE id=?`
+    const data = req.params.id
+    db.query(query,data, (err, results) => {
+      if(err) throw err ;
+      res.status(201)
+      res.json(results)
+    });
+  }
 
 
 
@@ -29,6 +39,7 @@ const createTravelPlans = (req,res) => {
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
+  getTravelPlansById
 };
 
 
