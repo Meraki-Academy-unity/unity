@@ -13,7 +13,7 @@ const addActivity = (req, res) => {
     });
 };
 const getAllActivities = (req, res) => {   
-    const query = 'SELECT activities FROM  activities INNER JOIN  users ON  activities.location=users.currently_in AND users.id=user_id';
+    const query = 'SELECT * FROM  activities INNER JOIN  users ON  activities.location=users.currently_in AND users.id=user_id';
     db.query(query, (err, result) => {
         if (err) throw err;
         console.log('RESULT: ', result);
