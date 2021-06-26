@@ -130,3 +130,6 @@ CREATE TABLE Friend_List (
     PRIMARY KEY(id)
 );
 
+INSERT INTO roles (role) VALUES ('user')
+INSERT INTO roles (role) VALUES ('admin')
+
