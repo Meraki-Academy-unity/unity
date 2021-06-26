@@ -1,4 +1,3 @@
-DROP DATABASE `meraki_academy_project_5`;
 CREATE DATABASE `meraki_academy_project_5`;
 use `meraki_academy_project_5`;
 
