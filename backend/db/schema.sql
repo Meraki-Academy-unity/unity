@@ -1,4 +1,4 @@
-DROP DATABASE `meraki_academy_project_5`;
+DROP DATABASE IF EXISTS `meraki_academy_project_5`; 
 CREATE DATABASE `meraki_academy_project_5`;
 use `meraki_academy_project_5`;
 
@@ -19,7 +19,7 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL,
     region VARCHAR(255), 
     currently_in VARCHAR(255),
-    birth_date INT NOT NULL,
+    birth_date DATE NOT NULL,
     language VARCHAR(255), 
     gender VARCHAR(255) ,
     profile_image VARCHAR(255) ,
@@ -129,4 +129,6 @@ CREATE TABLE Friend_List (
     FOREIGN KEY (friend_id ) REFERENCES users(id),
     PRIMARY KEY(id)
 );
+
+
 
