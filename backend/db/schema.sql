@@ -19,7 +19,7 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL,
     region VARCHAR(255), 
     currently_in VARCHAR(255),
-    birth_date INT NOT NULL,
+    birth_date DATE NOT NULL,
     language VARCHAR(255), 
     gender VARCHAR(255) ,
     profile_image VARCHAR(255) ,
