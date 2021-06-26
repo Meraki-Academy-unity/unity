@@ -1,7 +1,7 @@
 const db = require("../../db/db")
 
 
-const createActivity =(req,res) => {
+const addActivity =(req,res) => {
     const query = `INSERT INTO activities (title, start_date, finish_date ,location, details, requirements , activities ,  images , estimated_budget) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)`;
     const {title, start_date, finish_date ,location, details, requirements , activities ,  images , estimated_budget} = req.body
     const data = [title, start_date, finish_date ,location, details, requirements , activities ,  images , estimated_budget];
@@ -16,5 +16,5 @@ const createActivity =(req,res) => {
 
 
 module.exports = {
-    createActivity,
+    addActivity,
 };
