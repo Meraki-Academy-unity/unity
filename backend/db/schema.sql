@@ -36,8 +36,6 @@ CREATE TABLE status(
     PRIMARY KEY(id)
 );
 
-
-
 CREATE TABLE perferences(
     id INT AUTO_INCREMENT NOT NULL,
     location VARCHAR(255) NOT NULL,
@@ -62,13 +60,11 @@ CREATE TABLE activities (
     activities VARCHAR(255) ,
     images VARCHAR(255) ,
     estimated_budget INT,
-    comment_id INT,
     status_id INT,
     user_id INT,
     creation_time  DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id ) REFERENCES users(id ),
     FOREIGN KEY (status_id) REFERENCES status(id),
-    FOREIGN KEY (comment_id) REFERENCES activity_comments(id)
     PRIMARY KEY(id)
 );
 
@@ -80,7 +76,7 @@ CREATE TABLE activity_comments(
     content VARCHAR(255) NOT NULL,
     is_deleted TINYINT DEFAULT 0,
     FOREIGN KEY (user_id ) REFERENCES users(id),
-    FOREIGN KEY (activity_id) REFERENCES activities(id ),
+    FOREIGN KEY (activity_id) REFERENCES activities(id),
     PRIMARY KEY(id)
 );
 
@@ -89,7 +85,6 @@ CREATE TABLE activity_comments(
 CREATE TABLE travel_plans(
     id INT AUTO_INCREMENT NOT NULL,
     user_id INT,
-    comment_id INT,
     title VARCHAR(255) NOT NULL,
     start_date DATE NOT NULL,
     finish_date DATE NOT NULL,
@@ -102,7 +97,6 @@ CREATE TABLE travel_plans(
     status_id INT,
     creation_time  DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id ) REFERENCES users(id),
-    FOREIGN KEY (comment_id) REFERENCES travel_plans_comments(id),
     FOREIGN KEY (status_id) REFERENCES status(id),
     PRIMARY KEY(id)
 );
@@ -147,11 +141,11 @@ CREATE TABLE Friend_List (
     PRIMARY KEY(id)
 );
 
-INSERT INTO roles (role) VALUES ('user')
-INSERT INTO roles (role) VALUES ('admin')
+INSERT INTO roles (role) VALUES ('user');
+INSERT INTO roles (role) VALUES ('admin');
 
-INSERT INTO status (status) VALUES ('in preparation')
-INSERT INTO status (status) VALUES ('ongoing')
-INSERT INTO status (status) VALUES ('completed')
+INSERT INTO status (status) VALUES ('in preparation');
+INSERT INTO status (status) VALUES ('ongoing');
+INSERT INTO status (status) VALUES ('completed');
 
 
