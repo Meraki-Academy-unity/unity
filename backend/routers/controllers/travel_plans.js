@@ -13,12 +13,22 @@ const createTravelPlans = (req,res) => {
     });
   };
 
+  const getAllTravelPlans = (req,res) =>{
+    const query = `SELECT * FROM travel_plans`
+    db.query(query, (err, results) => {
+      if(err) throw err ;
+      res.status(201)
+      res.json(results)
+    });
+  }
+
 
 
 
 
 module.exports = {
   createTravelPlans,
+  getAllTravelPlans,
 };
 
 
