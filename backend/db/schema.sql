@@ -32,7 +32,7 @@ CREATE TABLE users(
 
 CREATE TABLE status(
     id INT AUTO_INCREMENT NOT NULL,
-    status VARCHAR(255) NOT NULL DEFAULT 'in preparation',
+    status VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -132,4 +132,9 @@ CREATE TABLE Friend_List (
 
 INSERT INTO roles (role) VALUES ('user')
 INSERT INTO roles (role) VALUES ('admin')
+
+INSERT INTO status (status) VALUES ('in preparation')
+INSERT INTO status (status) VALUES ('ongoing')
+INSERT INTO status (status) VALUES ('completed')
+
 
