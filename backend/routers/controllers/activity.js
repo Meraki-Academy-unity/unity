@@ -15,7 +15,7 @@ const addActivity = (req, res) => {
 const getAllActivities = (req, res) => {
     const id = req.params.id;
     const query = 'SELECT * FROM  activities INNER JOIN  users ON  users.currently_in=activities.location AND users.id=?';
-    data = [id]
+    const data = [id]
     db.query(query, data, (err, result) => {
         if (err) throw err;
         console.log('RESULT: ', result);
@@ -26,7 +26,7 @@ const getAllActivities = (req, res) => {
 const getActivitiesById = (req, res) => {
     const id = req.params.id;
     const query = 'SELECT * FROM  activities INNER JOIN  users ON activities.id=? WHERE users.id=user_id';
-    data = [id]
+    const data = [id]
     db.query(query, data, (err, result) => {
         if (err) throw err;
         console.log('RESULT: ', result);
@@ -37,7 +37,7 @@ const getActivitiesById = (req, res) => {
 const deleteActivitiesById = (req, res) => {
     const id = req.params.id;
     const query = 'DELETE FROM  activities WHERE id=?';
-    data = [id]
+    const data = [id]
     db.query(query, data, (err, result) => {
         if (err) throw err;
         console.log('RESULT: ', result);
@@ -47,8 +47,9 @@ const deleteActivitiesById = (req, res) => {
 
 const updateActivitiesById = (req, res) => {
     const id = req.params.id;
-    const query = 'UPDATE activities SET title=?, start_date=?, finish_date=? ,location=?, details=?, requirements=? , activities=? ,  images=? , estimated_budget=?   WHERE  id=?';
-    data = [title, start_date, finish_date, location, details, requirements, activities, images, estimated_budget, id];
+    const { title, start_date, finish_date, location, details, requirements, activities, images, estimated_budget } = req.body
+    const query = 'UPDATE activities SET title=?, start_date=?,finish_date=? ,location=?, details=?, requirements=? , activities=? , images=? , estimated_budget=?   WHERE  id=?';
+    let data = [title, start_date, finish_date, location, details, requirements, activities, images, estimated_budget, id];
     db.query(query, data, (err, result) => {
         if (err) throw err;
         console.log('RESULT: ', result);
