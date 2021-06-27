@@ -44,7 +44,7 @@ CREATE TABLE preferences(
     activities VARCHAR(255),
     similar_age BOOL default 0,
     same_gender BOOL DEFAULT 0,
-    user_id INT,
+    user_id INT UNIQUE,
     FOREIGN KEY (user_id) REFERENCES users(id),
     PRIMARY KEY (id)
 );

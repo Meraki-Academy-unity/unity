@@ -1,18 +1,5 @@
 const connection = require("../../db/db");
 
-/*
-id INT AUTO_INCREMENT NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    start_date DATE NOT NULL,
-    finish_date DATE NOT NULL,
-    activities VARCHAR(255),
-    similar_age BOOL default 0,
-    same_gender BOOL DEFAULT 0,
-    user_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    PRIMARY KEY (id)
-*/
-
 const addPreference = (req, res) => {
   const {
     location,
@@ -35,12 +22,21 @@ const addPreference = (req, res) => {
   ];
 
   connection.query(query, data, (err, result) => {
-    if (result) res.status(201).json(result);
-    else res.status(400).json(err);
+    if (result) res.status(201).json("Preference Added Successfully!");
+    else res.status(400).json("ERROR OCCURRED !");
   });
 };
 
-const deletePreference = (req, res) => {};
+const deletePreference = (req, res) => {
+  const user_id = req.body.id;
+  const query = `DELETE FROM preferences WHERE user_id=?`;
+  const data = [user_id];
+
+  connection.query(query, data, (err, result) => {
+    if (result) res.status(200).json("Preference Deleted Successfully!");
+    else res.status(400).json("ERROR OCCURRED !");
+  });
+};
 const showPreferenceById = (req, res) => {};
 
 module.exports = { addPreference, deletePreference, showPreferenceById };
