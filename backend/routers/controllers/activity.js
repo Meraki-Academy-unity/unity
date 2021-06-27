@@ -1,22 +1,5 @@
 const db = require("../../db/db");
 
-/*
-    title VARCHAR(255)  NOT NULL,
-    start_date DATE NOT NULL,
-    finish_date DATE NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    details VARCHAR(255), 
-    requirements VARCHAR(255) ,
-    activities VARCHAR(255) ,
-    images VARCHAR(255) ,
-    estimated_budget INT,
-    status_id INT ,
-    user_id INT,
-    creation_time  DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id ) REFERENCES users(id ),
-    FOREIGN KEY (status_id) REFERENCES status(id),
-*/
-
 const addActivity = (req, res) => {
   const id = req.params.id;
   const query_ = `SELECT currently_in FROM  users WHERE id=${id}`;
