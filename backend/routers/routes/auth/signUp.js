@@ -8,6 +8,6 @@ const {
 const createUser = express.Router();
 
 createUser.post("/firstStep", signUpFirstStep);
-createUser.put("/secondStep", signUpSecondStep);
+createUser.put("/secondStep/:id", signUpSecondStep);
 
 module.exports = createUser;
