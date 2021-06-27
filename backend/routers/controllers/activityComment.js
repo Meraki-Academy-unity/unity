@@ -10,7 +10,20 @@ const addActivityComment = (req, res) => {
     })
 }
 
+const showAllCommentByActivityId = (req, res) => {
+    const id = req.params.id;
+    console.log("id",id)
+    const query = "SELECT * FROM  activity_comments INNER JOIN activities ON activity_id=activities.id AND activity_id=?";
+    const data = [id];
+    db.query(query, data, (err, result) => {
+        if (err) throw err;
+        console.log("RESULT: ", result);
+        res.json(result);
+    });
+}
+
 
 module.exports = {
-    addActivityComment
+    addActivityComment,
+    showAllCommentByActivityId
 };
