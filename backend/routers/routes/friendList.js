@@ -1,9 +1,15 @@
-const express = require('express');
+const express = require("express");
 
-const friendList = express.Router();
+const friendListRouter = express.Router();
 
-friendList.post('/:id',addFriend);
-friendList.delete('/:id',deleteFriend);
-friendList.get('/',showFriendList);
+const {
+  addFriend,
+  deleteFriend,
+  showFriendList,
+} = require("../controllers/friendList");
 
-module.exports = friendList;
+friendListRouter.post("/:id", addFriend);
+friendListRouter.delete("/:id", deleteFriend);
+friendListRouter.get("/", showFriendList);
+
+module.exports = friendListRouter;

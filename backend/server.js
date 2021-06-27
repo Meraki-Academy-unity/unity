@@ -9,7 +9,7 @@ const app = express();
 const signUp = require("./routers/routes/auth/signUp");
 const travelPlansRouter = require("./routers/routes/travel_plans");
 const login = require('./routers/routes/auth/login')
-
+const friendListRouter = require('./routers/routes/friendList')
 const activitiesRouter=require("./routers/routes/activity");
 //built-in middlewares
 app.use(express.json());
@@ -22,6 +22,7 @@ app.use("/signUp", signUp);
 app.use("/login", login);
 app.use("/travelPlans", travelPlansRouter);
 app.use('/activities', activitiesRouter);
+app.use('/friends',friendListRouter);
 
 const PORT = process.env.PORT || 5000;
 
