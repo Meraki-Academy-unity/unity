@@ -132,7 +132,7 @@ CREATE TABLE activity_members(
 );
 
 
-CREATE TABLE Friend_List (
+CREATE TABLE friend_list (
     id INT AUTO_INCREMENT NOT NULL,
     user_id INT,
     friend_id INT,
