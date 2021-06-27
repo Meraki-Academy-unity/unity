@@ -49,4 +49,36 @@ const showPreferenceById = (req, res) => {
   });
 };
 
-module.exports = { addPreference, deletePreference, showPreferenceById };
+const updatePreferenceById = (req, res) => {
+  const {
+    location,
+    start_date,
+    finish_date,
+    activities,
+    similar_age,
+    same_gender,
+    preference_id,
+  } = req.body;
+  const query = `UPDATE preferences SET location=?,start_date=?,finish_date=?,activities=?,similar_age=?,same_gender=? WHERE id = ?`;
+  const data = [
+    location,
+    start_date,
+    finish_date,
+    activities,
+    similar_age,
+    same_gender,
+    preference_id,
+  ];
+
+  connection.query(query, data, (err, result) => {
+    if (result) res.status(200).json("Preference Updated Successfully!");
+    else res.status(400).json("ERROR OCCURRED !");
+  });
+};
+
+module.exports = {
+  addPreference,
+  deletePreference,
+  showPreferenceById,
+  updatePreferenceById,
+};
