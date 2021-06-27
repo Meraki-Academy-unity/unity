@@ -34,6 +34,17 @@ const getActivitiesById = (req, res) => {
     });
 };
 
+const deleteActivitiesById=(req,res)=>{
+    const id = req.params.id;
+    const query = 'DELETE FROM  activities WHERE id=?';
+    data = [id]
+    db.query(query,data, (err, result) => {
+        if (err) throw err;
+        console.log('RESULT: ', result);
+        res.json(result)
+    });
+};
+
 
 
 
@@ -42,5 +53,6 @@ const getActivitiesById = (req, res) => {
 module.exports = {
     addActivity,
     getAllActivities,
-    getActivitiesById
+    getActivitiesById,
+    deleteActivitiesById
 };
