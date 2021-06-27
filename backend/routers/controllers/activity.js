@@ -25,7 +25,7 @@ const getAllActivities = (req, res) => {
 
 const getActivitiesById = (req, res) => {
     const id = req.params.id;
-    const query = 'SELECT * FROM  activities INNER JOIN  users ON activities.id=?';
+    const query = 'SELECT * FROM  activities INNER JOIN  users ON activities.id=? WHERE users.id=user_id';
     data = [id]
     db.query(query,data, (err, result) => {
         if (err) throw err;
