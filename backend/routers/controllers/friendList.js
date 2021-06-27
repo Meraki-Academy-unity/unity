@@ -11,7 +11,16 @@ const addFriend = (req, res) => {
   });
 };
 
-const deleteFriend = (req, res) => {};
+const deleteFriend = (req, res) => {
+    const friend_id = req.params.id;
+  const user_id = req.body.id;
+  const query = `DELETE FROM friend_list WHERE user_id=? AND friend_id=?`;
+  const data = [user_id, friend_id];
+  connection.query(query, data, (err, result) => {
+    if (result) res.status(200).json(result);
+    else res.status(400).json("ERROR !");
+  });
+};
 
 const showFriendList = (req, res) => {};
 
