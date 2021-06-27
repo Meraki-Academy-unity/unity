@@ -23,7 +23,16 @@ const getAllActivities = (req, res) => {
     });
 };
 
-
+const getActivitiesById = (req, res) => {
+    const id = req.params.id;
+    const query = 'SELECT * FROM  activities INNER JOIN  users ON activities.id=?';
+    data = [id]
+    db.query(query,data, (err, result) => {
+        if (err) throw err;
+        console.log('RESULT: ', result);
+        res.json(result)
+    });
+};
 
 
 
@@ -33,4 +42,5 @@ const getAllActivities = (req, res) => {
 module.exports = {
     addActivity,
     getAllActivities,
+    getActivitiesById
 };
