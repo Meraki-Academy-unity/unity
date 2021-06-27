@@ -36,7 +36,7 @@ CREATE TABLE status(
     PRIMARY KEY(id)
 );
 
-CREATE TABLE perferences(
+CREATE TABLE preferences(
     id INT AUTO_INCREMENT NOT NULL,
     location VARCHAR(255) NOT NULL,
     start_date DATE NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE perferences(
     activities VARCHAR(255),
     similar_age BOOL default 0,
     same_gender BOOL DEFAULT 0,
-    user_id INT,
+    user_id INT UNIQUE,
     FOREIGN KEY (user_id) REFERENCES users(id),
     PRIMARY KEY (id)
 );
