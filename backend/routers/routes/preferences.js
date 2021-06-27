@@ -2,8 +2,14 @@ const express = require("express");
 
 const preferencesRouter = express.Router();
 
-preferencesRouter.post("/:id", addPreference);
-preferencesRouter.delete("/:id", deletePreference);
-preferencesRouter.get("/:id", showPreferenceById);
+const {
+  addPreference,
+  deletePreference,
+  showPreferenceById,
+} = require("../controllers/preferences");
+
+preferencesRouter.post("/", addPreference);
+preferencesRouter.delete("/", deletePreference);
+preferencesRouter.get("/", showPreferenceById);
 
 module.exports = preferencesRouter;

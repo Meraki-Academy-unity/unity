@@ -11,6 +11,8 @@ const travelPlansRouter = require("./routers/routes/travel_plans");
 const login = require("./routers/routes/auth/login");
 const friendListRouter = require("./routers/routes/friendList");
 const activitiesRouter = require("./routers/routes/activity");
+const preferencesRouter = require("./routers/routes/preferences");
+
 //built-in middlewares
 app.use(express.json());
 
@@ -23,6 +25,7 @@ app.use("/login", login);
 app.use("/travelPlans", travelPlansRouter);
 app.use("/activities", activitiesRouter);
 app.use("/friends", friendListRouter);
+app.use("/preferences", preferencesRouter);
 
 const PORT = process.env.PORT || 5000;
 

@@ -36,7 +36,7 @@ CREATE TABLE status(
     PRIMARY KEY(id)
 );
 
-CREATE TABLE perferences(
+CREATE TABLE preferences(
     id INT AUTO_INCREMENT NOT NULL,
     location VARCHAR(255) NOT NULL,
     start_date DATE NOT NULL,
