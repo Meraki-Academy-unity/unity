@@ -104,6 +104,18 @@ const joinTravelPlaneById = (req, res) => {
   });
 };
 
+const withDrawTravelPlaneById = (req, res) => {
+  const plan_id = req.params.id;
+  const user_id = req.body.user_id;
+  const query = `DELETE FROM plan_members WHERE user_id = ? AND plan_id = ?`;
+  const data = [user_id, plan_id];
+
+  db.query(query, data, (err, result) => {
+    if (result) res.status(200).json("Travel Plans Deleted Successfully !");
+    else res.status(400).json("ERROR OCCURRED.. !");
+  });
+};
+
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
@@ -111,4 +123,5 @@ module.exports = {
   updateTravelPlansById,
   deleteTravelPlansById,
   joinTravelPlaneById,
+  withDrawTravelPlaneById,
 };
