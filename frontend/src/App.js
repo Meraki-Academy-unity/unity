@@ -6,17 +6,21 @@ import AddActivities from "./components/Activities/addActivities";
 import AddTravelPlans from "./components/travel_Plans";
 import AddPerferences from "./components/preferences/addPreferences";
 import Activities from "./components/Activities/getActivities";
+import Navigation from "./components/navigation";
 const App = () => {
-	return (
-		<div className="App">
-			{/* <Login /> */}
-			{/* <SignUp /> */}
-			{/* <AddActivities/> */}
-			{/* <AddTravelPlans /> */}
-			{/* <AddPerferences /> */}
-			<Activities/>
-		</div>
-	);
+  return (
+    <div className="App">
+      <Navigation />
+      <Route exact path="/login" render={() => <Login />} />
+	  <Route exact path="/register" render={() => <SignUp />} />
+      {/* <Login /> */}
+      {/* <SignUp /> */}
+      {/* <AddActivities/> */}
+      {/* <AddTravelPlans /> */}
+      {/* <AddPerferences /> */}
+      <Activities />
+    </div>
+  );
 };
 
 export default App;

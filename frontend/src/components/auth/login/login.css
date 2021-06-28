@@ -1,0 +1,120 @@
+* {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  
+  .auth {
+    width: 100%;
+    display: flex;
+    height: 92vh;
+  }
+  
+  .leftAuth {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 245, 251);
+  }
+  
+  .leftAuth img {
+    width: 80%;
+  }
+  
+  .rightAuth {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(245, 245, 251);
+  }
+  
+  .rightAuth h1 {
+    color: rgba(0, 0, 0, 0.712);
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  
+  .rightAuth table {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .rightAuth table tr {
+    width: 100%;
+    height: 17%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .rightAuth table tr input {
+    width: 300px;
+    height: 18px;
+    border: 0;
+    border-bottom: 2px solid gray;
+    outline: 0;
+    color: rgb(8, 4, 56);
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .rightAuth table tr button {
+    background-color: rgb(223, 223, 238);
+    width: 310px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #e8b430;
+    color: rgb(246, 238, 238);
+    border: none;
+    margin-top: 5px;
+  }
+  
+  .rightAuth table tr label {
+    font-size: 18px;
+    color: rgb(165, 165, 27);
+    font-family: monospace;
+  }
+  
+  .rightAuth p {
+    color: rgba(49, 29, 6, 0.623);
+  }
+  
+  .rightAuth p .authLink {
+    color: rgba(49, 29, 6, 0.808);
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  
+  .rightAuth table tr button:hover {
+    background-color: #e8b430d5;
+    cursor: pointer;
+  }
+  
+  .rightAuth p .authLink:hover {
+    color: rgba(49, 29, 6, 0.938);
+  }
+  
+  .rightAuth table tr input:focus {
+    color: rgb(8, 4, 56);
+    background-color: rgba(141, 141, 141, 0.103);
+  }
+  
+  .rightAuth table tr input:focus::placeholder {
+    color: transparent;
+  }
+  
+  @media only screen and (max-width: 650px) {
+    .leftAuth {
+      display: none;
+    }
+  }
+  
