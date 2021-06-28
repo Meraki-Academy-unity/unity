@@ -132,7 +132,7 @@ const addActivityComment = (req, res) => {
 
 const showAllCommentByActivityId = (req, res) => {
     const id = req.params.id;
-    const query = "SELECT * FROM  activity_comments INNER JOIN activities ON activity_id=activities.id AND activity_id=?";
+    const query = "SELECT content , activity_comments.user_id  FROM  activity_comments INNER JOIN activities ON activity_id=activities.id WHERE activity_id=?";
     const data = [id];
     db.query(query, data, (err, result) => {
         if (err) throw err;
