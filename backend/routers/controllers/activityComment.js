@@ -33,13 +33,22 @@ const updateActivitiesComment = (req, res) => {
     });
 }
 
-const deletActivitiesComment=(req,res)=>{
-    
+const deletActivitiesComment = (req, res) => {
+    const id = req.params.id;
+    const { user_id } = req.body;
+    const query = "DELETE FROM  activities WHERE id=? AND user_id=?";
+    const data = [id, user_id]
+    db.query(query, data,(err, result) => {
+        if (err) throw err;
+        console.log("RESULT: ", result);
+        res.json(result);
+    });
 }
 
 
 module.exports = {
     addActivityComment,
     showAllCommentByActivityId,
-    updateActivitiesComment
+    updateActivitiesComment,
+    deletActivitiesComment
 };
