@@ -7,8 +7,8 @@ const { addActivityComment,
 } = require("../controllers/activityComment");
 
 const activitiesCommentsRouter = express.Router();
-
-activitiesCommentsRouter.post("/", addActivityComment);
+// post data by activity id
+activitiesCommentsRouter.post("/:id", addActivityComment);
 // get data by activities id
 activitiesCommentsRouter.get("/:id", showAllCommentByActivityId);
 //update using comment id 

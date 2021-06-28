@@ -1,9 +1,11 @@
 const db = require("../../db/db");
 
 const addActivityComment = (req, res) => {
-    const { content } = req.body;
-    const query = `INSERT INTO activity_comments (content) VALUES (?)`;
-    const data = [content];
+    const id = req.params.id;
+    const { content, user_id } = req.body;
+    const query = `INSERT INTO  activity_comments (user_id,
+        activity_id,content) VALUES (?,?,?)`;
+    const data = [user_id, id, content];
     db.query(query, data, (err, result) => {
         if (result) res.status(200).json(result);
         else res.status(400).json("ERROR !");
@@ -38,7 +40,7 @@ const deletActivitiesComment = (req, res) => {
     const { user_id } = req.body;
     const query = "DELETE FROM  activity_comments WHERE id=? AND user_id=?";
     const data = [id, user_id]
-    db.query(query, data,(err, result) => {
+    db.query(query, data, (err, result) => {
         if (err) throw err;
         console.log("RESULT: ", result);
         res.json(result);
