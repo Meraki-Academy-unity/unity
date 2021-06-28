@@ -141,16 +141,47 @@ CREATE TABLE friend_list (
     PRIMARY KEY(id)
 );
 
+-- Roles insertions
 INSERT INTO roles (role) VALUES ('user');
 INSERT INTO roles (role) VALUES ('admin');
 
+-- Statuses insertions
 INSERT INTO status (status) VALUES ('in preparation');
 INSERT INTO status (status) VALUES ('ongoing');
 INSERT INTO status (status) VALUES ('completed');
 
+-- Users Insertions
 INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Bayan","Alsafadi", "bayan@hotmail.com","Jordan","123456");
 INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Deyaa","Mosa", "deyaa@hotmail.com","Jordan","123456");
 INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Roaa","Maghayda", "roaa@hotmail.com","Jordan","123456");
 INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Tariq","Bazadough", "tariq@hotmail.com","Jordan","123456");
 
+-- Preferences Insertions
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Germany","2020-05-08","2020-08-25","climbing,swimming,..",true,false,1);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Italy","2020-09-08","2020-02-25","climbing,swimming,..",true,true,2);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("France","2020-03-08","2020-01-25","climbing,swimming,..",true,false,3);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Germany","2020-09-08","2020-07-25","climbing,swimming,..",true,true,4);
 
+-- Travel_Plans insertions
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (1,"Camping","2020-03-08","2020-01-25", "jordan,germany..", "Camping,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 509 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (2,"To Germany","2020-03-08","2020-01-25", "Italy,germany..", "Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 580 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (3,"Traveling","2020-03-08","2020-01-25", "jordan,germany..", "Playing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 200 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (4,"To France","2020-03-08","2020-01-25", "jordan,France..", "Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 500 );
+
+-- Activities insertions
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (1,"Camping","Jordan","2020-03-08","2020-01-25" ,"Camping,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 509);
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (2,"To Germany","France","2020-03-08","2020-01-25" ,"Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 580);
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (3,"Traveling","Germany","2020-03-08","2020-01-25","Playing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 200);
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (4,"To France","America","2020-03-08","2020-01-25", "Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 500);
+
+-- Activiy_comments insertions
+INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Sounds Great To Join !",1,1);
+INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Seems Great To Join !",2,2);
+INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Sounds Great To Join !",3,2);
+INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Not Interested !",4,1);
+
+-- Travel_Plans_Comments insertions
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",1,1);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",2,2);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",3,2);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",4,1);
