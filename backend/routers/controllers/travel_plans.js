@@ -117,6 +117,28 @@ const withDrawTravelPlaneById = (req, res) => {
 };
 
 
+const addPlanComment = (req, res) => {
+  const travel_plans_id = req.params.id;
+  const { content, user_id } = req.body;
+  const query = `INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES (?,?,?)`;
+  const data = [content, user_id, travel_plans_id];
+  db.query(query, data, (err, result) => {
+    if (result) res.status(200).json("Comment Added Successfully..!");
+    else res.status(400).json("ERROR OCCURRED..!");
+  });
+};
+
+const showAllCommentByPlanId = (req, res) => {
+  const travel_plans_id = req.params.id;
+  const query =
+    "SELECT * FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_id=travel_plans.id AND travel_plans_id=?";
+  const data = [travel_plans_id];
+  db.query(query, data, (err, result) => {
+    if (err) res.status(400).json("ERROR OCCURRED..!");
+    else res.status(200).json(result);
+  });
+};
+
 
 module.exports = {
   createTravelPlans,
@@ -126,4 +148,6 @@ module.exports = {
   deleteTravelPlansById,
   joinTravelPlaneById,
   withDrawTravelPlaneById,
+  addPlanComment,
+  showAllCommentByPlanId
 };
