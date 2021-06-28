@@ -23,9 +23,9 @@ const showAllCommentByActivityId = (req, res) => {
 
 const updateActivitiesComment = (req, res) => {
     const id = req.params.id;
-    const { comment_id } = req.body;
+    const { content, user_id } = req.body;
     const query = "UPDATE activity_comments SET content=? WHERE id=? AND user_id=?";
-    const data = [comment_id, id]
+    const data = [content, id, user_id]
     db.query(query, data, (err, result) => {
         if (err) throw err;
         console.log("RESULT: ", result);
@@ -33,8 +33,13 @@ const updateActivitiesComment = (req, res) => {
     });
 }
 
+const deletActivitiesComment=(req,res)=>{
+    
+}
+
 
 module.exports = {
     addActivityComment,
-    showAllCommentByActivityId
+    showAllCommentByActivityId,
+    updateActivitiesComment
 };
