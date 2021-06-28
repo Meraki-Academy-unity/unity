@@ -12,6 +12,7 @@ const login = require("./routers/routes/auth/login");
 const friendListRouter = require("./routers/routes/friendList");
 const activitiesRouter = require("./routers/routes/activity");
 const preferencesRouter = require("./routers/routes/preferences");
+const activitiesCommentsRouter= require("./routers/routes/activityComment");
 
 //built-in middlewares
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use("/travelPlans", travelPlansRouter);
 app.use("/activities", activitiesRouter);
 app.use("/friends", friendListRouter);
 app.use("/preferences", preferencesRouter);
+app.use("/comment",activitiesCommentsRouter)
 
 const PORT = process.env.PORT || 5000;
 
