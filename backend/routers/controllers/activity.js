@@ -6,7 +6,7 @@ const addActivity = (req, res) => {
   db.query(query_, (err, results) => {
     if (err) throw err;
     const currentlyIn = results[0].currently_in;
-    const query = `INSERT INTO activities (title, start_date, finish_date ,location, details, requirements , activities ,  images , estimated_budget) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)  `;
+    const query = `INSERT INTO activities (title, start_date, finish_date ,location, details, requirements , activities ,  images , estimated_budget,user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)  `;
     const {
       title,
       start_date,
@@ -17,6 +17,7 @@ const addActivity = (req, res) => {
       images,
       estimated_budget,
     } = req.body;
+
     const data = [
       title,
       start_date,
@@ -105,10 +106,23 @@ const updateActivitiesById = (req, res) => {
   });
 };
 
+const joinActivityById = (req, res) => {
+  const activity_id = req.params.id;
+  const user_id = req.body.user_id;
+  const query = `INSERT INTO activity_members (user_id,activity_id) VALUES (?,?)`;
+  const data = [user_id, activity_id];
+
+  db.query(query, data, (err, result) => {
+    if (result) res.status(200).json("Activity Joined Successfully !");
+    else res.status(400).json("ERROR OCCURRED.. !");
+  });
+};
+
 module.exports = {
   addActivity,
   getAllActivities,
   getActivitiesById,
   deleteActivitiesById,
   updateActivitiesById,
+  joinActivityById,
 };

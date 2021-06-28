@@ -6,6 +6,7 @@ const {
   getActivitiesById,
   deleteActivitiesById,
   updateActivitiesById,
+  joinActivityById,
 } = require("../controllers/activity");
 
 const activitiesRouter = express.Router();
@@ -14,9 +15,12 @@ activitiesRouter.post("/:id", addActivity);
 //user_id
 activitiesRouter.get("/:id", getAllActivities);
 //activities_id
-activitiesRouter.get("/getById/:id", getActivitiesById);
+activitiesRouter.get("/activity/:id", getActivitiesById);
 //activities_id
-activitiesRouter.delete("/delete/:id", deleteActivitiesById);
+activitiesRouter.delete("/:id", deleteActivitiesById);
 //activities_id
-activitiesRouter.put("/update/:id", updateActivitiesById);
+activitiesRouter.put("/:id", updateActivitiesById);
+//activities_id
+activitiesRouter.post("/activity/:id", joinActivityById);
+
 module.exports = activitiesRouter;
