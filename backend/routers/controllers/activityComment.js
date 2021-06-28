@@ -16,8 +16,8 @@ const showAllCommentByActivityId = (req, res) => {
     const query = "SELECT * FROM  activity_comments INNER JOIN activities ON activity_id=activities.id AND activity_id=?";
     const data = [activity_id];
     db.query(query, data, (err, result) => {
-        if (err) res.status(400).json("ERROR OCCURRED..!");
-        else res.status(200).json(result);
+        if (result) res.status(200).json("Comment Added Successfully..!");
+        else res.status(400).json("ERROR OCCURRED..!");
     });
 }
 
