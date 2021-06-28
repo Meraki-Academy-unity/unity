@@ -132,7 +132,7 @@ const addPlanComment = (req, res) => {
 const showAllCommentByPlanId = (req, res) => {
   const travel_plans_id = req.params.id;
   const query =
-    "SELECT * FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_id=travel_plans.id AND travel_plans_id=?";
+  "SELECT content,travel_plans_comments.user_id FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_comments.travel_plans_id=travel_plans.id WHERE travel_plans.id=?";
   const data = [travel_plans_id];
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
