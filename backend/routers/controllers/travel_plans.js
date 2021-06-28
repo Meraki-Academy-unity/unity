@@ -116,6 +116,7 @@ const withDrawTravelPlaneById = (req, res) => {
   });
 };
 
+
 const addPlanComment = (req, res) => {
   const travel_plans_id = req.params.id;
   const { content, user_id } = req.body;
@@ -137,6 +138,7 @@ const showAllCommentByPlanId = (req, res) => {
     else res.status(200).json(result);
   });
 };
+
 
 module.exports = {
   createTravelPlans,
