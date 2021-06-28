@@ -92,10 +92,23 @@ const deleteTravelPlansById = (req, res) => {
   });
 };
 
+const joinTravelPlaneById = (req, res) => {
+  const plan_id = req.params.id;
+  const user_id = req.body.user_id;
+  const query = `INSERT INTO plan_members (user_id,plan_id) VALUES (?,?)`;
+  const data = [user_id, plan_id];
+
+  db.query(query, data, (err, result) => {
+    if (result) res.status(200).json("Travel Plans Joined Successfully !");
+    else res.status(400).json("ERROR OCCURRED.. !");
+  });
+};
+
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
   getTravelPlansById,
   updateTravelPlansById,
   deleteTravelPlansById,
+  joinTravelPlaneById
 };
