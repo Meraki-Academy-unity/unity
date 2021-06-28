@@ -24,7 +24,7 @@ const createTravelPlans = (req, res) => {
     details,
     images,
     estimated_budget,
-    user_id
+    user_id,
   ];
   db.query(query, data, (err, results) => {
     if (err) throw err;
@@ -118,7 +118,6 @@ const withDrawTravelPlaneById = (req, res) => {
   });
 };
 
-
 const addPlanComment = (req, res) => {
   const travel_plans_id = req.params.id;
   const { content, user_id } = req.body;
@@ -136,11 +135,21 @@ const showAllCommentByPlanId = (req, res) => {
     "SELECT * FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_id=travel_plans.id AND travel_plans_id=?";
   const data = [travel_plans_id];
   db.query(query, data, (err, result) => {
-    if (err) res.status(400).json("ERROR OCCURRED..!");
-    else res.status(200).json(result);
+    if (result) res.status(200).json(result);
+    else res.status(400).json("ERROR OCCURRED..!");
   });
 };
 
+const showTravelPlanByCountry = (req, res) => {
+  const country = req.params.country;
+  const query = `SELECT * FROM travel_plans WHERE countries = ?`;
+  const data = [country];
+
+  db.query(query, data, (err, result) => {
+    if (result) res.status(200).json(result);
+    else res.status(400).json("ERROR OCCURRED..!");
+  });
+};
 
 module.exports = {
   createTravelPlans,
@@ -151,5 +160,6 @@ module.exports = {
   joinTravelPlaneById,
   withDrawTravelPlaneById,
   addPlanComment,
-  showAllCommentByPlanId
+  showAllCommentByPlanId,
+  showTravelPlanByCountry,
 };
