@@ -36,7 +36,7 @@ const updateActivitiesComment = (req, res) => {
 const deletActivitiesComment = (req, res) => {
     const id = req.params.id;
     const { user_id } = req.body;
-    const query = "DELETE FROM  activities WHERE id=? AND user_id=?";
+    const query = "DELETE FROM  activity_comments WHERE id=? AND user_id=?";
     const data = [id, user_id]
     db.query(query, data,(err, result) => {
         if (err) throw err;

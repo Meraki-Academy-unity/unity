@@ -2,7 +2,8 @@ const express = require("express");
 
 const { addActivityComment,
     showAllCommentByActivityId,
-    updateActivitiesComment
+    updateActivitiesComment,
+    deletActivitiesComment
 } = require("../controllers/activityComment");
 
 const activitiesCommentsRouter = express.Router();
@@ -12,5 +13,7 @@ activitiesCommentsRouter.post("/", addActivityComment);
 activitiesCommentsRouter.get("/:id", showAllCommentByActivityId);
 //update using comment id 
 activitiesCommentsRouter.put("/:id", updateActivitiesComment);
+//delete using comment id 
+activitiesCommentsRouter.delete("/:id", deletActivitiesComment);
 
 module.exports = activitiesCommentsRouter;
