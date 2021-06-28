@@ -10,7 +10,8 @@ const {
     addActivityComment,
     showAllCommentByActivityId,
     updateActivitiesComment,
-    deletActivitiesComment
+    deletActivitiesComment,
+    withDrawActivityById
 } = require("../controllers/activity");
 
 const activitiesRouter = express.Router();
@@ -34,5 +35,6 @@ activitiesRouter.get("/comment/:id", showAllCommentByActivityId);
 activitiesRouter.put("/comment/:id", updateActivitiesComment);
 //delete using comment id 
 activitiesRouter.delete("/comment/:id", deletActivitiesComment);
-
+// withdraw user from activity 
+activitiesRouter.delete("/activity/:id", withDrawActivityById);
 module.exports = activitiesRouter;
