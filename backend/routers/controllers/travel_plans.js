@@ -110,5 +110,5 @@ module.exports = {
   getTravelPlansById,
   updateTravelPlansById,
   deleteTravelPlansById,
-  joinTravelPlaneById
+  joinTravelPlaneById,
 };
