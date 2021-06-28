@@ -23,7 +23,10 @@ const addPreference = (req, res) => {
 
   connection.query(query, data, (err, result) => {
     if (result) res.status(201).json("Preference Added Successfully!");
-    else res.status(400).json("ERROR OCCURRED !");
+    else {
+      console.log(err)
+      res.status(400).json("ERROR OCCURRED !")
+  };
   });
 };
 
