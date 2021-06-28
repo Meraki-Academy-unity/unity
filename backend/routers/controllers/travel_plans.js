@@ -1,7 +1,8 @@
 const db = require("../../db/db");
 
 const createTravelPlans = (req, res) => {
-  const query = `INSERT INTO travel_plans (title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?)`;
+  const id = req.params.id;
+  const query = `INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (?,?, ?, ?, ?, ?, ?, ?, ? , ?)`;
   const {
     title,
     start_date,
@@ -14,6 +15,7 @@ const createTravelPlans = (req, res) => {
     estimated_budget,
   } = req.body;
   const data = [
+    id,
     title,
     start_date,
     finish_date,
@@ -92,10 +94,34 @@ const deleteTravelPlansById = (req, res) => {
   });
 };
 
+const addPlanComment = (req, res) => {
+  const travel_plans_id = req.params.id;
+  const { content, user_id } = req.body;
+  const query = `INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES (?,?,?)`;
+  const data = [content, user_id, travel_plans_id];
+  db.query(query, data, (err, result) => {
+    if (result) res.status(200).json("Comment Added Successfully..!");
+    else res.status(400).json("ERROR OCCURRED..!");
+  });
+};
+
+const showAllCommentByPlanId = (req, res) => {
+  const travel_plans_id = req.params.id;
+  const query =
+    "SELECT * FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_id=travel_plans.id AND travel_plans_id=?";
+  const data = [travel_plans_id];
+  db.query(query, data, (err, result) => {
+    if (err) res.status(400).json("ERROR OCCURRED..!");
+    else res.status(200).json(result);
+  });
+};
+
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
   getTravelPlansById,
   updateTravelPlansById,
   deleteTravelPlansById,
+  addPlanComment,
+  showAllCommentByPlanId,
 };

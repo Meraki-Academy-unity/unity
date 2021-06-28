@@ -6,7 +6,8 @@ const { addActivityComment,
 
 const activitiesCommentsRouter = express.Router();
 
-activitiesCommentsRouter.post("/", addActivityComment);
+activitiesCommentsRouter.post("/:id", addActivityComment);
 activitiesCommentsRouter.get("/:id", showAllCommentByActivityId);
+
 
 module.exports = activitiesCommentsRouter;

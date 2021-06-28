@@ -148,4 +148,9 @@ INSERT INTO status (status) VALUES ('in preparation');
 INSERT INTO status (status) VALUES ('ongoing');
 INSERT INTO status (status) VALUES ('completed');
 
+INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Bayan","Alsafadi", "bayan@hotmail.com","Jordan","123456");
+INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Deyaa","Mosa", "deyaa@hotmail.com","Jordan","123456");
+INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Roaa","Maghayda", "roaa@hotmail.com","Jordan","123456");
+INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Tariq","Bazadough", "tariq@hotmail.com","Jordan","123456");
+
 

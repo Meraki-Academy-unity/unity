@@ -27,7 +27,7 @@ app.use("/travelPlans", travelPlansRouter);
 app.use("/activities", activitiesRouter);
 app.use("/friends", friendListRouter);
 app.use("/preferences", preferencesRouter);
-app.use("/comment",activitiesCommentsRouter)
+app.use("/comment",activitiesCommentsRouter);
 
 const PORT = process.env.PORT || 5000;
 
