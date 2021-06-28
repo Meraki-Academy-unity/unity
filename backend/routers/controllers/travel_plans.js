@@ -1,7 +1,8 @@
 const db = require("../../db/db");
 
 const createTravelPlans = (req, res) => {
-  const query = `INSERT INTO travel_plans (title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?)`;
+  const user_id = req.params.user_id;
+  const query = `INSERT INTO travel_plans (title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget,user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?,?)`;
   const {
     title,
     start_date,
@@ -23,6 +24,7 @@ const createTravelPlans = (req, res) => {
     details,
     images,
     estimated_budget,
+    user_id
   ];
   db.query(query, data, (err, results) => {
     if (err) throw err;
