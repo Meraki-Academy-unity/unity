@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../../loadingBar/loaderBar";
+import "./signUp.css"
 
 import {
   setUsers,
@@ -61,8 +62,10 @@ const SignUp = () => {
     }
   };
 
+
   const signUpSecondStep = () => {
     setProfileImage(state.url);
+
     axios
       .put(`http://localhost:5000/signUp/secondStep/${id}`, {
         region,
@@ -95,6 +98,7 @@ const SignUp = () => {
   return (
     <>
       {!secondStep ? (
+
         <FirstStep
           setFirstName={setFirstName}
           setLastName={setLastName}
@@ -174,6 +178,7 @@ const FirstStep = ({
     </div>
   );
 };
+
 
 const SecondStep = ({
   setRegion,

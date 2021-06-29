@@ -19,10 +19,10 @@ const App = () => {
     <Route exact path="/contactUs" render={()=><ContactUs/>}/>
       {/* <Login /> */}
       {/* <SignUp /> */}
-      {/* <AddActivities/> */}
+      <AddActivities/>
       {/* <AddTravelPlans /> */}
       {/* <AddPerferences /> */}
-      <Activities />
+      {/* <Activities /> */}
       <GetAllTravel />
     </div>
   );
