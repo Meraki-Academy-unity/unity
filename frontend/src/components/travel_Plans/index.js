@@ -43,7 +43,7 @@ const AddTravelPlans = () => {
             });
     }
 
-    const testUpload = (e) => {
+    const uploadImage = (e) => {
         let selectedImage = e.target.files[0];
         if (selectedImage && types.includes(selectedImage.type)) {
             setFile(selectedImage)
@@ -66,7 +66,7 @@ const AddTravelPlans = () => {
             <textarea placeholder="Activities" onChange={(e) => setActivities(e.target.value)}></textarea>
             {/* <input type="text" placeholder="image here" onChange={(e) => setImages(e.target.value)} /> */}
             {file && <LoaderBar file={file} setFile={setFile} />}
-            <input type='file' onChange={testUpload} />
+            <input type='file' onChange={uploadImage} />
             {errorImgMessage && <div>{errorImgMessage}</div>}
             <input type="text" placeholder=" estimated budget here" onChange={(e) => setEstimated_budget(e.target.value)} />
             <button onClick={addNewTravelPlans}>create Travel Plans</button>
