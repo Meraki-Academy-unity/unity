@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../../loadingBar/loaderBar";
+import "./signUp.css"
 
 import {
   setUsers,
@@ -63,7 +64,8 @@ const SignUp = () => {
     }
   };
 
-  const signUpSecondStep = () => {
+  const signUpSecondStep = async (e) => {
+    e.preventDefault()
     setProfileImage(state.url)
     axios
       .put(`http://localhost:5000/signUp/secondStep/${id}`, {
@@ -107,6 +109,7 @@ const SignUp = () => {
             }}
             type="text"
             placeholder="Enter First Name Here"
+
           />
           <input
             onChange={(e) => {
@@ -140,14 +143,15 @@ const SignUp = () => {
           <button onClick={signUpFirstStep}>Sign-Up</button>
         </div>
       ) : (
-        <div>
+        <div className="secStep">
           <input
             onChange={(e) => {
               setRegion(e.target.value);
             }}
             type="text"
             placeholder="Enter Your Country Here"
-            defaultValue=""
+            defaultValue="Reset"
+
           />
           <input
             onChange={(e) => {
@@ -155,7 +159,8 @@ const SignUp = () => {
             }}
             type="text"
             placeholder="Check In Your Current Location Here"
-            defaultValue=""
+            defaultValue="Reset"
+
           />
           <input
             onChange={(e) => {
@@ -163,7 +168,7 @@ const SignUp = () => {
             }}
             type="text"
             placeholder="Enter The Languages That you speak Here"
-            defaultValue=""
+            defaultValue="Reset"
           />
           <form>
             <input
