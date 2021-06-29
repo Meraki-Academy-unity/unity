@@ -151,6 +151,30 @@ const showTravelPlanByCountry = (req, res) => {
   });
 };
 
+const updatePlaneComment = (req, res) => {
+  const id = req.params.id;
+  const { content, user_id } = req.body;
+  const query = "UPDATE travel_plans_comments SET content=? WHERE id=? AND user_id=?";
+  const data = [content, id, user_id]
+  db.query(query, data, (err, result) => {
+      if (err) throw err;
+      console.log("RESULT: ", result);
+      res.json(result);
+  });
+}
+
+const deletePlaneComment = (req, res) => {
+  const id = req.params.id;
+  const { user_id } = req.body;
+  const query = "DELETE FROM  travel_plans_comments WHERE id=? AND user_id=?";
+  const data = [id, user_id]
+  db.query(query, data, (err, result) => {
+      if (err) throw err;
+      console.log("RESULT: ", result);
+      res.json(result);
+  });
+}
+
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
@@ -162,4 +186,6 @@ module.exports = {
   addPlanComment,
   showAllCommentByPlanId,
   showTravelPlanByCountry,
+  updatePlaneComment, 
+  deletePlaneComment
 };
