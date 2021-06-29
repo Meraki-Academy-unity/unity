@@ -14,6 +14,7 @@ const initialState = {
   export default imgUploader;
   
   export const setUrl= (url) => {
+      console.log("action",url)
       return {
           type: "SET_URL",
           payload: url
