@@ -19,8 +19,8 @@ const App = () => {
     <Route exact path="/contactUs" render={()=><ContactUs/>}/>
       {/* <Login /> */}
       {/* <SignUp /> */}
-      <AddActivities/>
-      {/* <AddTravelPlans /> */}
+      {/* <AddActivities/> */}
+      <AddTravelPlans />
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       <GetAllTravel />
