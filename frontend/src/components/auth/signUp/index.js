@@ -27,23 +27,21 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState();
   const [id, setId] = useState();
   const [secondStep, setSecondStep] = useState(false);
-  const [errorImgMessage, setErrorImgMessage] = useState()
-  const [file, setFile] = useState(null)
+  const [errorImgMessage, setErrorImgMessage] = useState();
+  const [file, setFile] = useState(null);
 
-  const types = ["image/png", "image/jpeg"]
-
+  const types = ["image/png", "image/jpeg"];
 
   const dispatch = useDispatch();
 
   const state = useSelector((state) => {
     return {
-      url: state.imgUploader.url
+      url: state.imgUploader.url,
     };
   });
-  console.log("state", state)
+  console.log("state", state);
 
   const signUpFirstStep = () => {
-
     if (password === confirmPassword) {
       axios
         .post("http://localhost:5000/signUp/firstStep", {
@@ -64,9 +62,10 @@ const SignUp = () => {
     }
   };
 
-  const signUpSecondStep = async (e) => {
-    e.preventDefault()
-    setProfileImage(state.url)
+
+  const signUpSecondStep = () => {
+    setProfileImage(state.url);
+
     axios
       .put(`http://localhost:5000/signUp/secondStep/${id}`, {
         region,
@@ -84,146 +83,183 @@ const SignUp = () => {
         throw err;
       });
   };
-  const testUpload = (e) => {
-
+  const uploadImage = (e) => {
     // console.log("test image uploade")
     let selectedImage = e.target.files[0];
     //console.log("select", selectedImage);
     if (selectedImage && types.includes(selectedImage.type)) {
-      setFile(selectedImage)
-      setErrorImgMessage("")
-
+      setFile(selectedImage);
+      setErrorImgMessage("");
+    } else {
+      setFile(null);
+      setErrorImgMessage("please select image type of png or jpeg");
     }
-    else {
-      setFile(null)
-      setErrorImgMessage("please select image type of png or jpeg")
-    }
-  }
+  };
   return (
     <>
       {!secondStep ? (
-        <div>
-          <input
-            onChange={(e) => {
-              setFirstName(e.target.value);
-            }}
-            type="text"
-            placeholder="Enter First Name Here"
 
-          />
-          <input
-            onChange={(e) => {
-              setLastName(e.target.value);
-            }}
-            type="text"
-            placeholder="Enter Last Name Here"
-          />
-          <input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            type="email"
-            placeholder="Enter E-mail Here"
-          />
-          <input
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            placeholder="Enter Password Here"
-          />
-          <input
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-            }}
-            type="password"
-            placeholder="Re-Enter Password Here"
-          />
-
-          <button onClick={signUpFirstStep}>Sign-Up</button>
-        </div>
+        <FirstStep
+          setFirstName={setFirstName}
+          setLastName={setLastName}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          setConfirmPassword={setConfirmPassword}
+          signUpFirstStep={signUpFirstStep}
+        />
       ) : (
-        <div className="secStep">
-          <input
-            onChange={(e) => {
-              setRegion(e.target.value);
-            }}
-            type="text"
-            placeholder="Enter Your Country Here"
-            defaultValue="Reset"
-
-          />
-          <input
-            onChange={(e) => {
-              setCurrentlyIn(e.target.value);
-            }}
-            type="text"
-            placeholder="Check In Your Current Location Here"
-            defaultValue="Reset"
-
-          />
-          <input
-            onChange={(e) => {
-              setLanguage(e.target.value);
-            }}
-            type="text"
-            placeholder="Enter The Languages That you speak Here"
-            defaultValue="Reset"
-          />
-          <form>
-            <input
-              onChange={() => {
-                setGender("Male");
-              }}
-              name="Gender"
-              id="Male"
-              type="radio"
-              value="Male"
-            />
-            <label htmlFor="Male">Male</label>
-            <input
-              onChange={() => {
-                setGender("Female");
-              }}
-              name="Gender"
-              id="Female"
-              type="radio"
-              value="Female"
-            />
-            <label htmlFor="Female">Female</label>
-          </form>
-          <input
-            onChange={(e) => {
-              setDateOfBirth(e.target.value);
-            }}
-            type="date"
-            placeholder="mm-dd-yyyy"
-          />
-          {/* <input
-            onChange={(e) => {
-              setProfileImage(e.target.value);
-            }}
-            type="text"
-            placeholder="image here"
-          /> */}
-          {/* {file && <h1>{file.name}</h1>} */}
-          {file && <LoaderBar file={file} setFile={setFile} />}
-          <input type='file' onChange={testUpload} />
-          {errorImgMessage && <div>{errorImgMessage}</div>}
-
-
-
-          <input
-            onChange={(e) => {
-              setDisplayName(e.target.value);
-            }}
-            type="text"
-            placeholder="Enter Display Name Here"
-          />
-          <button onClick={signUpSecondStep}>Next</button>
-        </div>
+        <SecondStep
+          setRegion={setRegion}
+          setCurrentlyIn={setCurrentlyIn}
+          setLanguage={setLanguage}
+          setGender={setGender}
+          setDateOfBirth={setDateOfBirth}
+          uploadImage={uploadImage}
+          setDisplayName={setDisplayName}
+          signUpSecondStep={signUpSecondStep}
+          setFile={setFile}
+          file={file}
+          errorImgMessage={errorImgMessage}
+        />
       )}
     </>
+  );
+};
+
+const FirstStep = ({
+  setFirstName,
+  setLastName,
+  setPassword,
+  setEmail,
+  setConfirmPassword,
+  signUpFirstStep,
+}) => {
+  return (
+    <div>
+      <div>
+        <input
+          onChange={(e) => {
+            setFirstName(e.target.value);
+          }}
+          type="text"
+          placeholder="Enter First Name Here"
+        />
+        <input
+          onChange={(e) => {
+            setLastName(e.target.value);
+          }}
+          type="text"
+          placeholder="Enter Last Name Here"
+        />
+        <input
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          type="email"
+          placeholder="Enter E-mail Here"
+        />
+        <input
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          type="password"
+          placeholder="Enter Password Here"
+        />
+        <input
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+          }}
+          type="password"
+          placeholder="Re-Enter Password Here"
+        />
+
+        <button onClick={signUpFirstStep}>Sign-Up</button>
+      </div>
+    </div>
+  );
+};
+
+
+const SecondStep = ({
+  setRegion,
+  setCurrentlyIn,
+  setLanguage,
+  setGender,
+  setDateOfBirth,
+  uploadImage,
+  setDisplayName,
+  signUpSecondStep,
+  setFile,
+  file,
+  errorImgMessage,
+}) => {
+  return (
+    <div>
+      <input
+        onChange={(e) => {
+          setRegion(e.target.value);
+        }}
+        type="text"
+        placeholder="Enter Your Country Here"
+      />
+      <input
+        onChange={(e) => {
+          setCurrentlyIn(e.target.value);
+        }}
+        type="text"
+        placeholder="Check In Your Current Location Here"
+      />
+      <input
+        onChange={(e) => {
+          setLanguage(e.target.value);
+        }}
+        type="text"
+        placeholder="Enter The Languages That you speak Here"
+      />
+      <form>
+        <input
+          onChange={() => {
+            setGender("Male");
+          }}
+          name="Gender"
+          id="Male"
+          type="radio"
+          value="Male"
+        />
+        <label htmlFor="Male">Male</label>
+        <input
+          onChange={() => {
+            setGender("Female");
+          }}
+          name="Gender"
+          id="Female"
+          type="radio"
+          value="Female"
+        />
+        <label htmlFor="Female">Female</label>
+      </form>
+      <input
+        onChange={(e) => {
+          setDateOfBirth(e.target.value);
+        }}
+        type="date"
+        placeholder="mm-dd-yyyy"
+      />
+
+      {file && <LoaderBar file={file} setFile={setFile} />}
+      <input type="file" onChange={uploadImage} />
+      {/* {file && <h1>{file.name}</h1>} */}
+      {errorImgMessage && <div>{errorImgMessage}</div>}
+
+      <input
+        onChange={(e) => {
+          setDisplayName(e.target.value);
+        }}
+        type="text"
+        placeholder="Enter Display Name Here"
+      />
+      <button onClick={signUpSecondStep}>Next</button>
+    </div>
   );
 };
 
