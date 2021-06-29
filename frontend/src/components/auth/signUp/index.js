@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import LoaderBar from "../../loadingBar/loaderBar";
 
 import {
   setUsers,
@@ -25,6 +26,11 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState();
   const [id, setId] = useState();
   const [secondStep, setSecondStep] = useState(false);
+  const [errorImgMessage, setErrorImgMessage] = useState()
+  const [file, setFile] = useState(null)
+
+  const types = ["image/png", "image/jpeg"]
+
 
   const dispatch = useDispatch();
 
@@ -67,7 +73,21 @@ const SignUp = () => {
         throw err;
       });
   };
+  const testUpload = (e) => {
 
+    // console.log("test image uploade")
+    let selectedImage = e.target.files[0];
+    //console.log("select", selectedImage);
+    if (selectedImage && types.includes(selectedImage.type)) {
+      setFile(selectedImage)
+      setErrorImgMessage("")
+
+    }
+    else {
+      setFile(null)
+      setErrorImgMessage("please select image type of png or jpeg")
+    }
+  }
   return (
     <>
       {!secondStep ? (
@@ -165,13 +185,17 @@ const SignUp = () => {
             type="date"
             placeholder="mm-dd-yyyy"
           />
-          <input
+          {/* <input
             onChange={(e) => {
               setProfileImage(e.target.value);
             }}
             type="text"
             placeholder="image here"
-          />
+          /> */}
+          <h1>{errorImgMessage}</h1>
+          {file && <h1>{file.name}</h1>}
+          {file && <LoaderBar file={file} setFile={setFile} />}
+          <input type='file' onChange={testUpload} />
           <input
             onChange={(e) => {
               setDisplayName(e.target.value);
