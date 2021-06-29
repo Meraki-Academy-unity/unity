@@ -192,10 +192,13 @@ const SignUp = () => {
             type="text"
             placeholder="image here"
           /> */}
-          <h1>{errorImgMessage}</h1>
-          {file && <h1>{file.name}</h1>}
+          {/* {file && <h1>{file.name}</h1>} */}
           {file && <LoaderBar file={file} setFile={setFile} />}
           <input type='file' onChange={testUpload} />
+          {errorImgMessage && <div>{errorImgMessage}</div>}
+
+        
+
           <input
             onChange={(e) => {
               setDisplayName(e.target.value);
