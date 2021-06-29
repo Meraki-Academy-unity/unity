@@ -94,7 +94,7 @@ const deleteTravelPlansById = (req, res) => {
   });
 };
 
-const joinTravelPlaneById = (req, res) => {
+const joinTravelPlanById = (req, res) => {
   const plan_id = req.params.id;
   const user_id = req.body.user_id;
   const query = `INSERT INTO plan_members (user_id,plan_id) VALUES (?,?)`;
@@ -106,7 +106,7 @@ const joinTravelPlaneById = (req, res) => {
   });
 };
 
-const withDrawTravelPlaneById = (req, res) => {
+const withDrawTravelPlanById = (req, res) => {
   const plan_id = req.params.id;
   const user_id = req.body.user_id;
   const query = `DELETE FROM plan_members WHERE user_id = ? AND plan_id = ?`;
@@ -151,7 +151,7 @@ const showTravelPlanByCountry = (req, res) => {
   });
 };
 
-const updatePlaneComment = (req, res) => {
+const updatePlanComment = (req, res) => {
   const id = req.params.id;
   const { content, user_id } = req.body;
   const query = "UPDATE travel_plans_comments SET content=? WHERE id=? AND user_id=?";
@@ -163,7 +163,7 @@ const updatePlaneComment = (req, res) => {
   });
 }
 
-const deletePlaneComment = (req, res) => {
+const deletePlanComment = (req, res) => {
   const id = req.params.id;
   const { user_id } = req.body;
   const query = "DELETE FROM  travel_plans_comments WHERE id=? AND user_id=?";
@@ -181,11 +181,11 @@ module.exports = {
   getTravelPlansById,
   updateTravelPlansById,
   deleteTravelPlansById,
-  joinTravelPlaneById,
-  withDrawTravelPlaneById,
+  joinTravelPlanById,
+  withDrawTravelPlanById,
   addPlanComment,
   showAllCommentByPlanId,
   showTravelPlanByCountry,
-  updatePlaneComment, 
-  deletePlaneComment
+  updatePlanComment, 
+  deletePlanComment
 };
