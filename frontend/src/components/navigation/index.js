@@ -81,7 +81,7 @@ const Navigation = ({ token, setToken, name }) => {
                 <Link className="link" to="/Plans">
                   Travel Plans
                 </Link>
-                <Link className="link" to="/contact us" >
+                <Link className="link" to="/contactUs" >
                   Contact us
                 </Link>
               </>
