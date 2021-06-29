@@ -1,11 +1,10 @@
 import React, { useEffect } from "react"
 import useStorage from "../hooks/useStorage"
-import Register from "./signIn/signUp";
 import "./loaderBar.css";
 
 const LoaderBar = ({ file, setFile, setImg }) => {
     const { url, loader } = useStorage(file);
-    console.log(url, loader)
+    console.log("URL ==> ",url, loader)
     useEffect(() => {
         if (url) {
             setFile(null)
