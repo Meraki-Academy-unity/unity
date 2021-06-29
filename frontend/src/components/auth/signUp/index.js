@@ -34,7 +34,15 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
 
+  const state = useSelector((state) => {
+    return {
+      url: state.imgUploader.url
+    };
+  });
+  console.log("state", state)
+
   const signUpFirstStep = () => {
+
     if (password === confirmPassword) {
       axios
         .post("http://localhost:5000/signUp/firstStep", {
@@ -56,6 +64,7 @@ const SignUp = () => {
   };
 
   const signUpSecondStep = () => {
+    setProfileImage(state.url)
     axios
       .put(`http://localhost:5000/signUp/secondStep/${id}`, {
         region,
@@ -192,10 +201,13 @@ const SignUp = () => {
             type="text"
             placeholder="image here"
           /> */}
-          <h1>{errorImgMessage}</h1>
-          {file && <h1>{file.name}</h1>}
+          {/* {file && <h1>{file.name}</h1>} */}
           {file && <LoaderBar file={file} setFile={setFile} />}
           <input type='file' onChange={testUpload} />
+          {errorImgMessage && <div>{errorImgMessage}</div>}
+
+
+
           <input
             onChange={(e) => {
               setDisplayName(e.target.value);
