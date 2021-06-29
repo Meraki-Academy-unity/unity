@@ -23,7 +23,7 @@ const App = () => {
       <AddTravelPlans />
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
-      <GetAllTravel />
+      {/* <GetAllTravel /> */}
     </div>
   );
 };
