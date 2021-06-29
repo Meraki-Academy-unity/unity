@@ -35,11 +35,11 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => {
-		return {
-			url: state.imgUploader.url
-		};
-	});
-    console.log("state",state)
+    return {
+      url: state.imgUploader.url
+    };
+  });
+  console.log("state", state)
 
   const signUpFirstStep = () => {
 
@@ -206,7 +206,7 @@ const SignUp = () => {
           <input type='file' onChange={testUpload} />
           {errorImgMessage && <div>{errorImgMessage}</div>}
 
-        
+
 
           <input
             onChange={(e) => {
