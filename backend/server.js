@@ -13,7 +13,7 @@ const friendListRouter = require("./routers/routes/friendList");
 const activitiesRouter = require("./routers/routes/activity");
 const preferencesRouter = require("./routers/routes/preferences");
 const profileRouter = require("./routers/routes/users");
-
+const ImagesRouter = require("./routers/routes/images");
 //built-in middlewares
 app.use(express.json());
 
@@ -28,6 +28,7 @@ app.use("/activities", activitiesRouter);
 app.use("/friends", friendListRouter);
 app.use("/preferences", preferencesRouter);
 app.use("/users", profileRouter);
+app.use("/photoAlbum",ImagesRouter)
 
 const PORT = process.env.PORT || 5000;
 
