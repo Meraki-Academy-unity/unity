@@ -15,8 +15,8 @@ const App = () => {
     <div className="App">
       <Navigation />
       <Route exact path="/login" render={() => <Login />} />
-	  <Route exact path="/register" render={() => <SignUp />} />
-    <Route exact path="/contactUs" render={()=><ContactUs/>}/>
+      <Route exact path="/register" render={() => <SignUp />} />
+      <Route exact path="/contactUs" render={() => <ContactUs />} />
       {/* <Login /> */}
       {/* <SignUp /> */}
       {/* <AddActivities/> */}
@@ -24,6 +24,7 @@ const App = () => {
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
+     
     </div>
   );
 };
