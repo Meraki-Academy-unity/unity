@@ -141,6 +141,16 @@ CREATE TABLE friend_list (
     PRIMARY KEY(id)
 );
 
+CREATE TABLE images (
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT,
+    images VARCHAR(255) ,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    PRIMARY KEY(id)
+);
+
+
+
 INSERT INTO roles (role) VALUES ('user');
 INSERT INTO roles (role) VALUES ('admin');
 
