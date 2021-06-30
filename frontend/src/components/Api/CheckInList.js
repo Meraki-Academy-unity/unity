@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
-const CountryList = ({ setCList}) => {
+const CheckInList = ({setRList}) => {
     const [country, setCountry] = useState([])
     const [location, setLocation] = useState();
     const [index, setIndex] = useState();
@@ -37,7 +37,7 @@ const CountryList = ({ setCList}) => {
                     )
                 })}
             </select>
-            {country[index] && setCList(country[index].name)}
+            {country[index] && setRList(country[index].name)}
             {country[index] && <img src={country[index].flag} style={{ borderRadius: "50% ", width: "17px", height: "17px", borderStyle: "solid", borderWidth: "2px" }} />}
 
 
@@ -47,4 +47,4 @@ const CountryList = ({ setCList}) => {
     )
 }
 
-export default CountryList
+export default CheckInList
