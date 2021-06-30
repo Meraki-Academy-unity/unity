@@ -20,12 +20,14 @@ const App = () => {
     <div className="App">
       <Navigation />
       <Route exact path="/login" render={() => <Login />} />
+
 	  <Route exact path="/register" render={() => <SignUp />} />
     <Route exact path="/contactUs" render={()=><ContactUs/>}/>
     <Route exact path="/plans" component={GetAllTravel}/>
     <Route exact path="/travelPlans/:id" component={GetTravelById} />
     <Route exact path="/activities" component={GetAllActivities}/>
     <Route exact path="/activities/activity/:id" component={GetActivityById}/>
+
       {/* <Login /> */}
       {/* <SignUp /> */}
       {/* <AddActivities/> */}
@@ -33,7 +35,9 @@ const App = () => {
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
+
       <Footer/>
+
 
     </div>
   );

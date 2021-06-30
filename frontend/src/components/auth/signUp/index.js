@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../../loadingBar/loaderBar";
+import CountryList from "../../Api/CountryList";
+import CheckInList from "../../Api/CheckInList";
 import img from "./Stranded traveler-pana.png";
 import "./signUp.css";
 
@@ -220,6 +222,10 @@ const SecondStep = ({
   file,
   errorImgMessage,
 }) => {
+  const [cList, setCList] = useState();
+  const [rList, setRList] = useState();
+
+  console.log("list", cList)
   return (
     <div className="regCont">
       <div className="leftAuthReg">
@@ -229,25 +235,33 @@ const SecondStep = ({
       <div className="regWrapper">
         <h1>Second Step</h1>
         <div className="regForm">
+          {/* _____________________________________________ */}
           <div className="firstName">
-            <label>Region:</label>
+            {/* <label>Region:</label>
             <input
               onChange={(e) => {
                 setRegion(e.target.value);
               }}
               type="text"
               placeholder="Enter Your Country Here"
-            />
+            /> */}
+            <CountryList setCList={setCList} />
+            {setRegion(cList)}
           </div>
+          {/* _____________________________________________ */}
           <div className="lastName">
-            <label>Current Location:</label>
+            {/* <label>Current Location:</label>
             <input
               onChange={(e) => {
                 setCurrentlyIn(e.target.value);
               }}
               type="text"
               placeholder="Check In Your Current Location Here"
-            />
+            /> */}
+            <CheckInList setRList={setRList} />
+            {setCurrentlyIn(rList)}
+            {/* _____________________________________________ */}
+
           </div>
           <div className="email">
             <label>Languages:</label>
