@@ -11,9 +11,9 @@ const addImage = (req, res) => {
     });
 };
 
-const getImageByUserId = () => {
+const getImageByUserId = (req,res) => {
     const user_id = req.token.user_id;
-    const query = "SELECT * FROM images INNER JOIN users ON user_id=images.id WHERE user_id=?"
+    const query = "SELECT images FROM images INNER JOIN users ON users.id=images.user_id AND images.user_id=?"
     const data = [user_id];
     db.query(query, data, (err, result) => {
         if (result) res.status(200).json(result);
