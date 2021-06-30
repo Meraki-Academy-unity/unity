@@ -139,8 +139,9 @@ const FirstStep = ({
   return (
     <div className="regCont">
       <div className="leftAuthReg">
-        <img src={img} alt="" />
+        <div className="imgDiv"><img src={img} alt="" /></div>
       </div>
+      <div className="rightAuthReg">
       <div className="regWrapper">
         <h1>First Step</h1>
 
@@ -203,6 +204,7 @@ const FirstStep = ({
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 };
@@ -227,8 +229,9 @@ const SecondStep = ({
   return (
     <div className="regCont">
       <div className="leftAuthReg">
-        <img src={img} alt="" />
+      <div className="imgDiv"><img src={img} alt="" /></div>
       </div>
+      <div className="rightAuthReg">
       <div className="regWrapper">
         <h1>Second Step</h1>
         <div className="regForm">
@@ -334,6 +337,7 @@ const SecondStep = ({
             </small>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

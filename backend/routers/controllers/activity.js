@@ -37,7 +37,17 @@ const addActivity = (req, res) => {
         });
     });
 };
+
 const getAllActivities = (req, res) => {
+    const query = `SELECT activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time , users.first_name , users.last_name  FROM activities INNER JOIN  users ON activities.user_id = users.id `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.status(200);
+      res.json(results);
+    });
+  };
+
+const getAllActivitiesByUser = (req, res) => {
     const id = req.params.id;
     const query =
         "SELECT * FROM  activities INNER JOIN  users ON  users.currently_in=activities.location AND users.id=?";
@@ -50,10 +60,9 @@ const getAllActivities = (req, res) => {
 };
 
 const getActivitiesById = (req, res) => {
-    const id = req.params.id;
     const query =
-        "SELECT * FROM  activities INNER JOIN  users ON activities.id=? WHERE users.id=user_id";
-    const data = [id];
+    `SELECT * FROM activities WHERE id=?`;
+    const data = req.params.id;
     db.query(query, data, (err, result) => {
         if (err) throw err;
         console.log("RESULT: ", result);
@@ -182,6 +191,7 @@ const withDrawActivityById = (req, res) => {
 module.exports = {
     addActivity,
     getAllActivities,
+    getAllActivitiesByUser,
     getActivitiesById,
     deleteActivitiesById,
     updateActivitiesById,

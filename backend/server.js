@@ -12,6 +12,7 @@ const login = require("./routers/routes/auth/login");
 const friendListRouter = require("./routers/routes/friendList");
 const activitiesRouter = require("./routers/routes/activity");
 const preferencesRouter = require("./routers/routes/preferences");
+const profileRouter = require("./routers/routes/users");
 
 //built-in middlewares
 app.use(express.json());
@@ -26,10 +27,10 @@ app.use("/travelPlans", travelPlansRouter);
 app.use("/activities", activitiesRouter);
 app.use("/friends", friendListRouter);
 app.use("/preferences", preferencesRouter);
-
+app.use("/users", profileRouter);
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-	console.log(`Server On ${PORT}`);
+  console.log(`Server On ${PORT}`);
 });

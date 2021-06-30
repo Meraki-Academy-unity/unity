@@ -31,9 +31,18 @@ const AddTravelPlans = () => {
     });
     console.log("state travel plans", state)
 
-    const addNewTravelPlans = () => {
+    const addNewTravelPlans = async() => {
+        await axios.get("https://restcountries.eu/rest/v2/lang/es" ).then((result) => {
+            console.log("count", result.data)
+        })
+        .catch((err) => {
+            throw err;
+        });
+
+
+
         setImages(state.url)
-        axios.post(`http://localhost:5000/travelPlans/1`,
+        await axios.post(`http://localhost:5000/travelPlans/1`,
             { title, start_date, finish_date, countries, activities, requirements, details, images, estimated_budget })
             .then((result) => {
                 console.log("res", result.data)
