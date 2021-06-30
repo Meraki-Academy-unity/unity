@@ -44,6 +44,7 @@ const SignUp = () => {
     };
   });
   console.log("state", state);
+  
 
   const signUpFirstStep = () => {
     if (password === confirmPassword) {
