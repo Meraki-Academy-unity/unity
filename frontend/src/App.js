@@ -11,6 +11,8 @@ import GetAllTravel from "./components/travel_Plans/getAllTravel";
 import ContactUs from './components/contactUs'
 import GetTravelById from "./components/travel_Plans/getTravelById"
 import Footer from './components/footer'
+import GetActivityById from "./components/Activities/getActivityById";
+
 
 
 const App = () => {
@@ -23,6 +25,7 @@ const App = () => {
     <Route exact path="/plans" component={GetAllTravel}/>
     <Route exact path="/travelPlans/:id" component={GetTravelById} />
     <Route exact path="/activities" component={GetAllActivities}/>
+    <Route exact path="/activities/activity/:id" component={GetActivityById}/>
       {/* <Login /> */}
       {/* <SignUp /> */}
       {/* <AddActivities/> */}
