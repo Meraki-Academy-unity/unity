@@ -9,6 +9,7 @@ import Activities from "./components/Activities/getActivities";
 import Navigation from "./components/navigation";
 import GetAllTravel from "./components/travel_Plans/getAllTravel";
 import ContactUs from './components/contactUs'
+import Footer from './components/footer'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
+      <Footer/>
     </div>
   );
 };
