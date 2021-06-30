@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
-const CheckInList = ({setRList}) => {
+const CheckInList = ({ setRList }) => {
     const [country, setCountry] = useState([])
     const [location, setLocation] = useState();
     const [index, setIndex] = useState();
@@ -27,7 +27,9 @@ const CheckInList = ({setRList}) => {
                     setLocation(e.target.value.split(",")[0])
                     setIndex(e.target.value.split(",")[1])
                 }}>
-
+                <option >
+                    choose your country
+                </option>
                 {country && country.map((elem, i) => {
 
                     return (
