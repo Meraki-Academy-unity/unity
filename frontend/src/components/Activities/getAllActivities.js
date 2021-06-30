@@ -31,7 +31,7 @@ const Activities = () => {
         <h1>Activities</h1>
         <br/>
         {activities && activities.map((res,ind)=>{
-            return <Link to={`/activities/${res.id}` } key={ind}> <div>
+            return <Link to={`/activities/activity/${res.id}` } key={ind}> <div>
                 <p>{res.first_name} {res.last_name}</p>
                 <h2>{res.title}</h2>
                 <p>{res.activities}</p>
