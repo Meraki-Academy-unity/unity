@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../../reducers/login";
 import "./navigation.css";
 import world from "./world.png";
 import menu from "./menu.png";
 import close from "./close.png";
 
-const Navigation = ({ token, setToken, name }) => {
+const Navigation = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [isShowed, setIsShowed] = useState(false);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => {
+    return {
+      token: state.login.token,
+    };
+  });
+
   const logout = () => {
     localStorage.clear();
-    setToken("");
+    dispatch(setToken(''));
   };
   return (
     <div className="navContainer">
@@ -43,7 +52,7 @@ const Navigation = ({ token, setToken, name }) => {
           )}
           ;
           <div className="links" id={showLinks ? "hidden" : ""}>
-            {token ? (
+            {state.token ? (
               <>
                 <Link className="link" to="/Profile">
                   Profile

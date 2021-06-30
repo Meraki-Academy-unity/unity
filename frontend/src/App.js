@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import Login from "./components/auth/login/index";
 import SignUp from "./components/auth/signUp/index";
@@ -16,10 +16,15 @@ import GetActivityById from "./components/Activities/getActivityById";
 
 
 const App = () => {
+  const [token,setToken] = useState('')
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) setToken(localStorage.getItem("token"));
+  // }, []);
+  // console.log("---- Token ---- \n",token);
   return (
     <div className="App">
-      <Navigation />
-      <Route exact path="/login" render={() => <Login />} />
+      <Navigation token={token} />
+      <Route exact path="/login" render={() => <Login setToken={setToken}/>} />
 
 	  <Route exact path="/register" render={() => <SignUp />} />
     <Route exact path="/contactUs" render={()=><ContactUs/>}/>
