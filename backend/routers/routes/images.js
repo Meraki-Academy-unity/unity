@@ -7,4 +7,6 @@ const ImagesRouter = express.Router();
 const { addImage } = require("../controllers/images");
 
 
-ImagesRouter.post("/", authentication, addImage)
+ImagesRouter.post("/", authentication,addImage)
+
+module.exports = ImagesRouter;
