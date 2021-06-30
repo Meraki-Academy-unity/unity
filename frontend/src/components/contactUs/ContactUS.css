@@ -6,7 +6,7 @@
   margin-left: 50px;
 }
 
-.container {
+.contactContainer {
   margin-top: 30px;
   margin-bottom: 30px;
   margin-left: 100px;
@@ -45,7 +45,8 @@ p {
   width: 195px;
   border-radius: 5px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgba(245, 229, 8, 0.582);
+  background-color: rgb(255, 208, 0);
+  border:none;
 }
 
 .contact-section {
@@ -73,7 +74,7 @@ p {
 .contact-form textarea {
   resize: none;
   padding: 10px;
-  width: 195px;
+  width: 175px;
 }
 
 .contact-details {
@@ -82,9 +83,9 @@ p {
 
 .btn:hover {
   cursor: pointer;
-  background-color: rgba(51, 51, 51, 0.219);
+  background-color: rgb(247, 209, 40);
 }
 
-input {
+.contact-form input {
   padding: 10px;
 }

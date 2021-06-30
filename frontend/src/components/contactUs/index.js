@@ -51,7 +51,7 @@ const ContactUs = () => {
   }, 5000);
 
   return (
-    <div className="container" id="contactUs">
+    <div className="contactContainer" id="contactUs">
       <div className="contact-section">
         <div className="contact-details">
           <h1>Contact Details:</h1>
@@ -91,7 +91,7 @@ const ContactUs = () => {
                 <td>
                   <span className="head">Email</span>
                   <br />
-                  <span className="tbody">BillTeam@gmail.com</span>
+                  <span className="tbody">UnityTeam@gmail.com</span>
                 </td>
               </tr>
             </tbody>

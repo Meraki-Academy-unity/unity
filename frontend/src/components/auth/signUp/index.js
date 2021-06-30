@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../../loadingBar/loaderBar";
-import "./signUp.css"
+import img from "./Stranded traveler-pana.png";
+import "./signUp.css";
 
 import {
   setUsers,
@@ -62,7 +64,6 @@ const SignUp = () => {
     }
   };
 
-
   const signUpSecondStep = () => {
     setProfileImage(state.url);
 
@@ -98,7 +99,6 @@ const SignUp = () => {
   return (
     <>
       {!secondStep ? (
-
         <FirstStep
           setFirstName={setFirstName}
           setLastName={setLastName}
@@ -135,50 +135,75 @@ const FirstStep = ({
   signUpFirstStep,
 }) => {
   return (
-    <div>
-      <div>
-        <input
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-          type="text"
-          placeholder="Enter First Name Here"
-        />
-        <input
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-          type="text"
-          placeholder="Enter Last Name Here"
-        />
-        <input
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          type="email"
-          placeholder="Enter E-mail Here"
-        />
-        <input
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          type="password"
-          placeholder="Enter Password Here"
-        />
-        <input
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-          }}
-          type="password"
-          placeholder="Re-Enter Password Here"
-        />
+    <div className="regCont">
+      <div className="leftAuthReg">
+        <img src={img} alt="" />
+      </div>
+      <div className="regWrapper">
+        <h1>First Step</h1>
 
-        <button onClick={signUpFirstStep}>Sign-Up</button>
+        <div className="regForm">
+          <div className="firstName">
+            <label>First Name: </label>
+            <input
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
+              type="text"
+              placeholder="Enter First Name Here"
+            />
+          </div>
+          <div className="lastName">
+            <label>Last Name: </label>
+            <input
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
+              type="text"
+              placeholder="Enter Last Name Here"
+            />
+          </div>
+          <div className="email">
+            <label>Email: </label>
+            <input
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              type="email"
+              placeholder="Enter E-mail Here"
+            />
+          </div>
+          <div className="password">
+            <label>Password: </label>
+            <input
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              type="password"
+              placeholder="Enter Password Here"
+            />
+          </div>
+          <div className="password">
+            <label>Confirm Password: </label>
+            <input
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+              type="password"
+              placeholder="Re-Enter Password Here"
+            />{" "}
+          </div>
+          <div className="createAccount">
+            <button onClick={signUpFirstStep}>Sign-Up</button>
+            <small>
+              Already Have Account?<Link>Login</Link>
+            </small>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
 
 const SecondStep = ({
   setRegion,
@@ -194,71 +219,108 @@ const SecondStep = ({
   errorImgMessage,
 }) => {
   return (
-    <div>
-      <input
-        onChange={(e) => {
-          setRegion(e.target.value);
-        }}
-        type="text"
-        placeholder="Enter Your Country Here"
-      />
-      <input
-        onChange={(e) => {
-          setCurrentlyIn(e.target.value);
-        }}
-        type="text"
-        placeholder="Check In Your Current Location Here"
-      />
-      <input
-        onChange={(e) => {
-          setLanguage(e.target.value);
-        }}
-        type="text"
-        placeholder="Enter The Languages That you speak Here"
-      />
-      <form>
-        <input
-          onChange={() => {
-            setGender("Male");
-          }}
-          name="Gender"
-          id="Male"
-          type="radio"
-          value="Male"
-        />
-        <label htmlFor="Male">Male</label>
-        <input
-          onChange={() => {
-            setGender("Female");
-          }}
-          name="Gender"
-          id="Female"
-          type="radio"
-          value="Female"
-        />
-        <label htmlFor="Female">Female</label>
-      </form>
-      <input
-        onChange={(e) => {
-          setDateOfBirth(e.target.value);
-        }}
-        type="date"
-        placeholder="mm-dd-yyyy"
-      />
+    <div className="regCont">
+      <div className="leftAuthReg">
+        <img src={img} alt="" />
+      </div>
+      <div className="regWrapper">
+        <h1>Second Step</h1>
+        <div className="regForm">
+          <div className="firstName">
+            <label>Region:</label>
+            <input
+              onChange={(e) => {
+                setRegion(e.target.value);
+              }}
+              type="text"
+              placeholder="Enter Your Country Here"
+            />
+          </div>
+          <div className="lastName">
+            <label>Current Location:</label>
+            <input
+              onChange={(e) => {
+                setCurrentlyIn(e.target.value);
+              }}
+              type="text"
+              placeholder="Check In Your Current Location Here"
+            />
+          </div>
+          <div className="email">
+            <label>Languages:</label>
+            <input
+              onChange={(e) => {
+                setLanguage(e.target.value);
+              }}
+              type="text"
+              placeholder="Enter The Languages That you speak Here"
+            />
+          </div>
+          <div className="firstName">
+            <label>Display Name:</label>
+            <input
+              onChange={(e) => {
+                setDisplayName(e.target.value);
+              }}
+              type="text"
+              placeholder="Enter Display Name Here"
+            />
+          </div>
+          <div className="lastName">
+            <label>Birth Date:</label>
+            <input
+              onChange={(e) => {
+                setDateOfBirth(e.target.value);
+              }}
+              type="date"
+              placeholder="mm-dd-yyyy"
+            />
+          </div>
+          <div className="firstName">
+            <label>Gender:</label>
+            <form>
+              <div>
+                <input
+                  onChange={() => {
+                    setGender("Male");
+                  }}
+                  name="Gender"
+                  id="Male"
+                  type="radio"
+                  value="Male"
+                />
+                <label htmlFor="Male">Male</label>
+              </div>
+              <div>
+                <input
+                  onChange={() => {
+                    setGender("Female");
+                  }}
+                  name="Gender"
+                  id="Female"
+                  type="radio"
+                  value="Female"
+                />
+                <label htmlFor="Female">Female</label>
+              </div>
+            </form>
+          </div>
 
-      {file && <LoaderBar file={file} setFile={setFile} />}
-      <input type="file" onChange={uploadImage} />
-      {/* {file && <h1>{file.name}</h1>} */}
-      {errorImgMessage && <div>{errorImgMessage}</div>}
-
-      <input
-        onChange={(e) => {
-          setDisplayName(e.target.value);
-        }}
-        type="text"
-        placeholder="Enter Display Name Here"
-      />
-      <button onClick={signUpSecondStep}>Next</button>
+          <div className="lastName">
+            <label>Upload Image:</label>
+            {file && <LoaderBar file={file} setFile={setFile} />}
+            <input type="file" onChange={uploadImage} />
+            {/* {file && <h1>{file.name}</h1>} */}
+            {errorImgMessage && <div>{errorImgMessage}</div>}
+          </div>
+          <div className="createAccount">
+            <button onClick={signUpSecondStep}>Next</button>
+            <small>
+              <Link>skip</Link>
+            </small>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

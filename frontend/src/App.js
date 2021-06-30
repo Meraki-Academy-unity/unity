@@ -20,7 +20,7 @@ const App = () => {
       {/* <Login /> */}
       {/* <SignUp /> */}
       {/* <AddActivities/> */}
-      <AddTravelPlans />
+      {/* <AddTravelPlans /> */}
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
