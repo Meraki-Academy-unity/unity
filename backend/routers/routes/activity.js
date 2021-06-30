@@ -3,6 +3,7 @@ const express = require("express");
 const {
     addActivity,
     getAllActivities,
+    getAllActivitiesByUser,
     getActivitiesById,
     deleteActivitiesById,
     updateActivitiesById,
@@ -18,7 +19,9 @@ const activitiesRouter = express.Router();
 
 activitiesRouter.post("/:id", addActivity);
 //user_id
-activitiesRouter.get("/:id", getAllActivities);
+activitiesRouter.get("/:id", getAllActivitiesByUser);
+
+activitiesRouter.get("/" , getAllActivities)
 //activities_id
 activitiesRouter.get("/activity/:id", getActivitiesById);
 //activities_id

@@ -5,7 +5,7 @@ import SignUp from "./components/auth/signUp/index";
 import AddActivities from "./components/Activities/addActivities";
 import AddTravelPlans from "./components/travel_Plans/index";
 import AddPerferences from "./components/preferences/addPreferences";
-import Activities from "./components/Activities/getActivities";
+import GetAllActivities from "./components/Activities/getAllActivities";
 import Navigation from "./components/navigation";
 import GetAllTravel from "./components/travel_Plans/getAllTravel";
 import ContactUs from './components/contactUs'
@@ -22,6 +22,7 @@ const App = () => {
     <Route exact path="/contactUs" render={()=><ContactUs/>}/>
     <Route exact path="/plans" component={GetAllTravel}/>
     <Route exact path="/travelPlans/:id" component={GetTravelById} />
+    <Route exact path="/activities" component={GetAllActivities}/>
       {/* <Login /> */}
       {/* <SignUp /> */}
       {/* <AddActivities/> */}
