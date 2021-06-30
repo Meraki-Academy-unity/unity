@@ -10,6 +10,8 @@ import Navigation from "./components/navigation";
 import GetAllTravel from "./components/travel_Plans/getAllTravel";
 import ContactUs from './components/contactUs'
 import GetTravelById from "./components/travel_Plans/getTravelById"
+import Footer from './components/footer'
+
 
 const App = () => {
   return (
@@ -26,6 +28,9 @@ const App = () => {
       {/* <AddTravelPlans /> */}
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
+      {/* <GetAllTravel /> */}
+      <Footer/>
+
     </div>
   );
 };
