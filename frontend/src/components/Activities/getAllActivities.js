@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 // import { setToken } from './../reducer/login/index';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { Link, Route } from "react-router-dom";
 
 
 const Activities = () => {
@@ -14,7 +15,7 @@ const Activities = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/activities/1`)
+        axios.get(`http://localhost:5000/activities/`)
             .then((result) => {
                 console.log("res", result.data)
                 setactivities(result.data)
@@ -26,12 +27,20 @@ const Activities = () => {
     )
     return (
         <>
-            {activities && activities.map((elem, i) => {
-                return (<div className="childrestaurant" key={i}>
-                   <p>{elem.title}</p>
-                   <p>{elem.requirements}</p>
-                </div> )
-            })}
+        <br/>
+        <h1>Activities</h1>
+        <br/>
+        {activities && activities.map((res,ind)=>{
+            return <Link to={`/activities/${res.id}` } key={ind}> <div>
+                <p>{res.first_name} {res.last_name}</p>
+                <h2>{res.title}</h2>
+                <p>{res.activities}</p>
+                <p>{res.location}</p>
+                <p>{res.creation_time}</p>
+                <br/>
+            </div></Link>
+        })}
+            
         </>
     );
 };

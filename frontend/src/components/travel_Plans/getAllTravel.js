@@ -20,9 +20,11 @@ const GetAllTravel = ()=>{
     
     return (
         <>
+        <br/>
         <h1>Travel plans</h1>
+        <br/>
         {travels && travels.map((res,ind)=>{
-            return <Link to={`/travelPlans/${res.id}`}> <div key={ind}>
+            return <Link to={`/travelPlans/${res.id}` } key={ind}> <div>
                 <p>{res.first_name} {res.last_name}</p>
                 <h2>{res.title}</h2>
                 <p>{res.activities}</p>
