@@ -18,6 +18,17 @@ const CountryList = ({ setCList }) => {
             });
     }
         , [])
+    //GET https://translation.googleapis.com/language/translate/v2/languages
+    useEffect(async () => {
+        await axios.get(`https://translation.googleapis.com/language/translate/v2/languages`)
+            .then((result) => {
+                console.log("lang",result.data)
+            })
+            .catch((err) => {
+                throw err;
+            });
+    }
+        , [])
 
     return (
         <>

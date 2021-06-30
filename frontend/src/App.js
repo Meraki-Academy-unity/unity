@@ -13,7 +13,7 @@ import GetTravelById from "./components/travel_Plans/getTravelById"
 import Footer from './components/footer'
 import GetActivityById from "./components/Activities/getActivityById";
 import Profile from './components/profile'
-
+import CountryList from "./components/Api/CountryList";
 
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
-
+      <CountryList/>
       <Footer/>
 
 
