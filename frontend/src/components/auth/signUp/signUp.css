@@ -1,12 +1,12 @@
 .regCont {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: #f6f8f8;
-
+    overflow: hidden;
   }
 
   .leftAuthReg {
@@ -14,7 +14,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh;
+
+  }
+
+  .rightAuthReg{
+    flex: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
   
   .leftAuthReg img {
@@ -33,8 +42,7 @@
     padding: 20px 40px;
     border-radius: 10px;
     /* box-shadow: 0px 10px 50px #555; */
-    flex: 40%;
-    
+    /* flex: 40%; */    
   }
   
   .regForm {   
