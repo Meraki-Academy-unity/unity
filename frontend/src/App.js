@@ -12,19 +12,15 @@ import ContactUs from './components/contactUs'
 import GetTravelById from "./components/travel_Plans/getTravelById"
 import Footer from './components/footer'
 import GetActivityById from "./components/Activities/getActivityById";
+import Profile from './components/profile'
 
 
 
 const App = () => {
-  const [token,setToken] = useState('')
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) setToken(localStorage.getItem("token"));
-  // }, []);
-  // console.log("---- Token ---- \n",token);
   return (
     <div className="App">
-      <Navigation token={token} />
-      <Route exact path="/login" render={() => <Login setToken={setToken}/>} />
+      <Navigation />
+      <Route exact path="/login" render={() => <Login/>} />
 
 	  <Route exact path="/register" render={() => <SignUp />} />
     <Route exact path="/contactUs" render={()=><ContactUs/>}/>
@@ -32,6 +28,7 @@ const App = () => {
     <Route exact path="/travelPlans/:id" component={GetTravelById} />
     <Route exact path="/activities" component={GetAllActivities}/>
     <Route exact path="/activities/activity/:id" component={GetActivityById}/>
+    <Route exact path="/profile" render={()=><Profile/>}/>
 
       {/* <Login /> */}
       {/* <SignUp /> */}

@@ -25,7 +25,6 @@ const Login = () => {
         console.log(result);
         setMessage("Login Successful");
         localStorage.setItem("token",result.data.token)
-        // setToken(result.data.token)
         dispatch(setToken(result.data.token));
 
       })
