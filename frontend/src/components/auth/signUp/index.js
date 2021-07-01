@@ -44,7 +44,6 @@ const SignUp = () => {
     };
   });
   console.log("state", state);
-  
 
   const signUpFirstStep = () => {
     if (password === confirmPassword) {
@@ -67,10 +66,10 @@ const SignUp = () => {
     }
   };
 
-  const signUpSecondStep = () => {
+  const signUpSecondStep = async () => {
     setProfileImage(state.url);
 
-    axios
+    await axios
       .put(`http://localhost:5000/signUp/secondStep/${id}`, {
         region,
         currently_in: currentlyIn,
@@ -140,71 +139,73 @@ const FirstStep = ({
   return (
     <div className="regCont">
       <div className="leftAuthReg">
-        <div className="imgDiv"><img src={img} alt="" /></div>
-      </div>
-      <div className="rightAuthReg">
-      <div className="regWrapper">
-        <h1>First Step</h1>
-
-        <div className="regForm">
-          <div className="firstName">
-            <label>First Name: </label>
-            <input
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-              type="text"
-              placeholder="Enter First Name Here"
-            />
-          </div>
-          <div className="lastName">
-            <label>Last Name: </label>
-            <input
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-              type="text"
-              placeholder="Enter Last Name Here"
-            />
-          </div>
-          <div className="email">
-            <label>Email: </label>
-            <input
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              type="email"
-              placeholder="Enter E-mail Here"
-            />
-          </div>
-          <div className="password">
-            <label>Password: </label>
-            <input
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              type="password"
-              placeholder="Enter Password Here"
-            />
-          </div>
-          <div className="password">
-            <label>Confirm Password: </label>
-            <input
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-              }}
-              type="password"
-              placeholder="Re-Enter Password Here"
-            />{" "}
-          </div>
-          <div className="createAccount">
-            <button onClick={signUpFirstStep}>Sign-Up</button>
-            <small>
-              Already Have Account?<Link>Login</Link>
-            </small>
-          </div>
+        <div className="imgDiv">
+          <img src={img} alt="" />
         </div>
       </div>
+      <div className="rightAuthReg">
+        <div className="regWrapper">
+          <h1>First Step</h1>
+
+          <div className="regForm">
+            <div className="firstName">
+              <label>First Name: </label>
+              <input
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
+                type="text"
+                placeholder="Enter First Name Here"
+              />
+            </div>
+            <div className="lastName">
+              <label>Last Name: </label>
+              <input
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
+                type="text"
+                placeholder="Enter Last Name Here"
+              />
+            </div>
+            <div className="email">
+              <label>Email: </label>
+              <input
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                type="email"
+                placeholder="Enter E-mail Here"
+              />
+            </div>
+            <div className="password">
+              <label>Password: </label>
+              <input
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                type="password"
+                placeholder="Enter Password Here"
+              />
+            </div>
+            <div className="password">
+              <label>Confirm Password: </label>
+              <input
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
+                type="password"
+                placeholder="Re-Enter Password Here"
+              />{" "}
+            </div>
+            <div className="createAccount">
+              <button onClick={signUpFirstStep}>Sign-Up</button>
+              <small>
+                Already Have Account?<Link>Login</Link>
+              </small>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -226,19 +227,21 @@ const SecondStep = ({
   const [cList, setCList] = useState();
   const [rList, setRList] = useState();
 
-  console.log("list", cList)
+  console.log("list", cList);
   return (
     <div className="regCont">
       <div className="leftAuthReg">
-      <div className="imgDiv"><img src={img} alt="" /></div>
+        <div className="imgDiv">
+          <img src={img} alt="" />
+        </div>
       </div>
       <div className="rightAuthReg">
-      <div className="regWrapper">
-        <h1>Second Step</h1>
-        <div className="regForm">
-          {/* _____________________________________________ */}
-          <div className="firstName">
-            {/* <label>Region:</label>
+        <div className="regWrapper">
+          <h1>Second Step</h1>
+          <div className="regForm">
+            {/* _____________________________________________ */}
+            <div className="firstName">
+              {/* <label>Region:</label>
             <input
               onChange={(e) => {
                 setRegion(e.target.value);
@@ -246,12 +249,12 @@ const SecondStep = ({
               type="text"
               placeholder="Enter Your Country Here"
             /> */}
-            <CountryList setCList={setCList} />
-            {setRegion(cList)}
-          </div>
-          {/* _____________________________________________ */}
-          <div className="lastName">
-            {/* <label>Current Location:</label>
+              <CountryList setCList={setCList} />
+              {setRegion(cList)}
+            </div>
+            {/* _____________________________________________ */}
+            <div className="lastName">
+              {/* <label>Current Location:</label>
             <input
               onChange={(e) => {
                 setCurrentlyIn(e.target.value);
@@ -259,86 +262,85 @@ const SecondStep = ({
               type="text"
               placeholder="Check In Your Current Location Here"
             /> */}
-            <CheckInList setRList={setRList} />
-            {setCurrentlyIn(rList)}
-            {/* _____________________________________________ */}
+              <CheckInList setRList={setRList} />
+              {setCurrentlyIn(rList)}
+              {/* _____________________________________________ */}
+            </div>
+            <div className="email">
+              <label>Languages:</label>
+              <input
+                onChange={(e) => {
+                  setLanguage(e.target.value);
+                }}
+                type="text"
+                placeholder="Enter The Languages That you speak Here"
+              />
+            </div>
+            <div className="firstName">
+              <label>Display Name:</label>
+              <input
+                onChange={(e) => {
+                  setDisplayName(e.target.value);
+                }}
+                type="text"
+                placeholder="Enter Display Name Here"
+              />
+            </div>
+            <div className="lastName">
+              <label>Birth Date:</label>
+              <input
+                onChange={(e) => {
+                  setDateOfBirth(e.target.value);
+                }}
+                type="date"
+                placeholder="mm-dd-yyyy"
+              />
+            </div>
+            <div className="firstName">
+              <label>Gender:</label>
+              <form>
+                <div>
+                  <input
+                    onChange={() => {
+                      setGender("Male");
+                    }}
+                    name="Gender"
+                    id="Male"
+                    type="radio"
+                    value="Male"
+                  />
+                  <label htmlFor="Male">Male</label>
+                </div>
+                <div>
+                  <input
+                    onChange={() => {
+                      setGender("Female");
+                    }}
+                    name="Gender"
+                    id="Female"
+                    type="radio"
+                    value="Female"
+                  />
+                  <label htmlFor="Female">Female</label>
+                </div>
+              </form>
+            </div>
 
-          </div>
-          <div className="email">
-            <label>Languages:</label>
-            <input
-              onChange={(e) => {
-                setLanguage(e.target.value);
-              }}
-              type="text"
-              placeholder="Enter The Languages That you speak Here"
-            />
-          </div>
-          <div className="firstName">
-            <label>Display Name:</label>
-            <input
-              onChange={(e) => {
-                setDisplayName(e.target.value);
-              }}
-              type="text"
-              placeholder="Enter Display Name Here"
-            />
-          </div>
-          <div className="lastName">
-            <label>Birth Date:</label>
-            <input
-              onChange={(e) => {
-                setDateOfBirth(e.target.value);
-              }}
-              type="date"
-              placeholder="mm-dd-yyyy"
-            />
-          </div>
-          <div className="firstName">
-            <label>Gender:</label>
-            <form>
-              <div>
-                <input
-                  onChange={() => {
-                    setGender("Male");
-                  }}
-                  name="Gender"
-                  id="Male"
-                  type="radio"
-                  value="Male"
-                />
-                <label htmlFor="Male">Male</label>
-              </div>
-              <div>
-                <input
-                  onChange={() => {
-                    setGender("Female");
-                  }}
-                  name="Gender"
-                  id="Female"
-                  type="radio"
-                  value="Female"
-                />
-                <label htmlFor="Female">Female</label>
-              </div>
-            </form>
-          </div>
-
-          <div className="lastName">
-            <label>Upload Image:</label>
-            {file && <LoaderBar file={file} setFile={setFile} />}
-            <input type="file" onChange={uploadImage} />
-            {/* {file && <h1>{file.name}</h1>} */}
-            {errorImgMessage && <div>{errorImgMessage}</div>}
-          </div>
-          <div className="createAccount">
-            <button onClick={signUpSecondStep}>Next</button>
-            <small>
-              <Link>skip</Link>
-            </small>
+            <div className="lastName">
+              <label>Upload Image:</label>
+              {file && <LoaderBar file={file} setFile={setFile} />}
+              <input type="file" onChange={uploadImage} />
+              {/* {file && <h1>{file.name}</h1>} */}
+              {errorImgMessage && <div>{errorImgMessage}</div>}
+            </div>
+            <div className="createAccount">
+              <button onClick={signUpSecondStep}>Next</button>
+              <small>
+                <Link>skip</Link>
+              </small>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
