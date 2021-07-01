@@ -47,8 +47,6 @@ const SignUp = () => {
   });
 
   useEffect(() => {
-    console.log("useEffect profileImage :", profileImage);
-
     axios
       .put(`http://localhost:5000/signUp/secondStep/${id}`, {
         region,
@@ -230,10 +228,9 @@ const SecondStep = ({
   file,
   errorImgMessage,
 }) => {
-  const [cList, setCList] = useState();
-  const [rList, setRList] = useState();
+  const [countryList, setCountryList] = useState();
+  const [checkInList, setCheckInList] = useState();
 
-  console.log("list", cList);
   return (
     <div className="regCont">
       <div className="leftAuthReg">
@@ -245,32 +242,14 @@ const SecondStep = ({
         <div className="regWrapper">
           <h1>Second Step</h1>
           <div className="regForm">
-            {/* _____________________________________________ */}
             <div className="firstName">
-              {/* <label>Region:</label>
-            <input
-              onChange={(e) => {
-                setRegion(e.target.value);
-              }}
-              type="text"
-              placeholder="Enter Your Country Here"
-            /> */}
-              <CountryList setCList={setCList} />
-              {setRegion(cList)}
+              <CountryList setCountryList={setCountryList} />
+              {setRegion(countryList)}
             </div>
-            {/* _____________________________________________ */}
+
             <div className="lastName">
-              {/* <label>Current Location:</label>
-            <input
-              onChange={(e) => {
-                setCurrentlyIn(e.target.value);
-              }}
-              type="text"
-              placeholder="Check In Your Current Location Here"
-            /> */}
-              <CheckInList setRList={setRList} />
-              {setCurrentlyIn(rList)}
-              {/* _____________________________________________ */}
+              <CheckInList setCheckInList={setCheckInList} />
+              {setCurrentlyIn(checkInList)}
             </div>
             <div className="email">
               <label>Languages:</label>
@@ -334,9 +313,8 @@ const SecondStep = ({
 
             <div className="lastName">
               <label>Upload Image:</label>
-              {file && <LoaderBar file={file} setFile={setFile} />}
               <input type="file" onChange={uploadImage} />
-              {/* {file && <h1>{file.name}</h1>} */}
+              {file && <LoaderBar file={file} setFile={setFile} />}
               {errorImgMessage && <div>{errorImgMessage}</div>}
             </div>
             <div className="createAccount">
