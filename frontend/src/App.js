@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import Login from "./components/auth/login/index";
 import SignUp from "./components/auth/signUp/index";
@@ -12,6 +12,7 @@ import ContactUs from './components/contactUs'
 import GetTravelById from "./components/travel_Plans/getTravelById"
 import Footer from './components/footer'
 import GetActivityById from "./components/Activities/getActivityById";
+import Profile from './components/profile'
 import CountryList from "./components/Api/CountryList";
 
 
@@ -19,7 +20,7 @@ const App = () => {
   return (
     <div className="App">
       <Navigation />
-      <Route exact path="/login" render={() => <Login />} />
+      <Route exact path="/login" render={() => <Login/>} />
 
 	  <Route exact path="/register" render={() => <SignUp />} />
     <Route exact path="/contactUs" render={()=><ContactUs/>}/>
@@ -27,6 +28,7 @@ const App = () => {
     <Route exact path="/travelPlans/:id" component={GetTravelById} />
     <Route exact path="/activities" component={GetAllActivities}/>
     <Route exact path="/activities/activity/:id" component={GetActivityById}/>
+    <Route exact path="/profile" render={()=><Profile/>}/>
 
       {/* <Login /> */}
       {/* <SignUp /> */}

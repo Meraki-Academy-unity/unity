@@ -11,13 +11,22 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
+  const state = useSelector((state) => {
+    return {
+      token: state.login.token,
+    };
+  });
+  console.log("state", state);
+
   const signIn = () => {
     axios
       .post("http://localhost:5000/login", { email, password })
       .then((result) => {
         console.log(result);
         setMessage("Login Successful");
+        localStorage.setItem("token",result.data.token)
         dispatch(setToken(result.data.token));
+
       })
       .catch((err) => {
         setMessage(err.response.data);;
