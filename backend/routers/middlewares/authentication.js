@@ -5,7 +5,7 @@ const secret = process.env.SECRET;
 
 const authentication = (req, res, next) => {
   if (!req.header("Authorization")) {
-    res.status(403).json({ message: "forbidden" });
+    return res.status(403).json({ message: "forbidden" });
   }
   const token = req.header("Authorization").split(" ")[1];
   jwt.verify(token, secret, (err, result) => {
