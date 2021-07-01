@@ -21,7 +21,6 @@ const ImageGrid = () => {
             },
         })
             .then((result) => {
-                console.log("album", result.data)
                 setPhotoAlbum(result.data)
             })
             .catch((err) => {
