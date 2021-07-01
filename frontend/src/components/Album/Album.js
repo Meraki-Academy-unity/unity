@@ -17,9 +17,6 @@ const Album = () => {
     };
   });
 
-  console.log("state url:", state.url);
-  console.log("image :", image);
-
   useEffect(() => {
     axios
       .post(
@@ -54,8 +51,8 @@ const Album = () => {
 
   return (
     <>
-      {file && <LoaderBar file={file} setFile={setFile} />}
       <input type="file" onChange={uploadImage} />
+      {file && <LoaderBar file={file} setFile={setFile} />}
       {errorImgMessage && <div>{errorImgMessage}</div>}
       <button
         onClick={() => {

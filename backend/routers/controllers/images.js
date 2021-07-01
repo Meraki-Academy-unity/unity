@@ -2,7 +2,6 @@ const db = require("../../db/db");
 
 const addImage = (req, res) => {
   const { image } = req.body;
-  console.log(image);
   const user_id = req.token.user_id;
   const query = `INSERT INTO images (user_id,images) VALUES (?,?)`;
   const data = [user_id, image];
