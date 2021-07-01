@@ -15,6 +15,7 @@ import GetActivityById from "./components/Activities/getActivityById";
 import Profile from "./components/profile";
 import CountryList from "./components/Api/CountryList";
 import Album from "./components/Album/Album";
+import ImageGrid from "./components/Album/showAlbum";
 
 const App = () => {
   return (
@@ -41,8 +42,9 @@ const App = () => {
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
-      <CountryList />
+      {/* <CountryList /> */}
       <Album />
+      <ImageGrid />
       <Footer />
     </div>
   );
