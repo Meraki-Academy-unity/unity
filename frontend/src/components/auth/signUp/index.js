@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../../loadingBar/loaderBar";
@@ -33,17 +33,40 @@ const SignUp = () => {
   const [secondStep, setSecondStep] = useState(false);
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
+  const [done, setDone] = useState(false);
 
   const types = ["image/png", "image/jpeg"];
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const state = useSelector((state) => {
     return {
       url: state.imgUploader.url,
     };
   });
-  console.log("state", state);
+
+  useEffect(() => {
+    console.log("useEffect profileImage :", profileImage);
+
+    axios
+      .put(`http://localhost:5000/signUp/secondStep/${id}`, {
+        region,
+        currently_in: currentlyIn,
+        language,
+        gender,
+        birth_date: dateOfBirth,
+        profile_image: profileImage,
+        display_name: displayName,
+      })
+      .then((result) => {
+        // for develpoment stage we are pushing into home ( later we will push to perefernces)
+        history.push("/home");
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }, [done]);
 
   const signUpFirstStep = () => {
     if (password === confirmPassword) {
@@ -68,28 +91,11 @@ const SignUp = () => {
 
   const signUpSecondStep = async () => {
     setProfileImage(state.url);
-
-    await axios
-      .put(`http://localhost:5000/signUp/secondStep/${id}`, {
-        region,
-        currently_in: currentlyIn,
-        language,
-        gender,
-        birth_date: dateOfBirth,
-        profile_image: profileImage,
-        display_name: displayName,
-      })
-      .then((result) => {
-        //   perfernces
-      })
-      .catch((err) => {
-        throw err;
-      });
+    setDone(true);
   };
+
   const uploadImage = (e) => {
-    // console.log("test image uploade")
     let selectedImage = e.target.files[0];
-    //console.log("select", selectedImage);
     if (selectedImage && types.includes(selectedImage.type)) {
       setFile(selectedImage);
       setErrorImgMessage("");
