@@ -132,7 +132,7 @@ const addPlanComment = (req, res) => {
 const showAllCommentByPlanId = (req, res) => {
   const travel_plans_id = req.params.id;
   const query =
-  "SELECT content,travel_plans_comments.user_id FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_comments.travel_plans_id=travel_plans.id WHERE travel_plans.id=?";
+    "SELECT content,travel_plans_comments.user_id FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_comments.travel_plans_id=travel_plans.id WHERE travel_plans.id=?";
   const data = [travel_plans_id];
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
@@ -154,26 +154,25 @@ const showTravelPlanByCountry = (req, res) => {
 const updatePlanComment = (req, res) => {
   const id = req.params.id;
   const { content, user_id } = req.body;
-  const query = "UPDATE travel_plans_comments SET content=? WHERE id=? AND user_id=?";
-  const data = [content, id, user_id]
+  const query =
+    "UPDATE travel_plans_comments SET content=? WHERE id=? AND user_id=?";
+  const data = [content, id, user_id];
   db.query(query, data, (err, result) => {
-      if (err) throw err;
-      console.log("RESULT: ", result);
-      res.json(result);
+    if (err) throw err;
+    res.json(result);
   });
-}
+};
 
 const deletePlanComment = (req, res) => {
   const id = req.params.id;
   const { user_id } = req.body;
   const query = "DELETE FROM  travel_plans_comments WHERE id=? AND user_id=?";
-  const data = [id, user_id]
+  const data = [id, user_id];
   db.query(query, data, (err, result) => {
-      if (err) throw err;
-      console.log("RESULT: ", result);
-      res.json(result);
+    if (err) throw err;
+    res.json(result);
   });
-}
+};
 
 module.exports = {
   createTravelPlans,
@@ -186,6 +185,6 @@ module.exports = {
   addPlanComment,
   showAllCommentByPlanId,
   showTravelPlanByCountry,
-  updatePlanComment, 
-  deletePlanComment
+  updatePlanComment,
+  deletePlanComment,
 };

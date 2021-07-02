@@ -22,7 +22,7 @@ CREATE TABLE users(
     birth_date DATE DEFAULT NULL,
     language VARCHAR(255), 
     gender VARCHAR(255) ,
-    profile_image VARCHAR(255) ,
+    profile_image TEXT ,
     is_completed BOOLEAN DEFAULT 0,    
     role_id INT DEFAULT 1,
     is_deleted TINYINT DEFAULT 0,
@@ -58,7 +58,7 @@ CREATE TABLE activities (
     details VARCHAR(255), 
     requirements VARCHAR(255) ,
     activities VARCHAR(255) ,
-    images VARCHAR(255) ,
+    images TEXT ,
     estimated_budget INT,
     status_id INT DEFAULT 1,
     user_id INT,
@@ -92,7 +92,7 @@ CREATE TABLE travel_plans(
     activities VARCHAR(255) ,
     requirements VARCHAR(255) ,
     details VARCHAR(255) NOT NULL,
-    images VARCHAR(255) ,
+    images TEXT ,
     estimated_budget VARCHAR(255),
     status_id INT DEFAULT 1,
     creation_time  DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -144,7 +144,7 @@ CREATE TABLE friend_list (
 CREATE TABLE images (
     id INT AUTO_INCREMENT NOT NULL,
     user_id INT,
-    images VARCHAR(255) ,
+    images TEXT ,
     FOREIGN KEY (user_id) REFERENCES users(id),
     PRIMARY KEY(id)
 );

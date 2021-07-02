@@ -33,11 +33,9 @@ const ContactUs = () => {
     message: message,
   };
   const sendEmail = (e) => {
-    console.log("=========================================================");
     e.preventDefault();
     emailjs.send(service_id, template_id, contactDetails, user_id).then(
       (result) => {
-        console.log(result.text);
         setResult(true);
       },
       (error) => {
@@ -45,9 +43,9 @@ const ContactUs = () => {
       }
     );
   };
-  
+
   setTimeout(() => {
-    setResult(false)
+    setResult(false);
   }, 5000);
 
   return (
