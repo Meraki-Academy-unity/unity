@@ -37,7 +37,7 @@ const App = () => {
       {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
-      <CountryList/>
+      {/* <CountryList/> */}
       <Footer/>
 
 
