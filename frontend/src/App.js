@@ -16,8 +16,15 @@ import Profile from "./components/profile";
 import CountryList from "./components/Api/CountryList";
 import Album from "./components/Album/Album";
 import ImageGrid from "./components/Album/showAlbum";
+import Modal from "./components/Album/Modal";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
+  const state = useSelector((state) => {
+    return {
+      photo: state.photo.photo
+    };
+  });
   return (
     <div className="App">
       <Navigation />
@@ -45,6 +52,7 @@ const App = () => {
       {/* <CountryList /> */}
       <Album />
       <ImageGrid />
+     {state.photo&& <Modal />}
       <Footer />
     </div>
   );

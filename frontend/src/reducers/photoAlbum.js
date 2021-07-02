@@ -1,12 +1,12 @@
 
 const initialState = {
-    photo: [],
+    photo:"",
 };
 
 const photo = (state = initialState, { type, payload }) => {
     switch (type) {
         case "SET_PHOTO":
-            return { photo: [...payload] };
+            return { photo:payload };
         default:
             return state;
     }
