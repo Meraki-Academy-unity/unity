@@ -15,7 +15,7 @@ const ImageGrid = () => {
             photo: state.photo.photo
         };
     });
-    console.log("photo", state.photo)
+
 
     useEffect(() => {
 
@@ -30,7 +30,7 @@ const ImageGrid = () => {
             .catch((err) => {
                 console.log("err in photo", err)
             })
-    }, [])
+    }, [state.token])
 
 
     return (

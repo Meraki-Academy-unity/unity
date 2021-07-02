@@ -7,6 +7,9 @@ const Album = () => {
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
   const [image, setImage] = useState();
+  const [done, setDone] = useState(false);
+  const [message, setMessage] = useState();
+
 
   const types = ["image/png", "image/jpeg"];
 
@@ -18,6 +21,7 @@ const Album = () => {
   });
 
   useEffect(() => {
+
     axios
       .post(
         "http://localhost:5000/photoAlbum/",
@@ -32,16 +36,22 @@ const Album = () => {
       )
       .then((result) => {
         console.log(result.data);
+        setDone(false)
+        setMessage("image has been added successfully")
       })
       .catch((err) => {
         console.log(err);
       });
   }, [image]);
 
+
   const uploadImage = (e) => {
     let selectedImage = e.target.files[0];
     if (selectedImage && types.includes(selectedImage.type)) {
+      console.log(selectedImage);
       setFile(selectedImage);
+      setDone(true)
+      setMessage("")
       setErrorImgMessage("");
     } else {
       setFile(null);
@@ -54,13 +64,16 @@ const Album = () => {
       <input type="file" onChange={uploadImage} />
       {file && <LoaderBar file={file} setFile={setFile} />}
       {errorImgMessage && <div>{errorImgMessage}</div>}
-      <button
-        onClick={() => {
-          setImage(state.url);
-        }}
+      {!file && done ? <button
+        onClick={
+          () => {
+            setImage(state.url);
+          }
+        }
       >
         Add Image
-      </button>
+      </button> : ""}
+      {message && <div>{message}</div>}
     </>
   );
 };
