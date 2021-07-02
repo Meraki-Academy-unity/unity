@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import LoaderBar from "../loadingBar/loaderBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPhoto } from "./../../reducers/photoAlbum";
+
 
 
 const ImageGrid = () => {
     const [photoAlbum, setPhotoAlbum] = useState([])
+    const dispatch = useDispatch();
     const state = useSelector((state) => {
         return {
             token: state.login.token,
+            photo: state.photo.photo
         };
     });
-
+    console.log("photo", state.photo)
 
     useEffect(() => {
 
@@ -21,6 +24,8 @@ const ImageGrid = () => {
             },
         })
             .then((result) => {
+                dispatch(setPhoto(result.data))
+
                 setPhotoAlbum(result.data)
             })
             .catch((err) => {
