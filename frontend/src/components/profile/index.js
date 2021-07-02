@@ -1,53 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import axios from 'axios';
+import './profile.css'
 
-const Profile = () => {
-  const [profile, setProfile] = useState([]);
-  const state = useSelector((state) => {
-    return {
-      token: state.login.token,
-    };
-  });
 
-  useEffect(getProfile, []);
+const Profile=()=>{
+    const [profile,setProfile] = useState([]);
+    const [user_id,setUserId] = useState(-1);
+    const [DisplayName,setDisplayName] = useState(-1);
+    const [ProfileImg,setProfileImg] = useState(-1);
+    const state = useSelector((state) => {
+      return {
+        token: state.login.token,
+      };
+    });
 
-  function getProfile() {
-    axios
-      .get("http://localhost:5000/users/myProfile", {
-        headers: {
-          Authorization: `Bearer ${state.token}`,
-        },
-      })
-      .then((result) => {
-        setProfile(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    useEffect(getProfile,[])
 
-  console.warn("After Getting profile: ", profile);
 
-  return (
-    <div>
-      <div>
-        {profile &&
-          profile.map((element, i) => {
-            return (
-              <div key={i}>
-                <div>{element.first_name + "_" + element.last_name}</div>
-                <div>{element.email}</div>
-                <div>{element.profile_image}</div>
-                <div>{element.birth_date}</div>
-                <div>{element.region}</div>
-                <div>{element.gender}</div>
-              </div>
-            );
-          })}
-      </div>
-    </div>
-  );
-};
+    function getProfile() {
+        axios
+          .get("http://localhost:5000/users/myProfile", {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          })
+          .then((result) => {
+            setProfile(result.data);
+            setUserId(result.data[0].id)
+            setDisplayName(result.data[0].first_name+"_"+result.data[0].last_name)
+            setProfileImg(result.data[0].profile_image)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+    return (
+
+        <div className="profileCont">
+          <div className="profile">
+            <div className="backImg"></div>
+          <div className="profImage">
+            <img id ="proImg" src={ProfileImg}/>
+          </div>
+          <div className="displayName">
+            <p>{DisplayName}</p>
+            <small>Jordanian</small>
+            </div>
+          </div>
+        </div>
+    )
+}
 
 export default Profile;
