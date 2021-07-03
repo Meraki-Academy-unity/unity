@@ -28,7 +28,7 @@ const SignUp = () => {
   const [dateOfBirth, setDateOfBirth] = useState();
   const [language, setLanguage] = useState();
   const [profileImage, setProfileImage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
   const [id, setId] = useState();
   const [secondStep, setSecondStep] = useState(false);
   const [errorImgMessage, setErrorImgMessage] = useState();
@@ -80,7 +80,7 @@ const SignUp = () => {
           setSecondStep(true);
         })
         .catch((err) => {
-          throw err;
+          setErrorMessage(err.response.data);
         });
     } else {
       setErrorMessage("Password Does Not Match");
@@ -112,6 +112,7 @@ const SignUp = () => {
           setPassword={setPassword}
           setConfirmPassword={setConfirmPassword}
           signUpFirstStep={signUpFirstStep}
+          errorMessage={errorMessage}
         />
       ) : (
         <SecondStep
@@ -139,6 +140,7 @@ const FirstStep = ({
   setEmail,
   setConfirmPassword,
   signUpFirstStep,
+  errorMessage
 }) => {
   return (
     <div className="regCont">
@@ -204,6 +206,7 @@ const FirstStep = ({
             </div>
             <div className="createAccount">
               <button onClick={signUpFirstStep}>Sign-Up</button>
+              {errorMessage ? <p>{errorMessage}</p> : ""}
               <small>
                 Already Have Account?<Link>Login</Link>
               </small>
