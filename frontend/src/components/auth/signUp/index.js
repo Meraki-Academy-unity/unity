@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { setId } from "../../../reducers/userID";
 import LoaderBar from "../../loadingBar/loaderBar";
 import CountryList from "../../Api/CountryList";
 import CheckInList from "../../Api/CheckInList";
@@ -79,6 +80,7 @@ const SignUp = () => {
         })
         .then((result) => {
           setId(result.data.id);
+          dispatch(setId(result.data.id))
           setSecondStep(true);
         })
         .catch((err) => {
