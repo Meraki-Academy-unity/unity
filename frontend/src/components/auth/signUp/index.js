@@ -212,7 +212,7 @@ const FirstStep = ({
               <button onClick={signUpFirstStep}>Sign-Up</button>
               {errorMessage ? <p>{errorMessage}</p> : ""}
               <small>
-                Already Have Account?<Link>Login</Link>
+                Already Have Account?<Link to="/login">Login</Link>
               </small>
             </div>
           </div>
