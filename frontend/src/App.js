@@ -46,14 +46,14 @@ const App = () => {
       {/* <SignUp /> */}
       {/* <AddActivities/> */}
       {/* <AddTravelPlans /> */}
-      {/* <AddPerferences /> */}
+      <AddPerferences />
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
       {/* <CountryList /> */}
-      <Album />
-      <ImageGrid />
-     {state.photo&& <Modal />}
-      <Footer />
+      {/* <Album /> */}
+      {/* <ImageGrid /> */}
+      {/* {state.photo&& <Modal />} */}
+      {/* <Footer /> */}
     </div>
   );
 };

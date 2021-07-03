@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import "./Perferences.css"
 import axios from "axios";
 
 const AddPerferences = () => {
@@ -35,63 +36,73 @@ const AddPerferences = () => {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="location here"
-        onChange={(e) => setLocation(e.target.value)}
-      />
-      <input type="date" onChange={(e) => setStart_date(e.target.value)} />
-      <input type="date" onChange={(e) => setFinish_date(e.target.value)} />
-      <textarea onChange={(e) => setActivities(e.target.value)}></textarea>
-      <form>
-        <p>same gender</p>
+      <div className="Perferences">
+        <label>Location : </label>
         <input
-          onChange={() => {
-            setSame_gender(1);
-          }}
-          name="Gender"
-          id="same"
-          type="radio"
-          value="1"
+          type="text"
+          placeholder="location here"
+          onChange={(e) => setLocation(e.target.value)}
         />
-        <label htmlFor="same">Yes</label>
-        <input
-          onChange={() => {
-            setSame_gender(0);
-          }}
-          name="Gender"
-          id="notSame"
-          type="radio"
-          value="0"
-        />
-        <label htmlFor="notSame">No</label>
-      </form>
+        <label>Start Date : </label>
+        <input type="date" onChange={(e) => setStart_date(e.target.value)} />
+        <label>Finish Date : </label>
 
-      <form>
-        <p>similar age</p>
-        <input
-          onChange={() => {
-            setSimilar_age(1);
-          }}
-          name="Age"
-          id="same"
-          type="radio"
-          value="1"
-        />
-        <label htmlFor="same">Yes</label>
-        <input
-          onChange={() => {
-            setSimilar_age(0);
-          }}
-          name="Age"
-          id="notSame"
-          type="radio"
-          value="0"
-        />
-        <label htmlFor="notSame">No</label>
-      </form>
+        <input type="date" onChange={(e) => setFinish_date(e.target.value)} />
+        <label>Activities : </label>
 
-      <button onClick={addNewPerferences}>create Perferences</button>
+
+        <textarea onChange={(e) => setActivities(e.target.value)} placeholder=" activities here"></textarea>
+        <form>
+          <label>same gender : </label>
+          <input
+            onChange={() => {
+              setSame_gender(1);
+            }}
+            name="Gender"
+            id="same"
+            type="radio"
+            value="1"
+          />
+          <label htmlFor="same">Yes</label>
+          <input
+            onChange={() => {
+              setSame_gender(0);
+            }}
+            name="Gender"
+            id="notSame"
+            type="radio"
+            value="0"
+          />
+          <label htmlFor="notSame">No</label>
+        </form>
+
+        <form>
+          <label>similar age : </label>
+
+          <input
+            onChange={() => {
+              setSimilar_age(1);
+            }}
+            name="Age"
+            id="same"
+            type="radio"
+            value="1"
+          />
+          <label htmlFor="same">Yes</label>
+          <input
+            onChange={() => {
+              setSimilar_age(0);
+            }}
+            name="Age"
+            id="notSame"
+            type="radio"
+            value="0"
+          />
+          <label htmlFor="notSame">No</label>
+        </form>
+
+        <button onClick={addNewPerferences}>create Perferences</button>
+      </div>
     </>
   );
 };
