@@ -1,0 +1,39 @@
+.Activities{
+    display: grid;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 70px;
+}
+
+.Activity{
+    display: flex;
+    border-style:solid;
+    border-color: rgb(232,180,48);
+    gap: 50px;
+    width: 700px;
+    
+}
+
+.leftAct{
+    margin :20px
+}
+
+
+.rightAct{
+    display: grid;
+    flex: 50%;
+    margin-top: 20px;
+}
+
+.img{
+    border-radius: 80%;
+    width: 150px;
+    height: 150px;
+}
+
+.p{
+    color: rgb(80,127,164);
+    font-weight: bold;
+}

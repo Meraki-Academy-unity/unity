@@ -1,4 +1,5 @@
 const express = require("express");
+const authentication = require ("../middlewares/authentication");
 
 const {
     addActivity,
@@ -17,7 +18,7 @@ const {
 
 const activitiesRouter = express.Router();
 
-activitiesRouter.post("/:id", addActivity);
+activitiesRouter.post("/", authentication , addActivity);
 //user_id
 activitiesRouter.get("/:id", getAllActivitiesByUser);
 
