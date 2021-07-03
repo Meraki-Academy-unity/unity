@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setId } from "../../../reducers/userID";
+import { setUserId } from "../../../reducers/userID";
 import LoaderBar from "../../loadingBar/loaderBar";
 import CountryList from "../../Api/CountryList";
 import CheckInList from "../../Api/CheckInList";
@@ -80,8 +80,8 @@ const SignUp = () => {
         })
         .then((result) => {
           setId(result.data.id);
-          dispatch(setId(result.data.id))
           setSecondStep(true);
+          
         })
         .catch((err) => {
           throw err;
@@ -92,6 +92,7 @@ const SignUp = () => {
   };
 
   const signUpSecondStep = async () => {
+    dispatch(setUserId(id))
     setProfileImage(state.url);
     setDone(true);
   };
@@ -232,10 +233,9 @@ const SecondStep = ({
   file,
   errorImgMessage,
 }) => {
-  const [cList, setCList] = useState();
-  const [rList, setRList] = useState();
+  const [countryList, setCountryList] = useState();
+  const [checkInLis, setCheckInList] = useState();
 
-  console.log("list", cList);
   return (
     <div className="regCont">
       <div className="leftAuthReg">
@@ -257,8 +257,8 @@ const SecondStep = ({
               type="text"
               placeholder="Enter Your Country Here"
             /> */}
-              <CountryList setCList={setCList} />
-              {setRegion(cList)}
+              <CountryList setCountryList={setCountryList} />
+              {setRegion(countryList)}
             </div>
             {/* _____________________________________________ */}
             <div className="lastName">
@@ -270,8 +270,8 @@ const SecondStep = ({
               type="text"
               placeholder="Check In Your Current Location Here"
             /> */}
-              <CheckInList setRList={setRList} />
-              {setCurrentlyIn(rList)}
+              <CheckInList setCheckInList={setCheckInList} />
+              {setCurrentlyIn(checkInLis)}
               {/* _____________________________________________ */}
             </div>
             <div className="email">

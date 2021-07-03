@@ -14,7 +14,7 @@ const id = (state = initialState, { type, payload }) => {
 
 export default id;
 
-export const setId = (id) => {
+export const setUserId = (id) => {
     return {
         type: "SET_ID",
         payload: id,

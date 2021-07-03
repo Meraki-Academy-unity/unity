@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PerferencesLocation from "../Api/perferencesLocation";
 import "./Perferences.css"
@@ -10,12 +10,18 @@ const AddPerferences = () => {
   const [start_date, setStart_date] = useState("");
   const [finish_date, setFinish_date] = useState("");
   const [activities, setActivities] = useState("");
-  const [similar_age, setSimilar_age] = useState("");
-  const [same_gender, setSame_gender] = useState("");
+  const [similar_age, setSimilar_age] = useState(0);
+  const [same_gender, setSame_gender] = useState(0);
   const [prefenecesLocation, setPrefenecesLocation] = useState("")
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const state = useSelector((state) => {
+    return {
+      id: state.id.id,
+    };
+  });
+  console.log("id state", state.id)
 
   const addNewPerferences = () => {
     setLocation(prefenecesLocation)
@@ -27,10 +33,13 @@ const AddPerferences = () => {
         activities,
         similar_age,
         same_gender,
-        user_id: 5,
+        user_id: state.id,
       })
       .then((result) => {
         console.log("res", result.data);
+        setSame_gender(0)
+        setSimilar_age(0)
+        history.push("/login");
       })
       .catch((err) => {
         throw err;
@@ -40,69 +49,40 @@ const AddPerferences = () => {
   return (
     <>
       <div className="Perferences">
-        <label>Location : </label>
+        <label>desired travel location : </label>
         < PerferencesLocation setPrefenecesLocation={setPrefenecesLocation} />
+        test:   {prefenecesLocation}
         {/* {} */}
+        <label>availability to travel</label>
+        <div>
+          <label>Start Date : </label>
+          <input type="date" onChange={(e) => setStart_date(e.target.value)} />
+          <label>Finish Date : </label>
 
-        <label>Start Date : </label>
-        <input type="date" onChange={(e) => setStart_date(e.target.value)} />
-        <label>Finish Date : </label>
-
-        <input type="date" onChange={(e) => setFinish_date(e.target.value)} />
-        <label>Activities : </label>
-
+          <input type="date" onChange={(e) => setFinish_date(e.target.value)} />
+          <label>Activities : </label>
+        </div>
 
         <textarea onChange={(e) => setActivities(e.target.value)} placeholder=" activities here"></textarea>
-        <form>
-          <label>same gender : </label>
-          <input
-            onChange={() => {
-              setSame_gender(1);
-            }}
-            name="Gender"
-            id="same"
-            type="radio"
-            value="1"
-          />
-          <label htmlFor="same">Yes</label>
-          <input
-            onChange={() => {
-              setSame_gender(0);
-            }}
-            name="Gender"
-            id="notSame"
-            type="radio"
-            value="0"
-          />
-          <label htmlFor="notSame">No</label>
+
+        <form action="/action_page.php">
+          <input type="checkbox" id="vehicle1" name="vehicle1" value="1" onChange={() => {
+
+            setSame_gender(1);
+          }} />
+          <label for="vehicle1"> same gender</label>
+
         </form>
 
-        <form>
-          <label>similar age : </label>
-
-          <input
-            onChange={() => {
-              setSimilar_age(1);
-            }}
-            name="Age"
-            id="same"
-            type="radio"
-            value="1"
-          />
-          <label htmlFor="same">Yes</label>
-          <input
-            onChange={() => {
-              setSimilar_age(0);
-            }}
-            name="Age"
-            id="notSame"
-            type="radio"
-            value="0"
-          />
-          <label htmlFor="notSame">No</label>
+        <form action="/action_page.php">
+          <input type="checkbox" id="vehicle1" name="vehicle1" value="1" onChange={() => {
+            setSimilar_age(1);
+          }} />
+          <label for="vehicle1"> same Age</label>
         </form>
 
         <button onClick={addNewPerferences}>create Perferences</button>
+        <Link to="/login">Skip</Link>
       </div>
     </>
   );
