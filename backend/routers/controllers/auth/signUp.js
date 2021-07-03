@@ -1,25 +1,32 @@
 const connection = require("../../../db/db");
 const bcrypt = require("bcrypt");
 
-const signUpFirstStep = async (req, res) => {
+const signUpFirstStep =  (req, res) => {
   const { first_name, last_name, email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const query = `INSERT INTO users (first_name,last_name,email,password) VALUES (?,?, ?,?);`;
-  const data = [first_name, last_name, email.toLowerCase(), hashedPassword];
-  connection.query(query, data, (err, results) => {
-    if (results) {
-      console.log(results);
-    } else {
-      res.status(400).json(err);
-    }
-  });
-  const query_2 = `SELECT id FROM users WHERE email = ?;`;
-  const data_2 = [email.toLowerCase()];
-  connection.query(query_2, data_2, (err, result) => {
-    if (result) {
-      res.status(200).json(result[0]);
-    } else {
-      res.status(400).json(err);
+  const query_1 = `SELECT * FROM users WHERE email=?`;
+  const data_1 = [email];
+  connection.query(query_1, data_1, async(err, result) => {
+    if (result.length) res.status(403).json("Email Already Exists");
+    else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const query = `INSERT INTO users (first_name,last_name,email,password) VALUES (?,?, ?,?);`;
+      const data = [first_name, last_name, email.toLowerCase(), hashedPassword];
+      connection.query(query, data, (err, results) => {
+        if (results) {
+          console.log(results);
+        } else {
+          res.status(400).json(err);
+        }
+      });
+      const query_2 = `SELECT id FROM users WHERE email = ?;`;
+      const data_2 = [email.toLowerCase()];
+      connection.query(query_2, data_2, (err, result) => {
+        if (result) {
+          res.status(200).json(result[0]);
+        } else {
+          res.status(400).json(err);
+        }
+      });
     }
   });
 };
