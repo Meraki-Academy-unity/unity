@@ -37,3 +37,16 @@
     color: rgb(80,127,164);
     font-weight: bold;
 }
+
+.post{
+    margin: 30px;
+    display: grid;
+    gap : 20px ; 
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.postImg{
+    width: 700px;
+}

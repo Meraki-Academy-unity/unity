@@ -17,13 +17,17 @@ const GetActivityById = (id)=>{
         return (<>
         <div>
         {activity && activity.map((res,ind)=>{
-            return  <div key={ind}>
+            return  <div key={ind} className="post"> 
+                <img src={res.images} className="postImg"></img>
                 <h1>{res.title}</h1>
                 <p>location: {res.location}</p>
-                <p>activities: {res.activities}</p>
-                <p>requirements: {res.requirements}</p>
+                <p>start date: {res.start_date}</p>
+                <p>finish date: {res.finish_date}</p>
                 <p>details : {res.details}</p>
-                <br/>
+                <p>requirements: {res.requirements}</p>
+                <p>activities: {res.activities}</p>
+                <p>estimated budget: {res.estimated_budget}</p>
+                <p>created by : <Link to={`/users/user/${res.user_id}`}>{res.first_name} {res.last_name}</Link></p>
             </div>
         })}
         </div>
