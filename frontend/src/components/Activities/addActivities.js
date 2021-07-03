@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 // import { setToken } from './../reducer/login/index';
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,7 @@ const AddActivities = () => {
   const [estimated_budget, setEstimated_budget] = useState("");
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
+  const [done , setDone] = useState(false);
 
   const types = ["image/png", "image/jpeg"];
   const history = useHistory();
@@ -24,6 +25,7 @@ const AddActivities = () => {
   const state = useSelector((state) => {
     return {
       url: state.imgUploader.url,
+      token: state.login.token
     };
   });
 
@@ -37,26 +39,32 @@ const AddActivities = () => {
       setErrorImgMessage("please select image type of png or jpeg");
     }
   };
+  useEffect(()=>{axios
+    .post(`http://localhost:5000/activities/`, {
+      title,
+      start_date,
+      finish_date,
+      details,
+      requirements,
+      activities,
+      images,
+      estimated_budget,
+    } ,{headers: {
+      Authorization: `Bearer ${state.token}`,
+    }})
+    .then((result) => {
+      console.log("res", result.data);
+    })
+    .catch((err) => {
+      throw err;
+    });},[done])
+
+
 
   const addNewActivities = () => {
+    setDone(true);
     setImages(state.url);
-    axios
-      .post(`http://localhost:5000/activities/1`, {
-        title,
-        start_date,
-        finish_date,
-        details,
-        requirements,
-        activities,
-        images,
-        estimated_budget,
-      })
-      .then((result) => {
-        console.log("res", result.data);
-      })
-      .catch((err) => {
-        throw err;
-      });
+    
   };
 
   return (
