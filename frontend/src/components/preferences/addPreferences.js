@@ -18,6 +18,7 @@ const AddPerferences = () => {
   const dispatch = useDispatch();
 
   const addNewPerferences = () => {
+    setLocation(prefenecesLocation)
     axios
       .post(`http://localhost:5000/preferences/`, {
         location,
@@ -26,7 +27,7 @@ const AddPerferences = () => {
         activities,
         similar_age,
         same_gender,
-        user_id: 1,
+        user_id: 5,
       })
       .then((result) => {
         console.log("res", result.data);
@@ -40,12 +41,8 @@ const AddPerferences = () => {
     <>
       <div className="Perferences">
         <label>Location : </label>
-        {/* <input
-          type="text"
-          placeholder="location here"
-          onChange={(e) => setLocation(e.target.value)}
-        /> */}
-        < PerferencesLocation />
+        < PerferencesLocation setPrefenecesLocation={setPrefenecesLocation} />
+        {/* {} */}
 
         <label>Start Date : </label>
         <input type="date" onChange={(e) => setStart_date(e.target.value)} />
