@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import PerferencesLocation from "../Api/perferencesLocation";
 import "./Perferences.css"
 import axios from "axios";
 
@@ -11,6 +12,7 @@ const AddPerferences = () => {
   const [activities, setActivities] = useState("");
   const [similar_age, setSimilar_age] = useState("");
   const [same_gender, setSame_gender] = useState("");
+  const [prefenecesLocation, setPrefenecesLocation] = useState("")
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -38,11 +40,13 @@ const AddPerferences = () => {
     <>
       <div className="Perferences">
         <label>Location : </label>
-        <input
+        {/* <input
           type="text"
           placeholder="location here"
           onChange={(e) => setLocation(e.target.value)}
-        />
+        /> */}
+        < PerferencesLocation />
+
         <label>Start Date : </label>
         <input type="date" onChange={(e) => setStart_date(e.target.value)} />
         <label>Finish Date : </label>
