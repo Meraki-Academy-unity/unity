@@ -1,6 +1,6 @@
 const db = require("../../db/db");
 
-const addActivity = (req, res ) => {
+const addActivity = (req, res) => {
   const id = req.token.user_id;
   const query_ = `SELECT currently_in FROM  users WHERE id=${id}`;
   db.query(query_, (err, results) => {
@@ -59,8 +59,14 @@ const getAllActivitiesByUser = (req, res) => {
 };
 
 const getActivitiesById = (req, res) => {
-  const query = `SELECT * FROM activities WHERE id=?`;
-  const data = req.params.id;
+  const query = `SELECT activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time
+  , activities.estimated_budget, activities.start_date , activities.finish_date , activities.details 
+  , activities.requirements , activities.images , users.first_name , users.last_name
+  , users.profile_image , activities.user_id
+  FROM activities INNER JOIN  users 
+  ON activities.user_id = users.id  
+  WHERE activities.id=?`;
+  const data = [req.params.id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
     res.json(result);
