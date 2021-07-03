@@ -155,7 +155,7 @@ const FirstStep = ({
       </div>
       <div className="rightAuthReg">
         <div className="regWrapper">
-          <h1>First Step</h1>
+          <h1>Register</h1>
 
           <div className="regForm">
             <div className="firstName">
@@ -247,14 +247,16 @@ const SecondStep = ({
       </div>
       <div className="rightAuthReg">
         <div className="regWrapper">
-          <h1>Second Step</h1>
+          <h1>Register</h1>
           <div className="regForm">
             <div className="firstName">
+              <label>Region:</label>
               <CountryList setCountryList={setCountryList} />
               {setRegion(countryList)}
             </div>
 
             <div className="lastName">
+            <label>Current location:</label>
               <CheckInList setCheckInList={setCheckInList} />
               {setCurrentlyIn(checkInList)}
             </div>
@@ -286,6 +288,8 @@ const SecondStep = ({
                 }}
                 type="date"
                 placeholder="mm-dd-yyyy"
+                min="1900-01-01"
+                max="2003-12-31"
               />
             </div>
             <div className="firstName">
@@ -327,7 +331,7 @@ const SecondStep = ({
             <div className="createAccount">
               <button onClick={signUpSecondStep}>Next</button>
               <small>
-                <Link>skip</Link>
+                <Link to="/preferences">skip</Link>
               </small>
             </div>
           </div>
