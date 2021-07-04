@@ -155,7 +155,7 @@ const showAllCommentByActivityId = (req, res) => {
 const updateActivitiesComment = (req, res) => {
   const id = req.params.id;
   const user_id = req.token.user_id;
-  const { content };
+  const { content }=req.body;
   const query =
     "UPDATE activity_comments SET content=? WHERE id=? AND user_id=?";
   const data = [content, id, user_id];
