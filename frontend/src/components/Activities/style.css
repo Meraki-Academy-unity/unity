@@ -50,3 +50,10 @@
 .postImg{
     width: 700px;
 }
+
+.comment{
+    display: grid;
+    justify-content:center;
+    align-items: center;
+    margin: 30px;
+}
