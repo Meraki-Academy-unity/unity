@@ -12,6 +12,7 @@ import { act } from '@testing-library/react';
 const GetActivityById = (id) => {
     const [comment, setComment] = useState([]);
     const [activity, setActivity] = useState("");
+    const [show, setShow] = useState(false)
     const state = useSelector((state) => {
         return {
             token: state.login.token,
@@ -61,7 +62,9 @@ const GetActivityById = (id) => {
                         <p>user : {res.first_name}</p>
                         <p>comment: {res.content}</p>
                         {state.token ? <DeleteComments comment_id={res.id} /> : ""}
-                        {state.token ? <UpdateComment comment_id={res.id} /> : ""}
+                        <button onClick={() => setShow(!show)}>update</button>
+
+                        {show ? <UpdateComment comment_id={res.id} /> : ""}
                     </div>
                 })}
 
