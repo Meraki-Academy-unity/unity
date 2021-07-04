@@ -38,7 +38,7 @@ activitiesRouter.get("/comment/:id", showAllCommentByActivityId);
 //update using comment id 
 activitiesRouter.put("/comment/:id", updateActivitiesComment);
 //delete using comment id 
-activitiesRouter.delete("/comment/:id", deletActivitiesComment);
+activitiesRouter.delete("/comment/:id",authentication, deletActivitiesComment);
 // withdraw user from activity 
 activitiesRouter.delete("/activity/:id", withDrawActivityById);
 module.exports = activitiesRouter;

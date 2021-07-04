@@ -144,7 +144,7 @@ const addActivityComment = (req, res) => {
 const showAllCommentByActivityId = (req, res) => {
   const id = req.params.id;
   const query =
-    "SELECT content , activity_comments.user_id , users.first_name , users.last_name , users.profile_image FROM  activity_comments INNER JOIN activities ON activity_id=activities.id INNER JOIN users ON users.id = activity_comments.user_id  WHERE activity_id=? ";
+    "SELECT content , activity_comments.user_id , users.first_name , users.last_name , users.profile_image,activity_comments.id FROM  activity_comments INNER JOIN activities ON activity_id=activities.id INNER JOIN users ON users.id = activity_comments.user_id  WHERE activity_id=? ";
   const data = [id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
@@ -166,7 +166,7 @@ const updateActivitiesComment = (req, res) => {
 
 const deletActivitiesComment = (req, res) => {
   const id = req.params.id;
-  const { user_id } = req.body;
+  const user_id = req.token.user_id;
   const query = "DELETE FROM  activity_comments WHERE id=? AND user_id=?";
   const data = [id, user_id];
   db.query(query, data, (err, result) => {
