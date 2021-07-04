@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 
-const CountryList = ({ setCountryList }) => {
+const PerferencesLocation = ({ setPrefenecesLocation }) => {
     const [country, setCountry] = useState([]);
     const [location, setLocation] = useState();
     const [index, setIndex] = useState();
@@ -19,7 +19,6 @@ const CountryList = ({ setCountryList }) => {
     }, []);
 
 
-    
     return (
         <>
             <select
@@ -40,7 +39,7 @@ const CountryList = ({ setCountryList }) => {
                         );
                     })}
             </select>
-            {country[index] && setCountryList(country[index].name)}
+            {country[index] && setPrefenecesLocation(country[index].name)}
             {country[index] && (
                 <img
                     src={country[index].flag}
@@ -57,4 +56,4 @@ const CountryList = ({ setCountryList }) => {
     );
 };
 
-export default CountryList;
+export default PerferencesLocation;

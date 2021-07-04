@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { setUserId } from "../../../reducers/userID";
 import LoaderBar from "../../loadingBar/loaderBar";
 import CountryList from "../../Api/CountryList";
 import CheckInList from "../../Api/CheckInList";
@@ -47,6 +48,8 @@ const SignUp = () => {
   });
 
   useEffect(() => {
+    console.log("useEffect profileImage :", profileImage);
+
     axios
       .put(`http://localhost:5000/signUp/secondStep/${id}`, {
         region,
@@ -59,7 +62,7 @@ const SignUp = () => {
       })
       .then((result) => {
         // for develpoment stage we are pushing into home ( later we will push to perefernces)
-        history.push("/home");
+        history.push("/preferences");
       })
       .catch((err) => {
         throw err;
@@ -67,6 +70,7 @@ const SignUp = () => {
   }, [done]);
 
   const signUpFirstStep = () => {
+
     if (!firstName || !lastName || !email || !password)
       setErrorMessage("All Fields Are Required");
     else {
@@ -92,6 +96,7 @@ const SignUp = () => {
   };
 
   const signUpSecondStep = async () => {
+    dispatch(setUserId(id))
     setProfileImage(state.url);
     setDone(true);
   };
@@ -236,7 +241,7 @@ const SecondStep = ({
   errorImgMessage,
 }) => {
   const [countryList, setCountryList] = useState();
-  const [checkInList, setCheckInList] = useState();
+  const [checkInLis, setCheckInList] = useState();
 
   return (
     <div className="regCont">
@@ -249,16 +254,22 @@ const SecondStep = ({
         <div className="regWrapper">
           <h1>Register</h1>
           <div className="regForm">
+            {/* _____________________________________________ */}
             <div className="firstName">
+
               <label>Region:</label>
+
               <CountryList setCountryList={setCountryList} />
               {setRegion(countryList)}
             </div>
-
+            {/* _____________________________________________ */}
             <div className="lastName">
+
             <label>Current location:</label>
+
               <CheckInList setCheckInList={setCheckInList} />
-              {setCurrentlyIn(checkInList)}
+              {setCurrentlyIn(checkInLis)}
+              {/* _____________________________________________ */}
             </div>
             <div className="email">
               <label>Languages:</label>
@@ -324,8 +335,9 @@ const SecondStep = ({
 
             <div className="lastName">
               <label>Upload Image:</label>
-              <input type="file" onChange={uploadImage} />
               {file && <LoaderBar file={file} setFile={setFile} />}
+              <input type="file" onChange={uploadImage} />
+              {/* {file && <h1>{file.name}</h1>} */}
               {errorImgMessage && <div>{errorImgMessage}</div>}
             </div>
             <div className="createAccount">

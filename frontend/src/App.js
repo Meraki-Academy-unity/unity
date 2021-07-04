@@ -35,6 +35,7 @@ const App = () => {
       <Route exact path="/plans" component={GetAllTravel} />
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
       <Route exact path="/activities" component={GetAllActivities} />
+
       <Route exact path="/preferences" render={() => <AddPerferences />} />
       <Route
         exact
@@ -51,10 +52,10 @@ const App = () => {
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
       {/* <CountryList /> */}
-      <Album />
-      <ImageGrid />
-     {state.photo&& <Modal />}
-      <Footer />
+      {/* <Album /> */}
+      {/* <ImageGrid /> */}
+      {/* {state.photo&& <Modal />} */}
+      {/* <Footer /> */}
     </div>
   );
 };
