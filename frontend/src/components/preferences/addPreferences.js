@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, Link, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PerferencesLocation from "../Api/perferencesLocation";
+import moment from 'moment';
 import "./Perferences.css"
 import axios from "axios";
 
@@ -13,7 +14,7 @@ const AddPerferences = () => {
   const [similar_age, setSimilar_age] = useState(0);
   const [same_gender, setSame_gender] = useState(0);
   const [prefenecesLocation, setPrefenecesLocation] = useState("")
-  const[done,setDone]=useState(false);
+  const [done, setDone] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -52,22 +53,39 @@ const AddPerferences = () => {
     setDone(!done);
 
   };
+  let mDate = moment(new Date(), "YYYY-MM-DD").add(5, 'days').format("YYYY-MM-DD")
+  let mDate1 = moment(new Date(), "YYYY-MM-DD").add(1, 'y').format("YYYY-MM-DD")
+  let fDate = moment(start_date, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD")
+  let fDate1 = moment(start_date, "YYYY-MM-DD").add(6, 'months').format("YYYY-MM-DD")
+
+
+  // mDate = mDate.format("YYYY-MM-DD")
+  // mDate=moment(mDate).add(5, 'days');
 
   return (
     <>
+
+
+      {console.log("nwedate ", mDate, "nwedate ", mDate1)}
       <div className="Perferences">
         <label>desired travel location : </label>
         < PerferencesLocation setPrefenecesLocation={setPrefenecesLocation} />
         test:   {prefenecesLocation}
-        {/* {} */}
+
+
         <label>availability to travel</label>
         <div>
-          <label>Start Date : </label>
-          <input type="date" onChange={(e) => setStart_date(e.target.value)} />
-          <label>Finish Date : </label>
 
-          <input type="date" onChange={(e) => setFinish_date(e.target.value)} />
+          <label>Start Date : </label>
+          <input type="date"
+            min={mDate}
+            max={mDate1} onChange={(e) => setStart_date(e.target.value)} />
+
+          <label>Finish Date : </label>
+          <input type="date" min={fDate}
+            max={fDate1} onChange={(e) => setFinish_date(e.target.value)} />
           <label>Activities : </label>
+
         </div>
 
         <textarea onChange={(e) => setActivities(e.target.value)} placeholder=" activities here"></textarea>
