@@ -35,6 +35,8 @@ const App = () => {
       <Route exact path="/plans" component={GetAllTravel} />
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
       <Route exact path="/activities" component={GetAllActivities} />
+      <Route exact path="/preferences" component={AddPerferences} />
+
       <Route
         exact
         path="/activities/activity/:id"
@@ -46,7 +48,7 @@ const App = () => {
       {/* <SignUp /> */}
       {/* <AddActivities/> */}
       {/* <AddTravelPlans /> */}
-      <AddPerferences />
+      {/* <AddPerferences /> */}
       {/* <Activities /> */}
       {/* <GetAllTravel /> */}
       {/* <CountryList /> */}

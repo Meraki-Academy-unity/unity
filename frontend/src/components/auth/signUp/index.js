@@ -62,7 +62,7 @@ const SignUp = () => {
       })
       .then((result) => {
         // for develpoment stage we are pushing into home ( later we will push to perefernces)
-        history.push("/home");
+        history.push("/preferences");
       })
       .catch((err) => {
         throw err;

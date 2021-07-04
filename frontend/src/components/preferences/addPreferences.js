@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, Link, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PerferencesLocation from "../Api/perferencesLocation";
@@ -13,6 +13,7 @@ const AddPerferences = () => {
   const [similar_age, setSimilar_age] = useState(0);
   const [same_gender, setSame_gender] = useState(0);
   const [prefenecesLocation, setPrefenecesLocation] = useState("")
+  const[done,setDone]=useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const AddPerferences = () => {
   });
   console.log("id state", state.id)
 
-  const addNewPerferences = () => {
-    setLocation(prefenecesLocation)
+
+  useEffect(() => {
     axios
       .post(`http://localhost:5000/preferences/`, {
         location,
@@ -44,6 +45,12 @@ const AddPerferences = () => {
       .catch((err) => {
         throw err;
       });
+  }, [done])
+
+  const addNewPerferences = () => {
+    setLocation(prefenecesLocation);
+    setDone(!done);
+
   };
 
   return (
@@ -81,7 +88,9 @@ const AddPerferences = () => {
           <label for="vehicle1"> same Age</label>
         </form>
 
-        <button onClick={addNewPerferences}>create Perferences</button>
+        <button onClick={
+          addNewPerferences
+        }>create Perferences</button>
         <Link to="/login">Skip</Link>
       </div>
     </>
