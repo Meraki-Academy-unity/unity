@@ -13,7 +13,8 @@ const {
     showAllCommentByActivityId,
     updateActivitiesComment,
     deletActivitiesComment,
-    withDrawActivityById
+    withDrawActivityById,
+    getMembers
 } = require("../controllers/activity");
 
 const activitiesRouter = express.Router();
@@ -30,7 +31,7 @@ activitiesRouter.delete("/:id", deleteActivitiesById);
 //activities_id
 activitiesRouter.put("/:id", updateActivitiesById);
 //activities_id
-activitiesRouter.post("/activity/:id", joinActivityById);
+activitiesRouter.post("/activity/:id",authentication, joinActivityById);
 // post data by activity id
 activitiesRouter.post("/comment/:id",authentication, addActivityComment);
 // get data by activities id
@@ -41,4 +42,6 @@ activitiesRouter.put("/comment/:id",authentication,updateActivitiesComment);
 activitiesRouter.delete("/comment/:id",authentication, deletActivitiesComment);
 // withdraw user from activity 
 activitiesRouter.delete("/activity/:id", withDrawActivityById);
+// to get users joined in activity 
+activitiesRouter.get("/member/:id" ,authentication, getMembers)
 module.exports = activitiesRouter;
