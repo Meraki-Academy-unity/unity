@@ -3,9 +3,6 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 
-
-
-
 const DeleteComments = ({ comment_id }) => {
     const state = useSelector((state) => {
         return {
@@ -14,7 +11,7 @@ const DeleteComments = ({ comment_id }) => {
     });
 
     const deleteComment = () => {
-        axios.post(`http://localhost:5000/activities/comment/${comment_id}`, {
+        axios.delete(`http://localhost:5000/activities/comment/${comment_id}`, {
             headers: {
                 Authorization: `Bearer ${state.token}`,
             }

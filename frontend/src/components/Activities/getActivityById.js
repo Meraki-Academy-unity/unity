@@ -3,16 +3,23 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Link, Route } from "react-router-dom";
 import AddComment from './addComment';
+import DeleteComments from './deleteComment';
+import { useSelector } from 'react-redux';
+
 import { act } from '@testing-library/react';
 
 const GetActivityById = (id) => {
     const [comment, setComment] = useState([]);
     const [activity, setActivity] = useState("");
+    const state = useSelector((state) => {
+        return {
+            token: state.login.token,
+        };
+    });
     useEffect(async () => {
         await axios.get(`http://localhost:5000${id.location.pathname}`)
             .then((result) => {
                 setActivity(result.data[0])
-                console.log(activity)
             })
             .catch((err) => {
                 throw err;
@@ -24,16 +31,14 @@ const GetActivityById = (id) => {
     }, [])
     if (activity) {
         axios.get(`http://localhost:5000/activities/comment/${activity.id}`).then((result) => {
-            console.log(result)
             setComment(result.data)
         }).catch((err) => {
             throw err;
         })
     }
-    console.log(activity.id)
+
     return (<>
         <div >
-            {console.log(activity)}
 
             <div className="post">
                 <img src={activity.images} className="postImg"></img>
@@ -54,7 +59,7 @@ const GetActivityById = (id) => {
                         <img src={res.profile_image} style={{ width: "100px" }}></img>
                         <p>user : {res.first_name}</p>
                         <p>comment: {res.content}</p>
-                       <button>delete</button>
+                        {state.token ? <DeleteComments comment_id={res.id} /> : ""}
                     </div>
                 })}
 
