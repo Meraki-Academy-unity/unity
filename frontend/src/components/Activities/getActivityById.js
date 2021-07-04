@@ -31,10 +31,10 @@ const GetActivityById = (id)=>{
     }
     
         return (<>
-        <div>
+        <div >
         {console.log(activity)}
         {activity && activity.map((res,ind)=>{
-            return  <div key={ind} className="post"> 
+            return  <div key={ind}  className="post"> 
                 <img src={res.images} className="postImg"></img>
                 <h1>{res.title}</h1>
                 <p>location: {res.location}</p>
@@ -49,7 +49,8 @@ const GetActivityById = (id)=>{
         })}
         <div className="comment">
         {comment && comment.map((res,ind)=>{
-            return  <div key={ind} className="comment"> 
+            return  <div key={ind} > 
+                <p>user : {res.first_name}</p>
                 <p>comment: {res.content}</p>
             </div>
         })}
