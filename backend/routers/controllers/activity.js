@@ -118,7 +118,7 @@ const updateActivitiesById = (req, res) => {
 
 const joinActivityById = (req, res) => {
   const activity_id = req.params.id;
-  const user_id = req.body.user_id;
+  const user_id = req.token.user_id;
   const query = `INSERT INTO activity_members (user_id,activity_id) VALUES (?,?)`;
   const data = [user_id, activity_id];
 
@@ -188,6 +188,18 @@ const withDrawActivityById = (req, res) => {
   });
 };
 
+const getMembers = (req, res) => {
+  const id = req.params.id;
+  const user_id = req.token.user_id;
+  const query =
+    "SELECT * FROM  activity_members  WHERE activity_id=? AND user_id=? ";
+  const data = [id , user_id];
+  db.query(query, data, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+};
+
 module.exports = {
   addActivity,
   getAllActivities,
@@ -201,4 +213,5 @@ module.exports = {
   updateActivitiesComment,
   deletActivitiesComment,
   withDrawActivityById,
+  getMembers
 };
