@@ -36,7 +36,7 @@ activitiesRouter.post("/comment/:id",authentication, addActivityComment);
 // get data by activities id
 activitiesRouter.get("/comment/:id", showAllCommentByActivityId);
 //update using comment id 
-activitiesRouter.put("/comment/:id", updateActivitiesComment);
+activitiesRouter.put("/comment/:id",authentication,updateActivitiesComment);
 //delete using comment id 
 activitiesRouter.delete("/comment/:id",authentication, deletActivitiesComment);
 // withdraw user from activity 

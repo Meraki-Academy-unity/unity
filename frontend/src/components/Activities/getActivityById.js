@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link, Route } from "react-router-dom";
 import AddComment from './addComment';
 import DeleteComments from './deleteComment';
+import UpdateComment from './updateComment';
 import { useSelector } from 'react-redux';
 
 import { act } from '@testing-library/react';
@@ -11,6 +12,7 @@ import { act } from '@testing-library/react';
 const GetActivityById = (id) => {
     const [comment, setComment] = useState([]);
     const [activity, setActivity] = useState("");
+    const [show, setShow] = useState(false)
     const state = useSelector((state) => {
         return {
             token: state.login.token,
@@ -60,6 +62,9 @@ const GetActivityById = (id) => {
                         <p>user : {res.first_name}</p>
                         <p>comment: {res.content}</p>
                         {state.token ? <DeleteComments comment_id={res.id} /> : ""}
+                        <button onClick={() => setShow(!show)}>update</button>
+
+                        {show ? <UpdateComment comment_id={res.id} /> : ""}
                     </div>
                 })}
 
