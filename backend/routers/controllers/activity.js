@@ -130,7 +130,8 @@ const joinActivityById = (req, res) => {
 
 const addActivityComment = (req, res) => {
   const id = req.params.id;
-  const { content, user_id } = req.body;
+  const user_id = req.token.user_id;
+  const  {content}  = req.body;
   const query = `INSERT INTO  activity_comments (user_id,
         activity_id,content) VALUES (?,?,?)`;
   const data = [user_id, id, content];

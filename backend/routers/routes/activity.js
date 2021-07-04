@@ -32,7 +32,7 @@ activitiesRouter.put("/:id", updateActivitiesById);
 //activities_id
 activitiesRouter.post("/activity/:id", joinActivityById);
 // post data by activity id
-activitiesRouter.post("/comment/:id", addActivityComment);
+activitiesRouter.post("/comment/:id",authentication, addActivityComment);
 // get data by activities id
 activitiesRouter.get("/comment/:id", showAllCommentByActivityId);
 //update using comment id 
