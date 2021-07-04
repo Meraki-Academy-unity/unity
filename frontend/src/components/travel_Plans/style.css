@@ -1,0 +1,25 @@
+.plans{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    border-style: groove;
+}
+
+.plan{
+    display: flex;
+    border-style: groove;
+}
+
+.leftplan{
+    flex: 10%;
+}
+
+
+.rightplan{
+    display: grid;
+    flex: 50%;
+}

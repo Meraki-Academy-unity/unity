@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Link, Route } from "react-router-dom";
+import'./style.css'
 
 const Activities = () => {
   const [activities, setactivities] = useState("");
@@ -23,27 +24,34 @@ const Activities = () => {
   }, []);
   return (
     <>
-      <br />
-      <h1>Activities</h1>
-      <br />
+    <div className="Activities">
       {activities &&
         activities.map((res, ind) => {
           return (
-            <Link to={`/activities/activity/${res.id}`} key={ind}>
-              {" "}
-              <div>
-                <p>
+            
+              <div className="Activity">
+                <div className="leftAct">
+                <img src={res.profile_image} className="img"></img>
+                <p style = {{color:"blue" , marginLeft:"10px"}}>
                   {res.first_name} {res.last_name}
                 </p>
-                <h2>{res.title}</h2>
-                <p>{res.activities}</p>
-                <p>{res.location}</p>
-                <p>{res.creation_time}</p>
+                </div>
+                <Link to={`/activities/activity/${res.id}`} key={ind}>
+                <div className="rightAct">
+                <h2 style ={{color: "#507fa4" , fontWeight:"bolder"}}>{res.title}</h2>
+                <p className="p">location : {res.location}</p>
+                <p className="p">activities to do :{res.activities}</p>
+                <p className="p">start date : {res.start_date}</p>
+                <p className="p">finish date : {res.finish_date}</p>
+                <p className="p">estimated budget : {res.estimated_budget}</p>
                 <br />
               </div>
+              
             </Link>
+            </div>
           );
         })}
+        </div>
     </>
   );
 };

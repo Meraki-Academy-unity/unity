@@ -29,7 +29,7 @@ const SignUp = () => {
   const [dateOfBirth, setDateOfBirth] = useState();
   const [language, setLanguage] = useState();
   const [profileImage, setProfileImage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
   const [id, setId] = useState();
   const [secondStep, setSecondStep] = useState(false);
   const [errorImgMessage, setErrorImgMessage] = useState();
@@ -70,24 +70,28 @@ const SignUp = () => {
   }, [done]);
 
   const signUpFirstStep = () => {
-    if (password === confirmPassword) {
-      axios
-        .post("http://localhost:5000/signUp/firstStep", {
-          first_name: firstName,
-          last_name: lastName,
-          email,
-          password,
-        })
-        .then((result) => {
-          setId(result.data.id);
-          setSecondStep(true);
-          
-        })
-        .catch((err) => {
-          throw err;
-        });
-    } else {
-      setErrorMessage("Password Does Not Match");
+
+    if (!firstName || !lastName || !email || !password)
+      setErrorMessage("All Fields Are Required");
+    else {
+      if (password === confirmPassword) {
+        axios
+          .post("http://localhost:5000/signUp/firstStep", {
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            password,
+          })
+          .then((result) => {
+            setId(result.data.id);
+            setSecondStep(true);
+          })
+          .catch((err) => {
+            setErrorMessage(err.response.data);
+          });
+      } else {
+        setErrorMessage("Password Does Not Match");
+      }
     }
   };
 
@@ -117,6 +121,7 @@ const SignUp = () => {
           setPassword={setPassword}
           setConfirmPassword={setConfirmPassword}
           signUpFirstStep={signUpFirstStep}
+          errorMessage={errorMessage}
         />
       ) : (
         <SecondStep
@@ -144,6 +149,7 @@ const FirstStep = ({
   setEmail,
   setConfirmPassword,
   signUpFirstStep,
+  errorMessage,
 }) => {
   return (
     <div className="regCont">
@@ -154,7 +160,7 @@ const FirstStep = ({
       </div>
       <div className="rightAuthReg">
         <div className="regWrapper">
-          <h1>First Step</h1>
+          <h1>Register</h1>
 
           <div className="regForm">
             <div className="firstName">
@@ -209,8 +215,9 @@ const FirstStep = ({
             </div>
             <div className="createAccount">
               <button onClick={signUpFirstStep}>Sign-Up</button>
+              {errorMessage ? <p>{errorMessage}</p> : ""}
               <small>
-                Already Have Account?<Link>Login</Link>
+                Already Have Account?<Link to="/login">Login</Link>
               </small>
             </div>
           </div>
@@ -245,31 +252,21 @@ const SecondStep = ({
       </div>
       <div className="rightAuthReg">
         <div className="regWrapper">
-          <h1>Second Step</h1>
+          <h1>Register</h1>
           <div className="regForm">
             {/* _____________________________________________ */}
             <div className="firstName">
-              {/* <label>Region:</label>
-            <input
-              onChange={(e) => {
-                setRegion(e.target.value);
-              }}
-              type="text"
-              placeholder="Enter Your Country Here"
-            /> */}
+
+              <label>Region:</label>
+
               <CountryList setCountryList={setCountryList} />
               {setRegion(countryList)}
             </div>
             {/* _____________________________________________ */}
             <div className="lastName">
-              {/* <label>Current Location:</label>
-            <input
-              onChange={(e) => {
-                setCurrentlyIn(e.target.value);
-              }}
-              type="text"
-              placeholder="Check In Your Current Location Here"
-            /> */}
+
+            <label>Current location:</label>
+
               <CheckInList setCheckInList={setCheckInList} />
               {setCurrentlyIn(checkInLis)}
               {/* _____________________________________________ */}
@@ -302,6 +299,8 @@ const SecondStep = ({
                 }}
                 type="date"
                 placeholder="mm-dd-yyyy"
+                min="1900-01-01"
+                max="2003-12-31"
               />
             </div>
             <div className="firstName">
@@ -344,7 +343,7 @@ const SecondStep = ({
             <div className="createAccount">
               <button onClick={signUpSecondStep}>Next</button>
               <small>
-                <Link>skip</Link>
+                <Link to="/preferences">skip</Link>
               </small>
             </div>
           </div>
