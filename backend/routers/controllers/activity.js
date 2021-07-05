@@ -178,7 +178,7 @@ const deletActivitiesComment = (req, res) => {
 
 const withDrawActivityById = (req, res) => {
   const activity_id = req.params.id;
-  const user_id = req.body.user_id;
+  const user_id = req.token.user_id;
   const query = `DELETE FROM activity_members WHERE user_id = ? AND activity_id = ?`;
   const data = [user_id, activity_id];
 
@@ -188,7 +188,7 @@ const withDrawActivityById = (req, res) => {
   });
 };
 
-const getMembers = (req, res) => {
+const getMember = (req, res) => {
   const id = req.params.id;
   const user_id = req.token.user_id;
   const query =
@@ -199,6 +199,18 @@ const getMembers = (req, res) => {
     res.json(result);
   });
 };
+
+const getMembers = (req,res) =>{
+  const id = req.params.id
+  const query = `SELECT users.first_name , users.last_name , users.profile_image , users.id FROM activity_members INNER JOIN users ON user_id = users.id WHERE activity_id = ? ;`;
+  const data = [id]
+  db.query(query, data, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+}
+
+
 
 module.exports = {
   addActivity,
@@ -213,5 +225,6 @@ module.exports = {
   updateActivitiesComment,
   deletActivitiesComment,
   withDrawActivityById,
+  getMember,
   getMembers
 };
