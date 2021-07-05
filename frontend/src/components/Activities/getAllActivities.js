@@ -5,13 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Link, Route } from "react-router-dom";
 import'./style.css'
+import AddActivities from "./addActivities";
 
 const Activities = () => {
   const [activities, setactivities] = useState("");
 
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const state = useSelector((state) => {
+    return {
+      token: state.login.token,
+    };
+  });
   useEffect(() => {
     axios
       .get(`http://localhost:5000/activities/`)
@@ -24,11 +29,11 @@ const Activities = () => {
   }, []);
   return (
     <>
+    
     <div className="Activities">
       {activities &&
         activities.map((res, ind) => {
           return (
-            
               <div className="Activity">
                 <div className="leftAct">
                 <img src={res.profile_image} className="img"></img>
@@ -52,6 +57,9 @@ const Activities = () => {
           );
         })}
         </div>
+        {state.token?<button onClick={()=>{
+          history.push("/addActivity");
+        }}>Add Activity</button> : ""}
     </>
   );
 };
