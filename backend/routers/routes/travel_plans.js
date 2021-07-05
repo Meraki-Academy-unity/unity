@@ -31,6 +31,6 @@ travelPlansRouter.get("/comments/:id", showAllCommentByPlanId);
 //update using comment id 
 travelPlansRouter.put("/comment/:id", updatePlanComment);
 //delete using comment id 
-travelPlansRouter.delete("/comment/:id", deletePlanComment);
+travelPlansRouter.delete("/comment/:id",authentication, deletePlanComment);
 
 module.exports = travelPlansRouter;

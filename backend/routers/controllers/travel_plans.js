@@ -172,7 +172,7 @@ const updatePlanComment = (req, res) => {
 
 const deletePlanComment = (req, res) => {
   const id = req.params.id;
-  const { user_id } = req.body;
+  const user_id  = req.token.user_id;
   const query = "DELETE FROM  travel_plans_comments WHERE id=? AND user_id=?";
   const data = [id, user_id];
   db.query(query, data, (err, result) => {
