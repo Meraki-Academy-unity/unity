@@ -43,7 +43,13 @@ const getAllTravelPlans = (req, res) => {
 };
 
 const getTravelPlansById = (req, res) => {
-  const query = `SELECT * FROM travel_plans WHERE id=?`;
+  const query = `SELECT travel_plans.title , travel_plans.activities ,travel_plans.id  , travel_plans.countries, travel_plans.creation_time
+  , travel_plans.estimated_budget, travel_plans.start_date , travel_plans.finish_date , travel_plans.details 
+  , travel_plans.requirements , travel_plans.images , users.first_name , users.last_name
+  , users.profile_image , travel_plans.user_id
+  FROM travel_plans INNER JOIN  users 
+  ON travel_plans.user_id = users.id  
+  WHERE travel_plans.id=?`;
   const data = req.params.id;
   db.query(query, data, (err, results) => {
     if (err) throw err;
@@ -96,7 +102,7 @@ const deleteTravelPlansById = (req, res) => {
 
 const joinTravelPlanById = (req, res) => {
   const plan_id = req.params.id;
-  const user_id = req.body.user_id;
+  const user_id = req.token.user_id;
   const query = `INSERT INTO plan_members (user_id,plan_id) VALUES (?,?)`;
   const data = [user_id, plan_id];
 
@@ -108,7 +114,7 @@ const joinTravelPlanById = (req, res) => {
 
 const withDrawTravelPlanById = (req, res) => {
   const plan_id = req.params.id;
-  const user_id = req.body.user_id;
+  const user_id = req.token.user_id;
   const query = `DELETE FROM plan_members WHERE user_id = ? AND plan_id = ?`;
   const data = [user_id, plan_id];
 
@@ -120,7 +126,8 @@ const withDrawTravelPlanById = (req, res) => {
 
 const addPlanComment = (req, res) => {
   const travel_plans_id = req.params.id;
-  const { content, user_id } = req.body;
+  const user_id = req.token.user_id;
+  const { content } = req.body;
   const query = `INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES (?,?,?)`;
   const data = [content, user_id, travel_plans_id];
   db.query(query, data, (err, result) => {
@@ -132,7 +139,7 @@ const addPlanComment = (req, res) => {
 const showAllCommentByPlanId = (req, res) => {
   const travel_plans_id = req.params.id;
   const query =
-    "SELECT content,travel_plans_comments.user_id FROM  travel_plans_comments INNER JOIN travel_plans ON travel_plans_comments.travel_plans_id=travel_plans.id WHERE travel_plans.id=?";
+    "SELECT content ,  travel_plans_comments.user_id , users.first_name , users.last_name , users.profile_image, travel_plans_comments.id FROM   travel_plans_comments INNER JOIN travel_plans ON  travel_plans_id=travel_plans.id INNER JOIN users ON users.id =  travel_plans_comments.user_id  WHERE  travel_plans_id=? ";
   const data = [travel_plans_id];
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
@@ -153,7 +160,8 @@ const showTravelPlanByCountry = (req, res) => {
 
 const updatePlanComment = (req, res) => {
   const id = req.params.id;
-  const { content, user_id } = req.body;
+  const user_id = req.token.user_id;
+  const { content } = req.body;
   const query =
     "UPDATE travel_plans_comments SET content=? WHERE id=? AND user_id=?";
   const data = [content, id, user_id];
@@ -165,7 +173,7 @@ const updatePlanComment = (req, res) => {
 
 const deletePlanComment = (req, res) => {
   const id = req.params.id;
-  const { user_id } = req.body;
+  const user_id = req.token.user_id;
   const query = "DELETE FROM  travel_plans_comments WHERE id=? AND user_id=?";
   const data = [id, user_id];
   db.query(query, data, (err, result) => {
@@ -174,6 +182,27 @@ const deletePlanComment = (req, res) => {
   });
 };
 
+const getMember = (req, res) => {
+  const id = req.params.id;
+  const user_id = req.token.user_id;
+  const query =
+    "SELECT * FROM  plan_members  WHERE  plan_id=? AND user_id=? ";
+  const data = [id, user_id];
+  db.query(query, data, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+};
+
+const getMembers = (req, res) => {
+  const id = req.params.id
+  const query = `SELECT users.first_name , users.last_name , users.profile_image , users.id FROM plan_members INNER JOIN users ON user_id = users.id WHERE plan_id = ? ;`;
+  const data = [id]
+  db.query(query, data, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+}
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
@@ -187,4 +216,7 @@ module.exports = {
   showTravelPlanByCountry,
   updatePlanComment,
   deletePlanComment,
+  getMember,
+  getMembers
+
 };
