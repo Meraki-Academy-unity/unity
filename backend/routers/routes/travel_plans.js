@@ -29,7 +29,7 @@ travelPlansRouter.get("/plans/:country", showTravelPlanByCountry);
 travelPlansRouter.post("/comment/:id", authentication, addPlanComment);
 travelPlansRouter.get("/comments/:id", showAllCommentByPlanId);
 //update using comment id 
-travelPlansRouter.put("/comment/:id", updatePlanComment);
+travelPlansRouter.put("/comment/:id",authentication,updatePlanComment);
 //delete using comment id 
 travelPlansRouter.delete("/comment/:id",authentication, deletePlanComment);
 

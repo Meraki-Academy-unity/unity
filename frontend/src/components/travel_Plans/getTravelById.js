@@ -5,12 +5,15 @@ import { useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import AddTravelComment from './addComment';
 import DeleteTravelComments from './deleteTravelComment';
+import UpdateTravelComment from './updateTravelComment';
 import "./../Activities/style.css"
 
 
 const GetTravelById = (id) => {
     const [travel, setTravel] = useState("")
     const [comment, setComment] = useState("")
+    const [show, setShow] = useState(false);
+
     const state = useSelector((state) => {
         return {
             token: state.login.token,
@@ -66,17 +69,17 @@ const GetTravelById = (id) => {
                                 <p>user : {res.first_name}</p>
                                 <p>comment: {res.content}</p>
                                 {state.token ? <DeleteTravelComments comment_id={res.id} /> : ""}
-                                {/* {state.token ? <DeleteComments comment_id={res.id} /> : ""}
-                  {state.token ? (
-                    <button onClick={() => setShow(!show)}>update</button>
-                  ) : (
-                    ""
-                  )} */}
-                                {/* {show && state.token ? (
-                    <UpdateComment comment_id={res.id} />
-                  ) : (
-                    ""
-                  )} */}
+
+                                {state.token ? (
+                                    <button onClick={() => setShow(!show)}>update</button>
+                                ) : (
+                                    ""
+                                )}
+                                {show && state.token ? (
+                                    <UpdateTravelComment comment_id={res.id} />
+                                ) : (
+                                    ""
+                                )}
                             </div>
                         );
                     })}
