@@ -3,11 +3,13 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
-import"./../Activities/style.css"
+import AddTravelComment from './addComment';
+import "./../Activities/style.css"
 
 
 const GetTravelById = (id) => {
     const [travel, setTravel] = useState("")
+    const [comment, setComment] = useState("")
     const state = useSelector((state) => {
         return {
             token: state.login.token,
@@ -24,6 +26,16 @@ const GetTravelById = (id) => {
                 throw err;
             })
     }, [])
+    if (travel) {
+        axios
+            .get(`http://localhost:5000/travelPlans/comments/${travel.id}`)
+            .then((result) => {
+                setComment(result.data);
+            })
+            .catch((err) => {
+                throw err;
+            });
+    }
     return (<>
         <div>
 
@@ -44,6 +56,31 @@ const GetTravelById = (id) => {
                 </p>
                 <br />
             </div>
+
+            <div className="comment">
+                {comment &&
+                    comment.map((res, ind) => {
+                        return (
+                            <div key={ind}>
+                                <img src={res.profile_image} style={{ width: "100px" }}></img>
+                                <p>user : {res.first_name}</p>
+                                <p>comment: {res.content}</p>
+                                {/* {state.token ? <DeleteComments comment_id={res.id} /> : ""}
+                  {state.token ? (
+                    <button onClick={() => setShow(!show)}>update</button>
+                  ) : (
+                    ""
+                  )} */}
+                                {/* {show && state.token ? (
+                    <UpdateComment comment_id={res.id} />
+                  ) : (
+                    ""
+                  )} */}
+                            </div>
+                        );
+                    })}
+            </div>
+            {state.token ?<AddTravelComment travel_id={travel.id} /> : ""}
 
         </div>
 
