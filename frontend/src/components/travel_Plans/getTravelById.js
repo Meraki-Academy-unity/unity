@@ -6,6 +6,7 @@ import { Link, Route } from "react-router-dom";
 import AddTravelComment from './addComment';
 import DeleteTravelComments from './deleteTravelComment';
 import UpdateTravelComment from './updateTravelComment';
+import CheckTravelJoin from './checkJoin';
 import "./../Activities/style.css"
 
 
@@ -59,6 +60,8 @@ const GetTravelById = (id) => {
                 </p>
                 <br />
             </div>
+            {state.token ?<CheckTravelJoin travel_id={travel.id}/> : ""}
+        
 
             <div className="comment">
                 {comment &&

@@ -34,9 +34,9 @@ travelPlansRouter.get("/comments/:id", showAllCommentByPlanId);
 travelPlansRouter.put("/comment/:id", authentication, updatePlanComment);
 //delete using comment id 
 travelPlansRouter.delete("/comment/:id", authentication, deletePlanComment);
-activitiesRouter.get("/member/:id" ,authentication, getMember)
+travelPlansRouter.get("/member/:id", authentication, getMember)
 
-activitiesRouter.get("/members/:id" , getMembers)
+travelPlansRouter.get("/members/:id", getMembers)
 
 
 module.exports = travelPlansRouter;

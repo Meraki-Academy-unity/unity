@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Link, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Join from "./activityJoin";
+// import Join from "./activityJoin";
 
 const CheckTravelJoin = ({travel_id})=>{
     const [show , setShow] = useState(true)
@@ -16,7 +16,7 @@ const CheckTravelJoin = ({travel_id})=>{
       });
 
     axios
-      .get(`http://localhost:5000/activities/member/${activity_id}`, {
+      .get(`http://localhost:5000/travelPlans/member/${travel_id}`, {
         headers: {
           Authorization: `Bearer ${state.token}`,
         },
@@ -35,7 +35,7 @@ const CheckTravelJoin = ({travel_id})=>{
       const ShowMembers = async() => {
         setShow(false)
         await axios
-        .get(`http://localhost:5000/activities/members/${activity_id}` )
+        .get(`http://localhost:5000/travelPlans/members/${travel_id}` )
         .then((result) => {
             setMembers(result.data)
         })
