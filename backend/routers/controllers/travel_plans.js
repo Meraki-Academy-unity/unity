@@ -102,7 +102,7 @@ const deleteTravelPlansById = (req, res) => {
 
 const joinTravelPlanById = (req, res) => {
   const plan_id = req.params.id;
-  const user_id = req.body.user_id;
+  const user_id = req.token.user_id;
   const query = `INSERT INTO plan_members (user_id,plan_id) VALUES (?,?)`;
   const data = [user_id, plan_id];
 
@@ -114,7 +114,7 @@ const joinTravelPlanById = (req, res) => {
 
 const withDrawTravelPlanById = (req, res) => {
   const plan_id = req.params.id;
-  const user_id = req.body.user_id;
+  const user_id = req.token.user_id;
   const query = `DELETE FROM plan_members WHERE user_id = ? AND plan_id = ?`;
   const data = [user_id, plan_id];
 
@@ -160,8 +160,8 @@ const showTravelPlanByCountry = (req, res) => {
 
 const updatePlanComment = (req, res) => {
   const id = req.params.id;
-  const user_id=req.token.user_id;
-  const { content} = req.body;
+  const user_id = req.token.user_id;
+  const { content } = req.body;
   const query =
     "UPDATE travel_plans_comments SET content=? WHERE id=? AND user_id=?";
   const data = [content, id, user_id];
@@ -173,7 +173,7 @@ const updatePlanComment = (req, res) => {
 
 const deletePlanComment = (req, res) => {
   const id = req.params.id;
-  const user_id  = req.token.user_id;
+  const user_id = req.token.user_id;
   const query = "DELETE FROM  travel_plans_comments WHERE id=? AND user_id=?";
   const data = [id, user_id];
   db.query(query, data, (err, result) => {
@@ -182,6 +182,27 @@ const deletePlanComment = (req, res) => {
   });
 };
 
+const getMember = (req, res) => {
+  const id = req.params.id;
+  const user_id = req.token.user_id;
+  const query =
+    "SELECT * FROM  plan_members  WHERE  plan_id=? AND user_id=? ";
+  const data = [id, user_id];
+  db.query(query, data, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+};
+
+const getMembers = (req, res) => {
+  const id = req.params.id
+  const query = `SELECT users.first_name , users.last_name , users.profile_image , users.id FROM plan_members INNER JOIN users ON user_id = users.id WHERE plan_id = ? ;`;
+  const data = [id]
+  db.query(query, data, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+}
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
@@ -195,4 +216,7 @@ module.exports = {
   showTravelPlanByCountry,
   updatePlanComment,
   deletePlanComment,
+  getMember,
+  getMembers
+
 };
