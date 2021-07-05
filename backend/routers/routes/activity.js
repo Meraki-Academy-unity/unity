@@ -14,6 +14,7 @@ const {
     updateActivitiesComment,
     deletActivitiesComment,
     withDrawActivityById,
+    getMember,
     getMembers
 } = require("../controllers/activity");
 
@@ -41,7 +42,11 @@ activitiesRouter.put("/comment/:id",authentication,updateActivitiesComment);
 //delete using comment id 
 activitiesRouter.delete("/comment/:id",authentication, deletActivitiesComment);
 // withdraw user from activity 
-activitiesRouter.delete("/activity/:id", withDrawActivityById);
-// to get users joined in activity 
-activitiesRouter.get("/member/:id" ,authentication, getMembers)
+activitiesRouter.delete("/activity/:id",authentication, withDrawActivityById);
+// to get user joined in activity :
+activitiesRouter.get("/member/:id" ,authentication, getMember)
+// to get all users joined in activity :
+activitiesRouter.get("/members/:id" , getMembers)
+
+
 module.exports = activitiesRouter;

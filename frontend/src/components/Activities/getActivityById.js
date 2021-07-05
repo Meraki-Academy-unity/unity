@@ -59,7 +59,7 @@ const GetActivityById = (id) => {
             </Link>
           </p>
         </div>
-        <div><CheckJoin activity_id={activity.id}/></div>
+        {state.token ?<CheckJoin activity_id={activity.id}/> : ""}
         <div className="comment">
           {comment &&
             comment.map((res, ind) => {
@@ -83,7 +83,7 @@ const GetActivityById = (id) => {
               );
             })}
         </div>
-        <AddComment activity_id={activity.id} />
+        {state.token ?<AddComment activity_id={activity.id} /> : ""}
       </div>
     </>
   );
