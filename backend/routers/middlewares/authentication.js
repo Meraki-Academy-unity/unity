@@ -10,7 +10,7 @@ const authentication = (req, res, next) => {
   const token = req.header("Authorization").split(" ")[1];
   jwt.verify(token, secret, (err, result) => {
     if (err) {
-      return res.status(403).json({ message: "forbidden" });
+      return res.status(404).json({ message: "forbidden" });
     }
     if (result) {
       req.token = result;

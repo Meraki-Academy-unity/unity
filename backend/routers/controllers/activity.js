@@ -123,8 +123,8 @@ const joinActivityById = (req, res) => {
   const data = [user_id, activity_id];
 
   db.query(query, data, (err, result) => {
-    if (result) res.status(200).json("Activity Joined Successfully !");
-    else res.status(400).json("ERROR OCCURRED.. !");
+    if (err) throw err;
+    res.json(result);
   });
 };
 
