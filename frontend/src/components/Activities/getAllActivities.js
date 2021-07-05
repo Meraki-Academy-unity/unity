@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Link, Route } from "react-router-dom";
-import'./style.css'
+import "./style.css";
 import AddActivities from "./addActivities";
 
 const Activities = () => {
@@ -29,37 +29,47 @@ const Activities = () => {
   }, []);
   return (
     <>
-    
-    <div className="Activities">
-      {activities &&
-        activities.map((res, ind) => {
-          return (
+      {state.token ? (
+        <button
+          onClick={() => {
+            history.push("/addActivity");
+          }}
+        >
+          Add Activity
+        </button>
+      ) : (
+        ""
+      )}
+      <div className="Activities">
+        {activities &&
+          activities.map((res, ind) => {
+            return (
               <div className="Activity">
                 <div className="leftAct">
-                <img src={res.profile_image} className="img"></img>
-                <p style = {{color:"blue" , marginLeft:"10px"}}>
-                  {res.first_name} {res.last_name}
-                </p>
+                  <img src={res.profile_image} className="img"></img>
+                  <p style={{ color: "blue", marginLeft: "10px" }}>
+                    {res.first_name} {res.last_name}
+                  </p>
                 </div>
                 <Link to={`/activities/activity/${res.id}`} key={ind}>
-                <div className="rightAct">
-                <h2 style ={{color: "#507fa4" , fontWeight:"bolder"}}>{res.title}</h2>
-                <p className="p">location : {res.location}</p>
-                <p className="p">activities to do :{res.activities}</p>
-                <p className="p">start date : {res.start_date}</p>
-                <p className="p">finish date : {res.finish_date}</p>
-                <p className="p">estimated budget : {res.estimated_budget}</p>
-                <br />
+                  <div className="rightAct">
+                    <h2 style={{ color: "#507fa4", fontWeight: "bolder" }}>
+                      {res.title}
+                    </h2>
+                    <p className="p">location : {res.location}</p>
+                    <p className="p">activities to do :{res.activities}</p>
+                    <p className="p">start date : {res.start_date}</p>
+                    <p className="p">finish date : {res.finish_date}</p>
+                    <p className="p">
+                      estimated budget : {res.estimated_budget}
+                    </p>
+                    <br />
+                  </div>
+                </Link>
               </div>
-              
-            </Link>
-            </div>
-          );
-        })}
-        </div>
-        {state.token?<button onClick={()=>{
-          history.push("/addActivity");
-        }}>Add Activity</button> : ""}
+            );
+          })}
+      </div>
     </>
   );
 };

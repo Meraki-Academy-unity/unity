@@ -1,7 +1,7 @@
 const db = require("../../db/db");
 
 const createTravelPlans = (req, res) => {
-  const user_id = req.params.user_id;
+  const user_id = req.token.user_id;
   const query = `INSERT INTO travel_plans (title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget,user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?,?)`;
   const {
     title,
