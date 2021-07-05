@@ -37,6 +37,7 @@ const App = () => {
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
       <Route exact path="/activities" component={GetAllActivities} />
       <Route exact path="/addActivity" render={() => <AddActivities/>} />
+      <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
       <Route exact path="/preferences" render={() => <AddPerferences />} />
       <Route
         exact

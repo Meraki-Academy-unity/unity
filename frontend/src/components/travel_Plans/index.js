@@ -26,6 +26,7 @@ const AddTravelPlans = () => {
   const state = useSelector((state) => {
     return {
       url: state.imgUploader.url,
+      token: state.login.token
     };
   });
 
@@ -41,7 +42,7 @@ const AddTravelPlans = () => {
 
     setImages(state.url);
     await axios
-      .post(`http://localhost:5000/travelPlans/1`, {
+      .post(`http://localhost:5000/travelPlans`, {
         title,
         start_date,
         finish_date,
@@ -51,7 +52,9 @@ const AddTravelPlans = () => {
         details,
         images,
         estimated_budget,
-      })
+      },{headers: {
+        Authorization: `Bearer ${state.token}`,
+      }}) 
       .then((result) => {
         console.log("res", result.data);
       })
@@ -73,6 +76,7 @@ const AddTravelPlans = () => {
 
   return (
     <>
+      
       <input
         type="text"
         placeholder="title here"
