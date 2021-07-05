@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../loadingBar/loaderBar";
 import axios from "axios";
+import moment from 'moment';
 
 const AddActivities = () => {
   const [title, setTitle] = useState("");
@@ -16,8 +17,8 @@ const AddActivities = () => {
   const [estimated_budget, setEstimated_budget] = useState("");
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
-  const [done , setDone] = useState(false);
-
+  const [done , setDone] = useState(0);
+  console.log("out" , done, "images: ",images)
   const types = ["image/png", "image/jpeg"];
   const history = useHistory();
   const dispatch = useDispatch();
@@ -37,9 +38,15 @@ const AddActivities = () => {
     } else {
       setFile(null);
       setErrorImgMessage("please select image type of png or jpeg");
-    }
-  };
-  useEffect(()=>{axios
+    }}
+
+    const AddNewActivities =  () => {
+      setDone(1)
+      setImages(state.url);
+      console.log("inf" , done , "images: ",images)
+  
+    console.log("in" , done, "images: ",images)
+    axios
     .post(`http://localhost:5000/activities/`, {
       title,
       start_date,
@@ -57,15 +64,34 @@ const AddActivities = () => {
     })
     .catch((err) => {
       throw err;
-    });},[done])
+    })}
 
+// useEffect(()=>{
+//   setDone(true);
+// },[images])
 
-
-  const addNewActivities = () => {
-    setDone(true);
-    setImages(state.url);
-    
-  };
+  
+    // await axios
+    // .post(`http://localhost:5000/activities/`, {
+    //   title,
+    //   start_date,
+    //   finish_date,
+    //   location,
+    //   details,
+    //   requirements,
+    //   activities,
+    //   images,
+    //   estimated_budget,
+    // } ,{headers: {
+    //   Authorization: `Bearer ${state.token}`,
+    // }})
+    // .then((result) => {
+    //   console.log("res", result.data);
+    // })
+    // .catch((err) => {
+    //   throw err;
+    // })
+  
 
   return (
     <>
@@ -88,7 +114,7 @@ const AddActivities = () => {
         placeholder=" estimated budget here"
         onChange={(e) => setEstimated_budget(e.target.value)}
       />
-      <button onClick={addNewActivities}>create activities</button>
+      <button onClick={AddNewActivities}>create activities</button>
     </>
   );
 };

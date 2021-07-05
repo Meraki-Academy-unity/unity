@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route } from "react-router-dom";
+import { Route , useHistory } from "react-router-dom";
 import Login from "./components/auth/login/index";
 import SignUp from "./components/auth/signUp/index";
 import AddActivities from "./components/Activities/addActivities";
@@ -20,6 +20,7 @@ import Modal from "./components/Album/Modal";
 import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
+  const history = useHistory()
   const state = useSelector((state) => {
     return {
       photo: state.photo.photo
@@ -35,7 +36,7 @@ const App = () => {
       <Route exact path="/plans" component={GetAllTravel} />
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
       <Route exact path="/activities" component={GetAllActivities} />
-
+      <Route exact path="/addActivity" render={() => <AddActivities/>} />
       <Route exact path="/preferences" render={() => <AddPerferences />} />
       <Route
         exact
@@ -57,6 +58,7 @@ const App = () => {
       {/* {state.photo&& <Modal />} */}
       {/* <Footer /> */}
     </div>
+    
   );
 };
 
