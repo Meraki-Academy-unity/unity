@@ -12,7 +12,7 @@ const AddTravelComment = ({travel_id})=>{
         };
       });
     
-    const add =()=>{
+    const addComment =()=>{
         axios.post(`http://localhost:5000/travelPlans/comment/${travel_id}`, {content} ,{
             headers: {
               Authorization: `Bearer ${state.token}`,
@@ -25,7 +25,7 @@ const AddTravelComment = ({travel_id})=>{
     }
     return <>
     <textarea onChange={(e)=>{setContent(e.target.value)}} placeholder="Write your comment here"/>
-    <button onClick={add}>Add Comment</button>
+    <button onClick={addComment}>Add Comment</button>
     </>
 }
 

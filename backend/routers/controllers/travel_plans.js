@@ -126,7 +126,8 @@ const withDrawTravelPlanById = (req, res) => {
 
 const addPlanComment = (req, res) => {
   const travel_plans_id = req.params.id;
-  const { content, user_id } = req.body;
+  const user_id = req.token.user_id;
+  const { content } = req.body;
   const query = `INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES (?,?,?)`;
   const data = [content, user_id, travel_plans_id];
   db.query(query, data, (err, result) => {
@@ -138,7 +139,7 @@ const addPlanComment = (req, res) => {
 const showAllCommentByPlanId = (req, res) => {
   const travel_plans_id = req.params.id;
   const query =
-  "SELECT content ,  travel_plans_comments.user_id , users.first_name , users.last_name , users.profile_image, travel_plans_comments.id FROM   travel_plans_comments INNER JOIN travel_plans ON  travel_plans_id=travel_plans.id INNER JOIN users ON users.id =  travel_plans_comments.user_id  WHERE  travel_plans_id=? ";
+    "SELECT content ,  travel_plans_comments.user_id , users.first_name , users.last_name , users.profile_image, travel_plans_comments.id FROM   travel_plans_comments INNER JOIN travel_plans ON  travel_plans_id=travel_plans.id INNER JOIN users ON users.id =  travel_plans_comments.user_id  WHERE  travel_plans_id=? ";
   const data = [travel_plans_id];
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import AddTravelComment from './addComment';
+import DeleteTravelComments from './deleteTravelComment';
 import "./../Activities/style.css"
 
 
@@ -19,7 +20,6 @@ const GetTravelById = (id) => {
     useEffect(() => {
         axios.get(`http://localhost:5000${id.location.pathname}`)
             .then((result) => {
-                console.log("travel", result.data)
                 setTravel(result.data[0])
             })
             .catch((err) => {
@@ -65,6 +65,7 @@ const GetTravelById = (id) => {
                                 <img src={res.profile_image} style={{ width: "100px" }}></img>
                                 <p>user : {res.first_name}</p>
                                 <p>comment: {res.content}</p>
+                                {state.token ? <DeleteTravelComments comment_id={res.id} /> : ""}
                                 {/* {state.token ? <DeleteComments comment_id={res.id} /> : ""}
                   {state.token ? (
                     <button onClick={() => setShow(!show)}>update</button>
@@ -80,7 +81,7 @@ const GetTravelById = (id) => {
                         );
                     })}
             </div>
-            {state.token ?<AddTravelComment travel_id={travel.id} /> : ""}
+            {state.token ? <AddTravelComment travel_id={travel.id} /> : ""}
 
         </div>
 

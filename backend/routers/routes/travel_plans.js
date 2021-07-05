@@ -1,4 +1,6 @@
 const express = require("express");
+const authentication = require("../middlewares/authentication");
+
 
 const {
   createTravelPlans,
@@ -24,7 +26,7 @@ travelPlansRouter.delete("/:id", deleteTravelPlansById);
 travelPlansRouter.post("/plan/:id", joinTravelPlanById);
 travelPlansRouter.delete("/plan/:id", withDrawTravelPlanById);
 travelPlansRouter.get("/plans/:country", showTravelPlanByCountry);
-travelPlansRouter.post("/comment/:id", addPlanComment);
+travelPlansRouter.post("/comment/:id", authentication, addPlanComment);
 travelPlansRouter.get("/comments/:id", showAllCommentByPlanId);
 //update using comment id 
 travelPlansRouter.put("/comment/:id", updatePlanComment);
