@@ -7,6 +7,7 @@ import DeleteComments from "./deleteComment";
 import UpdateComment from "./updateComment";
 import { useSelector } from "react-redux";
 import Join from "./activityJoin";
+import CheckJoin from "./checkJoin";
 
 const GetActivityById = (id) => {
   const [comment, setComment] = useState([]);
@@ -58,9 +59,7 @@ const GetActivityById = (id) => {
             </Link>
           </p>
         </div>
-        <div>
-        {state.token ? <Join activity_id={activity.id} /> : ""}
-        </div>
+        <div><CheckJoin activity_id={activity.id}/></div>
         <div className="comment">
           {comment &&
             comment.map((res, ind) => {
