@@ -1,4 +1,5 @@
 const connection = require("../../db/db");
+const moment = require("moment");
 
 const addPreference = (req, res) => {
   const {
@@ -24,9 +25,9 @@ const addPreference = (req, res) => {
   connection.query(query, data, (err, result) => {
     if (result) res.status(201).json("Preference Added Successfully!");
     else {
-      console.log(err)
-      res.status(400).json("ERROR OCCURRED !")
-    };
+      console.log(err);
+      res.status(400).json("ERROR OCCURRED !");
+    }
   });
 };
 
@@ -86,23 +87,58 @@ const matchByLocation = (req, res) => {
   connection.query(query, data, (err, result) => {
     if (result) {
       // res.status(200).json("Preference Updated Successfully!");
-      const query1 = "SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities FROM preferences INNER JOIN users ON user_id = users.id WHERE location =? AND NOT users.id=?"
-      const data1 = [result[0].location, user_id]
+      const query1 =
+        "SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities FROM preferences INNER JOIN users ON user_id = users.id WHERE location =? AND NOT users.id=?";
+      const data1 = [result[0].location, user_id];
       connection.query(query1, data1, (err, result_1) => {
         if (result_1) res.status(200).json(result_1);
         else res.status(400).json("ERROR OCCURRED !");
       });
-    }
-    else res.status(400).json("ERROR OCCURRED !");
+    } else res.status(400).json("ERROR OCCURRED !");
   });
+};
 
+const matchByDate = (req, res) => {
+  const user_id = req.token.user_id;
+  const query = `SELECT * FROM preferences WHERE user_id = ?`;
+  const data = [user_id];
 
-}
+  connection.query(query, data, (err, result) => {
+    if (result) {
+      const date1 = moment(result[0].start_date , "YYYY-MM-DD");
+      const date2 = moment(result[0].finish_date , "YYYY-MM-DD");
+      console.log( date1.get('month'))
+      console.log( date2)
+      const query1 =
+        `SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities , preferences.start_date , preferences.finish_date FROM preferences INNER JOIN users ON user_id = users.id WHERE  NOT users.id=?`;
+      const data1 = [user_id];
+      connection.query(query1, data1, (err, result_1) => {
+        if (result_1) {
+          const arr = []
+            result_1.filter((elem , i ) =>{
+            console.log("date2",date2.get('year'))
+            console.log("str",moment(elem.start_date , "YYYY-MM-DD").get('year'))
+            if(date1.get('year') <= moment(elem.start_date , "YYYY-MM-DD").get('year')   &&   date2.get('year') >=moment(elem.finish_date , "YYYY-MM-DD").get('year')  ){
+              if(date1.get('month') <= moment(elem.start_date , "YYYY-MM-DD").get('month')  && date2.get('month') >= moment(elem.finish_date , "YYYY-MM-DD").get('month')){
+                return arr.push(elem)
+              }
+            }
+          })
+          
+          
+          res.status(200).json(arr);
+        console.log(result_1)}
+        else res.status(400).json(err);
+      });
+    } else res.status(400).json("ERROR OCCURRED !");
+  });
+};
 
 module.exports = {
   addPreference,
   deletePreference,
   showPreferenceById,
   updatePreferenceById,
-  matchByLocation
+  matchByLocation,
+  matchByDate
 };

@@ -19,6 +19,7 @@ import ImageGrid from "./components/Album/showAlbum";
 import Modal from "./components/Album/Modal";
 import Matching from "./components/preferences/matching";
 import { useDispatch, useSelector } from "react-redux";
+import MatchingDate from "./components/preferences/matchingDate";
 
 const App = () => {
   const history = useHistory()
@@ -40,8 +41,8 @@ const App = () => {
       <Route exact path="/addActivity" render={() => <AddActivities/>} />
       <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
       <Route exact path="/preferences" render={() => <AddPerferences />} />
-      <Route exact path="/matchByLocation" render={() => <Matching/>} />
-
+      <Route exact path="/matchByLocation" render={() =><MatchingDate/>
+         } />
       <Route
         exact
         path="/activities/activity/:id"
