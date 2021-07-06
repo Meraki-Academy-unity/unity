@@ -26,7 +26,7 @@ const addPreference = (req, res) => {
     else {
       console.log(err)
       res.status(400).json("ERROR OCCURRED !")
-  };
+    };
   });
 };
 
@@ -79,9 +79,30 @@ const updatePreferenceById = (req, res) => {
   });
 };
 
+const matchByLocation = (req, res) => {
+  const user_id = req.token.user_id;
+  const query = `SELECT * FROM preferences WHERE user_id = ?`;
+  const data = [user_id];
+  connection.query(query, data, (err, result) => {
+    if (result) {
+      // res.status(200).json("Preference Updated Successfully!");
+      const query1 = "SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities FROM preferences INNER JOIN users ON user_id = users.id WHERE location =? AND NOT users.id=?"
+      const data1 = [result[0].location, user_id]
+      connection.query(query1, data1, (err, result_1) => {
+        if (result_1) res.status(200).json(result_1);
+        else res.status(400).json("ERROR OCCURRED !");
+      });
+    }
+    else res.status(400).json("ERROR OCCURRED !");
+  });
+
+
+}
+
 module.exports = {
   addPreference,
   deletePreference,
   showPreferenceById,
   updatePreferenceById,
+  matchByLocation
 };

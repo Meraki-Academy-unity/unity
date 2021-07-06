@@ -62,6 +62,9 @@ const Profile = () => {
         <Link to="/activities">Activities</Link>
         <Link to="/plans">Travel Plans</Link>
         <Link to="/plans">Friends</Link>
+        <Link to="/matchByLocation">Matching</Link>
+
+        
       </div>
     </div>
   );

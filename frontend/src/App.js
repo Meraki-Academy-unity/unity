@@ -17,6 +17,7 @@ import CountryList from "./components/Api/CountryList";
 import Album from "./components/Album/Album";
 import ImageGrid from "./components/Album/showAlbum";
 import Modal from "./components/Album/Modal";
+import Matching from "./components/preferences/matching";
 import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
@@ -39,6 +40,8 @@ const App = () => {
       <Route exact path="/addActivity" render={() => <AddActivities/>} />
       <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
       <Route exact path="/preferences" render={() => <AddPerferences />} />
+      <Route exact path="/matchByLocation" render={() => <Matching/>} />
+
       <Route
         exact
         path="/activities/activity/:id"
