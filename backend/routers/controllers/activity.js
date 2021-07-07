@@ -39,8 +39,6 @@ const addActivity = (req, res) => {
 };
 
 const getAllActivities = (req, res) => {
-  console.log("bayan1")
-
   const user_id = req.token.user_id;
   const query_ = `SELECT currently_in FROM  users WHERE id=${user_id}`;
   db.query(query_, (err, results) => {
@@ -60,7 +58,6 @@ const getAllActivities = (req, res) => {
 }
 
 const getMyActivities = (req, res) => {
-  console.log("bayan")
   const user_id = req.token.user_id;
   const query =
     "SELECT activities.title , activities.activities ,activities.id , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , activities.details  , activities.requirements , activities.images , users.first_name , users.last_name, users.profile_image , activities.user_id FROM  activities INNER JOIN  users  ON users.id= activities.user_id WHERE  activities.user_id=?";
@@ -73,10 +70,9 @@ const getMyActivities = (req, res) => {
 }
 
 const getAllActivitiesByUser = (req, res) => {
-  console.log("bayan666")
   const id = req.params.id;
   const query =
-    "SELECT activities.title , activities.activities ,activities.id , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , activities.details  , activities.requirements , activities.images , users.first_name , users.last_name, users.profile_image , activities.user_id FROM  activities INNER JOIN  users WHERE users.id=?";
+    "SELECT activities.title , activities.activities ,activities.id , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , activities.details  , activities.requirements , activities.images , users.first_name , users.last_name, users.profile_image , activities.user_id FROM  activities INNER JOIN  users ON users.id= activities.user_id WHERE users.id=?";
   const data = [id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
@@ -85,7 +81,6 @@ const getAllActivitiesByUser = (req, res) => {
 };
 
 const getActivitiesById = (req, res) => {
-  console.log("bayan2")
 
   const query = `SELECT activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time
   , activities.estimated_budget, activities.start_date , activities.finish_date , activities.details 

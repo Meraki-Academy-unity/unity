@@ -24,7 +24,7 @@ const activitiesRouter = express.Router();
 
 activitiesRouter.post("/", authentication, addActivity);
 //user_id
-activitiesRouter.get("all/:id", getAllActivitiesByUser);
+activitiesRouter.get("/all/user/:id", getAllActivitiesByUser);
 
 activitiesRouter.get("/", authentication, getAllActivities)
 //activities_id

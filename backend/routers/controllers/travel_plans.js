@@ -28,7 +28,7 @@ const createTravelPlans = (req, res) => {
     user_id,
   ];
   db.query(query, data, (err, results) => {
-    if (err) {console.log("err",err)};
+    if (err) { console.log("err", err) };
     res.status(201);
     res.json("added complete");
   });
@@ -51,6 +51,21 @@ const getTravelPlansById = (req, res) => {
   FROM travel_plans INNER JOIN  users 
   ON travel_plans.user_id = users.id  
   WHERE travel_plans.id=?`;
+  const data = req.params.id;
+  db.query(query, data, (err, results) => {
+    if (err) throw err;
+    res.status(200);
+    res.json(results);
+  });
+};
+const getTravelPlansByUser = (req, res) => {
+  const query = `SELECT travel_plans.title , travel_plans.activities ,travel_plans.id  , travel_plans.countries, travel_plans.creation_time
+  , travel_plans.estimated_budget, travel_plans.start_date , travel_plans.finish_date , travel_plans.details 
+  , travel_plans.requirements , travel_plans.images , users.first_name , users.last_name
+  , users.profile_image , travel_plans.user_id
+  FROM travel_plans INNER JOIN  users 
+  ON travel_plans.user_id = users.id  
+  WHERE user_id=?`;
   const data = req.params.id;
   db.query(query, data, (err, results) => {
     if (err) throw err;
@@ -235,6 +250,7 @@ module.exports = {
   deletePlanComment,
   getMember,
   getMembers,
-  getMyPlans
+  getMyPlans,
+  getTravelPlansByUser
 
 };

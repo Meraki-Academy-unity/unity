@@ -16,13 +16,16 @@ const {
   deletePlanComment,
   getMember,
   getMembers,
-  getMyPlans
+  getMyPlans,
+  getTravelPlansByUser
 } = require("../controllers/travel_plans");
 const travelPlansRouter = express.Router();
 // we will use "/:id"  instead of "/" for development stage until the auth is ready to use , so we can retrieve users id from token instead of params
 travelPlansRouter.post("/",authentication, createTravelPlans);
 travelPlansRouter.get("/", getAllTravelPlans);
 travelPlansRouter.get("/:id", getTravelPlansById);
+travelPlansRouter.get("/all/user/:id",   getTravelPlansByUser);
+
 travelPlansRouter.put("/:id", updateTravelPlansById);
 travelPlansRouter.delete("/:id", deleteTravelPlansById);
 travelPlansRouter.post("/plan/:id", authentication, joinTravelPlanById);
