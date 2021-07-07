@@ -1,15 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../reducers/login";
-import "./navigation.css";
-import world from "./world.png";
-import menu from "./menu.png";
-import close from "./close.png";
+import {
+  Nav,
+  NavbarContainer,
+  NavLogo,
+  MobileIcon,
+  NavMenu,
+  NavItem,
+  NavLinks,
+  NavBtn,
+  NavBtnLink,
+  NavBtnContent,
+  NavDropLinks,
+  NavServBtnLink,
+  NavServBtn
+} from "./navbarStyle";
+import { FaBars } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 
-const Navigation = () => {
-  const [showLinks, setShowLinks] = useState(false);
-  const [isShowed, setIsShowed] = useState(false);
+const Navigation = ({toggle}) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -19,85 +29,82 @@ const Navigation = () => {
 
   const logout = () => {
     localStorage.clear();
-    dispatch(setToken(''));
+    dispatch(setToken(""));
   };
   return (
-    <div className="navContainer">
-      <div className="navBar">
-        <div className="leftSide">
-          <img src={world} alt="" />
-          <span>Traveler</span>
-        </div>
-        <div className="rightSide">
-          {isShowed ? (
-            <Link
-              className="hideLinks"
-              onClick={() => {
-                setShowLinks(false);
-                setIsShowed(false);
-              }}
-            >
-              <img src={close} />
-            </Link>
+    <Nav>
+      <NavbarContainer>
+        <NavLogo to="/">
+          <h2>Travelio</h2>
+        </NavLogo>
+        <MobileIcon onClick={toggle}>
+          <FaBars />{" "}
+        </MobileIcon>
+        <NavMenu>
+          <NavItem>
+            <NavLinks to="/Home">Home</NavLinks>
+          </NavItem>
+          <NavItem>
+            <NavLinks to="/About">About</NavLinks>
+          </NavItem>
+          <NavItem>
+            <NavLinks to="/">
+              <NavServBtn>
+                Services
+                <NavBtnContent id="services">
+                  <NavDropLinks to="/Activities">Activities</NavDropLinks>
+                  <NavDropLinks to="/Plans">Travel Plans</NavDropLinks>
+                  <NavDropLinks to="/Matches">Matches</NavDropLinks>
+                </NavBtnContent>
+              </NavServBtn>
+            </NavLinks>
+          </NavItem>
+          <NavItem>
+            <NavLinks to="/contactUs">Contact Us</NavLinks>
+          </NavItem>
+        </NavMenu>
+        <NavBtn>
+          <NavBtnLink to="/" >
+            <FaUserAlt />
+          </NavBtnLink>
+          {state.token ? (
+            <NavBtnContent id="content">
+              <NavDropLinks to="/Profile">Profile</NavDropLinks>
+              <NavDropLinks to="/Inbox">Inbox</NavDropLinks>
+              <NavDropLinks to="/Notifications">Notifications</NavDropLinks>
+              <NavDropLinks to="/" onClick={logout}>
+                Logout
+              </NavDropLinks>
+            </NavBtnContent>
           ) : (
-            <Link
-              className="showLinks"
-              onClick={() => {
-                setShowLinks(true);
-                setIsShowed(true);
-              }}
-            >
-              <img src={menu} />
-            </Link>
+            <NavBtnContent id="content">
+              <NavDropLinks to="/login">Sign in</NavDropLinks>
+              <NavDropLinks to="/register">Sign up</NavDropLinks>
+            </NavBtnContent>
           )}
-          ;
-          <div className="links" id={showLinks ? "hidden" : ""}>
-            {state.token ? (
-              <>
-                <Link className="link" to="/Profile">
-                  Profile
-                </Link>
-                <Link className="link" to="/Inbox">
-                  Inbox
-                </Link>
-                <Link className="link" to="/" onClick={logout}>
-                  Logout
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link className="link" to="/login">
-                  Login
-                </Link>
-                <Link className="link" to="/register">
-                  Register
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-	  <div className="navBar">
+        </NavBtn>
+      </NavbarContainer>
+      {/* <div className="navBar">
         <div className="middleSide">
-          <div className="links1" >
-              <>
-			  <Link className="link" to="/Home">
-                  Home
-                </Link>
-                <Link className="link" to="/Activities">
-                  Activities
-                </Link>
-                <Link className="link" to="/Plans">
-                  Travel Plans
-                </Link>
-                <Link className="link" to="/contactUs" >
-                  Contact us
-                </Link>
-              </>
+          <div className="links1">
+            <>
+              <Link className="link" to="/Home">
+                Home
+              </Link>
+              <Link className="link" to="/Activities">
+                Activities
+              </Link>
+              <Link className="link" to="/Plans">
+                Travel Plans
+              </Link>
+              <Link className="link" to="/contactUs">
+                Contact us
+              </Link>
+            </>
           </div>
         </div>
-      </div>
-    </div>
+      </div> */}
+    </Nav>
   );
 };
 

@@ -19,6 +19,8 @@ import ImageGrid from "./components/Album/showAlbum";
 import Modal from "./components/Album/Modal";
 import Matching from "./components/preferences/matching";
 import { useDispatch, useSelector } from "react-redux";
+import './App.css'
+import Sidebar from "./components/navigation/sidebar";
 
 const App = () => {
   const history = useHistory()
@@ -27,9 +29,18 @@ const App = () => {
       photo: state.photo.photo
     };
   });
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  console.log("isOpen: ",isOpen);
+
+  
   return (
     <div className="App">
-      <Navigation />
+      <Navigation toggle={toggle}/>
+      <Sidebar isOpen={isOpen} toggle={toggle}/>
       <Route exact path="/login" render={() => <Login />} />
 
       <Route exact path="/register" render={() => <SignUp />} />
