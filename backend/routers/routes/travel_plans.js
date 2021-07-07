@@ -36,7 +36,7 @@ travelPlansRouter.put("/comment/:id", authentication, updatePlanComment);
 travelPlansRouter.delete("/comment/:id", authentication, deletePlanComment);
 travelPlansRouter.get("/member/:id", authentication, getMember)
 travelPlansRouter.get("/members/:id", getMembers)
-travelPlansRouter.get("/allMyProfile", authentication, getMyPlans)
+travelPlansRouter.get("/profile/plans", authentication, getMyPlans)
 
 
 

@@ -17,8 +17,8 @@ const AddActivities = () => {
   const [estimated_budget, setEstimated_budget] = useState("");
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
-  const [done , setDone] = useState(0);
-  console.log("out" , done, "images: ",images)
+  const [done, setDone] = useState(0);
+  console.log("out", done, "images: ", images)
   const types = ["image/png", "image/jpeg"];
   const history = useHistory();
   const dispatch = useDispatch();
@@ -38,60 +38,67 @@ const AddActivities = () => {
     } else {
       setFile(null);
       setErrorImgMessage("please select image type of png or jpeg");
-    }}
+    }
+  }
 
-    const AddNewActivities =  () => {
-      setDone(1)
-      setImages(state.url);
-      console.log("inf" , done , "images: ",images)
-  
-    console.log("in" , done, "images: ",images)
+  const AddNewActivities = () => {
+    setDone(1)
+    setImages(state.url);
+    console.log("inf", done, "images: ", images)
+
+    console.log("in", done, "images: ", images)
     axios
-    .post(`http://localhost:5000/activities/`, {
-      title,
-      start_date,
-      finish_date,
-      details,
-      requirements,
-      activities,
-      images,
-      estimated_budget,
-    } ,{headers: {
-      Authorization: `Bearer ${state.token}`,
-    }})
-    .then((result) => {
-      console.log("res", result.data);
-    })
-    .catch((err) => {
-      throw err;
-    })}
+      .post(`http://localhost:5000/activities/`, {
+        title,
+        start_date,
+        finish_date,
+        details,
+        requirements,
+        activities,
+        images,
+        estimated_budget,
+      }, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        }
+      })
+      .then((result) => {
+        console.log("res", result.data);
+      })
+      .catch((err) => {
+        throw err;
+      })
+  }
 
-// useEffect(()=>{
-//   setDone(true);
-// },[images])
+  // useEffect(()=>{
+  //   setDone(true);
+  // },[images])
 
-  
-    // await axios
-    // .post(`http://localhost:5000/activities/`, {
-    //   title,
-    //   start_date,
-    //   finish_date,
-    //   location,
-    //   details,
-    //   requirements,
-    //   activities,
-    //   images,
-    //   estimated_budget,
-    // } ,{headers: {
-    //   Authorization: `Bearer ${state.token}`,
-    // }})
-    // .then((result) => {
-    //   console.log("res", result.data);
-    // })
-    // .catch((err) => {
-    //   throw err;
-    // })
-  
+
+  // await axios
+  // .post(`http://localhost:5000/activities/`, {
+  //   title,
+  //   start_date,
+  //   finish_date,
+  //   location,
+  //   details,
+  //   requirements,
+  //   activities,
+  //   images,
+  //   estimated_budget,
+  // } ,{headers: {
+  //   Authorization: `Bearer ${state.token}`,
+  // }})
+  // .then((result) => {
+  //   console.log("res", result.data);
+  // })
+  // .catch((err) => {
+  //   throw err;
+  // })
+  let minStartDate = moment(new Date(), "YYYY-MM-DD").add(5, 'days').format("YYYY-MM-DD")
+  let maxStartDate = moment(new Date(), "YYYY-MM-DD").add(1, 'y').format("YYYY-MM-DD")
+  let minFinishtDate = moment(start_date, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD")
+  let maxFinishDate = moment(start_date, "YYYY-MM-DD").add(6, 'months').format("YYYY-MM-DD")
 
   return (
     <>
@@ -100,8 +107,19 @@ const AddActivities = () => {
         placeholder="title here"
         onChange={(e) => setTitle(e.target.value)}
       />
-      <input type="date" onChange={(e) => setStart_date(e.target.value)} />
-      <input type="date" onChange={(e) => setFinish_date(e.target.value)} />
+      <div>
+
+        <label>Start Date : </label>
+        <input type="date"
+          min={minStartDate}
+          max={maxStartDate} onChange={(e) => setStart_date(e.target.value)} />
+
+        <label>Finish Date : </label>
+        <input type="date" min={minFinishtDate}
+          max={maxFinishDate} onChange={(e) => setFinish_date(e.target.value)} />
+        <label>Activities : </label>
+
+      </div>
       <textarea onChange={(e) => setDetails(e.target.value)}></textarea>
       <textarea onChange={(e) => setRequirements(e.target.value)}></textarea>
       <textarea onChange={(e) => setActivities(e.target.value)}></textarea>

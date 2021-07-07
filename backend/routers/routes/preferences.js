@@ -11,12 +11,14 @@ const {
   updatePreferenceById,
   matchByLocation,
   matchByDate,
-  matching
+  matching,
+  showPreferenceByUser
 } = require("../controllers/preferences");
 
 preferencesRouter.post("/", addPreference);
 preferencesRouter.delete("/", deletePreference);
 preferencesRouter.get("/", showPreferenceById);
+preferencesRouter.get("/user", authentication, showPreferenceByUser);
 preferencesRouter.put("/", updatePreferenceById);
 preferencesRouter.get("/locationMatch", authentication, matchByLocation)
 preferencesRouter.get("/dateMatch", authentication, matchByDate)

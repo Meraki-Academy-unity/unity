@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 // import { setToken } from './../reducer/login/index';
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../loadingBar/loaderBar";
+import PerferencesLocation from "../Api/perferencesLocation";
+import moment from 'moment';
 import axios from "axios";
 
 const AddTravelPlans = () => {
@@ -10,12 +12,12 @@ const AddTravelPlans = () => {
   const [start_date, setStart_date] = useState("");
   const [finish_date, setFinish_date] = useState("");
   const [details, setDetails] = useState("");
-  const [countries, setCountries] = useState("");
   const [requirements, setRequirements] = useState("");
   const [activities, setActivities] = useState("");
   const [images, setImages] = useState("");
   const [estimated_budget, setEstimated_budget] = useState("");
   const [errorImgMessage, setErrorImgMessage] = useState();
+  const [prefenecesLocation, setPrefenecesLocation] = useState("")
   const [file, setFile] = useState(null);
 
   const types = ["image/png", "image/jpeg"];
@@ -31,30 +33,23 @@ const AddTravelPlans = () => {
   });
 
   const addNewTravelPlans = async () => {
-    await axios
-      .get("https://restcountries.eu/rest/v2/lang/es")
-      .then((result) => {
-        console.log("country", result.data);
-      })
-      .catch((err) => {
-        throw err;
-      });
-
     setImages(state.url);
-    await axios
+    axios
       .post(`http://localhost:5000/travelPlans`, {
         title,
         start_date,
         finish_date,
-        countries,
+        countries: prefenecesLocation,
         activities,
         requirements,
         details,
         images,
         estimated_budget,
-      },{headers: {
-        Authorization: `Bearer ${state.token}`,
-      }}) 
+      }, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        }
+      })
       .then((result) => {
         console.log("res", result.data);
       })
@@ -62,6 +57,7 @@ const AddTravelPlans = () => {
         throw err;
       });
   };
+
 
   const uploadImage = (e) => {
     let selectedImage = e.target.files[0];
@@ -73,22 +69,33 @@ const AddTravelPlans = () => {
       setErrorImgMessage("please select image type of png or jpeg");
     }
   };
+  let minStartDate = moment(new Date(), "YYYY-MM-DD").add(5, 'days').format("YYYY-MM-DD")
+  let maxStartDate = moment(new Date(), "YYYY-MM-DD").add(1, 'y').format("YYYY-MM-DD")
+  let minFinishtDate = moment(start_date, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD")
+  let maxFinishDate = moment(start_date, "YYYY-MM-DD").add(6, 'months').format("YYYY-MM-DD")
 
   return (
     <>
-      
+
       <input
         type="text"
         placeholder="title here"
         onChange={(e) => setTitle(e.target.value)}
       />
-      <input type="date" onChange={(e) => setStart_date(e.target.value)} />
-      <input type="date" onChange={(e) => setFinish_date(e.target.value)} />
-      <input
-        type="text"
-        placeholder="Country here"
-        onChange={(e) => setCountries(e.target.value)}
-      />
+      <div>
+
+        <label>Start Date : </label>
+        <input type="date"
+          min={minStartDate}
+          max={maxStartDate} onChange={(e) => setStart_date(e.target.value)} />
+        {start_date}
+        <label>Finish Date : </label>
+        <input type="date" min={minFinishtDate}
+          max={maxFinishDate} onChange={(e) => setFinish_date(e.target.value)} />
+        <label>Activities : </label>
+
+      </div>
+      < PerferencesLocation setPrefenecesLocation={setPrefenecesLocation} />
       <textarea
         placeholder="Details"
         onChange={(e) => setDetails(e.target.value)}

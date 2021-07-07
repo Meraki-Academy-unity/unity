@@ -1,6 +1,7 @@
 const db = require("../../db/db");
 
 const createTravelPlans = (req, res) => {
+  console.log("bayan naar ")
   const user_id = req.token.user_id;
   const query = `INSERT INTO travel_plans (title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget,user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?,?)`;
   const {
@@ -27,7 +28,7 @@ const createTravelPlans = (req, res) => {
     user_id,
   ];
   db.query(query, data, (err, results) => {
-    if (err) throw err;
+    if (err) {console.log("err",err)};
     res.status(201);
     res.json("added complete");
   });
