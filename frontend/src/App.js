@@ -18,7 +18,10 @@ import Album from "./components/Album/Album";
 import ImageGrid from "./components/Album/showAlbum";
 import Modal from "./components/Album/Modal";
 import Matching from "./components/preferences/matching";
+import ProfileActivities from "./components/profile/profileActivities";
+import ProfilePlans from "./components/profile/profilePlans";
 import { useDispatch, useSelector } from "react-redux";
+
 
 const App = () => {
   const history = useHistory()
@@ -40,6 +43,9 @@ const App = () => {
       <Route exact path="/addActivity" render={() => <AddActivities/>} />
       <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
       <Route exact path="/preferences" render={() => <AddPerferences />} />
+      <Route exact path="/profile/activities" render={() => <ProfileActivities />} />
+      <Route exact path="/profile/plans" render={() => <ProfilePlans/>} />
+
       <Route exact path="/match" render={() =><Matching/>
          } />
       <Route
