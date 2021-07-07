@@ -1,7 +1,6 @@
 const express = require("express");
 const authentication = require("../middlewares/authentication");
 
-
 const {
   createTravelPlans,
   getAllTravelPlans,
@@ -16,7 +15,8 @@ const {
   updatePlanComment,
   deletePlanComment,
   getMember,
-  getMembers
+  getMembers,
+  getMyPlans
 } = require("../controllers/travel_plans");
 const travelPlansRouter = express.Router();
 // we will use "/:id"  instead of "/" for development stage until the auth is ready to use , so we can retrieve users id from token instead of params
@@ -35,8 +35,9 @@ travelPlansRouter.put("/comment/:id", authentication, updatePlanComment);
 //delete using comment id 
 travelPlansRouter.delete("/comment/:id", authentication, deletePlanComment);
 travelPlansRouter.get("/member/:id", authentication, getMember)
-
 travelPlansRouter.get("/members/:id", getMembers)
+travelPlansRouter.get("/allMyProfile", authentication, getMyPlans)
+
 
 
 module.exports = travelPlansRouter;

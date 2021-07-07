@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ProfileActivities from "./profileActivities";
 import axios from "axios";
 import "./profile.css";
 
@@ -16,7 +17,7 @@ const Profile = () => {
     };
   });
 
-  useEffect(getProfile, []);
+  // useEffect(getProfile, []);
 
   function getProfile() {
     axios
@@ -39,7 +40,9 @@ const Profile = () => {
   }
 
   return (
+
     <div className="profileCont">
+      {getProfile()}
       <div className="profile">
         <div className="backImg"></div>
         <div className="profImage">
@@ -56,17 +59,18 @@ const Profile = () => {
         </div>
       </div>
       <div className="linksDiv">
+        <Link to="/profile/activities">My Acticities</Link>
+        <Link to="/profile/plans">My Plans</Link>
         <Link to="/newsFeed">News Feed</Link>
-        <Link to="/plans">About</Link>
         <Link to="/preferences">Preferences</Link>
-        <Link to="/activities">Activities</Link>
-        <Link to="/plans">Travel Plans</Link>
         <Link to="/plans">Friends</Link>
         <Link to="/match">Matching</Link>
 
-        
+
       </div>
+
     </div>
+
   );
 };
 

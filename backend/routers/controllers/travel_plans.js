@@ -203,6 +203,22 @@ const getMembers = (req, res) => {
     res.json(result);
   });
 }
+const getMyPlans = (req, res) => {
+  const user_id = req.token.user_id;
+  const query = `SELECT travel_plans.title , travel_plans.activities ,travel_plans.id  , travel_plans.countries, travel_plans.creation_time
+  , travel_plans.estimated_budget, travel_plans.start_date , travel_plans.finish_date , travel_plans.details 
+  , travel_plans.requirements , travel_plans.images , users.first_name , users.last_name
+  , users.profile_image , travel_plans.user_id
+  FROM travel_plans INNER JOIN  users 
+  ON travel_plans.user_id = users.id  
+  WHERE travel_plans.user_id=?`;
+  const data = [user_id];
+  db.query(query, data, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+}
+
 module.exports = {
   createTravelPlans,
   getAllTravelPlans,
@@ -217,6 +233,7 @@ module.exports = {
   updatePlanComment,
   deletePlanComment,
   getMember,
-  getMembers
+  getMembers,
+  getMyPlans
 
 };
