@@ -16,6 +16,7 @@ const {
     withDrawActivityById,
     getMember,
     getMembers
+    
 } = require("../controllers/activity");
 
 const activitiesRouter = express.Router();
@@ -24,7 +25,7 @@ activitiesRouter.post("/", authentication , addActivity);
 //user_id
 activitiesRouter.get("/:id", getAllActivitiesByUser);
 
-activitiesRouter.get("/" , getAllActivities)
+activitiesRouter.get("/" ,authentication ,getAllActivities)
 //activities_id
 activitiesRouter.get("/activity/:id", getActivitiesById);
 //activities_id

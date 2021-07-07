@@ -10,7 +10,8 @@ const {
   showPreferenceById,
   updatePreferenceById,
   matchByLocation,
-  matchByDate
+  matchByDate,
+  matching
 } = require("../controllers/preferences");
 
 preferencesRouter.post("/", addPreference);
@@ -19,4 +20,5 @@ preferencesRouter.get("/", showPreferenceById);
 preferencesRouter.put("/", updatePreferenceById);
 preferencesRouter.get("/locationMatch", authentication, matchByLocation)
 preferencesRouter.get("/dateMatch", authentication, matchByDate)
+preferencesRouter.get("/match", authentication, matching)
 module.exports = preferencesRouter;
