@@ -17,7 +17,7 @@ const {
 
 preferencesRouter.post("/", addPreference);
 preferencesRouter.delete("/", deletePreference);
-preferencesRouter.get("/", showPreferenceById);
+preferencesRouter.get("/:id", showPreferenceById);
 preferencesRouter.get("/user", authentication, showPreferenceByUser);
 preferencesRouter.put("/", updatePreferenceById);
 preferencesRouter.get("/locationMatch", authentication, matchByLocation)
