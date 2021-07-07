@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route , useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import Login from "./components/auth/login/index";
 import SignUp from "./components/auth/signUp/index";
 import AddActivities from "./components/Activities/addActivities";
@@ -21,7 +21,10 @@ import Matching from "./components/preferences/matching";
 import ProfileActivities from "./components/profile/profileActivities";
 import ProfilePlans from "./components/profile/profilePlans";
 import GetMyPreferences from "./components/preferences/ShowPreference";
+import ProfileUserActivities from "./components/usersProfile/userActivitiesProF";
 import { useDispatch, useSelector } from "react-redux";
+import UserProfile from "./components/usersProfile/userProfile";
+import ProfileUserPlans from "./components/usersProfile/userPlansProf";
 import './App.css'
 import Sidebar from "./components/navigation/sidebar";
 
@@ -38,13 +41,13 @@ const App = () => {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
-  console.log("isOpen: ",isOpen);
+  console.log("isOpen: ", isOpen);
 
-  
+
   return (
     <div className="App">
-      <Navigation toggle={toggle}/>
-      <Sidebar isOpen={isOpen} toggle={toggle}/>
+      <Navigation toggle={toggle} />
+      <Sidebar isOpen={isOpen} toggle={toggle} />
       <Route exact path="/login" render={() => <Login />} />
 
       <Route exact path="/register" render={() => <SignUp />} />
@@ -52,16 +55,19 @@ const App = () => {
       <Route exact path="/plans" component={GetAllTravel} />
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
       <Route exact path="/activities" component={GetAllActivities} />
-      <Route exact path="/addActivity" render={() => <AddActivities/>} />
-      <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
+      <Route exact path="/addActivity" render={() => <AddActivities />} />
+      <Route exact path="/addTravel" render={() => <AddTravelPlans />} />
       <Route exact path="/preferences" render={() => <AddPerferences />} />
       <Route exact path="/profile/activities" render={() => <ProfileActivities />} />
-      <Route exact path="/profile/plans" render={() => <ProfilePlans/>} />
-      <Route exact path="/profile/preferences" render={() => <GetMyPreferences/>} />
+      <Route exact path="/profile/plans" render={() => <ProfilePlans />} />
+      <Route exact path="/profile/preferences" render={() => <GetMyPreferences />} />
+      <Route exact path="/users/user/:id" render={() => <UserProfile />} />
+      <Route exact path="/ProfileUsers/activities/:id" render={() => <ProfileUserActivities />} />
+      <Route exact path="/ProfileUsers/plans/:id" render={() => <ProfileUserPlans />} />
 
 
-      <Route exact path="/match" render={() =><Matching/>
-         } />
+      <Route exact path="/match" render={() => <Matching />
+      } />
       <Route
         exact
         path="/activities/activity/:id"
@@ -82,7 +88,7 @@ const App = () => {
       {/* {state.photo&& <Modal />} */}
       {/* <Footer /> */}
     </div>
-    
+
   );
 };
 
