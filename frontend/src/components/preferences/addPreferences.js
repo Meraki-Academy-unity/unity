@@ -51,12 +51,11 @@ const AddPerferences = () => {
   const addNewPerferences = () => {
     setLocation(prefenecesLocation);
     setDone(!done);
-
   };
-  let mDate = moment(new Date(), "YYYY-MM-DD").add(5, 'days').format("YYYY-MM-DD")
-  let mDate1 = moment(new Date(), "YYYY-MM-DD").add(1, 'y').format("YYYY-MM-DD")
-  let fDate = moment(start_date, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD")
-  let fDate1 = moment(start_date, "YYYY-MM-DD").add(6, 'months').format("YYYY-MM-DD")
+  let minStartDate = moment(new Date(), "YYYY-MM-DD").add(5, 'days').format("YYYY-MM-DD")
+  let maxStartDate = moment(new Date(), "YYYY-MM-DD").add(1, 'y').format("YYYY-MM-DD")
+  let minFinishtDate= moment(start_date, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD")
+  let maxFinishDate= moment(start_date, "YYYY-MM-DD").add(6, 'months').format("YYYY-MM-DD")
 
 
   // mDate = mDate.format("YYYY-MM-DD")
@@ -65,8 +64,6 @@ const AddPerferences = () => {
   return (
     <>
 
-
-      {console.log("nwedate ", mDate, "nwedate ", mDate1)}
       <div className="Perferences">
         <label>desired travel location : </label>
         < PerferencesLocation setPrefenecesLocation={setPrefenecesLocation} />
@@ -78,12 +75,12 @@ const AddPerferences = () => {
 
           <label>Start Date : </label>
           <input type="date"
-            min={mDate}
-            max={mDate1} onChange={(e) => setStart_date(e.target.value)} />
+            min={minStartDate}
+            max={maxStartDate} onChange={(e) => setStart_date(e.target.value)} />
 
           <label>Finish Date : </label>
-          <input type="date" min={fDate}
-            max={fDate1} onChange={(e) => setFinish_date(e.target.value)} />
+          <input type="date" min={minFinishtDate}
+            max={maxFinishDate} onChange={(e) => setFinish_date(e.target.value)} />
           <label>Activities : </label>
 
         </div>

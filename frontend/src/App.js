@@ -20,6 +20,7 @@ import Modal from "./components/Album/Modal";
 import Matching from "./components/preferences/matching";
 import ProfileActivities from "./components/profile/profileActivities";
 import ProfilePlans from "./components/profile/profilePlans";
+import GetMyPreferences from "./components/preferences/ShowPreference";
 import { useDispatch, useSelector } from "react-redux";
 import './App.css'
 import Sidebar from "./components/navigation/sidebar";
@@ -56,6 +57,8 @@ const App = () => {
       <Route exact path="/preferences" render={() => <AddPerferences />} />
       <Route exact path="/profile/activities" render={() => <ProfileActivities />} />
       <Route exact path="/profile/plans" render={() => <ProfilePlans/>} />
+      <Route exact path="/profile/preferences" render={() => <GetMyPreferences/>} />
+
 
       <Route exact path="/match" render={() =><Matching/>
          } />
