@@ -39,13 +39,22 @@ const addActivity = (req, res) => {
 };
 
 const getAllActivities = (req, res) => {
-  const query = `SELECT activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , users.first_name , users.last_name , users.profile_image FROM activities INNER JOIN  users ON activities.user_id = users.id `;
-  db.query(query, (err, results) => {
+  const user_id = req.token.user_id;
+  const query_ = `SELECT currently_in FROM  users WHERE id=${user_id}`;
+  db.query(query_, (err, results) => {
     if (err) throw err;
-    res.status(200);
-    res.json(results);
+    if (results) {
+      const currentlyIn = results[0].currently_in;
+      const query1 = `SELECT activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , users.first_name , users.last_name , users.profile_image FROM activities INNER JOIN  users ON activities.user_id = users.id WHERE activities.location=?`;
+      const data = [currentlyIn];
+      db.query(query1, data, (err, results_) => {
+        if (err) throw err;
+        res.status(200);
+        res.json(results_);
+      });
+    }
   });
-};
+}
 
 const getAllActivitiesByUser = (req, res) => {
   const id = req.params.id;
@@ -155,7 +164,7 @@ const showAllCommentByActivityId = (req, res) => {
 const updateActivitiesComment = (req, res) => {
   const id = req.params.id;
   const user_id = req.token.user_id;
-  const { content }=req.body;
+  const { content } = req.body;
   const query =
     "UPDATE activity_comments SET content=? WHERE id=? AND user_id=?";
   const data = [content, id, user_id];
@@ -193,14 +202,14 @@ const getMember = (req, res) => {
   const user_id = req.token.user_id;
   const query =
     "SELECT * FROM  activity_members  WHERE activity_id=? AND user_id=? ";
-  const data = [id , user_id];
+  const data = [id, user_id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
     res.json(result);
   });
 };
 
-const getMembers = (req,res) =>{
+const getMembers = (req, res) => {
   const id = req.params.id
   const query = `SELECT users.first_name , users.last_name , users.profile_image , users.id FROM activity_members INNER JOIN users ON user_id = users.id WHERE activity_id = ? ;`;
   const data = [id]

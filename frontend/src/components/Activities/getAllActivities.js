@@ -19,7 +19,11 @@ const Activities = () => {
   });
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/activities/`)
+      .get(`http://localhost:5000/activities/`,{
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        }
+      })
       .then((result) => {
         setactivities(result.data);
       })
