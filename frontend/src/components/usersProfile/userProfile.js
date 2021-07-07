@@ -55,6 +55,7 @@ const UserProfile = () => {
                 <Link to={`/ProfileUsers/plans/${user_id}`}>Plans</Link>
                 {/* <Link to="/newsFeed">News Feed</Link> */}
                 <Link to={`/profileUser/preferences/${user_id}`}>Preferences </Link>
+                <Link to={`/userphotoAlbum/${user_id}`}>Photo Album </Link>
                 {/* // <Link to="/plans">Friends</Link>
                 // <Link to="/match">Matching</Link> */}
 

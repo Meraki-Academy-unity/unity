@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UserProfile from "./components/usersProfile/userProfile";
 import ProfileUserPlans from "./components/usersProfile/userPlansProf";
 import GetUserPreferences from "./components/preferences/showUserPreference";
+import ImageUserGrid from "./components/Album/showUserAlbum";
 import './App.css'
 import Sidebar from "./components/navigation/sidebar";
 
@@ -66,6 +67,10 @@ const App = () => {
       <Route exact path="/ProfileUsers/activities/:id" render={() => <ProfileUserActivities />} />
       <Route exact path="/ProfileUsers/plans/:id" render={() => <ProfileUserPlans />} />
       <Route exact path="/profileUser/preferences/:id" render={() => <GetUserPreferences />} />
+      <Route exact path="/photoAlbum" render={() => <ImageGrid />} />
+      <Route exact path="/userphotoAlbum/:id" render={() => <ImageUserGrid />} />
+
+
 
 
 
@@ -89,7 +94,7 @@ const App = () => {
       {/* <CountryList /> */}
       {/* <Album /> */}
       {/* <ImageGrid /> */}
-      {/* {state.photo&& <Modal />} */}
+      {state.photo&& <Modal />}
       {/* <Footer /> */}
     </div>
 

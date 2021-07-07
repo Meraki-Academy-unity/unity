@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Album from "./Album";
 import { setPhoto } from "./../../reducers/photoAlbum";
 import "./image.css"
+import { useParams } from "react-router-dom";
 
 
 
-const ImageGrid = () => {
+const ImageUserGrid = () => {
     const [photoAlbum, setPhotoAlbum] = useState([])
+    const { id } = useParams();
     const dispatch = useDispatch();
     const state = useSelector((state) => {
         return {
@@ -20,30 +22,27 @@ const ImageGrid = () => {
 
     useEffect(() => {
 
-        axios.get("http://localhost:5000/photoAlbum/", {
-            headers: {
-                Authorization: `Bearer ${state.token}`,
-            },
-        })
+        axios.get(`http://localhost:5000/photoAlbum/${id}`)
             .then((result) => {
+                console.log("photo", result.data)
                 setPhotoAlbum(result.data)
             })
             .catch((err) => {
                 console.log("err in photo", err)
             })
-    }, [state.token])
+    }, [])
 
 
     return (
         <>
             <div className="imageGrid">
-               <> <Album/> </>
                 {photoAlbum && photoAlbum.map((elem, i) => {
                     return <div key={i}>
-                        {elem.images&&<img src={elem.images} onClick={() => {
-                            dispatch(setPhoto(elem))
+                        {elem.images &&
+                            <img src={elem.images} onClick={() => {
+                                dispatch(setPhoto(elem))
 
-                        }} style={{ height: "300px", width: "300px" }} />}
+                            }} style={{ height: "300px", width: "300px" }} />}
                     </div>
 
                 })}
@@ -53,4 +52,4 @@ const ImageGrid = () => {
 
 
 }
-export default ImageGrid
+export default ImageUserGrid
