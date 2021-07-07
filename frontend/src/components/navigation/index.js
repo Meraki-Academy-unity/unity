@@ -14,12 +14,12 @@ import {
   NavBtnContent,
   NavDropLinks,
   NavServBtnLink,
-  NavServBtn
+  NavServBtn,
 } from "./navbarStyle";
 import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 
-const Navigation = ({toggle}) => {
+const Navigation = ({ toggle }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -64,7 +64,7 @@ const Navigation = ({toggle}) => {
           </NavItem>
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to="/" >
+          <NavBtnLink to="/">
             <FaUserAlt />
           </NavBtnLink>
           {state.token ? (
@@ -84,26 +84,6 @@ const Navigation = ({toggle}) => {
           )}
         </NavBtn>
       </NavbarContainer>
-      {/* <div className="navBar">
-        <div className="middleSide">
-          <div className="links1">
-            <>
-              <Link className="link" to="/Home">
-                Home
-              </Link>
-              <Link className="link" to="/Activities">
-                Activities
-              </Link>
-              <Link className="link" to="/Plans">
-                Travel Plans
-              </Link>
-              <Link className="link" to="/contactUs">
-                Contact us
-              </Link>
-            </>
-          </div>
-        </div>
-      </div> */}
     </Nav>
   );
 };

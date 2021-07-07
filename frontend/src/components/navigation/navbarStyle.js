@@ -145,7 +145,6 @@ export const NavBtnLink = styled(LinkR)`
     background: #e8b430;
     color: #010606;
   }
-
 `;
 
 export const NavBtnContent = styled.div`

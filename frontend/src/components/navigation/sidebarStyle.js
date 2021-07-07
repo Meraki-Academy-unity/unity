@@ -36,7 +36,6 @@ export const SidebarWrapper = styled.div`
   color: #fff;
 `;
 
-
 export const SidebarLink = styled(LinkS)`
   display: flex;
   align-items: center;
@@ -56,9 +55,9 @@ export const SidebarLink = styled(LinkS)`
 export const SideBtnWrap = styled.div`
   display: flex;
   justify-content: center;
-  flex-direction:column;
-  align-items:center;
-  gap:5px;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 `;
 
 export const SidebarRoute = styled(LinkR)`
@@ -91,54 +90,53 @@ export const SidebarMenu = styled.ul`
   }
 `;
 
-
-export const SidebarDropMenu=styled(LinkR)`
-display: inline-block;
-align-items: center;
-justify-content: center;
-font-size: 1.5rem;
-text-decoration: none;
-transition: 0.2s ease-in-out;
-color: #fff;
-cursor: pointer;
-
-&:hover {
-  color: #01bf71;
+export const SidebarDropMenu = styled(LinkR)`
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-decoration: none;
   transition: 0.2s ease-in-out;
-}
+  color: #fff;
+  cursor: pointer;
 
-&:hover #cont{
-  display:block;
- }
-`
+  &:hover {
+    color: #01bf71;
+    transition: 0.2s ease-in-out;
+  }
 
-export const SidebarDropCont=styled.div`
+  &:hover #cont {
+    display: block;
+  }
+`;
+
+export const SidebarDropCont = styled.div`
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-`
+`;
 
-export const SidebarRegRoute=styled(LinkR)`
-color:#fff;
-`
+export const SidebarRegRoute = styled(LinkR)`
+  color: #fff;
+`;
 
-export const SidebarDropLink=styled(LinkS)`
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.2rem;
-text-decoration: none;
-transition: 0.2s ease-in-out;
-color: #000;
-cursor: pointer;
-margin:5px;
+export const SidebarDropLink = styled(LinkS)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+  color: #000;
+  cursor: pointer;
+  margin: 5px;
 
-&:hover {
-  transition: all 0.2s ease-in-out;
-  background-color: #DCDCDC;
-  color: #010606;
-}
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: #dcdcdc;
+    color: #010606;
+  }
 `;

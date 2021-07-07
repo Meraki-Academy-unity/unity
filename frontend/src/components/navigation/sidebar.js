@@ -9,7 +9,7 @@ import {
   SidebarDropMenu,
   SidebarDropCont,
   SidebarRegRoute,
-  SidebarDropLink
+  SidebarDropLink,
 } from "./sidebarStyle";
 
 function Sidebar({ toggle, isOpen }) {
