@@ -18,9 +18,7 @@ import Album from "./components/Album/Album";
 import ImageGrid from "./components/Album/showAlbum";
 import Modal from "./components/Album/Modal";
 import Matching from "./components/preferences/matching";
-import Match from "./components/preferences/match";
 import { useDispatch, useSelector } from "react-redux";
-import MatchingDate from "./components/preferences/matchingDate";
 
 const App = () => {
   const history = useHistory()
