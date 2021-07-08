@@ -65,6 +65,7 @@ const Profile = () => {
         <Link to="/profile/preferences">Preferences</Link>
         <Link to="/plans">Friends</Link>
         <Link to="/match">Matching</Link>
+        <Link to="/photoAlbum"> Photo Album</Link>
 
 
       </div>
