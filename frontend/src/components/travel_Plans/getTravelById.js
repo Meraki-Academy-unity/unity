@@ -18,6 +18,8 @@ const GetTravelById = (id) => {
     const state = useSelector((state) => {
         return {
             token: state.login.token,
+            id: state.id.id,
+
         };
     });
 
@@ -54,14 +56,16 @@ const GetTravelById = (id) => {
                 <p>estimated budget: {travel.estimated_budget}</p>
                 <p>
                     created by :{" "}
-                    <Link to={`/users/user/${travel.user_id}`}>
+                    {state.id !== travel.user_id ? (<Link to={`/users/user/${travel.user_id}`}>
                         {travel.first_name} {travel.last_name}
-                    </Link>
+                    </Link>) : (<Link to={`/profile`}>
+                        {travel.first_name} {travel.last_name}
+                    </Link>)}
                 </p>
                 <br />
             </div>
-            {state.token ?<CheckTravelJoin travel_id={travel.id}/> : ""}
-        
+            {state.token ? <CheckTravelJoin travel_id={travel.id} /> : ""}
+
 
             <div className="comment">
                 {comment &&

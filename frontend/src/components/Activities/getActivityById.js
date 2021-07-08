@@ -16,6 +16,7 @@ const GetActivityById = (id) => {
   const state = useSelector((state) => {
     return {
       token: state.login.token,
+      id: state.id.id,
     };
   });
   useEffect(async () => {
@@ -54,12 +55,14 @@ const GetActivityById = (id) => {
           <p>estimated budget: {activity.estimated_budget}</p>
           <p>
             created by :{" "}
-            <Link to={`/users/user/${activity.user_id}`}>
+            {state.id !== activity.user_id ? (<Link to={`/users/user/${activity.user_id}`}>
               {activity.first_name} {activity.last_name}
-            </Link>
+            </Link>) : (<Link to={`/profile`}>
+              {activity.first_name} {activity.last_name}
+            </Link>)}
           </p>
         </div>
-        {state.token ?<CheckJoin activity_id={activity.id}/> : ""}
+        {state.token ? <CheckJoin activity_id={activity.id} /> : ""}
         <div className="comment">
           {comment &&
             comment.map((res, ind) => {
@@ -83,7 +86,7 @@ const GetActivityById = (id) => {
               );
             })}
         </div>
-        {state.token ?<AddComment activity_id={activity.id} /> : ""}
+        {state.token ? <AddComment activity_id={activity.id} /> : ""}
       </div>
     </>
   );
