@@ -29,7 +29,7 @@ import GetUserPreferences from "./components/preferences/showUserPreference";
 import ImageUserGrid from "./components/Album/showUserAlbum";
 import './App.css'
 import Sidebar from "./components/navigation/sidebar";
-
+import EditMyProfile from "./components/profile/editProfile";
 
 const App = () => {
   const history = useHistory()
@@ -83,6 +83,7 @@ const App = () => {
         component={GetActivityById}
       />
       <Route exact path="/profile" render={() => <Profile />} />
+      <Route exact path="/profile/info" render={() => <EditMyProfile />} />
 
       {/* <Login /> */}
       {/* <SignUp /> */}
