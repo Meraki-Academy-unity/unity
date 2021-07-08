@@ -35,7 +35,7 @@ const createTravelPlans = (req, res) => {
 };
 
 const getAllTravelPlans = (req, res) => {
-  const query = `SELECT travel_plans.title , travel_plans.activities ,travel_plans.id , travel_plans.countries ,travel_plans.countries , travel_plans.creation_time , users.first_name , users.last_name  FROM travel_plans INNER JOIN  users ON travel_plans.user_id = users.id `;
+  const query = `SELECT travel_plans.title , travel_plans.activities ,travel_plans.id , travel_plans.countries ,travel_plans.start_date , travel_plans.finish_date , travel_plans.estimated_budget , travel_plans.creation_time , users.first_name , users.last_name , users.profile_image  FROM travel_plans INNER JOIN  users ON travel_plans.user_id = users.id `;
   db.query(query, (err, results) => {
     if (err) throw err;
     res.status(200);
