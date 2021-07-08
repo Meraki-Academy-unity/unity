@@ -44,7 +44,7 @@ const deletePreference = (req, res) => {
 
 const showPreferenceById = (req, res) => {
   const id = req.params.id;
-  const query = `SELECT * FROM preferences WHERE user_id = ? AND images IS NOT NULL `;
+  const query = `SELECT * FROM preferences WHERE user_id = ? `;
   const data = [id];
   connection.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
@@ -54,7 +54,7 @@ const showPreferenceById = (req, res) => {
 
 const showPreferenceByUser = (req, res) => {
   const user_id = req.token.user_id;
-  const query = `SELECT * FROM preferences WHERE user_id = ?  AND images IS NOT NULL`;
+  const query = `SELECT * FROM preferences WHERE user_id = ? `;
   const data = [user_id];
   connection.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);

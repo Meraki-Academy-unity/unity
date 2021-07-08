@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../../reducers/login";
+import { setUserId } from "../../../reducers/userID";
 import loginImg from "./Trip-cuate.png";
 import "./login.css";
 
@@ -14,16 +15,19 @@ const Login = () => {
   const state = useSelector((state) => {
     return {
       token: state.login.token,
+      id: state.id.id,
     };
   });
-
+console.log("deyaa kman",state.id)
   const signIn = () => {
     axios
       .post("http://localhost:5000/login", { email, password })
       .then((result) => {
         setMessage("Login Successful");
         localStorage.setItem("token", result.data.token);
+        console.log("deyaa", result.data)
         dispatch(setToken(result.data.token));
+        dispatch(setUserId(result.data.user_id));
       })
       .catch((err) => {
         setMessage(err.response.data);
