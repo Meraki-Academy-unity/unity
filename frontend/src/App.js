@@ -52,9 +52,8 @@ const App = () => {
     <div className="App">
       <Navigation toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Hero/>
+      <Route exact path="/" render={() => <Hero/>}/>
       <Route exact path="/login" render={() => <Login />} />
-
       <Route exact path="/register" render={() => <SignUp />} />
       <Route exact path="/contactUs" render={() => <ContactUs />} />
       <Route exact path="/plans" component={GetAllTravel} />
