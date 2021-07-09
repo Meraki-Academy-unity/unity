@@ -30,6 +30,8 @@ import ImageUserGrid from "./components/Album/showUserAlbum";
 import './App.css'
 import Sidebar from "./components/navigation/sidebar";
 import EditMyProfile from "./components/profile/editProfile";
+import Hero from "../src/components/HeroSection";
+
 
 const App = () => {
   const history = useHistory()
@@ -50,6 +52,7 @@ const App = () => {
     <div className="App">
       <Navigation toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
+      <Hero/>
       <Route exact path="/login" render={() => <Login />} />
 
       <Route exact path="/register" render={() => <SignUp />} />
