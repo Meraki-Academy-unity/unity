@@ -52,6 +52,7 @@ const App = () => {
     <div className="App">
       <Navigation toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
+      <Hero/>
       <Route exact path="/login" render={() => <Login />} />
 
       <Route exact path="/register" render={() => <SignUp />} />
