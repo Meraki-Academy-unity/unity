@@ -30,6 +30,8 @@ import ImageUserGrid from "./components/Album/showUserAlbum";
 import './App.css'
 import Sidebar from "./components/navigation/sidebar";
 import EditMyProfile from "./components/profile/editProfile";
+import Hero from "../src/components/HeroSection";
+
 
 const App = () => {
   const history = useHistory()
