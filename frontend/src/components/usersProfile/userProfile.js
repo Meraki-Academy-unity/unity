@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, } from "react-router-dom";
+import AddFriend from "./addFriend";
 import axios from "axios";
 
 
@@ -9,12 +10,32 @@ const UserProfile = () => {
     const [user_id, setUserId] = useState(-1);
     const [DisplayName, setDisplayName] = useState("User Name");
     const [ProfileImg, setProfileImg] = useState(-1);
+    const [add, setAdd] = useState(false)
     const { id } = useParams();
     const state = useSelector((state) => {
         return {
             token: state.login.token,
         };
     });
+    // useEffect(() => {
+    axios
+        .get(`http://localhost:5000/friends/check/${id}`, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            },
+        })
+        .then((result) => {
+            if (result.data.length) {
+                setAdd(true);
+            } else {
+                setAdd(false);
+            }
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+    // }, [])
+
 
     function getProfile() {
         axios
@@ -30,6 +51,31 @@ const UserProfile = () => {
             .catch((err) => {
                 console.log(err);
             });
+    }
+
+    const addFriend = () => {
+        axios.post(`http://localhost:5000/friends/${id}`, {}, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            },
+        }
+        ).then((result) => {
+            setAdd(true)
+        }).catch((err) => {
+            console.log("err", err)
+        })
+    }
+    const removeFriend = () => {
+        axios.delete(`http://localhost:5000/friends/${id}`,{
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            },
+        }
+        ).then((result) => {
+            setAdd(false)
+        }).catch((err) => {
+            console.log("err", err)
+        })
     }
 
     return (
@@ -51,11 +97,14 @@ const UserProfile = () => {
                 </div>
             </div>
             <div className="linksDiv">
+                {/* <AddFriend /> */}
+                {!add ? <button onClick={addFriend}>Add Friend </button> : <button onClick={removeFriend}>Remove Friend </button>}
                 <Link to={`/ProfileUsers/activities/${user_id}`}>Acticities</Link>
                 <Link to={`/ProfileUsers/plans/${user_id}`}>Plans</Link>
                 {/* <Link to="/newsFeed">News Feed</Link> */}
                 <Link to={`/profileUser/preferences/${user_id}`}>Preferences </Link>
                 <Link to={`/userphotoAlbum/${user_id}`}>Photo Album </Link>
+
                 {/* // <Link to="/plans">Friends</Link>
                 // <Link to="/match">Matching</Link> */}
 
