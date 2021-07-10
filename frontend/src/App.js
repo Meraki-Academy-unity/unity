@@ -32,7 +32,7 @@ import Sidebar from "./components/navigation/sidebar";
 import EditMyProfile from "./components/profile/editProfile";
 import Hero from "../src/components/HeroSection";
 import ShowFriends from "./components/profile/showFriend";
-
+import Chat from "./components/chat/user";
 
 const App = () => {
   const history = useHistory()
@@ -53,7 +53,7 @@ const App = () => {
     <div className="App">
       <Navigation toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Hero />
+      <Route exact path="/" render={() =><Hero />} />
       <Route exact path="/login" render={() => <Login />} />
       <Route exact path="/register" render={() => <SignUp />} />
       <Route exact path="/contactUs" render={() => <ContactUs />} />
@@ -73,8 +73,9 @@ const App = () => {
       <Route exact path="/photoAlbum" render={() => <ImageGrid />} />
       <Route exact path="/userphotoAlbum/:id" render={() => <ImageUserGrid />} />
       <Route exact path="/profile/showFriend" render={() => <ShowFriends />} />
-      <Route exact path="/match" render={() => <Matching />
-      } />
+      <Route exact path="/match" render={() => <Matching /> } />
+      <Route exact path="/chat/:id" render={()=><Chat/>} />
+     
       <Route
         exact
         path="/activities/activity/:id"
@@ -95,6 +96,7 @@ const App = () => {
       {/* <ImageGrid /> */}
       {state.photo && <Modal />}
       {/* <Footer /> */}
+      {/* <Chat/> */}
     </div>
 
   );

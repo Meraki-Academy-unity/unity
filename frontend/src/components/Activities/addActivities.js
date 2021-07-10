@@ -102,6 +102,14 @@ const AddActivities = () => {
 
   return (
     <>
+     <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
       <input
         type="text"
         placeholder="title here"
