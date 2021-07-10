@@ -31,6 +31,7 @@ import './App.css'
 import Sidebar from "./components/navigation/sidebar";
 import EditMyProfile from "./components/profile/editProfile";
 import Hero from "../src/components/HeroSection";
+import ShowFriends from "./components/profile/showFriend";
 
 
 const App = () => {
@@ -52,9 +53,8 @@ const App = () => {
     <div className="App">
       <Navigation toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Hero/>
+      <Hero />
       <Route exact path="/login" render={() => <Login />} />
-
       <Route exact path="/register" render={() => <SignUp />} />
       <Route exact path="/contactUs" render={() => <ContactUs />} />
       <Route exact path="/plans" component={GetAllTravel} />
@@ -72,12 +72,7 @@ const App = () => {
       <Route exact path="/profileUser/preferences/:id" render={() => <GetUserPreferences />} />
       <Route exact path="/photoAlbum" render={() => <ImageGrid />} />
       <Route exact path="/userphotoAlbum/:id" render={() => <ImageUserGrid />} />
-
-
-
-
-
-
+      <Route exact path="/profile/showFriend" render={() => <ShowFriends />} />
       <Route exact path="/match" render={() => <Matching />
       } />
       <Route
@@ -98,7 +93,7 @@ const App = () => {
       {/* <CountryList /> */}
       {/* <Album /> */}
       {/* <ImageGrid /> */}
-      {state.photo&& <Modal />}
+      {state.photo && <Modal />}
       {/* <Footer /> */}
     </div>
 
