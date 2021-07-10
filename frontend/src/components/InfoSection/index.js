@@ -51,7 +51,7 @@ function InfoSection({
                     primary={primary ? 1 : 0}
                     dark={dark ? 1 : 0}
                     darkText={darkText ? 1 : 0}
-                    to="/register"
+                    to="services2"
                   >
                     {buttonLabel}
                   </Button>
