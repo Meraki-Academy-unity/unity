@@ -45,10 +45,10 @@ const Navigation = ({ toggle }) => {
             <NavLinks to="/Home">Home</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="/About">About</NavLinks>
+            <NavLinks to="About">About</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="/">
+            <NavLinks to="Services">
               <NavServBtn>
                 Services
                 <NavBtnContent id="services">
@@ -60,7 +60,7 @@ const Navigation = ({ toggle }) => {
             </NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="/contactUs">Contact Us</NavLinks>
+            <NavLinks to="ContactUs">Contact Us</NavLinks>
           </NavItem>
         </NavMenu>
         <NavBtn>
