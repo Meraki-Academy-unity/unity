@@ -33,6 +33,11 @@ const Activities = () => {
   }, []);
   return (
     <>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
       {state.token ? (
         <button
           onClick={() => {

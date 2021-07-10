@@ -12,7 +12,7 @@ const {
 
 friendListRouter.post("/:id", authentication, addFriend);
 friendListRouter.delete("/:id", authentication, deleteFriend);
-friendListRouter.get("/", showFriendList);
+friendListRouter.get("/", authentication, showFriendList);
 friendListRouter.get("/check/:id", authentication, cheakeFriends);
 
 

@@ -29,7 +29,8 @@ import ImageUserGrid from "./components/Album/showUserAlbum";
 import './App.css'
 import EditMyProfile from "./components/profile/editProfile";
 import Home from "./Pages";
-
+import ShowFriends from "./components/profile/showFriend";
+import Chat from "./components/chat/user";
 
 const App = () => {
   const history = useHistory()
@@ -60,14 +61,10 @@ const App = () => {
       <Route exact path="/profileUser/preferences/:id" render={() => <GetUserPreferences />} />
       <Route exact path="/photoAlbum" render={() => <ImageGrid />} />
       <Route exact path="/userphotoAlbum/:id" render={() => <ImageUserGrid />} />
-
-
-
-
-
-
-      <Route exact path="/match" render={() => <Matching />
-      } />
+      <Route exact path="/profile/showFriend" render={() => <ShowFriends />} />
+      <Route exact path="/match" render={() => <Matching /> } />
+      <Route exact path="/chat/:id" render={()=><Chat/>} />
+     
       <Route
         exact
         path="/activities/activity/:id"
@@ -86,8 +83,9 @@ const App = () => {
       {/* <CountryList /> */}
       {/* <Album /> */}
       {/* <ImageGrid /> */}
-      {state.photo&& <Modal />}
+      {state.photo && <Modal />}
       {/* <Footer /> */}
+      {/* <Chat/> */}
     </div>
 
   );

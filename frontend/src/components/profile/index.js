@@ -46,7 +46,7 @@ const Profile = () => {
       <div className="profile">
         <div className="backImg"></div>
         <div className="profImage">
-          <img id="proImg" src={ProfileImg}/>
+          <img id="proImg" src={ProfileImg} />
         </div>
         <div className="displayName">
           <p>{DisplayName}</p>
@@ -64,7 +64,7 @@ const Profile = () => {
         <Link to="/profile/plans">My Plans</Link>
         <Link to="/newsFeed">News Feed</Link>
         <Link to="/profile/preferences">Preferences</Link>
-        <Link to="/plans">Friends</Link>
+        <Link to="/profile/showFriend">Friends</Link>
         <Link to="/match">Matching</Link>
         <Link to="/photoAlbum"> Photo Album</Link>
 
