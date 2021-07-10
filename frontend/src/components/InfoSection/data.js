@@ -48,7 +48,7 @@ export const HomeObjThree = {
   imgStart: false,
   img: require("../../Images/contact.png"),
   alt: "group",
-  dark: true,
-  primary: true,
+  dark: false,
+  primary: false,
   darkText: true,
 };
