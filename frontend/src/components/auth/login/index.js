@@ -18,14 +18,14 @@ const Login = () => {
       id: state.id.id,
     };
   });
-console.log("deyaa kman",state.id)
   const signIn = () => {
+    console.log("test1")
     axios
       .post("http://localhost:5000/login", { email, password })
       .then((result) => {
         setMessage("Login Successful");
         localStorage.setItem("token", result.data.token);
-        console.log("deyaa", result.data)
+        console.log("test2")
         dispatch(setToken(result.data.token));
         dispatch(setUserId(result.data.user_id));
       })
