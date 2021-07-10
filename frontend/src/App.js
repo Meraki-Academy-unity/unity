@@ -6,7 +6,6 @@ import AddActivities from "./components/Activities/addActivities";
 import AddTravelPlans from "./components/travel_Plans/index";
 import AddPerferences from "./components/preferences/addPreferences";
 import GetAllActivities from "./components/Activities/getAllActivities";
-import Navigation from "./components/navigation";
 import GetAllTravel from "./components/travel_Plans/getAllTravel";
 import ContactUs from "./components/contactUs";
 import GetTravelById from "./components/travel_Plans/getTravelById";
@@ -28,9 +27,8 @@ import ProfileUserPlans from "./components/usersProfile/userPlansProf";
 import GetUserPreferences from "./components/preferences/showUserPreference";
 import ImageUserGrid from "./components/Album/showUserAlbum";
 import './App.css'
-import Sidebar from "./components/navigation/sidebar";
 import EditMyProfile from "./components/profile/editProfile";
-import Hero from "../src/components/HeroSection";
+import Home from "./Pages";
 import ShowFriends from "./components/profile/showFriend";
 import Chat from "./components/chat/user";
 
@@ -41,19 +39,10 @@ const App = () => {
       photo: state.photo.photo
     };
   });
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
-  console.log("isOpen: ", isOpen);
-
-
+ 
   return (
     <div className="App">
-      <Navigation toggle={toggle} />
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Route exact path="/" render={() =><Hero />} />
+      <Route exact path="/" render={() => <Home/>}/>
       <Route exact path="/login" render={() => <Login />} />
       <Route exact path="/register" render={() => <SignUp />} />
       <Route exact path="/contactUs" render={() => <ContactUs />} />
