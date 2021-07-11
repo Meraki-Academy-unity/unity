@@ -23,7 +23,19 @@ const showMessages = (req, res) => {
   });
 };
 
+const inboxMessages = (req, res) => {
+  const user_id = req.token.user_id;
+  const query =
+    "SELECT messages.content, users.first_name, users.profile_image, messages.sender_id, messages.receiver_id FROM messages INNER JOIN users ON users.id=messages.sender_id WHERE messages.sender_id = ? OR receiver_id = ?";
+  const data = [user_id, user_id];
+  db.query(query, data, (err, result) => {
+    if (result) res.status(200).json(result);
+    else res.status(400).json(err);
+  });
+};
+
 module.exports = {
   addMessages,
   showMessages,
+  inboxMessages,
 };
