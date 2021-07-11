@@ -1,13 +1,16 @@
 const db = require("../../db/db");
 
 const addMessages = (req, res) => {
-  const { room, content } = req.body;
+  const { room_id, content } = req.body;
+  console.log("content: ", content);
+  console.log("room: ", room_id);
   const user_id = req.token.user_id;
-  const query = `INSERT INTO messages (sender_id, content, room_id) VALUES (?,?,?)`;
-  const data = [user_id, content, room];
+  console.log("user_id: ", user_id);
+  const query = `INSERT INTO messages (room_id, content, sender_id) VALUES (?,?,?);`;
+  const data = [room_id, content, user_id];
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
-    else res.status(400).json("ERROR !");
+    else res.status(400).json(err);
   });
 };
 
@@ -19,7 +22,7 @@ const showMessages = (req, res) => {
   const data = [user_id, room];
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
-    else res.status(400).json("ERROR !");
+    else res.status(400).json(err);
   });
 };
 

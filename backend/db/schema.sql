@@ -151,7 +151,7 @@ CREATE TABLE images (
 
 CREATE TABLE messages (
     id INT AUTO_INCREMENT NOT NULL,
-    room_id INT NOT NULL UNIQUE,
+    room_id INT NOT NULL ,
     content TEXT,
     sender_id INT,
     FOREIGN KEY (sender_id) REFERENCES users(id),
