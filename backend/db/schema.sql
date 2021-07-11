@@ -154,7 +154,9 @@ CREATE TABLE messages (
     room_id INT NOT NULL ,
     content TEXT,
     sender_id INT,
+    receiver_id INT,
     FOREIGN KEY (sender_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id),
     PRIMARY KEY (id)
 );
 

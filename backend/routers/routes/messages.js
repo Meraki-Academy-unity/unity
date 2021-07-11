@@ -6,6 +6,6 @@ const MessagesRouter = express.Router();
 const { showMessages, addMessages } = require("../controllers/messages");
 
 MessagesRouter.post("/", authentication, addMessages);
-MessagesRouter.get("/", authentication, showMessages);
+MessagesRouter.get("/:room_id", showMessages);
 
 module.exports = MessagesRouter;

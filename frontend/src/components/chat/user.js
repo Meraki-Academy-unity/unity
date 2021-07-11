@@ -15,7 +15,7 @@ const Chat = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
-
+  const [chatHistory, setChatHistory] = useState("");
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [profile, setProfile] = useState("");
@@ -35,6 +35,18 @@ const Chat = () => {
     socket.emit("join_room", room); //raise event
   };
 
+  useEffect(async () => {
+    await axios
+      .get(`http://localhost:5000/messages/${room}`)
+      .then((result) => {
+        console.log("chat history: ", result);
+        setChatHistory(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [room]);
+
   const sendMessage = async () => {
     const messageContent = {
       room: room,
@@ -43,13 +55,14 @@ const Chat = () => {
         message: message,
       },
     };
-    console.log("messageContent.room: ", messageContent.room);
+
     await axios
       .post(
         "http://localhost:5000/messages/",
         {
           room_id: messageContent.room,
           content: messageContent.content.message,
+          receiver_id: id,
         },
         {
           headers: {
@@ -104,6 +117,16 @@ const Chat = () => {
         <br />
 
         <h1>CHAAAAT</h1>
+        {chatHistory &&
+          chatHistory.map((elem, i) => {
+            return (
+              <div key={i}>
+                <img src={elem.profile_image} />
+                <p>{elem.first_name}</p>
+                <div>{elem.content}</div>
+              </div>
+            );
+          })}
 
         {/* {console.log("lo", loggedIn)} */}
         {!loggedIn ? (
