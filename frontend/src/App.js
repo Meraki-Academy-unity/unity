@@ -9,7 +9,6 @@ import GetAllActivities from "./components/Activities/getAllActivities";
 import GetAllTravel from "./components/travel_Plans/getAllTravel";
 import ContactUs from "./components/contactUs";
 import GetTravelById from "./components/travel_Plans/getTravelById";
-import Footer from "./components/footer";
 import GetActivityById from "./components/Activities/getActivityById";
 import Profile from "./components/profile";
 import CountryList from "./components/Api/CountryList";
@@ -84,7 +83,6 @@ const App = () => {
       {/* <Album /> */}
       {/* <ImageGrid /> */}
       {state.photo && <Modal />}
-      {/* <Footer /> */}
       {/* <Chat/> */}
     </div>
 
