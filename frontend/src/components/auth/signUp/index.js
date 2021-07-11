@@ -70,7 +70,6 @@ const SignUp = () => {
   }, [done]);
 
   const signUpFirstStep = () => {
-
     if (!firstName || !lastName || !email || !password)
       setErrorMessage("All Fields Are Required");
     else {
@@ -96,7 +95,7 @@ const SignUp = () => {
   };
 
   const signUpSecondStep = async () => {
-    dispatch(setUserId(id))
+    dispatch(setUserId(id));
     setProfileImage(state.url);
     setDone(true);
   };
@@ -256,7 +255,6 @@ const SecondStep = ({
           <div className="regForm">
             {/* _____________________________________________ */}
             <div className="firstName">
-
               <label>Region:</label>
 
               <CountryList setCountryList={setCountryList} />
@@ -264,8 +262,7 @@ const SecondStep = ({
             </div>
             {/* _____________________________________________ */}
             <div className="lastName">
-
-            <label>Current location:</label>
+              <label>Current location:</label>
 
               <CheckInList setCheckInList={setCheckInList} />
               {setCurrentlyIn(checkInLis)}
