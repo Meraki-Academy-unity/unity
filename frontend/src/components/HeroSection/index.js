@@ -12,7 +12,7 @@ import {
   ArrowRight,
 } from "./heroStryle";
 
-import { Button } from "./ButtonStyle";
+import { ButtonR } from "./ButtonStyle";
 
 const Hero = () => {
   const [hover, setHover] = useState(false);
@@ -30,7 +30,7 @@ const Hero = () => {
           Sign Up for a new account today and get ready for your next journeys
         </HeroP>
         <HeroBtnWrapper>
-          <Button
+          <ButtonR
             to="/register"
             onMouseEnter={onHover}
             onMouseLeave={onHover}
@@ -38,7 +38,7 @@ const Hero = () => {
             dark="true"
           >
             Get Started {hover ? <ArrowForward /> : <ArrowRight />}
-          </Button>
+          </ButtonR>
         </HeroBtnWrapper>
       </HeroContent>
     </HeroContainer>
