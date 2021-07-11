@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
   console.log(socket.id);
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log("user joined Room:", data);
+    // console.log("user joined Room:", data);
   });
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data.content);
