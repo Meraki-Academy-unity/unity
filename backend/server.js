@@ -15,6 +15,7 @@ const activitiesRouter = require("./routers/routes/activity");
 const preferencesRouter = require("./routers/routes/preferences");
 const profileRouter = require("./routers/routes/users");
 const ImagesRouter = require("./routers/routes/images");
+const MessagesRouter = require("./routers/routes/messages");
 //built-in middlewares
 app.use(express.json());
 
@@ -30,36 +31,31 @@ app.use("/friends", friendListRouter);
 app.use("/preferences", preferencesRouter);
 app.use("/users", profileRouter);
 app.use("/photoAlbum", ImagesRouter);
+app.use("/messages", MessagesRouter);
 
 const PORT = process.env.PORT || 5000;
 
-// app.listen(PORT, () => {
-//   console.log(`Server On ${PORT}`);
-// });
 const server = app.listen(PORT, () => {
-	console.log(`Server On ${PORT}`);
+  console.log(`Server On ${PORT}`);
 });
 
 const io = socket(server, {
-	cors: {
-		origin: 'http://localhost:3000',
-		methods: ['GET', 'POST', 'DELETE', 'PUT'],
-	},
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "DELETE", "PUT"],
+  },
 });
-io.on('connection', (socket) => {
-	console.log(socket.id);
-	socket.on('join_room', (data) => {
-		socket.join(data);
-		console.log('user joined Room:', data);
-	});
-	socket.on('send_message', (data) => {
-		socket.to(data.room).emit('receive_message', data.content);
-	});
+io.on("connection", (socket) => {
+  console.log(socket.id);
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log("user joined Room:", data);
+  });
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data.content);
+  });
 
-	socket.on('disconnect', () => {
-		console.log('User disconnected');
-	});
-
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
 });
-
-

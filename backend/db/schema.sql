@@ -149,6 +149,19 @@ CREATE TABLE images (
     PRIMARY KEY(id)
 );
 
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT NOT NULL,
+    room_id INT NOT NULL ,
+    content TEXT,
+    sender_id INT,
+    receiver_id INT,
+    FOREIGN KEY (sender_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id),
+    PRIMARY KEY (id)
+);
+
+
+
 
 
 INSERT INTO roles (role) VALUES ('user');

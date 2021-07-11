@@ -25,23 +25,25 @@ import UserProfile from "./components/usersProfile/userProfile";
 import ProfileUserPlans from "./components/usersProfile/userPlansProf";
 import GetUserPreferences from "./components/preferences/showUserPreference";
 import ImageUserGrid from "./components/Album/showUserAlbum";
-import './App.css'
+import "./App.css";
 import EditMyProfile from "./components/profile/editProfile";
 import Home from "./Pages";
 import ShowFriends from "./components/profile/showFriend";
 import Chat from "./components/chat/user";
+import Navigation from "./components/navigation";
 
 const App = () => {
-  const history = useHistory()
+  const history = useHistory();
   const state = useSelector((state) => {
     return {
-      photo: state.photo.photo
+      photo: state.photo.photo,
     };
   });
- 
+
   return (
     <div className="App">
-      <Route exact path="/" render={() => <Home/>}/>
+      <Route exact path="/" render={() => <Home />} />
+      <Navigation />
       <Route exact path="/login" render={() => <Login />} />
       <Route exact path="/register" render={() => <SignUp />} />
       <Route exact path="/contactUs" render={() => <ContactUs />} />
@@ -51,19 +53,43 @@ const App = () => {
       <Route exact path="/addActivity" render={() => <AddActivities />} />
       <Route exact path="/addTravel" render={() => <AddTravelPlans />} />
       <Route exact path="/preferences" render={() => <AddPerferences />} />
-      <Route exact path="/profile/activities" render={() => <ProfileActivities />} />
+      <Route
+        exact
+        path="/profile/activities"
+        render={() => <ProfileActivities />}
+      />
       <Route exact path="/profile/plans" render={() => <ProfilePlans />} />
-      <Route exact path="/profile/preferences" render={() => <GetMyPreferences />} />
+      <Route
+        exact
+        path="/profile/preferences"
+        render={() => <GetMyPreferences />}
+      />
       <Route exact path="/users/user/:id" render={() => <UserProfile />} />
-      <Route exact path="/ProfileUsers/activities/:id" render={() => <ProfileUserActivities />} />
-      <Route exact path="/ProfileUsers/plans/:id" render={() => <ProfileUserPlans />} />
-      <Route exact path="/profileUser/preferences/:id" render={() => <GetUserPreferences />} />
+      <Route
+        exact
+        path="/ProfileUsers/activities/:id"
+        render={() => <ProfileUserActivities />}
+      />
+      <Route
+        exact
+        path="/ProfileUsers/plans/:id"
+        render={() => <ProfileUserPlans />}
+      />
+      <Route
+        exact
+        path="/profileUser/preferences/:id"
+        render={() => <GetUserPreferences />}
+      />
       <Route exact path="/photoAlbum" render={() => <ImageGrid />} />
-      <Route exact path="/userphotoAlbum/:id" render={() => <ImageUserGrid />} />
+      <Route
+        exact
+        path="/userphotoAlbum/:id"
+        render={() => <ImageUserGrid />}
+      />
       <Route exact path="/profile/showFriend" render={() => <ShowFriends />} />
-      <Route exact path="/match" render={() => <Matching /> } />
-      <Route exact path="/chat/:id" render={()=><Chat/>} />
-     
+      <Route exact path="/match" render={() => <Matching />} />
+      <Route exact path="/chat/:id" render={() => <Chat />} />
+
       <Route
         exact
         path="/activities/activity/:id"
@@ -85,7 +111,6 @@ const App = () => {
       {state.photo && <Modal />}
       {/* <Chat/> */}
     </div>
-
   );
 };
 

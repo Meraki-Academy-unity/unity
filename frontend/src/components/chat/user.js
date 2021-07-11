@@ -7,18 +7,18 @@ import axios from "axios";
 // import { changeUser } from "../../../../backend/db/db";
 
 let socket;
-const CONNECTION_PORT = 'http://localhost:5000';
+const CONNECTION_PORT = "http://localhost:5000";
 
 socket = io(CONNECTION_PORT);
 
 const Chat = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [room, setRoom] = useState('');
-  const [userName, setUserName] = useState('');
-
-  const [message, setMessage] = useState('');
+  const [room, setRoom] = useState("");
+  const [userName, setUserName] = useState("");
+  const [chatHistory, setChatHistory] = useState("");
+  const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const [profile, setProfile] = useState("")
+  const [profile, setProfile] = useState("");
   const { id } = useParams();
 
   const state = useSelector((state) => {
@@ -26,28 +26,61 @@ const Chat = () => {
       token: state.login.token,
     };
   });
-  socket.on('receive_message', (data) => {
+  socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
   });
 
   const connectToRoom = () => {
     setLoggedIn(true);
-    socket.emit('join_room', room); //raise event
+    socket.emit("join_room", room); //raise event
   };
 
-  const sendMessage = () => {
+  useEffect(async () => {
+    await axios
+      .get(`http://localhost:5000/messages/${room}`)
+      .then((result) => {
+        console.log("chat history: ", result);
+        setChatHistory(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [room]);
+
+  const sendMessage = async () => {
     const messageContent = {
-      room,
+      room: room,
       content: {
         author: userName,
-        message,
+        message: message,
       },
     };
 
+    await axios
+      .post(
+        "http://localhost:5000/messages/",
+        {
+          room_id: messageContent.room,
+          content: messageContent.content.message,
+          receiver_id: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      )
+      .then((result) => {
+        console.log("Message sent: ", result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    socket.emit('send_message', messageContent); //raise event
+    socket.emit("send_message", messageContent); //raise event
     setMessageList([...messageList, messageContent.content]);
-    setMessage('');
+    setMessage("");
+    console.log("messageContent: ", messageContent);
   };
 
   axios
@@ -58,45 +91,47 @@ const Chat = () => {
     })
     .then((result) => {
       // setProfile(result.data)
-      setUserName(result.data[0].first_name)
-      console.log(result.data[0])
+      setUserName(result.data[0].first_name);
       if (result.data[0].id > id) {
-        console.log("room",result.data[0].id > id)
-        setRoom(Number("" + id + result.data[0].id))
-        console.log("testroom",Number("" + id + result.data[0].id))
+        setRoom(Number("" + id + result.data[0].id));
+        console.log("testroom", room);
+      } else {
+        setRoom(Number("" + result.data[0].id + id));
+        console.log("testroom", room);
       }
-      else {
-        console.log("room2",result.data[0].id > id)
-        setRoom(Number("" + result.data[0].id + id))
-        console.log("testroom2",Number("" + result.data[0].id + id))
-
-      }
-      connectToRoom()
-
+      connectToRoom();
     })
     .catch((err) => {
       console.log(err);
     });
 
-
   return (
     <>
-
       <div className="App">
-        {/* {connectToRoom()} */}
-
         {/* {profile.id > id ? setRoom(Number("" + id + profile.id)) : setRoom(Number("" +profile.id + id))} */}
         <br />
         <br />
         <br />
         <br />
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <h1>CHAAAAT</h1>
+        {chatHistory &&
+          chatHistory.map((elem, i) => {
+            return (
+              <div key={i}>
+                <img src={elem.profile_image} />
+                <p>{elem.first_name}</p>
+                <div>{elem.content}</div>
+              </div>
+            );
+          })}
 
-        {console.log("lo", loggedIn)}
-        {!loggedIn ? ("") : (
+        {/* {console.log("lo", loggedIn)} */}
+        {!loggedIn ? (
+          ""
+        ) : (
           <>
             <div>
               {messageList.map((val, i) => {
@@ -119,7 +154,7 @@ const Chat = () => {
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Chat
+export default Chat;
