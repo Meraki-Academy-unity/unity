@@ -6,6 +6,8 @@ import axios from "axios";
 import { Link, Route } from "react-router-dom";
 import "./style.css";
 import AddActivities from "./addActivities";
+import { FaPlus } from 'react-icons/fa';
+import {IconContext} from "react-icons"
 
 const Activities = () => {
   const [activities, setactivities] = useState("");
@@ -33,19 +35,25 @@ const Activities = () => {
   }, []);
   return (
     <>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+
 
       {state.token ? (
+        
+        <div className = "add">
+
+
         <button
+        style = {{ backgroundColor:"white" , border:"none"}}
           onClick={() => {
             history.push("/addActivity");
           }}
         >
-          Add Activity
+          <IconContext.Provider value={{ style: {fontSize: '35px', color: "rgb(0, 123, 255)"}}}>
+             <FaPlus />
+            </IconContext.Provider>
         </button>
+        </div>
+
       ) : (
         ""
       )}
