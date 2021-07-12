@@ -4,7 +4,8 @@ import axios from "axios";
 import { Link, Route } from "react-router-dom";
 import "./../Activities/style.css"
 import { useDispatch, useSelector } from "react-redux";
-
+import { FaPlus } from 'react-icons/fa';
+import {IconContext} from "react-icons"
 
 const GetAllTravel = () => {
   const [travels, setTravels] = useState([]);
@@ -29,13 +30,20 @@ const GetAllTravel = () => {
   return (
     <>
     {state.token ? (
+        <div className = "add">
+
+
         <button
+        style = {{ backgroundColor:"white" , border:"none"}}
           onClick={() => {
             history.push("/addTravel");
           }}
         >
-          Add Travel Plans
+          <IconContext.Provider value={{ style: {fontSize: '35px', color: "rgb(0, 123, 255)"}}}>
+             <FaPlus />
+            </IconContext.Provider>
         </button>
+        </div>
       ) : (
         ""
       )}
