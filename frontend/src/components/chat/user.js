@@ -121,7 +121,7 @@ const Chat = () => {
           chatHistory.map((elem, i) => {
             return (
               <div key={i}>
-                <img src={elem.profile_image} />
+                <img src={elem.profile_image} style={{width:"100px"}}/>
                 <p>{elem.first_name}</p>
                 <div>{elem.content}</div>
               </div>
