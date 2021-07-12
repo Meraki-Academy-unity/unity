@@ -1,34 +1,68 @@
-.plans{
+.Plans{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: auto;
     grid-gap: 1rem;
     justify-content: center;
     align-items: center;
-    gap: 100px;
-    border-style: groove;
+    gap: 55px;
+    margin-top: 90px;
 }
 
-.plan{
+.Plan{
     display: flex;
-    border-style: groove;
+    border-style:solid;
+    border-color: rgb(160,170,177);
+    gap: 70px;
+    width: 700px;
+    
 }
 
-.leftplan{
-    flex: 10%;
+.leftPlan{
+    margin :20px
 }
 
 
-.rightplan{
+.rightPlan{
     display: grid;
-    flex: 50%;
+    margin-top: 20px;
+    height: 205px;
+}
+
+.img{
+    border-radius: 80%;
+    width: 150px;
+    height: 150px;
+}
+
+.p{
+    color: rgb(232,180,48);
+    font-weight: bold;
+}
+
+.post{
+    margin: 30px;
+    display: grid;
+    gap : 20px ; 
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.postImg{
+    width: 700px;
+}
+
+.comment{
+    display: grid;
+    justify-content:center;
+    align-items: center;
+    margin: 30px;
+    gap: 40px;
 }
 
 
 .add{
     margin-left: 85%;
     margin-top: 7%;
-    
 }
 
 
@@ -77,6 +111,24 @@
 
 
 button:hover {
+    color: #fbd601;
+    background-color: #0d305d;
+    border: 2px solid #022047;
+    cursor:pointer;
+  }
+
+  .btn{
+    background-color: #022047;
+    color: #fff;
+    border: 2px solid #fff;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+    width: 130px;
+}
+
+.btn:hover {
     color: #fbd601;
     background-color: #0d305d;
     border: 2px solid #022047;
