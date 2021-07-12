@@ -26,11 +26,10 @@ const showMessages = (req, res) => {
 const inboxMessages = (req, res) => {
   const user_id = req.token.user_id;
   const query =
-    "SELECT messages.content, users.first_name, users.profile_image, messages.sender_id, messages.receiver_id ,messages.room_id FROM messages INNER JOIN users ON users.id=messages.sender_id WHERE messages.sender_id = ? OR receiver_id = ?";
+  "SELECT messages.content, users.first_name, users.profile_image, messages.sender_id, messages.receiver_id ,messages.room_id FROM messages INNER JOIN users ON users.id=messages.receiver_id WHERE messages.sender_id = ? OR messages.receiver_id = ?";
   const data = [user_id, user_id];
   db.query(query, data, (err, result) => {
     if (result) {
-
       const newResult = [];
       for (let i = result.length - 1; i >= 0; i--) {
         if (newResult.indexOf(result[i].room_id) === -1) {
