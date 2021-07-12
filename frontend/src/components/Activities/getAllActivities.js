@@ -8,6 +8,8 @@ import "./style.css";
 import AddActivities from "./addActivities";
 import { FaPlus } from 'react-icons/fa';
 import {IconContext} from "react-icons"
+import moment from 'moment';
+
 
 const Activities = () => {
   const [activities, setactivities] = useState("");
@@ -35,7 +37,7 @@ const Activities = () => {
   }, []);
   return (
     <>
-
+    <div className="content">
 
       {state.token ? (
         
@@ -49,7 +51,7 @@ const Activities = () => {
           }}
         >
           <IconContext.Provider value={{ style: {fontSize: '35px', color: "rgb(0, 123, 255)"}}}>
-             <FaPlus />
+              <FaPlus />
             </IconContext.Provider>
         </button>
         </div>
@@ -64,28 +66,29 @@ const Activities = () => {
               <div className="Activity">
                 <div className="leftAct">
                   <img src={res.profile_image} className="img"></img>
-                  <p style={{ color: "blue", marginLeft: "10px" }}>
+                  <p style={{ color: "rgb(0, 123, 255)", marginLeft: "10px" }}>
                     {res.first_name} {res.last_name}
                   </p>
                 </div>
-                <Link to={`/activities/activity/${res.id}`} key={ind}>
-                  <div className="rightAct">
-                    <h2 style={{ color: "#507fa4", fontWeight: "bolder" }}>
+
+                  <div className="rightAct" onClick = {()=>{
+                    history.push(`/activities/activity/${res.id}`)
+                  }}>
+                    <h2 style={{ color: "rgb(232,180,48)", fontWeight: "bold" }}>
                       {res.title}
                     </h2>
                     <p className="p">location : {res.location}</p>
-                    <p className="p">activities to do :{res.activities}</p>
-                    <p className="p">start date : {res.start_date}</p>
-                    <p className="p">finish date : {res.finish_date}</p>
+                    <p className="p">start date : {moment(res.start_date, "YYYY-MM-DD").add(1, 'days').format("DD-MM-YYYY")}</p>
+                    <p className="p">finish date : {moment(res.finish_date, "YYYY-MM-DD").add(1, 'days').format("DD-MM-YYYY")}</p>
                     <p className="p">
                       estimated budget : {res.estimated_budget}
                     </p>
-                    <br />
                   </div>
-                </Link>
+
               </div>
             );
           })}
+      </div>
       </div>
     </>
   );
