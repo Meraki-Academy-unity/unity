@@ -102,45 +102,70 @@ const AddActivities = () => {
 
   return (
     <>
-     <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+          <div className = "form">
+
+          <div className= "input_cont">
+          <label>Title : </label>
       <input
+        className= "input"
         type="text"
         placeholder="title here"
         onChange={(e) => setTitle(e.target.value)}
       />
-      <div>
+      </div>
 
+      <div className= "input_cont">
         <label>Start Date : </label>
         <input type="date"
+          className= "input"
           min={minStartDate}
           max={maxStartDate} onChange={(e) => setStart_date(e.target.value)} />
+          </div>
 
+          <div className= "input_cont">
         <label>Finish Date : </label>
-        <input type="date" min={minFinishtDate}
-          max={maxFinishDate} onChange={(e) => setFinish_date(e.target.value)} />
-        <label>Activities : </label>
+        <input type="date" min={minFinishtDate} className= "input"
+          max={maxFinishDate} onChange={(e) => setFinish_date(e.target.value)}/>
+        </div>
 
+        <div className= "input_cont">
+      <label>Details : </label>
+      <textarea className= "input" placeholder= "Details"  onChange={(e) => setDetails(e.target.value)}></textarea>
       </div>
-      <textarea onChange={(e) => setDetails(e.target.value)}></textarea>
-      <textarea onChange={(e) => setRequirements(e.target.value)}></textarea>
-      <textarea onChange={(e) => setActivities(e.target.value)}></textarea>
-      <input type="file" onChange={testUpload} />
+
+      <div className= "input_cont"> 
+      <label>Requirements : </label>
+      <textarea className= "input" placeholder= "Requirements" onChange={(e) => setRequirements(e.target.value)}></textarea>
+      </div>
+
+      <div className= "input_cont">
+      <label>Activities : </label>
+      <textarea className= "input" placeholder= "Activities" onChange={(e) => setActivities(e.target.value)}></textarea>
+      </div>
+
+      <div className= "input_cont">
+      <label>Image : </label>
+      <input className= "input" type="file" onChange={testUpload} />
+      </div>
       {file && <LoaderBar file={file} setFile={setFile} />}
       {errorImgMessage && <div>{errorImgMessage}</div>}
 
+      <div className= "input_cont">
+      <label>Budget : </label>
       <input
+        className= "input"
         type="text"
         placeholder=" estimated budget here"
         onChange={(e) => setEstimated_budget(e.target.value)}
       />
-      <button onClick={AddNewActivities}>create activities</button>
+      </div>
+
+      <div >
+      <button className="button" onClick={AddNewActivities}>create activities</button>
+      </div>
+      </div>
+
+      
     </>
   );
 };

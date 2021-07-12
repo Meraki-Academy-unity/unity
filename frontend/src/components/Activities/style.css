@@ -3,7 +3,7 @@
     grid-gap: 1rem;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 150px;
     margin-top: 70px;
 }
 
@@ -11,7 +11,7 @@
     display: flex;
     border-style:solid;
     border-color: rgb(232,180,48);
-    gap: 50px;
+    gap: 70px;
     width: 700px;
     
 }
@@ -58,3 +58,63 @@
     margin: 30px;
     gap: 40px;
 }
+
+
+.add{
+    float: right;
+    padding-right: 350px;
+    
+}
+
+
+.form{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto;
+    gap: 20px;
+    padding-top: 150px;
+}
+
+.input_cont{
+    display: grid;
+    gap: 5px;
+    
+}
+
+
+.input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+}
+
+
+.input::placeholder {
+    font-size: 1.2em;
+    font-weight: lighter;
+    color: #999;
+  }
+
+
+.button {
+    background-color: #022047;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 100%;
+    margin-top: 1em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+}
+
+
+button:hover {
+    color: #fbd601;
+    background-color: #0d305d;
+    border: 2px solid #022047;
+    cursor:pointer;
+  }
