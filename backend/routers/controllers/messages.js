@@ -14,7 +14,7 @@ const addMessages = (req, res) => {
 const showMessages = (req, res) => {
   const room_id = req.params.room_id;
   const query =
-    "SELECT messages.content, users.first_name, users.profile_image FROM messages INNER JOIN users ON users.id=messages.sender_id WHERE messages.room_id = ?";
+    "SELECT messages.content, users.first_name, users.profile_image,messages.receiver_id,messages.sender_id FROM messages INNER JOIN users ON users.id=messages.sender_id WHERE messages.room_id = ? ";
   const data = [room_id];
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
