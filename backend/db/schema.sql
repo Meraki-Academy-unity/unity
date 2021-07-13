@@ -5,9 +5,7 @@ use `meraki_academy_project_5`;
 CREATE TABLE roles (
     id INT AUTO_INCREMENT NOT NULL,
     role VARCHAR(255) NOT NULL,
-    -- permission VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
-    -- FOREIGN KEY (Friend_id ) REFERENCES users(id)
 );
 
 CREATE TABLE users(
@@ -68,7 +66,6 @@ CREATE TABLE activities (
     PRIMARY KEY(id)
 );
 
-
 CREATE TABLE activity_comments(
     id INT AUTO_INCREMENT NOT NULL,
     user_id INT,
@@ -79,8 +76,6 @@ CREATE TABLE activity_comments(
     FOREIGN KEY (activity_id) REFERENCES activities(id),
     PRIMARY KEY(id)
 );
-
-
 
 CREATE TABLE travel_plans(
     id INT AUTO_INCREMENT NOT NULL,
@@ -121,7 +116,6 @@ CREATE TABLE plan_members(
     PRIMARY KEY(id)
 );
 
-
 CREATE TABLE activity_members(
     id INT AUTO_INCREMENT NOT NULL,
     user_id INT,
@@ -130,7 +124,6 @@ CREATE TABLE activity_members(
     FOREIGN KEY (activity_id ) REFERENCES activities(id ),
     PRIMARY KEY(id)
 );
-
 
 CREATE TABLE friend_list (
     id INT AUTO_INCREMENT NOT NULL,
@@ -160,13 +153,11 @@ CREATE TABLE messages (
     PRIMARY KEY (id)
 );
 
-
-
-
-
+-- Roles Insertions 
 INSERT INTO roles (role) VALUES ('user');
 INSERT INTO roles (role) VALUES ('admin');
 
+-- Status Insertions
 INSERT INTO status (status) VALUES ('in preparation');
 INSERT INTO status (status) VALUES ('ongoing');
 INSERT INTO status (status) VALUES ('completed');

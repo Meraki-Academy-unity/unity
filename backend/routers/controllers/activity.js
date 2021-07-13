@@ -17,7 +17,6 @@ const addActivity = (req, res) => {
       images,
       estimated_budget,
     } = req.body;
-
     const data = [
       title,
       start_date,
@@ -33,7 +32,6 @@ const addActivity = (req, res) => {
     db.query(query, data, (err, results) => {
       if (err) throw err;
       res.status(201).json(results);
-      //res.json("added complete")
     });
   });
 };
@@ -54,20 +52,18 @@ const getAllActivities = (req, res) => {
       });
     }
   });
-
-}
+};
 
 const getMyActivities = (req, res) => {
   const user_id = req.token.user_id;
   const query =
     "SELECT activities.title , activities.activities ,activities.id , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , activities.details  , activities.requirements , activities.images , users.first_name , users.last_name, users.profile_image , activities.user_id FROM  activities INNER JOIN  users  ON users.id= activities.user_id WHERE  activities.user_id=?";
-  ;
   const data = [user_id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
     res.json(result);
   });
-}
+};
 
 const getAllActivitiesByUser = (req, res) => {
   const id = req.params.id;
@@ -81,7 +77,6 @@ const getAllActivitiesByUser = (req, res) => {
 };
 
 const getActivitiesById = (req, res) => {
-
   const query = `SELECT activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time
   , activities.estimated_budget, activities.start_date , activities.finish_date , activities.details 
   , activities.requirements , activities.images , users.first_name , users.last_name
@@ -144,7 +139,6 @@ const joinActivityById = (req, res) => {
   const user_id = req.token.user_id;
   const query = `INSERT INTO activity_members (user_id,activity_id) VALUES (?,?)`;
   const data = [user_id, activity_id];
-
   db.query(query, data, (err, result) => {
     if (err) throw err;
     res.json(result);
@@ -224,16 +218,14 @@ const getMember = (req, res) => {
 };
 
 const getMembers = (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
   const query = `SELECT users.first_name , users.last_name , users.profile_image , users.id FROM activity_members INNER JOIN users ON user_id = users.id WHERE activity_id = ? ;`;
-  const data = [id]
+  const data = [id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
     res.json(result);
   });
-}
-
-
+};
 
 module.exports = {
   addActivity,
@@ -250,5 +242,5 @@ module.exports = {
   withDrawActivityById,
   getMember,
   getMembers,
-  getMyActivities
+  getMyActivities,
 };
