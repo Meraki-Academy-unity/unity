@@ -71,7 +71,7 @@ const GetAllTravel = () => {
               <p className="p">finish date : {moment(res.finish_date, "YYYY-MM-DD").add(1, 'days').format("DD-MM-YYYY")}</p>
               <div style={{display:"flex", gap:"116px" }}>
               <p className="p">estimated budget : {res.estimated_budget}</p>
-              <button className="btn" onClick = {()=>{
+              <button className="btnPlan" onClick = {()=>{
                     history.push(`/${res.id}`)
                   }}>Join Now</button>
               </div>

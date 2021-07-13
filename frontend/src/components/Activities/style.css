@@ -25,7 +25,7 @@
 .rightAct{
     display: grid;
     margin-top: 20px;
-    height: 205px;
+    height: 199px;
 }
 
 .img{
@@ -52,14 +52,27 @@
     width: 700px;
 }
 
-.comment{
-    display: grid;
-    justify-content:center;
-    align-items: center;
-    margin: 30px;
-    gap: 40px;
+.commentAct{
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
 }
 
+.commentActLeft{
+    display: grid;
+    padding: 5px;
+    border-style:ridge;
+    border-radius: 20px;
+    border-color:burlywood;
+}
+
+.commentActRight{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+    margin-bottom: 10px;
+}
 
 .add{
     margin-left: 85%;
@@ -98,7 +111,7 @@
   }
 
 
-.button {
+.buttonAct {
     background-color: #022047;
     color: #fff;
     border: 2px solid #fff;
@@ -111,7 +124,7 @@
 }
 
 
-.button:hover {
+.buttonAct:hover {
     color: #fbd601;
     background-color: #0d305d;
     border: 2px solid #022047;
@@ -119,10 +132,11 @@
   }
 
 
-.btn{
+.btnAct{
     background-color: #022047;
     color: #fff;
     border: 2px solid #fff;
+    border-radius: 0.5em;
     font-size: 1em;
     font-weight: lighter;
     letter-spacing: 1px;
@@ -130,9 +144,69 @@
     width: 130px;
 }
 
-.btn:hover {
+.btnAct:hover {
     color: #fbd601;
     background-color: #0d305d;
     border: 2px solid #022047;
     cursor:pointer;
   }
+
+
+ .join{
+    background-color: #0d305d;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 0.3em;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+    width: 70px;
+ }
+
+ .join:hover{
+    color: #fbd601;
+    background-color: #0d305d;
+    border: 2px solid #022047;
+    cursor:pointer;
+ }
+
+ .show{
+    background-color: #0d305d;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 0.3em;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+    width: 180px;
+ }
+
+ .show:hover{
+    color: #fbd601;
+    background-color: #0d305d;
+    border: 2px solid #022047;
+    cursor:pointer;
+ }
+
+ .text{
+     font-size: large;
+     color:brown;
+ }
+
+ .btnCont{
+     margin-top: 5px;
+     display: flex;
+     gap: 20px;
+
+
+ }
+
+ .postCont{
+     display: grid;
+     gap: 20px;
+     border-style :groove;
+     border-radius: 6px;
+     padding: 10px;
+ }
