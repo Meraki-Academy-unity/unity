@@ -1,7 +1,6 @@
 const db = require("../../db/db");
 
 const createTravelPlans = (req, res) => {
-  console.log("bayan naar ")
   const user_id = req.token.user_id;
   const query = `INSERT INTO travel_plans (title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget,user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?,?)`;
   const {
@@ -28,7 +27,9 @@ const createTravelPlans = (req, res) => {
     user_id,
   ];
   db.query(query, data, (err, results) => {
-    if (err) { console.log("err", err) };
+    if (err) {
+      console.log("err", err);
+    }
     res.status(201);
     res.json("added complete");
   });
@@ -58,6 +59,7 @@ const getTravelPlansById = (req, res) => {
     res.json(results);
   });
 };
+
 const getTravelPlansByUser = (req, res) => {
   const query = `SELECT travel_plans.title , travel_plans.activities ,travel_plans.id  , travel_plans.countries, travel_plans.creation_time
   , travel_plans.estimated_budget, travel_plans.start_date , travel_plans.finish_date , travel_plans.details 
@@ -121,7 +123,6 @@ const joinTravelPlanById = (req, res) => {
   const user_id = req.token.user_id;
   const query = `INSERT INTO plan_members (user_id,plan_id) VALUES (?,?)`;
   const data = [user_id, plan_id];
-
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json("Travel Plans Joined Successfully !");
     else res.status(400).json("ERROR OCCURRED.. !");
@@ -133,7 +134,6 @@ const withDrawTravelPlanById = (req, res) => {
   const user_id = req.token.user_id;
   const query = `DELETE FROM plan_members WHERE user_id = ? AND plan_id = ?`;
   const data = [user_id, plan_id];
-
   db.query(query, data, (err, result) => {
     if (result) res.status(200).json("Travel Plans Deleted Successfully !");
     else res.status(400).json("ERROR OCCURRED.. !");
@@ -201,8 +201,7 @@ const deletePlanComment = (req, res) => {
 const getMember = (req, res) => {
   const id = req.params.id;
   const user_id = req.token.user_id;
-  const query =
-    "SELECT * FROM  plan_members  WHERE  plan_id=? AND user_id=? ";
+  const query = "SELECT * FROM  plan_members  WHERE  plan_id=? AND user_id=? ";
   const data = [id, user_id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
@@ -211,14 +210,14 @@ const getMember = (req, res) => {
 };
 
 const getMembers = (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
   const query = `SELECT users.first_name , users.last_name , users.profile_image , users.id FROM plan_members INNER JOIN users ON user_id = users.id WHERE plan_id = ? ;`;
-  const data = [id]
+  const data = [id];
   db.query(query, data, (err, result) => {
     if (err) throw err;
     res.json(result);
   });
-}
+};
 const getMyPlans = (req, res) => {
   const user_id = req.token.user_id;
   const query = `SELECT travel_plans.title , travel_plans.activities ,travel_plans.id  , travel_plans.countries, travel_plans.creation_time
@@ -233,7 +232,7 @@ const getMyPlans = (req, res) => {
     if (err) throw err;
     res.json(result);
   });
-}
+};
 
 module.exports = {
   createTravelPlans,
@@ -251,6 +250,5 @@ module.exports = {
   getMember,
   getMembers,
   getMyPlans,
-  getTravelPlansByUser
-
+  getTravelPlansByUser,
 };

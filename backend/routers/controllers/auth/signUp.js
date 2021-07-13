@@ -1,11 +1,11 @@
 const connection = require("../../../db/db");
 const bcrypt = require("bcrypt");
 
-const signUpFirstStep =  (req, res) => {
+const signUpFirstStep = (req, res) => {
   const { first_name, last_name, email, password } = req.body;
   const query_1 = `SELECT * FROM users WHERE email=?`;
   const data_1 = [email];
-  connection.query(query_1, data_1, async(err, result) => {
+  connection.query(query_1, data_1, async (err, result) => {
     if (result.length) res.status(403).json("Email Already Exists");
     else {
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -33,7 +33,6 @@ const signUpFirstStep =  (req, res) => {
 
 const signUpSecondStep = (req, res) => {
   const id = req.params.id;
-
   const {
     region,
     currently_in,
@@ -43,7 +42,6 @@ const signUpSecondStep = (req, res) => {
     profile_image,
     display_name,
   } = req.body;
-
   const query = `
   UPDATE users
   SET region=?, currently_in=?,language=?,

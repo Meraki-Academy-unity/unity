@@ -25,25 +25,22 @@ const deleteFriend = (req, res) => {
 const showFriendList = (req, res) => {
   const user_id = req.token.user_id;
   const query = `SELECT first_name ,+ last_name,profile_image FROM users INNER JOIN friend_list ON  friend_list.friend_id=users.id WHERE user_id=?`;
-  const data = [user_id,user_id];
+  const data = [user_id, user_id];
   connection.query(query, data, (err, result) => {
     if (result) res.status(200).json(result);
     else res.status(400).json(err);
   });
 };
 
-
 const cheakeFriends = (req, res) => {
   const id = req.params.id;
   const user_id = req.token.user_id;
-  const query =
-    "SELECT * FROM friend_list WHERE friend_id=? AND user_id=? ";
+  const query = "SELECT * FROM friend_list WHERE friend_id=? AND user_id=? ";
   const data = [id, user_id];
   connection.query(query, data, (err, result) => {
     if (err) throw err;
     res.json(result);
   });
-
-}
+};
 
 module.exports = { addFriend, deleteFriend, showFriendList, cheakeFriends };
