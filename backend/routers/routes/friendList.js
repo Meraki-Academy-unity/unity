@@ -5,7 +5,7 @@ const {
   addFriend,
   deleteFriend,
   showFriendList,
-  cheakeFriends,
+  checkFriends,
 } = require("../controllers/friendList");
 
 const friendListRouter = express.Router();
@@ -13,6 +13,6 @@ const friendListRouter = express.Router();
 friendListRouter.post("/:id", authentication, addFriend);
 friendListRouter.delete("/:id", authentication, deleteFriend);
 friendListRouter.get("/", authentication, showFriendList);
-friendListRouter.get("/check/:id", authentication, cheakeFriends);
+friendListRouter.get("/check/:id", authentication, checkFriends);
 
 module.exports = friendListRouter;
