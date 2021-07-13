@@ -16,6 +16,7 @@ const preferencesRouter = require("./routers/routes/preferences");
 const profileRouter = require("./routers/routes/users");
 const ImagesRouter = require("./routers/routes/images");
 const MessagesRouter = require("./routers/routes/messages");
+
 //built-in middlewares
 app.use(express.json());
 
@@ -45,12 +46,12 @@ const io = socket(server, {
     methods: ["GET", "POST", "DELETE", "PUT"],
   },
 });
+
 io.on("connection", (socket) => {
-  console.log(socket.id);
   socket.on("join_room", (data) => {
     socket.join(data);
-    // console.log("user joined Room:", data);
   });
+
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data.content);
   });
