@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import InputEmoji from 'react-input-emoji'
-import { setEmoji } from "../../reducers/emoji";
 import "./chat.css"
-// import { changeUser } from "../../../../backend/db/db";
 
 let socket;
 const CONNECTION_PORT = "http://localhost:5000";
@@ -20,19 +18,16 @@ const Chat = () => {
   const [chatHistory, setChatHistory] = useState("");
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const [profile, setProfile] = useState("");
+  const [user, setUser] = useState("")
   const dispatch = useDispatch();
-
-  const [show, setShow] = useState(false)
+  const history = useHistory();
   const { id } = useParams();
 
   const state = useSelector((state) => {
     return {
       token: state.login.token,
-      emoji: state.emoji.emoji,
       id: state.id.id
     };
-    // console.log("emo",state.emoji)
   });
   socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
@@ -113,19 +108,38 @@ const Chat = () => {
       console.log(err);
     });
 
+  axios
+    .get(`http://localhost:5000/users/user/${id}`)
+    .then((result) => {
+      setUser(result.data[0])
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
   function handleOnEnter(message) {
     console.log('enter', message)
   }
 
   return (
     <>
-      <div className="App">
+      <div className="chat">
         {/* {profile.id > id ? setRoom(Number("" + id + profile.id)) : setRoom(Number("" +profile.id + id))} */}
         <br />
         <br />
         <br />
         <br />
-        <div className="userName">roaa</div>
+        <br />
+        <div className="userName">
+          <svg onClick={() => {
+            history.go(-1)
+          }} xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+          </svg>
+          <img src={user.profile_image} />
+          <p>{user.first_name}</p>
+
+        </div>
         <div className="chatHome">
           <div className="chatPageContainer">
             <div className="chatPage">
@@ -135,18 +149,16 @@ const Chat = () => {
                     <div key={i}>
 
                       {(elem.sender_id === state.id) ? <div className="myChat">
-
                         <div className="myInfo">
-                          {/* <p>{elem.first_name}</p> */}
+
                           <p className="myContent" >{elem.content}</p>
                         </div>
                         <img src={elem.profile_image} className="userChatImg" />
-                        {/* </div> */}
+
                       </div> :
                         <div className="userChat" >
                           <img src={elem.profile_image} className="userChatImg" />
                           <div className="Info">
-                            {/* <p>{elem.first_name}</p> */}
                             <p className="userContent">{elem.content}</p>
                           </div>
 
@@ -162,17 +174,7 @@ const Chat = () => {
               ""
             ) : (
               <>
-                <div>
-                  {messageList.map((val, i) => {
-                    return (
-                      <h1 key={i}>
-                        {/* {val.author} {val.message} */}
-                      </h1>
-                    );
-                  })}
-                </div>
                 <div className="chatInput">
-
                   <div className="emoji">
                     <InputEmoji
                       value={message}
@@ -180,6 +182,8 @@ const Chat = () => {
                       cleanOnEnter
                       onEnter={handleOnEnter}
                       placeholder="Type a message"
+                      borderRadius="5px"
+                      borderColor="rgba(0, 0, 0, 0.3)"
                     />
                   </div>
                   <div className="sendButton">
