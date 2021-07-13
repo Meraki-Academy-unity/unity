@@ -24,7 +24,7 @@
 .rightPlan{
     display: grid;
     margin-top: 20px;
-    height: 205px;
+    height: 199px;
 }
 
 .img{
@@ -117,10 +117,11 @@ button:hover {
     cursor:pointer;
   }
 
-  .btn{
+  .btnPlan{
     background-color: #022047;
     color: #fff;
     border: 2px solid #fff;
+    border-radius: 0.5em;
     font-size: 1em;
     font-weight: lighter;
     letter-spacing: 1px;
@@ -128,7 +129,7 @@ button:hover {
     width: 130px;
 }
 
-.btn:hover {
+.btnPlan:hover {
     color: #fbd601;
     background-color: #0d305d;
     border: 2px solid #022047;

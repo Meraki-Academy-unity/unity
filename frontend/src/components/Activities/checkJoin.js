@@ -86,18 +86,18 @@ const CheckJoin = ({ activity_id }) => {
       });
   };
 
-  return <>
+  return <><div className = "btnCont">
     {!join ? (
-      <button onClick={AddMember}>Join</button>
+      <button className="join" onClick={AddMember}>Join</button>
     ) : (
-      <button onClick={DeleteMember}>Leave</button>
+      <button className="join" onClick={DeleteMember}>Leave</button>
     )}
 
-    {show ? <button onClick={ShowMembers}>Show All Members</button> : <button onClick={() => {
+    {show ? <button className="show" onClick={ShowMembers}>Show All Members</button> : <button className="show" onClick={() => {
       { setShow(true) }
       { setMembers([]) }
     }}>Hide Members</button>}
-
+    </div>
     {members && members.map((elem, ind) => {
       return <div key={ind}>
         <img src={elem.profile_image} style={{ width: "100px" }}></img>

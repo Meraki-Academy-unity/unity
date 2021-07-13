@@ -100,7 +100,7 @@ const Activities = () => {
                         estimated budget : {res.estimated_budget}
                       </p>
                       <button
-                        className="btn"
+                        className="btnAct"
                         onClick={() => {
                           history.push(`/${res.id}`);
                         }}
