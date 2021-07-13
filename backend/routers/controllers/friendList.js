@@ -32,7 +32,7 @@ const showFriendList = (req, res) => {
   });
 };
 
-const cheakeFriends = (req, res) => {
+const checkFriends = (req, res) => {
   const id = req.params.id;
   const user_id = req.token.user_id;
   const query = "SELECT * FROM friend_list WHERE friend_id=? AND user_id=? ";
@@ -43,4 +43,4 @@ const cheakeFriends = (req, res) => {
   });
 };
 
-module.exports = { addFriend, deleteFriend, showFriendList, cheakeFriends };
+module.exports = { addFriend, deleteFriend, showFriendList, checkFriends };
