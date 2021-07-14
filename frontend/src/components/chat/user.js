@@ -8,7 +8,6 @@ import "./chat.css"
 
 let socket;
 const CONNECTION_PORT = "http://localhost:5000";
-
 socket = io(CONNECTION_PORT);
 
 const Chat = () => {

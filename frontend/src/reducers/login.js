@@ -1,5 +1,6 @@
+const token = localStorage.getItem("token") || "";
 const initialState = {
-  token: "",
+  token,
 };
 
 const login = (state = initialState, { type, payload }) => {
@@ -14,9 +15,8 @@ const login = (state = initialState, { type, payload }) => {
 export default login;
 
 export const setToken = (token) => {
-    return {
-        type: "SET_TOKEN",
-        payload: token
-    }
+  return {
+    type: "SET_TOKEN",
+    payload: token,
+  };
 };
-
