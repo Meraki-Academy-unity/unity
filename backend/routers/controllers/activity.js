@@ -43,7 +43,7 @@ const getAllActivities = (req, res) => {
     if (err) throw err;
     if (results) {
       const currentlyIn = results[0].currently_in;
-      const query1 = `SELECT activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , users.first_name , users.last_name , users.profile_image FROM activities INNER JOIN  users ON activities.user_id = users.id WHERE activities.location=?`;
+      const query1 = `SELECT activities.images, activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , users.first_name , users.last_name , users.profile_image FROM activities INNER JOIN  users ON activities.user_id = users.id WHERE activities.location=?`;
       const data = [currentlyIn];
       db.query(query1, data, (err, results_) => {
         if (err) throw err;

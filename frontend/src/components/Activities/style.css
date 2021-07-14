@@ -1,43 +1,71 @@
-
-  .Activities{
+body {
+    background-color: rgb(241, 241, 241);
+  }
+  
+  .post_page {
     display: grid;
-    grid-gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    gap: 55px;
-    margin-top: 90px;
-}
-
-.Activity{
-    display: flex;
-    border-style:solid;
-    border-color: rgb(160,170,177);
-    gap: 70px;
-    width: 700px;
-    
-}
-
-.leftAct{
-    margin :20px
-}
-
-
-.rightAct{
+    grid-template-columns: 1fr 1fr;
+    row-gap: 90px;
+    margin-top: 4%;
+    margin-left: 9.5%;
+    margin-bottom: 4%;
+  }
+ 
+.post_card {
     display: grid;
+    grid-template-rows: 500px 250px;
+    width: 80%;
+    background-color: rgba(230, 230, 230, 0.9);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .poster_image {
+    height: 100%;
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  .post_details {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .poster_image:hover {
+    cursor: pointer;
+  }
+  
+  .uploader {
+    margin-top: 10px;
+  }
+  
+  .uploader p {
+    text-align: center;
     margin-top: 20px;
-    height: 199px;
-}
+    width: 150px;
+  }
+
+.post_info {
+    display: grid;
+    margin-top: 10px;
+  }
+  
+  .post_info:hover {
+    cursor: pointer;
+  }
 
 .img{
     border-radius: 80%;
     width: 150px;
     height: 150px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.p{
-    color: rgb(232,180,48);
+.text {
+    color: rgb(232, 180, 48);
     font-weight: bold;
-}
+  }
 
 .post{
     margin: 30px;

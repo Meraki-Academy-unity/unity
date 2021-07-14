@@ -40,14 +40,14 @@ const Activities = () => {
         {state.token ? (
           <div className="add">
             <button
-              style={{ backgroundColor: "white", border: "none" }}
+              style={{ backgroundColor: "rgb(241, 241, 241)", border: "none" }}
               onClick={() => {
                 history.push("/addActivity");
               }}
             >
               <IconContext.Provider
                 value={{
-                  style: { fontSize: "35px", color: "rgb(0, 123, 255)" },
+                  style: { fontSize: "35px", color: "rgb(232, 180, 48)" },
                 }}
               >
                 <FaPlus />
@@ -57,22 +57,30 @@ const Activities = () => {
         ) : (
           ""
         )}
-        <div className="Activities">
+        <div className="post_page">
           {activities &&
             activities.map((res, ind) => {
               return (
-                <div className="Activity">
-                  <div className="leftAct">
+                <div className="post_card">
+                  <div>
+                  <img
+                    className="poster_image"
+                    src={res.images}
+                    onClick={() => {
+                      history.push(`/activities/activity/${res.id}`);
+                    }}
+                  />
+                </div>
+                <div className="post_details">
+                  <div className="uploader">
                     <img src={res.profile_image} className="img"></img>
-                    <p
-                      style={{ color: "rgb(0, 123, 255)", marginLeft: "10px" }}
-                    >
+                    <p style={{ color: "black" }}>
                       {res.first_name} {res.last_name}
                     </p>
                   </div>
 
                   <div
-                    className="rightAct"
+                   className="post_info"
                     onClick={() => {
                       history.push(`/activities/activity/${res.id}`);
                     }}
@@ -82,32 +90,25 @@ const Activities = () => {
                     >
                       {res.title}
                     </h2>
-                    <p className="p">location : {res.location}</p>
-                    <p className="p">
+                    <p className="text">location : {res.location}</p>
+                    <p className="text">
                       start date :{" "}
                       {moment(res.start_date, "YYYY-MM-DD")
                         .add(1, "days")
                         .format("DD-MM-YYYY")}
                     </p>
-                    <p className="p">
+                    <p className="text">
                       finish date :{" "}
                       {moment(res.finish_date, "YYYY-MM-DD")
                         .add(1, "days")
                         .format("DD-MM-YYYY")}
                     </p>
                     <div style={{ display: "flex", gap: "116px" }}>
-                      <p className="p">
+                      <p className="text">
                         estimated budget : {res.estimated_budget}
                       </p>
-                      <button
-                        className="btnAct"
-                        onClick={() => {
-                          history.push(`/${res.id}`);
-                        }}
-                      >
-                        Join Now
-                      </button>
                     </div>
+                  </div>
                   </div>
                 </div>
               );
