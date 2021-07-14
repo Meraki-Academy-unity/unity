@@ -19,7 +19,8 @@ const CheckJoin = ({ activity_id }) => {
     };
   });
 
-  axios
+  useEffect(()=>{
+    axios
     .get(`http://localhost:5000/activities/member/${activity_id}`, {
       headers: {
         Authorization: `Bearer ${state.token}`,
@@ -35,6 +36,8 @@ const CheckJoin = ({ activity_id }) => {
     .catch((err) => {
       console.log("err", err);
     });
+  },[join])
+  
 
   const ShowMembers = async () => {
     setShow(false)
@@ -61,6 +64,7 @@ const CheckJoin = ({ activity_id }) => {
         }
       )
       .then((result) => {
+        setJoin(true)
         console.log(result);
       })
       .catch((err) => {
@@ -79,6 +83,7 @@ const CheckJoin = ({ activity_id }) => {
         }
       )
       .then((result) => {
+        setJoin(false)
         console.log(result);
       })
       .catch((err) => {

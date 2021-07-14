@@ -15,8 +15,9 @@ const Matching = () => {
         };
     });
 
-    const matchByLoaction = () => {
-        axios.get("http://localhost:5000/preferences/locationMatch", {
+    const MatchByLoaction = () => {
+        useEffect(()=>{
+            axios.get("http://localhost:5000/preferences/locationMatch", {
             headers: {
                 Authorization: `Bearer ${state.token}`,
             }
@@ -25,10 +26,13 @@ const Matching = () => {
         }).catch((err) => {
             console.log("error", err)
         })
+        },[stateMatch])
+        
     }
 
-    const matchByDate = () => {
-        axios.get("http://localhost:5000/preferences/dateMatch", {
+    const MatchByDate = () => {
+        useEffect(()=>{
+            axios.get("http://localhost:5000/preferences/dateMatch", {
             headers: {
                 Authorization: `Bearer ${state.token}`,
             }
@@ -37,10 +41,12 @@ const Matching = () => {
         }).catch((err) => {
             console.log("error", err)
         })
+        },[stateMatch])
+        
     }
 
-    const matchByDateAndLocation = () => {
-        axios.get("http://localhost:5000/preferences/match", {
+    const MatchByDateAndLocation = () => {
+        useEffect(()=>{axios.get("http://localhost:5000/preferences/match", {
             headers: {
                 Authorization: `Bearer ${state.token}`,
             }
@@ -48,13 +54,18 @@ const Matching = () => {
             setContent(result.data)
         }).catch((err) => {
             console.log("error", err)
-        })
+        })}, [stateMatch])
+        
     }
 
 
     return (
         <>
-
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
             <button onClick={() => {
                 setStateMatch("both")
             }}> Matching</button>
@@ -68,11 +79,11 @@ const Matching = () => {
 
 
             {stateMatch == "location" ?
-                <>{matchByLoaction()}</> : ""}
+                <>{MatchByLoaction()}</> : ""}
             {stateMatch == "date" ?
-                <>{matchByDate()}</> : ""}
+                <>{MatchByDate()}</> : ""}
             {stateMatch == "both" ?
-                <>{matchByDateAndLocation()}</> : ""}
+                <>{MatchByDateAndLocation()}</> : ""}
 
             {content && content.map((elem, i) => {
                 return <div key={i} style={{ border: "2px solid", margin: "10px" }}>
