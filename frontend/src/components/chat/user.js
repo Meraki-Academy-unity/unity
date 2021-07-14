@@ -29,6 +29,41 @@ const Chat = () => {
       id: state.id.id
     };
   });
+
+  useEffect(()=>{
+    axios
+    .get("http://localhost:5000/users/myProfile", {
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+      },
+    })
+    .then((result) => {
+      setUserName(result.data[0].first_name);
+      if (result.data[0].id > id) {
+        setRoom(Number("" + id + result.data[0].id));
+
+      } else {
+        setRoom(Number("" + result.data[0].id + id));
+
+      }
+      connectToRoom();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  axios
+    .get(`http://localhost:5000/users/user/${id}`)
+    .then((result) => {
+      setUser(result.data[0])
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[])
+  
+
+
   socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
   });
@@ -87,35 +122,7 @@ const Chat = () => {
     console.log("messageContent: ", messageContent);
   };
 
-  axios
-    .get("http://localhost:5000/users/myProfile", {
-      headers: {
-        Authorization: `Bearer ${state.token}`,
-      },
-    })
-    .then((result) => {
-      setUserName(result.data[0].first_name);
-      if (result.data[0].id > id) {
-        setRoom(Number("" + id + result.data[0].id));
-
-      } else {
-        setRoom(Number("" + result.data[0].id + id));
-
-      }
-      connectToRoom();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-  axios
-    .get(`http://localhost:5000/users/user/${id}`)
-    .then((result) => {
-      setUser(result.data[0])
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  
 
   function handleOnEnter(message) {
     console.log('enter', message)
