@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(117, 115, 115);
+  background-color: rgb(241, 241, 241);
 }
 
 .post_page {
@@ -14,10 +14,8 @@ body {
 .post_card {
   display: grid;
   grid-template-rows: 500px 250px;
-  /* border: 1px solid rgba(0, 0, 0, 0.3); */
-  /* border-radius: 5px; */
   width: 80%;
-  background-color: rgba(88, 87, 87, 0.2);
+  background-color: rgba(230, 230, 230, 0.9);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
@@ -26,8 +24,6 @@ body {
   padding: 15px;
   display: grid;
   grid-template-columns: 25% 1fr;
-  /* border: 1px solid rgba(0, 0, 0, 0.3); */
-  /* border-top: none; */
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }

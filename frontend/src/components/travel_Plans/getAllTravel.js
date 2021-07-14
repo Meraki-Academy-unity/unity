@@ -101,14 +101,6 @@ const GetAllTravel = () => {
                       <p className="text">
                         Estimated budget : {element.estimated_budget} $
                       </p>
-                      {/* <button
-                        className="btnPlan"
-                        onClick={() => {
-                          history.push(`/${element.id}`);
-                        }}
-                      >
-                        View More
-                      </button> */}
                     </div>
                   </div>
                 </div>
