@@ -2,15 +2,31 @@ import React, { useEffect, useState , } from 'react';
 import axios from 'axios';
 import { Link, Route } from "react-router-dom";
 import { useSelector } from 'react-redux';
-
+import DeleteTravelComments from './deleteTravelComment';
+import UpdateTravelComment from './updateTravelComment';
 
 const AddTravelComment = ({travel_id})=>{
     const [content , setContent] = useState("")
+    const [comment, setComment] = useState("")
+    const [show, setShow] = useState(false);
+
     const state = useSelector((state) => {
         return {
           token: state.login.token,
         };
       });
+
+      useEffect(()=>{
+        axios
+      .get(`http://localhost:5000/travelPlans/comments/${travel_id}`)
+      .then((result) => {
+        setComment(result.data)
+      })
+      .catch((err) => {
+        throw err;
+      });
+      },[comment])
+
     
     const addComment =()=>{
         axios.post(`http://localhost:5000/travelPlans/comment/${travel_id}`, {content} ,{
@@ -23,7 +39,34 @@ const AddTravelComment = ({travel_id})=>{
               console.log(err)
           })
     }
+
     return <>
+    <div className="comment">
+    {comment &&
+        comment.map((res, ind) => {
+            return (
+                <div key={ind}>
+                    <img src={res.profile_image} style={{ width: "100px" }}></img>
+                    <p>user : {res.first_name}</p>
+                    <p>comment: {res.content}</p>
+                    {state.token ? <DeleteTravelComments comment_id={res.id} /> : ""}
+
+                    {state.token ? (
+                        <button onClick={() => setShow(!show)}>update</button>
+                    ) : (
+                        ""
+                    )}
+                    {show && state.token ? (
+                        <UpdateTravelComment comment_id={res.id} />
+                    ) : (
+                        ""
+                    )}
+                </div>
+            );
+        })}
+</div>
+
+
     <textarea onChange={(e)=>{setContent(e.target.value)}} placeholder="Write your comment here"/>
     <button onClick={addComment}>Add Comment</button>
     </>

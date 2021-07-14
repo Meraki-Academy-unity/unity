@@ -7,9 +7,7 @@ import "./profile.css";
 
 const Profile = () => {
   const [profile, setProfile] = useState([]);
-  const [user_id, setUserId] = useState(-1);
-  const [DisplayName, setDisplayName] = useState("User Name");
-  const [ProfileImg, setProfileImg] = useState(-1);
+
 
   const state = useSelector((state) => {
     return {
@@ -17,39 +15,34 @@ const Profile = () => {
     };
   });
 
-  // useEffect(getProfile, []);
 
-  function getProfile() {
-    axios
+useEffect(()=>{
+  axios
       .get("http://localhost:5000/users/myProfile", {
         headers: {
           Authorization: `Bearer ${state.token}`,
         },
       })
       .then((result) => {
-        setProfile(result.data);
-        setUserId(result.data[0].id);
-        setDisplayName(
-          result.data[0].first_name + "_" + result.data[0].last_name
-        );
-        setProfileImg(result.data[0].profile_image);
+        setProfile(result.data[0]);
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+
+},[])
+    
 
   return (
 
     <div className="profileCont">
-      {getProfile()}
       <div className="profile">
         <div className="backImg"></div>
         <div className="profImage">
-          <img id="proImg" src={ProfileImg} />
+          <img id="proImg" src={profile.profile_image} />
         </div>
         <div className="displayName">
-          <p>{DisplayName}</p>
+          <p>{profile.first_name}_{profile.last_name}</p>
           <small>Jordanian</small>
           <div>
             <div className="tabName">

@@ -16,7 +16,7 @@ const CheckTravelJoin = ({ travel_id }) => {
       id:state.id.id
     };
   });
-
+  useEffect(()=>{
   axios
     .get(`http://localhost:5000/travelPlans/member/${travel_id}`, {
       headers: {
@@ -33,7 +33,8 @@ const CheckTravelJoin = ({ travel_id }) => {
     .catch((err) => {
       console.log("err", err);
     });
-
+  },[join])
+  
   const ShowMembers = async () => {
     setShow(false)
     await axios

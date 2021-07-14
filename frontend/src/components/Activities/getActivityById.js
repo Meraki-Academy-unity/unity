@@ -3,17 +3,18 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Link, Route } from "react-router-dom";
 import AddComment from "./addComment";
-import DeleteComments from "./deleteComment";
-import UpdateComment from "./updateComment";
+
+
 import { useSelector } from "react-redux";
 import Join from "./activityJoin";
 import CheckJoin from "./checkJoin";
 import moment from "moment";
 
 const GetActivityById = (id) => {
-  const [comment, setComment] = useState([]);
-  const [activity, setActivity] = useState("");
-  const [show, setShow] = useState(false);
+  
+  const [activity, setActivity] = useState([]);
+  
+  
   const history = useHistory()
   const state = useSelector((state) => {
     return {
@@ -21,8 +22,8 @@ const GetActivityById = (id) => {
       id: state.id.id,
     };
   });
-  useEffect(async () => {
-    await axios
+  useEffect(() => {
+    axios
       .get(`http://localhost:5000${id.location.pathname}`)
       .then((result) => {
         setActivity(result.data[0]);
@@ -31,16 +32,10 @@ const GetActivityById = (id) => {
         throw err;
       });
   }, []);
-  if (activity) {
-    axios
-      .get(`http://localhost:5000/activities/comment/${activity.id}`)
-      .then((result) => {
-        setComment(result.data);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }
+
+
+
+
 
   return (
     <>
@@ -71,33 +66,7 @@ const GetActivityById = (id) => {
           </div>
         
         {state.token ? <CheckJoin activity_id={activity.id} /> : ""}
-        <div className="commentAct">
-          {comment &&
-            comment.map((res, ind) => {
-              return (<>
-                <div key={ind} className="commentActLeft">
-                  <img src={res.profile_image} style={{ width: "70px" , borderRadius: "50%" }}></img>
-                  <p className="text"> {res.first_name}</p> 
-                  </div>
-                  <div className="commentActRight">
-                  <p className="text"> {res.content}</p>
-                  {state.token ? <DeleteComments comment_id={res.id} /> : ""}
-                  {state.token ? (
-                    <button onClick={() => setShow(!show)}>update</button>
-                  ) : (
-                    ""
-                  )}
-                  {show && state.token ? (
-                    <UpdateComment comment_id={res.id} />
-                  ) : (
-                    ""
-                  )}
-                  
-                </div>
-                </>
-              );
-            })}
-        </div>
+        
         {state.token ? <AddComment activity_id={activity.id} /> : ""}
       </div>
       </div>
