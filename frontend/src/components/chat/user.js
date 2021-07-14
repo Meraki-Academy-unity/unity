@@ -72,8 +72,8 @@ const Chat = () => {
     socket.emit("join_room", room); //raise event
   };
 
-  useEffect(async () => {
-    await axios
+  // useEffect(async () => {
+     axios
       .get(`http://localhost:5000/messages/${room}`)
       .then((result) => {
         console.log("chat history: ", result);
@@ -82,7 +82,7 @@ const Chat = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [message || room]);
+  // }, [message || room]);
 
   const sendMessage = async () => {
     const messageContent = {
