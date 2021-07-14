@@ -1,137 +1,165 @@
-.Plans{
-    display: grid;
-    grid-gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    gap: 55px;
-    margin-top: 90px;
+body {
+  background-color: rgb(117, 115, 115);
 }
 
-.Plan{
-    display: flex;
-    border-style:solid;
-    border-color: rgb(160,170,177);
-    gap: 70px;
-    width: 700px;
-    
+.post_page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 90px;
+  margin-top: 4%;
+  margin-left: 9.5%;
+  margin-bottom: 4%;
 }
 
-.leftPlan{
-    margin :20px
+.post_card {
+  display: grid;
+  grid-template-rows: 500px 250px;
+  /* border: 1px solid rgba(0, 0, 0, 0.3); */
+  /* border-radius: 5px; */
+  width: 80%;
+  background-color: rgba(88, 87, 87, 0.2);
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-
-.rightPlan{
-    display: grid;
-    margin-top: 20px;
-    height: 199px;
+.post_details {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  /* border: 1px solid rgba(0, 0, 0, 0.3); */
+  /* border-top: none; */
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-.img{
-    border-radius: 80%;
-    width: 150px;
-    height: 150px;
+.poster_image {
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
-.p{
-    color: rgb(232,180,48);
-    font-weight: bold;
+.poster_image:hover {
+  cursor: pointer;
 }
 
-.post{
-    margin: 30px;
-    display: grid;
-    gap : 20px ; 
-    justify-content: center;
-    align-items: center;
-    
+.uploader {
+  margin-top: 10px;
 }
 
-.postImg{
-    width: 700px;
+.uploader p {
+  text-align: center;
+  margin-top: 20px;
+  width: 150px;
 }
 
-.comment{
-    display: grid;
-    justify-content:center;
-    align-items: center;
-    margin: 30px;
-    gap: 40px;
+.post_info {
+  display: grid;
+  margin-top: 10px;
 }
 
-
-.add{
-    margin-left: 85%;
-    margin-top: 7%;
+.post_info:hover {
+  cursor: pointer;
 }
 
-
-.form{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: auto;
-    gap: 20px;
-    padding-top: 150px;
+.img {
+  border-radius: 80%;
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.input_cont{
-    display: grid;
-    gap: 5px;
-    
+.text {
+  color: rgb(232, 180, 48);
+  font-weight: bold;
 }
 
+.post {
+  margin: 30px;
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.postImg {
+  width: 700px;
+}
+
+.comment {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  gap: 40px;
+}
+
+.add {
+  margin-left: 85%;
+  margin-top: 6%;
+}
+
+.form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: auto;
+  gap: 20px;
+  padding-top: 150px;
+}
+
+.input_cont {
+  display: grid;
+  gap: 5px;
+}
 
 .input {
-    padding: 10px 10px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid #cfcfcf;
+  padding: 10px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #cfcfcf;
 }
-
 
 .input::placeholder {
-    font-size: 1.2em;
-    font-weight: lighter;
-    color: #999;
-  }
-
-
-.button {
-    background-color: #022047;
-    color: #fff;
-    border: 2px solid #fff;
-    width: 100%;
-    padding: 8px 0px;
-    font-size: 1em;
-    font-weight: lighter;
-    letter-spacing: 1px;
-    margin-bottom: 0.25em;
+  font-size: 1.2em;
+  font-weight: lighter;
+  color: #999;
 }
 
+.button {
+  background-color: #022047;
+  color: #fff;
+  border: 2px solid #fff;
+  width: 100%;
+  padding: 8px 0px;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
+}
 
 button:hover {
-    color: #fbd601;
-    background-color: #0d305d;
-    border: 2px solid #022047;
-    cursor:pointer;
-  }
+  color: #fbd601;
+  background-color: #0d305d;
+  border: 2px solid #022047;
+  cursor: pointer;
+}
 
-  .btnPlan{
-    background-color: #022047;
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 0.5em;
-    font-size: 1em;
-    font-weight: lighter;
-    letter-spacing: 1px;
-    margin-bottom: 0.25em;
-    width: 130px;
+.btnPlan {
+  background-color: #022047;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0.5em;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
+  width: 130px;
 }
 
 .btnPlan:hover {
-    color: #fbd601;
-    background-color: #0d305d;
-    border: 2px solid #022047;
-    cursor:pointer;
-  }
+  color: #fbd601;
+  background-color: #0d305d;
+  border: 2px solid #022047;
+  cursor: pointer;
+}

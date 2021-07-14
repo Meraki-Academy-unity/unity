@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Link, Route } from "react-router-dom";
-import "./style.css"
+import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { FaPlus } from 'react-icons/fa';
-import {IconContext} from "react-icons"
-import moment from 'moment';
+import { FaPlus } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import moment from "moment";
 
 const GetAllTravel = () => {
   const [travels, setTravels] = useState([]);
   const state = useSelector((state) => {
     return {
       url: state.imgUploader.url,
-      token: state.login.token
+      token: state.login.token,
     };
   });
-  const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
     axios
       .get(`http://localhost:5000/travelPlans`)
@@ -30,59 +30,94 @@ const GetAllTravel = () => {
 
   return (
     <>
-    {state.token ? (
-        <div className = "add">
-
-
-        <button
-        style = {{ backgroundColor:"white" , border:"none"}}
-          onClick={() => {
-            history.push("/addTravel");
-          }}
-        >
-          <IconContext.Provider value={{ style: {fontSize: '35px', color: "rgb(0, 123, 255)"}}}>
-             <FaPlus />
+      {state.token ? (
+        <div className="add">
+          <button
+            style={{ backgroundColor: "rgb(117, 115, 115)", border: "none" }}
+            onClick={() => {
+              history.push("/addTravel");
+            }}
+            title="Create Travel Plan"
+          >
+            <IconContext.Provider
+              value={{
+                style: { fontSize: "35px", color: "rgb(232, 180, 48)" },
+              }}
+            >
+              <FaPlus />
             </IconContext.Provider>
-        </button>
+          </button>
         </div>
       ) : (
         ""
       )}
-    <div className="Plans">
-    {travels &&
-      travels.map((res, ind) => {
-        return (
-          
-            <div className="Plan">
-              <div className="leftPlan">
-              <img src={res.profile_image} className="img"></img>
-              <p style = {{color: "rgb(0, 123, 255)", marginLeft: "10px"}}>
-                {res.first_name} {res.last_name}
-              </p>
-              </div>
+      <div className="post_page">
+        {travels &&
+          travels.map((element) => {
+            return (
+              <div className="post_card">
+                <div>
+                  <img
+                    className="poster_image"
+                    src={element.images}
+                    onClick={() => {
+                      history.push(`travelPlans/${element.id}`);
+                    }}
+                  />
+                </div>
+                <div className="post_details">
+                  <div className="uploader">
+                    <img src={element.profile_image} className="img"></img>
+                    <p style={{ color: "black" }}>
+                      {element.first_name} {element.last_name}
+                    </p>
+                  </div>
 
-
-              <div className="rightPlan" onClick = {()=>{
-                    history.push(`travelPlans/${res.id}`)
-                  }}>
-              <h2 style ={{ color: "rgb(232,180,48)", fontWeight: "bold" }}>{res.title}</h2>
-              <p className="p">countries : {res.countries}</p>
-              <p className="p">start date : {moment(res.start_date, "YYYY-MM-DD").add(1, 'days').format("DD-MM-YYYY")}</p>
-              <p className="p">finish date : {moment(res.finish_date, "YYYY-MM-DD").add(1, 'days').format("DD-MM-YYYY")}</p>
-              <div style={{display:"flex", gap:"116px" }}>
-              <p className="p">estimated budget : {res.estimated_budget}</p>
-              <button className="btnPlan" onClick = {()=>{
-                    history.push(`/${res.id}`)
-                  }}>Join Now</button>
+                  <div
+                    className="post_info"
+                    onClick={() => {
+                      history.push(`travelPlans/${element.id}`);
+                    }}
+                  >
+                    <h2
+                      style={{ color: "rgb(232,180,48)", fontWeight: "bold" }}
+                    >
+                      {element.title}
+                    </h2>
+                    <p className="text">Travel to : {element.countries}</p>
+                    <p className="text">
+                      Start date :{" "}
+                      {moment(element.start_date, "YYYY-MM-DD")
+                        .add(1, "days")
+                        .format("DD-MM-YYYY")}
+                    </p>
+                    <p className="text">
+                      Finish date :{" "}
+                      {moment(element.finish_date, "YYYY-MM-DD")
+                        .add(1, "days")
+                        .format("DD-MM-YYYY")}
+                    </p>
+                    <div style={{ display: "flex", gap: "116px" }}>
+                      <p className="text">
+                        Estimated budget : {element.estimated_budget} $
+                      </p>
+                      {/* <button
+                        className="btnPlan"
+                        onClick={() => {
+                          history.push(`/${element.id}`);
+                        }}
+                      >
+                        View More
+                      </button> */}
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            
-          </div>
-        );
-      })}
+            );
+          })}
       </div>
-  </>
-  )
+    </>
+  );
 };
 
 export default GetAllTravel;
