@@ -100,10 +100,12 @@
   margin-bottom: 20px;
 }
 
+
 .commentActLeft {
   display: grid;
   padding: 5px;
 }
+
 
 .commentActRight {
   display: flex;
