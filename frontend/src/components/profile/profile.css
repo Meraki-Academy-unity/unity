@@ -69,13 +69,13 @@ body {
   font-weight: bold;
 }
 
-.profile-nav-info .address {
+.profile-nav-info .displayName {
   display: flex;
   font-weight: bold;
   color: #777;
 }
 
-.profile-nav-info .address p {
+.profile-nav-info .displayName p {
   margin-right: 5px;
 }
 
@@ -288,15 +288,15 @@ body {
   /* display: none; */
 }
 
-.friend_page{
+.friend_page {
   display: grid;
-  grid-template-columns: 125px 125px 125px 125px ;
+  grid-template-columns: 125px 125px 125px 125px;
   row-gap: 30px;
   margin-top: 30px;
   /* margin-left: 15%; */
   padding: 20px;
   /* margin-bottom: 4%; */
-  justify-content:space-around;
+  justify-content: space-around;
   /* align-items: center; */
   text-align: center;
 }
@@ -304,18 +304,43 @@ body {
 /* .friend_card{
 /* margin-top:10; 
 } */
-.friend_img
-{
+.friend_img {
   border-radius: 50%;
   width: 125px;
   height: 125px;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
-.friend_card p{
+.friend_card p {
   margin-top: 15px;
-
 }
 
-.friend_card a{
+.friend_card a {
   text-decoration: none;
+}
+
+.edit_page {
+  padding: 30px;
+}
+
+.edit_page p {
+  margin-bottom: 10px;
+}
+
+.edit_page button {
+  font-size: 16px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+form {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.edit_details input {
+  padding: 4px;
 }
