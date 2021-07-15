@@ -103,8 +103,8 @@ const CheckJoin = ({ activity_id }) => {
       { setMembers([]) }
     }}>Hide Members</button>}
     </div>
-    {members && members.map((elem, ind) => {
-      return <div key={ind}>
+    {members && members.map((elem, index) => {
+      return <div key={index}>
         <img src={elem.profile_image} style={{ width: "100px" }}></img>
         {state.id !== elem.id ? (<Link to={`/users/user/${elem.id}`}>
           {elem.first_name} {elem.last_name}

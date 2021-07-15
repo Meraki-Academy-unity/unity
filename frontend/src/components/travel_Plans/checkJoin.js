@@ -7,46 +7,45 @@ import id from "../../reducers/userID";
 // import Join from "./activityJoin";
 
 const CheckTravelJoin = ({ travel_id }) => {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
   const [join, setJoin] = useState(false);
   const [members, setMembers] = useState([]);
   const state = useSelector((state) => {
     return {
       token: state.login.token,
-      id:state.id.id
+      id: state.id.id,
     };
   });
-  useEffect(()=>{
-  axios
-    .get(`http://localhost:5000/travelPlans/member/${travel_id}`, {
-      headers: {
-        Authorization: `Bearer ${state.token}`,
-      },
-    })
-    .then((result) => {
-      if (result.data.length) {
-        setJoin(true);
-      } else {
-        setJoin(false);
-      }
-    })
-    .catch((err) => {
-      console.log("err", err);
-    });
-  },[join])
-  
-  const ShowMembers = async () => {
-    setShow(false)
-    await axios
-      .get(`http://localhost:5000/travelPlans/members/${travel_id}`)
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/travelPlans/member/${travel_id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
       .then((result) => {
-        setMembers(result.data)
+        if (result.data.length) {
+          setJoin(true);
+        } else {
+          setJoin(false);
+        }
       })
       .catch((err) => {
         console.log("err", err);
       });
-  }
+  }, [join]);
 
+  const ShowMembers = async () => {
+    setShow(false);
+    await axios
+      .get(`http://localhost:5000/travelPlans/members/${travel_id}`)
+      .then((result) => {
+        setMembers(result.data);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
 
   const AddMember = () => {
     axios
@@ -69,14 +68,11 @@ const CheckTravelJoin = ({ travel_id }) => {
 
   const DeleteMember = () => {
     axios
-      .delete(
-        `http://localhost:5000/travelPlans/plan/${travel_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
-        }
-      )
+      .delete(`http://localhost:5000/travelPlans/plan/${travel_id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
       .then((result) => {
         console.log(result);
       })
@@ -85,31 +81,50 @@ const CheckTravelJoin = ({ travel_id }) => {
       });
   };
 
-  return <>
-    {!join ? (
-      <button onClick={AddMember}>Join</button>
-    ) : (
-      <button onClick={DeleteMember}>Leave</button>
-    )}
+  return (
+    <>
+      {!join ? (
+        <button onClick={AddMember}>Join</button>
+      ) : (
+        <button onClick={DeleteMember}>Leave</button>
+      )}
 
-    {show ? <button onClick={ShowMembers}>Show All Members</button> : <button onClick={() => {
-      { setShow(true) }
-      { setMembers([]) }
-    }}>Hide Members</button>}
+      {show ? (
+        <button onClick={ShowMembers}>Show All Members</button>
+      ) : (
+        <button
+          onClick={() => {
+            {
+              setShow(true);
+            }
+            {
+              setMembers([]);
+            }
+          }}
+        >
+          Hide Members
+        </button>
+      )}
 
-    {members && members.map((elem, ind) => {
-      return <div key={ind}>
-        <img src={elem.profile_image} style={{ width: "100px" }}></img>
-        {state.id !== elem.id ? (<Link to={`/users/user/${elem.id}`}>
-          {elem.first_name} {elem.last_name}
-        </Link>) : (<Link to={`/profile`}>
-          {elem.first_name} {elem.last_name}
-        </Link>)}
-      </div>
-    })}
-  </>
-}
+      {members &&
+        members.map((elem, index) => {
+          return (
+            <div key={index}>
+              <img src={elem.profile_image} style={{ width: "100px" }}></img>
+              {state.id !== elem.id ? (
+                <Link to={`/users/user/${elem.id}`}>
+                  {elem.first_name} {elem.last_name}
+                </Link>
+              ) : (
+                <Link to={`/profile`}>
+                  {elem.first_name} {elem.last_name}
+                </Link>
+              )}
+            </div>
+          );
+        })}
+    </>
+  );
+};
 
-
-
-export default CheckTravelJoin
+export default CheckTravelJoin;

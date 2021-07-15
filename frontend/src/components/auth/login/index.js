@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../../reducers/login";
@@ -12,6 +12,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
+
+  const history = useHistory();
+
   const state = useSelector((state) => {
     return {
       token: state.login.token,
@@ -19,15 +22,16 @@ const Login = () => {
     };
   });
   const signIn = () => {
-    console.log("test1")
+    console.log("test1");
     axios
       .post("http://localhost:5000/login", { email, password })
       .then((result) => {
         setMessage("Login Successful");
         localStorage.setItem("token", result.data.token);
-        console.log("test2")
+        console.log("test2");
         dispatch(setToken(result.data.token));
         dispatch(setUserId(result.data.user_id));
+        history.push("/profile");
       })
       .catch((err) => {
         setMessage(err.response.data);
