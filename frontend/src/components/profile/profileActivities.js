@@ -38,7 +38,7 @@ const ProfileActivities = () => {
                   {element.first_name} {element.last_name}
                 </p>
               </div>
-              <Link to={`/activities/activity/${element.id}`} key={ind}>
+              <Link to={`/activities/activity/${element.id}`}>
                 <div className="rightAct">
                   <h2 style={{ color: "#507fa4", fontWeight: "bolder" }}>
                     {element.title}

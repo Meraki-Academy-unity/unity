@@ -99,7 +99,7 @@ const Activities = () => {
                       </p>
                       <p className="text">
                         finish date :{" "}
-                        {moment(res.finish_date, "YYYY-MM-DD")
+                        {moment(element.finish_date, "YYYY-MM-DD")
                           .add(1, "days")
                           .format("DD-MM-YYYY")}
                       </p>
