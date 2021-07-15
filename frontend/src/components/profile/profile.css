@@ -13,7 +13,7 @@
 }
 
 body {
-  background: rgba(231, 226, 227, 0.322);
+  background: rgb(240, 240, 240);
   overflow-x: hidden;
   /* padding-top: 90px; */
   font-family: "poppins", sans-serif;

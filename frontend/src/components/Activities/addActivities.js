@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../loadingBar/loaderBar";
 import axios from "axios";
-import moment from 'moment';
+import moment from "moment";
 
 const AddActivities = () => {
   const [title, setTitle] = useState("");
@@ -18,7 +18,7 @@ const AddActivities = () => {
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
   const [done, setDone] = useState(0);
-  console.log("out", done, "images: ", images)
+  console.log("out", done, "images: ", images);
   const types = ["image/png", "image/jpeg"];
   const history = useHistory();
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const AddActivities = () => {
   const state = useSelector((state) => {
     return {
       url: state.imgUploader.url,
-      token: state.login.token
+      token: state.login.token,
     };
   });
 
@@ -39,41 +39,45 @@ const AddActivities = () => {
       setFile(null);
       setErrorImgMessage("please select image type of png or jpeg");
     }
-  }
+  };
 
   const AddNewActivities = () => {
-    setDone(1)
+    setDone(1);
     setImages(state.url);
-    console.log("inf", done, "images: ", images)
+    console.log("inf", done, "images: ", images);
 
-    console.log("in", done, "images: ", images)
+    console.log("in", done, "images: ", images);
     axios
-      .post(`http://localhost:5000/activities/`, {
-        title,
-        start_date,
-        finish_date,
-        details,
-        requirements,
-        activities,
-        images,
-        estimated_budget,
-      }, {
-        headers: {
-          Authorization: `Bearer ${state.token}`,
+      .post(
+        `http://localhost:5000/activities/`,
+        {
+          title,
+          start_date,
+          finish_date,
+          details,
+          requirements,
+          activities,
+          images,
+          estimated_budget,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
         }
-      })
+      )
       .then((result) => {
         console.log("res", result.data);
+        history.push("/Activities");
       })
       .catch((err) => {
         throw err;
-      })
-  }
+      });
+  };
 
   // useEffect(()=>{
   //   setDone(true);
   // },[images])
-
 
   // await axios
   // .post(`http://localhost:5000/activities/`, {
@@ -95,77 +99,104 @@ const AddActivities = () => {
   // .catch((err) => {
   //   throw err;
   // })
-  let minStartDate = moment(new Date(), "YYYY-MM-DD").add(5, 'days').format("YYYY-MM-DD")
-  let maxStartDate = moment(new Date(), "YYYY-MM-DD").add(1, 'y').format("YYYY-MM-DD")
-  let minFinishtDate = moment(start_date, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD")
-  let maxFinishDate = moment(start_date, "YYYY-MM-DD").add(6, 'months').format("YYYY-MM-DD")
+  let minStartDate = moment(new Date(), "YYYY-MM-DD")
+    .add(5, "days")
+    .format("YYYY-MM-DD");
+  let maxStartDate = moment(new Date(), "YYYY-MM-DD")
+    .add(1, "y")
+    .format("YYYY-MM-DD");
+  let minFinishtDate = moment(start_date, "YYYY-MM-DD")
+    .add(7, "d")
+    .format("YYYY-MM-DD");
+  let maxFinishDate = moment(start_date, "YYYY-MM-DD")
+    .add(6, "months")
+    .format("YYYY-MM-DD");
 
   return (
     <>
-          <div className = "form">
-
-          <div className= "input_cont">
+      <div className="form">
+        <div className="input_cont">
           <label>Title : </label>
-      <input
-        className= "input"
-        type="text"
-        placeholder="title here"
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      </div>
-
-      <div className= "input_cont">
-        <label>Start Date : </label>
-        <input type="date"
-          className= "input"
-          min={minStartDate}
-          max={maxStartDate} onChange={(e) => setStart_date(e.target.value)} />
-          </div>
-
-          <div className= "input_cont">
-        <label>Finish Date : </label>
-        <input type="date" min={minFinishtDate} className= "input"
-          max={maxFinishDate} onChange={(e) => setFinish_date(e.target.value)}/>
+          <input
+            className="input"
+            type="text"
+            placeholder="title here"
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </div>
 
-        <div className= "input_cont">
-      <label>Details : </label>
-      <textarea className= "input" placeholder= "Details"  onChange={(e) => setDetails(e.target.value)}></textarea>
-      </div>
+        <div className="input_cont">
+          <label>Start Date : </label>
+          <input
+            type="date"
+            className="input"
+            min={minStartDate}
+            max={maxStartDate}
+            onChange={(e) => setStart_date(e.target.value)}
+          />
+        </div>
 
-      <div className= "input_cont"> 
-      <label>Requirements : </label>
-      <textarea className= "input" placeholder= "Requirements" onChange={(e) => setRequirements(e.target.value)}></textarea>
-      </div>
+        <div className="input_cont">
+          <label>Finish Date : </label>
+          <input
+            type="date"
+            min={minFinishtDate}
+            className="input"
+            max={maxFinishDate}
+            onChange={(e) => setFinish_date(e.target.value)}
+          />
+        </div>
 
-      <div className= "input_cont">
-      <label>Activities : </label>
-      <textarea className= "input" placeholder= "Activities" onChange={(e) => setActivities(e.target.value)}></textarea>
-      </div>
+        <div className="input_cont">
+          <label>Details : </label>
+          <textarea
+            className="input"
+            placeholder="Details"
+            onChange={(e) => setDetails(e.target.value)}
+          ></textarea>
+        </div>
 
-      <div className= "input_cont">
-      <label>Image : </label>
-      <input className= "input" type="file" onChange={testUpload} />
-      </div>
-      {file && <LoaderBar file={file} setFile={setFile} />}
-      {errorImgMessage && <div>{errorImgMessage}</div>}
+        <div className="input_cont">
+          <label>Requirements : </label>
+          <textarea
+            className="input"
+            placeholder="Requirements"
+            onChange={(e) => setRequirements(e.target.value)}
+          ></textarea>
+        </div>
 
-      <div className= "input_cont">
-      <label>Budget : </label>
-      <input
-        className= "input"
-        type="text"
-        placeholder=" estimated budget here"
-        onChange={(e) => setEstimated_budget(e.target.value)}
-      />
-      </div>
+        <div className="input_cont">
+          <label>Activities : </label>
+          <textarea
+            className="input"
+            placeholder="Activities"
+            onChange={(e) => setActivities(e.target.value)}
+          ></textarea>
+        </div>
 
-      <div >
-      <button className="button" onClick={AddNewActivities}>create activities</button>
-      </div>
-      </div>
+        <div className="input_cont">
+          <label>Image : </label>
+          <input className="input" type="file" onChange={testUpload} />
+        </div>
+        {file && <LoaderBar file={file} setFile={setFile} />}
+        {errorImgMessage && <div>{errorImgMessage}</div>}
 
-      
+        <div className="input_cont">
+          <label>Budget : </label>
+          <input
+            className="input"
+            type="text"
+            placeholder=" estimated budget here"
+            onChange={(e) => setEstimated_budget(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <button className="button" onClick={AddNewActivities}>
+            create activities
+          </button>
+        </div>
+      </div>
     </>
   );
 };
