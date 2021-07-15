@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 import axios from "axios";
 import "./profile.css";
+import moment from "moment";
 
 
 const ProfilePlans = () => {
     const [plansProf, setPlansProf] = useState([])
+    const history=useHistory()
     const state = useSelector((state) => {
         return {
             token: state.login.token,
@@ -28,28 +30,55 @@ const ProfilePlans = () => {
     return (<>
         {plansProf && plansProf.map((res, ind) => {
             return (
-                <div className="Activity">
-                    <div className="leftAct">
-                        <img src={res.profile_image} className="img"></img>
-                        <p style={{ color: "blue", marginLeft: "10px" }}>
-                            {res.first_name} {res.last_name}
-                        </p>
-                    </div>
-                    <Link to={`/travelPlans/${res.id}`} key={ind}>
-                        <div className="rightAct">
-                            <h2 style={{ color: "#507fa4", fontWeight: "bolder" }}>
-                                {res.title}
-                            </h2>
-                            <p className="p">location : {res.countries}</p>
-                            <p className="p">activities to do :{res.activities}</p>
-                            <p className="p">start date : {res.start_date}</p>
-                            <p className="p">finish date : {res.finish_date}</p>
-                            <p className="p">
-                                estimated budget : {res.estimated_budget}
-                            </p>
-                            <br />
+                <div className="post_page">
+                    <div className="post_card">
+                        <div>
+                            <img
+                                className="poster_image"
+                                src={res.images}
+                                onClick={() => {
+                                    history.push(`/travelPlans/${res.id}`);
+                                }}
+                            />
                         </div>
-                    </Link>
+                        <div className="post_details">
+                            <div className="uploader">
+                                <img src={res.profile_image} className="img"></img>
+                                <p style={{ color: "black" }}>
+                                    {res.first_name} {res.last_name}
+                                </p>
+                            </div>
+
+                            {/* <Link to={`/travelPlans/${res.id}`} key={ind}> */}
+                            <div className="post_info"
+                                onClick={() => {
+                                    history.push(`/travelPlans/${res.id}`);
+                                }}>
+                                <h2 style={{ color: "#507fa4", fontWeight: "bolder" }}>
+                                    {res.title}
+                                </h2>
+                                <p className="text">location : {res.countries}</p>
+                                <p className="text">activities to do :{res.activities}</p>
+                                <p className="text">
+                                    Start date :{" "}
+                                    {moment(res.start_date, "YYYY-MM-DD")
+                                        .add(1, "days")
+                                        .format("DD-MM-YYYY")}
+                                </p>
+                                <p className="text">
+                                    Finish date :{" "}
+                                    {moment(res.finish_date, "YYYY-MM-DD")
+                                        .add(1, "days")
+                                        .format("DD-MM-YYYY")}
+                                </p>
+                                <p className="text">
+                                    estimated budget : {res.estimated_budget}
+                                </p>
+                                <br />
+                            </div>
+                            {/* </Link> */}
+                        </div>
+                    </div>
                 </div>
             )
         })}
