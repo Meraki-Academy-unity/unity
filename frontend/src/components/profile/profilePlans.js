@@ -31,11 +31,13 @@ const ProfilePlans = () => {
 
   return (
     <>
-     <div className="post_page">
-      {plansProf &&
-        plansProf.map((element, index) => {
-          return (
-              <div  key={index} className="post_card">
+
+      <div className="post_page">
+        {plansProf &&
+          plansProf.map((element, index) => {
+            return (
+              <div className="post_card" key={index}>
+
                 <div>
                   <img
                     className="poster_image"
@@ -59,7 +61,9 @@ const ProfilePlans = () => {
                       history.push(`/travelPlans/${element.id}`);
                     }}
                   >
-                    <h2 style={{ color: "#507fa4", fontWeight: "bolder" }}>
+                    <h2
+                      style={{ color: "rgb(232,180,48)", fontWeight: "bold" }}
+                    >
                       {element.title}
                     </h2>
                     <p className="text">location : {element.countries}</p>
@@ -79,16 +83,17 @@ const ProfilePlans = () => {
                         .format("DD-MM-YYYY")}
                     </p>
                     <p className="text">
-                      estimated budget : {element.estimated_budget}
+                      estimated budget : {element.estimated_budget} $
                     </p>
                     <br />
                   </div>
                 </div>
               </div>
-           
-          );
-        })}
-         </div>
+
+            );
+          })}
+      </div>
+
     </>
   );
 };
