@@ -3,57 +3,56 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const PerferencesLocation = ({ setPrefenecesLocation }) => {
-    const [country, setCountry] = useState([]);
-    const [location, setLocation] = useState();
-    const [index, setIndex] = useState();
+  const [country, setCountry] = useState([]);
+  const [location, setLocation] = useState();
+  const [index, setIndex] = useState();
 
-    useEffect(async () => {
-        await axios
-            .get(`https://restcountries.eu/rest/v2/all`)
-            .then((result) => {
-                setCountry(result.data);
-            })
-            .catch((err) => {
-                throw err;
-            });
-    }, []);
+  useEffect(async () => {
+    await axios
+      .get(`https://restcountries.eu/rest/v2/all`)
+      .then((result) => {
+        setCountry(result.data);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }, []);
 
-
-    return (
-        <>
-            <select
-                name="image"
-                id="image"
-                onChange={(e) => {
-                    setLocation(e.target.value.split(",")[0]);
-                    setIndex(e.target.value.split(",")[1]);
-                }}
-            >
-                <option>choose your Region</option>
-                {country &&
-                    country.map((elem, i) => {
-                        return (
-                            <option key={i} value={[elem.name, i]}>
-                                {elem.name}
-                            </option>
-                        );
-                    })}
-            </select>
-            {country[index] && setPrefenecesLocation(country[index].name)}
-            {country[index] && (
-                <img
-                    src={country[index].flag}
-                    style={{
-                        borderRadius: "50% ",
-                        width: "17px",
-                        height: "17px",
-                        borderStyle: "solid",
-                        borderWidth: "2px",
-                    }}
-                />
-            )}
-        </>
-    );
+  return (
+    <>
+      <select
+        name="image"
+        id="image"
+        onChange={(e) => {
+          setLocation(e.target.value.split(",")[0]);
+          setIndex(e.target.value.split(",")[1]);
+        }}
+      >
+        <option>choose your desired travel destinations</option>
+        {country &&
+          country.map((elem, i) => {
+            return (
+              <option key={i} value={[elem.name, i]}>
+                {elem.name}
+              </option>
+            );
+          })}
+      </select>
+      {country[index] && setPrefenecesLocation(country[index].name)}
+      {country[index] && (
+        <img
+          src={country[index].flag}
+          style={{
+            borderRadius: "50% ",
+            width: "22px",
+            height: "22px",
+            borderStyle: "solid",
+            borderWidth: "1px",
+          }}
+        />
+      )}
+    </>
+  );
 };
 
 export default PerferencesLocation;

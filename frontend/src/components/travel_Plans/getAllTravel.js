@@ -53,9 +53,9 @@ const GetAllTravel = () => {
       )}
       <div className="post_page">
         {travels &&
-          travels.map((element) => {
+          travels.map((element, index) => {
             return (
-              <div className="post_card">
+              <div className="post_card" key={index}>
                 <div>
                   <img
                     className="poster_image"

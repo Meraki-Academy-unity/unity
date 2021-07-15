@@ -59,57 +59,56 @@ const Activities = () => {
         )}
         <div className="post_page">
           {activities &&
-            activities.map((res, ind) => {
+            activities.map((element, index) => {
               return (
-                <div className="post_card">
+                <div key={index} className="post_card">
                   <div>
-                  <img
-                    className="poster_image"
-                    src={res.images}
-                    onClick={() => {
-                      history.push(`/activities/activity/${res.id}`);
-                    }}
-                  />
-                </div>
-                <div className="post_details">
-                  <div className="uploader">
-                    <img src={res.profile_image} className="img"></img>
-                    <p style={{ color: "black" }}>
-                      {res.first_name} {res.last_name}
-                    </p>
+                    <img
+                      className="poster_image"
+                      src={element.images}
+                      onClick={() => {
+                        history.push(`/activities/activity/${element.id}`);
+                      }}
+                    />
                   </div>
-
-                  <div
-                   className="post_info"
-                    onClick={() => {
-                      history.push(`/activities/activity/${res.id}`);
-                    }}
-                  >
-                    <h2
-                      style={{ color: "rgb(232,180,48)", fontWeight: "bold" }}
-                    >
-                      {res.title}
-                    </h2>
-                    <p className="text">location : {res.location}</p>
-                    <p className="text">
-                      start date :{" "}
-                      {moment(res.start_date, "YYYY-MM-DD")
-                        .add(1, "days")
-                        .format("DD-MM-YYYY")}
-                    </p>
-                    <p className="text">
-                      finish date :{" "}
-                      {moment(res.finish_date, "YYYY-MM-DD")
-                        .add(1, "days")
-                        .format("DD-MM-YYYY")}
-                    </p>
-                    <div style={{ display: "flex", gap: "116px" }}>
-                      <p className="text">
-                        estimated budget : {res.estimated_budget}
+                  <div className="post_details">
+                    <div className="uploader">
+                      <img src={element.profile_image} className="img"></img>
+                      <p style={{ color: "black" }}>
+                        {element.first_name} {element.last_name}
                       </p>
                     </div>
-                  </div>
-              
+
+                    <div
+                      className="post_info"
+                      onClick={() => {
+                        history.push(`/activities/activity/${element.id}`);
+                      }}
+                    >
+                      <h2
+                        style={{ color: "rgb(232,180,48)", fontWeight: "bold" }}
+                      >
+                        {element.title}
+                      </h2>
+                      <p className="text">location : {element.location}</p>
+                      <p className="text">
+                        start date :{" "}
+                        {moment(element.start_date, "YYYY-MM-DD")
+                          .add(1, "days")
+                          .format("DD-MM-YYYY")}
+                      </p>
+                      <p className="text">
+                        finish date :{" "}
+                        {moment(element.finish_date, "YYYY-MM-DD")
+                          .add(1, "days")
+                          .format("DD-MM-YYYY")}
+                      </p>
+                      <div style={{ display: "flex", gap: "116px" }}>
+                        <p className="text">
+                          estimated budget : {element.estimated_budget}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               );

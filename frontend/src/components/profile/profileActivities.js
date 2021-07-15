@@ -5,8 +5,8 @@ import axios from "axios";
 import "./profile.css";
 import moment from "moment";
 
-
 const ProfileActivities = () => {
+
     const [activitiesProf, setActivitiesProf] = useState([])
     const history = useHistory();
     const state = useSelector((state) => {
@@ -81,4 +81,5 @@ const ProfileActivities = () => {
     </>)
 }
 
-export default ProfileActivities
+
+export default ProfileActivities;
