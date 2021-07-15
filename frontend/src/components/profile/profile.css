@@ -287,3 +287,35 @@ body {
   text-align: center;
   /* display: none; */
 }
+
+.friend_page{
+  display: grid;
+  grid-template-columns: 125px 125px 125px 125px ;
+  row-gap: 30px;
+  margin-top: 30px;
+  /* margin-left: 15%; */
+  padding: 20px;
+  /* margin-bottom: 4%; */
+  justify-content:space-around;
+  /* align-items: center; */
+  text-align: center;
+}
+
+/* .friend_card{
+/* margin-top:10; 
+} */
+.friend_img
+{
+  border-radius: 50%;
+  width: 125px;
+  height: 125px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.friend_card p{
+  margin-top: 15px;
+
+}
+
+.friend_card a{
+  text-decoration: none;
+}

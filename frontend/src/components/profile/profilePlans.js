@@ -31,11 +31,11 @@ const ProfilePlans = () => {
 
   return (
     <>
+     <div className="post_page">
       {plansProf &&
         plansProf.map((element, index) => {
           return (
-            <div key={index} className="post_page">
-              <div className="post_card">
+              <div  key={index} className="post_card">
                 <div>
                   <img
                     className="poster_image"
@@ -85,9 +85,10 @@ const ProfilePlans = () => {
                   </div>
                 </div>
               </div>
-            </div>
+           
           );
         })}
+         </div>
     </>
   );
 };
