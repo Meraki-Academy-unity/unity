@@ -109,6 +109,7 @@ const Activities = () => {
                       </p>
                     </div>
                   </div>
+              
                   </div>
                 </div>
               );
