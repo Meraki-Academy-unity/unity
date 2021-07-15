@@ -33,7 +33,7 @@ const GetAllTravel = () => {
       {state.token ? (
         <div className="add">
           <button
-            style={{ backgroundColor: "rgb(241, 241, 241)", border: "none" }}
+            style={{ backgroundColor: "rgb(240, 240, 240)", border: "none" }}
             onClick={() => {
               history.push("/addTravel");
             }}
