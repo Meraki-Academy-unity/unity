@@ -23,18 +23,22 @@ const ShowFriends = () => {
         }).catch((err) => {
             console.log("err", err)
         })
-    },[])
+    }, [])
 
     return (<>
-        {friend && friend.map((elem, i) => {
-            return (
-                <div key={i}>
-                    <img src={elem.profile_image} />
-                    <p>{elem.first_name} {elem.last_name}</p>
-
-                </div>
-            )
-        })}
+        <div className="friend_page" >
+            {friend && friend.map((elem, i) => {
+                return (
+                    <div key={i} className="friend_card">
+                        <img src={elem.profile_image} className="friend_img" />
+                        <Link to={`/users/user/${elem.friend_id}`}>
+                          <p> {elem.first_name} {elem.last_name} </p>
+                        </Link>
+                        {/* <p>{elem.first_name} {elem.last_name}</p> */}
+                    </div>
+                )
+            })}
+        </div>
     </>)
 }
 

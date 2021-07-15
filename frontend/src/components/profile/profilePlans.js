@@ -31,11 +31,13 @@ const ProfilePlans = () => {
 
   return (
     <>
+
       <div className="post_page">
         {plansProf &&
           plansProf.map((element, index) => {
             return (
               <div className="post_card" key={index}>
+
                 <div>
                   <img
                     className="poster_image"
@@ -87,9 +89,11 @@ const ProfilePlans = () => {
                   </div>
                 </div>
               </div>
+
             );
           })}
       </div>
+
     </>
   );
 };
