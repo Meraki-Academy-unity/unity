@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, Route } from "react-router-dom";
+
+import { Link, Route, useHistory } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import UpdateComment from "./updateComment";
 import DeleteComments from "./deleteComment";
@@ -12,6 +14,9 @@ const AddComment = ({ activity_id }) => {
   const state = useSelector((state) => {
     return {
       token: state.login.token,
+
+      id: state.id.id,
+
     };
   });
 
@@ -25,6 +30,7 @@ const AddComment = ({ activity_id }) => {
         throw err;
       });
   }, [comment]);
+
 
   const add = () => {
     axios
@@ -46,48 +52,81 @@ const AddComment = ({ activity_id }) => {
   };
   return (
     <>
-      <div className="commentAct">
+      <div className="comments">
+        <h1>Comments :- </h1>
         {comment &&
-          comment.map((element, index) => {
+          comment.map((elem, i) => {
             return (
               <>
-                <div key={index} className="commentActLeft">
-                  <img
-                    src={element.profile_image}
-                    style={{ width: "70px", borderRadius: "50%" }}
-                  ></img>
-                  <p className="text"> {element.first_name}</p>
-                </div>
-                <div className="commentActRight">
-                  <p className="text"> {element.content}</p>
-                  {state.token ? (
-                    <DeleteComments comment_id={element.id} />
+                <div className="commentAct">
+                  {state.id !== elem.user_id ? (
+                    <Link className="link" to={"/users/user/" + elem.user_id}>
+                      <div key={i} className="commentActLeft">
+                        <img
+                          src={elem.profile_image}
+                          style={{
+                            width: "70px",
+                            borderRadius: "50%",
+                            borderStyle: "solid",
+                            height: "70px",
+                          }}
+                        ></img>
+                        <p className="text" style={{ textAlign: "center" }}>
+                          {" "}
+                          {elem.first_name}
+                        </p>
+                      </div>
+                    </Link>
                   ) : (
-                    ""
+                    <Link className="link" to={"/profile"}>
+                      <div key={i} className="commentActLeft">
+                        <img
+                          src={elem.profile_image}
+                          style={{
+                            width: "70px",
+                            borderRadius: "50%",
+                            borderStyle: "solid",
+                            height: "70px",
+                          }}
+                        ></img>
+                        <p className="text" style={{ textAlign: "center" }}>
+                          {" "}
+                          {elem.first_name}
+                        </p>
+                      </div>
+                    </Link>
                   )}
-                  {state.token ? (
-                    <button onClick={() => setShow(!show)}>update</button>
-                  ) : (
-                    ""
-                  )}
-                  {show && state.token ? (
-                    <UpdateComment comment_id={element.id} />
-                  ) : (
-                    ""
-                  )}
+
+                  <div className="commentActRight">
+                    <p className="text"> {elem.content}</p>
+                    {state.token ? (
+                      <button onClick={() => setShow(!show)}>update</button>
+                    ) : (
+                      ""
+                    )}
+                    {state.token ? <DeleteComments comment_id={elem.id} /> : ""}
+                    {show && state.token ? (
+                      <UpdateComment comment_id={elem.id} />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
                 </div>
               </>
             );
           })}
+
+
+        <textarea
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+          placeholder="Write your comment here"
+        />
+        <button onClick={add}>Add Comment</button>
       </div>
 
-      <textarea
-        onChange={(e) => {
-          setContent(e.target.value);
-        }}
-        placeholder="Write your comment here"
-      />
-      <button onClick={add}>Add Comment</button>
     </>
   );
 };

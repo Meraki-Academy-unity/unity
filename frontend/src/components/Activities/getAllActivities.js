@@ -95,10 +95,12 @@ const Activities = () => {
                       </h2>
                       <p className="text">location : {element.location}</p>
                       <p className="text">
+
                         start date :{" "}
                         {moment(element.start_date, "YYYY-MM-DD")
                           .add(1, "days")
                           .format("DD-MM-YYYY")}
+
                       </p>
                       <p className="text">
                         finish date :{" "}
@@ -108,7 +110,7 @@ const Activities = () => {
                       </p>
                       <div style={{ display: "flex", gap: "116px" }}>
                         <p className="text">
-                          estimated budget : {element.estimated_budget}
+                          estimated budget : {element.estimated_budget} $
                         </p>
                       </div>
                     </div>
