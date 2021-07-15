@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
 import { Link, Route, useHistory } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import UpdateComment from "./updateComment";
 import DeleteComments from "./deleteComment";
@@ -12,7 +14,9 @@ const AddComment = ({ activity_id }) => {
   const state = useSelector((state) => {
     return {
       token: state.login.token,
+
       id: state.id.id,
+
     };
   });
 
@@ -26,6 +30,7 @@ const AddComment = ({ activity_id }) => {
         throw err;
       });
   }, [comment]);
+
 
   const add = () => {
     axios
@@ -106,10 +111,12 @@ const AddComment = ({ activity_id }) => {
                       ""
                     )}
                   </div>
+
                 </div>
               </>
             );
           })}
+
 
         <textarea
           onChange={(e) => {
@@ -119,6 +126,7 @@ const AddComment = ({ activity_id }) => {
         />
         <button onClick={add}>Add Comment</button>
       </div>
+
     </>
   );
 };

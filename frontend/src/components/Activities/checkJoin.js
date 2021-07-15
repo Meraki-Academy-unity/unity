@@ -94,6 +94,7 @@ const CheckJoin = ({ activity_id }) => {
           </button>
         )}
 
+
         {show ? (
           <button className="show" onClick={ShowMembers}>
             Show All Members
@@ -113,6 +114,7 @@ const CheckJoin = ({ activity_id }) => {
             Hide Members
           </button>
         )}
+
       </div>
       {members &&
         members.map((elem, i) => {

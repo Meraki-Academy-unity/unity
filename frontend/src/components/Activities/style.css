@@ -1,6 +1,8 @@
-body {
-  background-color: rgb(241, 241, 241);
-}
+
+/* body {
+    background-color: rgb(241, 241, 241);
+  } */
+
 
 .post_page {
   display: grid;
@@ -18,6 +20,15 @@ body {
   background-color: rgba(230, 230, 230, 0.9);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
+
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.poster_image {
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .post_details {
@@ -26,13 +37,8 @@ body {
   grid-template-columns: 25% 1fr;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-}
 
-.poster_image {
-  height: 100%;
-  width: 100%;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  background-color: rgba(245, 245, 245, 0.9);
 }
 
 .poster_image:hover {
@@ -54,9 +60,12 @@ body {
   margin-top: 10px;
 }
 
+
 .post_info:hover {
   cursor: pointer;
 }
+
+
 
 .img {
   border-radius: 80%;
@@ -80,6 +89,7 @@ body {
 
 .postImg {
   width: 700px;
+
 }
 
 
@@ -101,86 +111,132 @@ body {
 .commentActLeft{
     display: grid;
     padding: 5px;
-
-}
-
-.commentActRight{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 100px;
-    margin-bottom: 10px;
-}
-
-.add{
-    margin-left: 85%;
-    margin-top: 7%;
 }
 
 
-.form{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: auto;
-    gap: 20px;
-    padding-top: 150px;
 }
 
-.input_cont{
-    display: grid;
-    gap: 5px;
-    
+.commentActRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+  margin-bottom: 10px;
 }
 
+.add {
+  margin-left: 85%;
+  margin-top: 7%;
+}
+
+.form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: auto;
+  gap: 20px;
+  padding-top: 150px;
+}
+
+.input_cont {
+  display: grid;
+  gap: 5px;
+}
 
 .input {
-    padding: 10px 10px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid #cfcfcf;
+  padding: 10px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #cfcfcf;
 }
-
 
 .input::placeholder {
-    font-size: 1.2em;
-    font-weight: lighter;
-    color: #999;
-  }
-
+  font-size: 1.2em;
+  font-weight: lighter;
+  color: #999;
+}
 
 .buttonAct {
-    background-color: #022047;
-    color: #fff;
-    border: 2px solid #fff;
-    width: 100%;
-    padding: 8px 0px;
-    font-size: 1em;
-    font-weight: lighter;
-    letter-spacing: 1px;
-    margin-bottom: 0.25em;
+  background-color: #022047;
+  color: #fff;
+  border: 2px solid #fff;
+  width: 100%;
+  padding: 8px 0px;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
 }
-
 
 .buttonAct:hover {
-    color: #fbd601;
-    background-color: #0d305d;
-    border: 2px solid #022047;
-    cursor:pointer;
-  }
-
-
-.btnAct{
-    background-color: #022047;
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 0.5em;
-    font-size: 1em;
-    font-weight: lighter;
-    letter-spacing: 1px;
-    margin-bottom: 0.25em;
-    width: 130px;
+  color: #fbd601;
+  background-color: #0d305d;
+  border: 2px solid #022047;
+  cursor: pointer;
 }
+
+.btnAct {
+  background-color: #022047;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0.5em;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
+  width: 130px;
+}
+
+.btnAct:hover {
+  color: #fbd601;
+  background-color: #0d305d;
+  border: 2px solid #022047;
+  cursor: pointer;
+}
+
+.join {
+  background-color: #0d305d;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0.3em;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
+  width: 70px;
+}
+
+.join:hover {
+  color: #fbd601;
+  background-color: #0d305d;
+  border: 2px solid #022047;
+  cursor: pointer;
+}
+
+.show {
+  background-color: #0d305d;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0.3em;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
+  width: 180px;
+}
+
+.show:hover {
+  color: #fbd601;
+  background-color: #0d305d;
+  border: 2px solid #022047;
+  cursor: pointer;
+}
+
+.text {
+  font-size: large;
+  color: brown;
+}
+
 
 .btnAct:hover {
     color: #fbd601;

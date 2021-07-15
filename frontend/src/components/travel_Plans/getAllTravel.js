@@ -33,7 +33,7 @@ const GetAllTravel = () => {
       {state.token ? (
         <div className="add">
           <button
-            style={{ backgroundColor: "rgb(241, 241, 241)", border: "none" }}
+            style={{ backgroundColor: "rgb(240, 240, 240)", border: "none" }}
             onClick={() => {
               history.push("/addTravel");
             }}
@@ -53,9 +53,9 @@ const GetAllTravel = () => {
       )}
       <div className="post_page">
         {travels &&
-          travels.map((element) => {
+          travels.map((element, index) => {
             return (
-              <div className="post_card">
+              <div className="post_card" key={index}>
                 <div>
                   <img
                     className="poster_image"
