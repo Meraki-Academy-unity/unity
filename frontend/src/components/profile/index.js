@@ -64,8 +64,8 @@ const Profile = () => {
           <h3 className="user-name">
             {profile.first_name} {profile.last_name}
           </h3>
-          <div className="address">
-            <span className="country">{profile.currently_in}</span>
+          <div className="displayName">
+            <span>{profile.display_name}</span>
           </div>
           {/* <div class="profile-option">
             <div className="Follow">
@@ -89,6 +89,7 @@ const Profile = () => {
                 .add(1, "days")
                 .format("DD-MM-YYYY")}
             </p>
+            <p>Currently_in : {profile.currently_in}</p>
             <p>Gender : {profile.gender}</p>
             <p>Language : {profile.language}</p>
             <p>
