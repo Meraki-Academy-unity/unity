@@ -84,10 +84,10 @@ const UserProfile = () => {
 
                 <div className="backImg"></div>
                 <div className="profImage">
-                    <img id="proImg" src={profile.profile_image} />
+                    <img id="proImg" src={profile && profile.profile_image} />
                 </div>
                 <div className="displayName">
-                    <p>{profile.first_name}_{profile.last_name}</p>
+                    <p>{profile && profile.first_name}_{profile && profile.last_name}</p>
                     <small>Jordanian</small>
                     <div>
                         <div className="tabName">
@@ -98,14 +98,14 @@ const UserProfile = () => {
             </div>
             <div className="linksDiv">
             
-                <Link to={`/chat/${profile.id}`}>  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                <Link to={`/chat/${profile && profile.id}`}>  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
                 </svg></Link>
                 {!add ? <button onClick={addFriend}>Add Friend </button> : <button onClick={removeFriend}>Remove Friend </button>}
-                <Link to={`/ProfileUsers/activities/${profile.id}`}>Acticities</Link>
-                <Link to={`/ProfileUsers/plans/${profile.id}`}>Plans</Link>
-                <Link to={`/profileUser/preferences/${profile.id}`}>Preferences </Link>
-                <Link to={`/userphotoAlbum/${profile.id}`}>Photo Album </Link>
+                <Link to={`/ProfileUsers/activities/${profile && profile.id}`}>Acticities</Link>
+                <Link to={`/ProfileUsers/plans/${profile && profile.id}`}>Plans</Link>
+                <Link to={`/profileUser/preferences/${profile && profile.id}`}>Preferences </Link>
+                <Link to={`/userphotoAlbum/${profile && profile.id}`}>Photo Album </Link>
 
             </div>
 

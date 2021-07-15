@@ -105,7 +105,7 @@ const Activities = () => {
                     </p>
                     <div style={{ display: "flex", gap: "116px" }}>
                       <p className="text">
-                        estimated budget : {res.estimated_budget}
+                        estimated budget : {res.estimated_budget} $
                       </p>
                     </div>
                   </div>

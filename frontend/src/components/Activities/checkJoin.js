@@ -5,22 +5,18 @@ import { Link, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Join from "./activityJoin";
 
-
-
-
 const CheckJoin = ({ activity_id }) => {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
   const [join, setJoin] = useState(false);
   const [members, setMembers] = useState([]);
   const state = useSelector((state) => {
     return {
       token: state.login.token,
-      id: state.id.id
+      id: state.id.id,
     };
   });
 
-  useEffect(()=>{
-    axios
+  axios
     .get(`http://localhost:5000/activities/member/${activity_id}`, {
       headers: {
         Authorization: `Bearer ${state.token}`,
@@ -36,21 +32,18 @@ const CheckJoin = ({ activity_id }) => {
     .catch((err) => {
       console.log("err", err);
     });
-  },[join])
-  
 
   const ShowMembers = async () => {
-    setShow(false)
+    setShow(false);
     await axios
       .get(`http://localhost:5000/activities/members/${activity_id}`)
       .then((result) => {
-        setMembers(result.data)
+        setMembers(result.data);
       })
       .catch((err) => {
         console.log("err", err);
       });
-  }
-
+  };
 
   const AddMember = () => {
     axios
@@ -64,7 +57,7 @@ const CheckJoin = ({ activity_id }) => {
         }
       )
       .then((result) => {
-        setJoin(true)
+        setJoin(true);
         console.log(result);
       })
       .catch((err) => {
@@ -74,16 +67,13 @@ const CheckJoin = ({ activity_id }) => {
 
   const DeleteMember = () => {
     axios
-      .delete(
-        `http://localhost:5000/activities/activity/${activity_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
-        }
-      )
+      .delete(`http://localhost:5000/activities/activity/${activity_id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
       .then((result) => {
-        setJoin(false)
+        setJoin(false);
         console.log(result);
       })
       .catch((err) => {
@@ -91,31 +81,79 @@ const CheckJoin = ({ activity_id }) => {
       });
   };
 
-  return <><div className = "btnCont">
-    {!join ? (
-      <button className="join" onClick={AddMember}>Join</button>
-    ) : (
-      <button className="join" onClick={DeleteMember}>Leave</button>
-    )}
+  return (
+    <>
+      <div className="btnCont">
+        {!join ? (
+          <button className="join" onClick={AddMember}>
+            Join
+          </button>
+        ) : (
+          <button className="join" onClick={DeleteMember}>
+            Leave
+          </button>
+        )}
 
-    {show ? <button className="show" onClick={ShowMembers}>Show All Members</button> : <button className="show" onClick={() => {
-      { setShow(true) }
-      { setMembers([]) }
-    }}>Hide Members</button>}
-    </div>
-    {members && members.map((elem, ind) => {
-      return <div key={ind}>
-        <img src={elem.profile_image} style={{ width: "100px" }}></img>
-        {state.id !== elem.id ? (<Link to={`/users/user/${elem.id}`}>
-          {elem.first_name} {elem.last_name}
-        </Link>) : (<Link to={`/profile`}>
-          {elem.first_name} {elem.last_name}
-        </Link>)}
+        {show ? (
+          <button className="show" onClick={ShowMembers}>
+            Show All Members
+          </button>
+        ) : (
+          <button
+            className="show"
+            onClick={() => {
+              {
+                setShow(true);
+              }
+              {
+                setMembers([]);
+              }
+            }}
+          >
+            Hide Members
+          </button>
+        )}
       </div>
-    })}
-  </>
-}
+      {members &&
+        members.map((elem, i) => {
+          return (
+            <div key={i}>
+              {state.id !== elem.id ? (
+                <Link className="link" to={`/users/user/${elem.id}`}>
+                  <img
+                    src={elem.profile_image}
+                    style={{
+                      width: "70px",
+                      borderRadius: "50%",
+                      borderStyle: "solid",
+                      height: "70px",
+                    }}
+                  ></img>
+                  <p className="text">
+                    {elem.first_name} {elem.last_name}
+                  </p>
+                </Link>
+              ) : (
+                <Link className="link" to={`/profile`}>
+                  <img
+                    src={elem.profile_image}
+                    style={{
+                      width: "70px",
+                      borderRadius: "50%",
+                      borderStyle: "solid",
+                      height: "70px",
+                    }}
+                  ></img>
+                  <p className="text">
+                    {elem.first_name} {elem.last_name}
+                  </p>
+                </Link>
+              )}
+            </div>
+          );
+        })}
+    </>
+  );
+};
 
-
-
-export default CheckJoin
+export default CheckJoin;

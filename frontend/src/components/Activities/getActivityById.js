@@ -43,29 +43,30 @@ const GetActivityById = (id) => {
         <div className="post">
           <div className = "postCont">
           <img src={activity.images} className="postImg"></img>
-          <h1>{activity.title}</h1>
-          <p className="text">location: {activity.location}</p>
-          <p className="text">start date: {moment(activity.start_date, "YYYY-MM-DD")
+          <h1 className="title">{activity.title}</h1>
+          <p className="text">Location: {activity.location}</p>
+          <p className="text">Start date: {moment(activity.start_date, "YYYY-MM-DD")
                         .add(1, "days")
                         .format("DD-MM-YYYY")}</p>
-          <p className="text" >finish date: {moment(activity.finish_date, "YYYY-MM-DD")
+          <p className="text" >Finish date: {moment(activity.finish_date, "YYYY-MM-DD")
                         .add(1, "days")
                         .format("DD-MM-YYYY")}</p>
-          <p className="text">details : {activity.details}</p>
-          <p className="text">requirements: {activity.requirements}</p>
-          <p className="text">activities: {activity.activities}</p>
-          <p className="text">estimated budget: {activity.estimated_budget}</p>
+          <p className="text">Details : {activity.details}</p>
+          <p className="text">Requirements: {activity.requirements}</p>
+          <p className="text">Activities: {activity.activities}</p>
+          <p className="text">Estimated budget: {activity.estimated_budget}</p>
           <p className="text">
-            created by :{" "}
-            {state.id !== activity.user_id ? (<Link to={`/users/user/${activity.user_id}`}>
+            Created by :{" "}
+            {state.id !== activity.user_id ? (<Link className="link" to={`/users/user/${activity.user_id}`}>
               {activity.first_name} {activity.last_name}
-            </Link>) : (<Link to={`/profile`}>
+            </Link>) : (<Link className="link" to={`/profile`}>
               {activity.first_name} {activity.last_name}
             </Link>)}
           </p>
+          {state.token ? <CheckJoin activity_id={activity.id} /> : ""}
           </div>
         
-        {state.token ? <CheckJoin activity_id={activity.id} /> : ""}
+
         
         {state.token ? <AddComment activity_id={activity.id} /> : ""}
       </div>
