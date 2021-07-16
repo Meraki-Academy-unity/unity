@@ -149,7 +149,7 @@ const Chat = ({setIsHome}) => {
         </div>
         <div className="chatHome">
           <div className="chatPageContainer">
-            <div className="chatPage">
+            <div className="chatPage"  >
               {chatHistory &&
                 chatHistory.map((elem, i) => {
                   return (
