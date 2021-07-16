@@ -319,11 +319,13 @@ body {
 }
 
 .edit_page {
-  padding: 30px;
+  padding: 20px;
 }
 
 .edit_page p {
-  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #000;
+  font-size: 20px;
 }
 
 .edit_page button {
@@ -343,4 +345,49 @@ form {
 
 .edit_details input {
   padding: 4px;
+}
+
+.profileAlbum {
+  padding: 30px;
+}
+
+.albumTab {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.pic {
+  margin-top: 60px;
+}
+
+.pic img {
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.profile_post_page {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 30px;
+  margin-top: 30px;
+  justify-items: center;
+}
+
+.profile_post_details {
+  padding: 20px;
+}
+
+.profile_post_details p {
+  margin-top: 10px;
+}
+
+.pref_page {
+  padding: 20px;
+}
+
+.pref_page p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #000;
 }
