@@ -29,6 +29,7 @@ const Login = ({setIsHome}) => {
       .then((result) => {
         setMessage("Login Successful");
         localStorage.setItem("token", result.data.token);
+        localStorage.setItem("user_id" , result.data.user_id)
         console.log("test2");
         dispatch(setToken(result.data.token));
         dispatch(setUserId(result.data.user_id));

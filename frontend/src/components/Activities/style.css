@@ -88,7 +88,6 @@
 
 .comments {
   display: grid;
-  border-style: groove;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -105,6 +104,7 @@
   display: grid;
   padding: 5px;
 }
+
 
 .commentActRight {
   display: flex;
@@ -299,4 +299,21 @@
 
 .title {
   color: rgb(232, 180, 48);
+
+ }
+
+  .member_page{
+  display: grid;
+  grid-template-columns: 100px  100px 100px  ;
+  justify-content: space-around;
 }
+
+.member_image{
+  width: 100px;
+  border-radius: 50%;
+  border:1px solid rgba(0, 0, 0, 0.3);
+  height: 100px;
+}
+
+
+

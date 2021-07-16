@@ -16,24 +16,23 @@ const CheckTravelJoin = ({ travel_id }) => {
       id: state.id.id,
     };
   });
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/travelPlans/member/${travel_id}`, {
-        headers: {
-          Authorization: `Bearer ${state.token}`,
-        },
-      })
-      .then((result) => {
-        if (result.data.length) {
-          setJoin(true);
-        } else {
-          setJoin(false);
-        }
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  }, [join]);
+
+  axios
+    .get(`http://localhost:5000/travelPlans/member/${travel_id}`, {
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+      },
+    })
+    .then((result) => {
+      if (result.data.length) {
+        setJoin(true);
+      } else {
+        setJoin(false);
+      }
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
 
   const ShowMembers = async () => {
     setShow(false);
@@ -59,6 +58,7 @@ const CheckTravelJoin = ({ travel_id }) => {
         }
       )
       .then((result) => {
+        setJoin(true);
         console.log(result);
       })
       .catch((err) => {
@@ -74,6 +74,7 @@ const CheckTravelJoin = ({ travel_id }) => {
         },
       })
       .then((result) => {
+        setJoin(false);
         console.log(result);
       })
       .catch((err) => {
@@ -83,46 +84,73 @@ const CheckTravelJoin = ({ travel_id }) => {
 
   return (
     <>
-      {!join ? (
-        <button onClick={AddMember}>Join</button>
-      ) : (
-        <button onClick={DeleteMember}>Leave</button>
-      )}
+      <div className="btnCont">
+        {!join ? (
+          <button className="join" onClick={AddMember}>
+            Join
+          </button>
+        ) : (
+          <button className="join" onClick={DeleteMember}>
+            Leave
+          </button>
+        )}
 
-      {show ? (
-        <button onClick={ShowMembers}>Show All Members</button>
-      ) : (
-        <button
-          onClick={() => {
-            {
-              setShow(true);
-            }
-            {
-              setMembers([]);
-            }
-          }}
-        >
-          Hide Members
-        </button>
-      )}
 
+        {show ? (
+          <button className="show" onClick={ShowMembers}>
+            Show All Members
+          </button>
+        ) : (
+          <button
+            className="show"
+            onClick={() => {
+              {
+                setShow(true);
+              }
+              {
+                setMembers([]);
+              }
+            }}
+          >
+            Hide Members
+          </button>
+        )}
+
+      </div>
+      <div className="member_page"> 
       {members &&
-        members.map((elem, index) => {
+        members.map((elem, i) => {
           return (
-            <div key={index}>
-              <img src={elem.profile_image} style={{ width: "100px" }}></img>
-              {state.id !== elem.id ? (
-                <Link to={`/users/user/${elem.id}`}>
-                  {elem.first_name} {elem.last_name}
+            <div key={i} >
+
+              {state.id != elem.id ? (
+                <Link className="link" to={`/users/user/${elem.id}`}>
+                  <img
+                    src={elem.profile_image}
+                    className ="member_image"
+
+                  ></img>
+                  <p className="text" style={{textAlign:"center"}}>
+                    {elem.first_name}
+                  </p>
                 </Link>
+                
               ) : (
-                <Link to={`/profile`}>
-                  {elem.first_name} {elem.last_name}
+                <Link className="link" to={`/profile`}>
+                  <img
+                    src={elem.profile_image}
+                    className ="member_image"
+                  ></img>
+                  <p className="text" style={{textAlign:"center"}}>
+                    {elem.first_name}
+                  </p>
                 </Link>
+                
               )}
             </div>
           );
         })}
+        </div>
     </>
   );
 };

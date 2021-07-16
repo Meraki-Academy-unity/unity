@@ -7,12 +7,14 @@ import UpdateTravelComment from "./updateTravelComment";
 
 const AddTravelComment = ({ travel_id }) => {
   const [content, setContent] = useState("");
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState([]);
   const [show, setShow] = useState(false);
-
   const state = useSelector((state) => {
     return {
       token: state.login.token,
+
+      id: state.id.id,
+
     };
   });
 
@@ -27,7 +29,8 @@ const AddTravelComment = ({ travel_id }) => {
       });
   }, [comment]);
 
-  const addComment = () => {
+
+  const add = () => {
     axios
       .post(
         `http://localhost:5000/travelPlans/comment/${travel_id}`,
@@ -45,48 +48,73 @@ const AddTravelComment = ({ travel_id }) => {
         console.log(err);
       });
   };
-
   return (
     <>
-      <div className="comment">
+      <div className="comments">
+        <h1>Comments :- </h1>
         {comment &&
-          comment.map((element, index) => {
+          comment.map((elem, i) => {
             return (
-              <div key={index}>
-                <img
-                  src={element.profile_image}
-                  style={{ width: "100px" }}
-                ></img>
-                <p>user : {element.first_name}</p>
-                <p>comment: {element.content}</p>
-                {state.token ? (
-                  <DeleteTravelComments comment_id={element.id} />
-                ) : (
-                  ""
-                )}
+              <>
+                <div className="commentAct">
+                  {state.id != elem.user_id ? (
+                    <Link className="link" to={"/users/user/" + elem.user_id}>
+                      <div key={i} className="commentActLeft">
+                        <img
+                          src={elem.profile_image}
+                          className ="member_image"
+                        ></img>
+                        <p className="text" style={{ textAlign: "center" }}>
+                          {" "}
+                          {elem.first_name}
+                        </p>
+                      </div>
+                    </Link>
+                  ) : (
+                    <Link className="link" to={"/profile"}>
+                      <div key={i} className="commentActLeft">
+                        <img
+                          src={elem.profile_image}
+                          className ="member_image"
+                        ></img>
+                        <p className="text" style={{ textAlign: "center" }}>
+                          {" "}
+                          {elem.first_name}
+                        </p>
+                      </div>
+                    </Link>
+                  )}
 
-                {state.token ? (
-                  <button onClick={() => setShow(!show)}>update</button>
-                ) : (
-                  ""
-                )}
-                {show && state.token ? (
-                  <UpdateTravelComment comment_id={element.id} />
-                ) : (
-                  ""
-                )}
-              </div>
+                  <div className="commentActRight">
+                    <p className="text"> {elem.content}</p>
+                    {state.token ? (
+                      <button onClick={() => setShow(!show)}>update</button>
+                    ) : (
+                      ""
+                    )}
+                    {state.token ? <DeleteTravelComments comment_id={elem.id} /> : ""}
+                    {show && state.token ? (
+                      <UpdateTravelComment comment_id={elem.id} />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
+                </div>
+              </>
             );
           })}
+
+
+        <textarea
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+          placeholder="Write your comment here"
+        />
+        <button onClick={add}>Add Comment</button>
       </div>
 
-      <textarea
-        onChange={(e) => {
-          setContent(e.target.value);
-        }}
-        placeholder="Write your comment here"
-      />
-      <button onClick={addComment}>Add Comment</button>
     </>
   );
 };

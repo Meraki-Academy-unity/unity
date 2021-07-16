@@ -159,3 +159,17 @@ button:hover {
   border: 2px solid #022047;
   cursor: pointer;
 }
+
+.member_page{
+  display: grid;
+  grid-template-columns: 100px  100px 100px  ;
+  justify-content: space-around;
+}
+
+
+.member_image{
+  width: 100px;
+  border-radius: 50%;
+  border:1px solid rgba(0, 0, 0, 0.3);
+  height: 100px;
+}
