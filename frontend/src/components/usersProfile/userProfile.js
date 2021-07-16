@@ -7,7 +7,7 @@ import AddFriend from "./addFriend";
 import axios from "axios";
 
 
-const UserProfile = () => {
+const UserProfile = ({setIsHome}) => {
     const [profile, setProfile] = useState([]);
     const [roomId, setRoomId] = useState("");
     const [add, setAdd] = useState(false)
@@ -17,7 +17,7 @@ const UserProfile = () => {
             token: state.login.token,
         };
     });
-
+    setIsHome(false)
     useEffect(()=>{
         axios
         .get(`http://localhost:5000/users/user/${id}`)

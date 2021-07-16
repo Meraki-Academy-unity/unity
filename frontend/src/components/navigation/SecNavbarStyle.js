@@ -5,7 +5,7 @@ import { Link as LinkS } from "react-scroll";
 export const Nav = styled.nav`
   background: rgba(0, 0, 0, 0.3);
   height: 80px;
-  margin-top: ${({ isHome }) => (isHome ? "-80px" : "")};
+  margin-top: -80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +71,7 @@ export const NavMenu = styled.ul`
 export const NavItem = styled.li`
   height: 80px;
 `;
-export const NavLinks = styled(LinkS)`
+export const NavLinks = styled(LinkR)`
   color: #fff;
   display: flex;
   align-items: center;
@@ -104,25 +104,6 @@ export const NavBtn = styled.button`
   }
 
   &:hover #content {
-    display: block;
-  }
-`;
-
-export const NavServBtn = styled(LinkR)`
-  display: inline-block;
-  align-items: center;
-  position: relative;
-  background: none;
-  border: none;
-  outline: none;
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-
-  &:hover #services {
     display: block;
   }
 `;

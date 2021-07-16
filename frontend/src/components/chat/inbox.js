@@ -4,10 +4,11 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import "./inbox.css";
 
-const Inobx = () => {
+const Inobx = ({setIsHome}) => {
   const [inbox, setInbox] = useState("");
   const [myData, setMyData] = useState("");
   const [userData, setUserData] = useState([]);
+  setIsHome(false)
   const history = useHistory()
 
   const state = useSelector((state) => {

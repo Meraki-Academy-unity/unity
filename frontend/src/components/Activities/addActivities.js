@@ -22,7 +22,6 @@ const AddActivities = () => {
   const types = ["image/png", "image/jpeg"];
   const history = useHistory();
   const dispatch = useDispatch();
-
   const state = useSelector((state) => {
     return {
       url: state.imgUploader.url,

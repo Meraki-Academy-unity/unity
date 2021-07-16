@@ -10,7 +10,7 @@ let socket;
 const CONNECTION_PORT = "http://localhost:5000";
 socket = io(CONNECTION_PORT);
 
-const Chat = () => {
+const Chat = ({setIsHome}) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
@@ -28,7 +28,7 @@ const Chat = () => {
       id: state.id.id
     };
   });
-
+  setIsHome(false);
   useEffect(()=>{
     axios
     .get("http://localhost:5000/users/myProfile", {
