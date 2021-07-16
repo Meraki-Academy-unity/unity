@@ -71,7 +71,6 @@ const Navigation = ({ toggle }) => {
             <NavBtnContent id="content">
               <NavDropLinks to="/Profile">Profile</NavDropLinks>
               <NavDropLinks to="/Inbox">Inbox</NavDropLinks>
-              <NavDropLinks to="/Notifications">Notifications</NavDropLinks>
               <NavDropLinks to="/" onClick={logout}>
                 Logout
               </NavDropLinks>
