@@ -14,7 +14,6 @@ const AddTravelComment = ({ travel_id }) => {
       token: state.login.token,
 
       id: state.id.id,
-
     };
   });
 
@@ -28,7 +27,6 @@ const AddTravelComment = ({ travel_id }) => {
         throw err;
       });
   }, [comment]);
-
 
   const add = () => {
     axios
@@ -49,33 +47,43 @@ const AddTravelComment = ({ travel_id }) => {
       });
   };
   const deleteComment = (comment_id) => {
-    axios.delete(`http://localhost:5000/travelPlans/comment/${comment_id}`, {
-      headers: {
-        Authorization: `Bearer ${state.token}`,
-      }
-    }).then((result) => {
-      console.log(result);
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+    axios
+      .delete(`http://localhost:5000/travelPlans/comment/${comment_id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const update = (comment_id) => {
-    axios.put(`http://localhost:5000/travelPlans/comment/${comment_id}`, { content }, {
-      headers: {
-        Authorization: `Bearer ${state.token}`,
-      }
-    }).then((result) => {
-      console.log(result);
-      setShow(false)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+    axios
+      .put(
+        `http://localhost:5000/travelPlans/comment/${comment_id}`,
+        { content },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result);
+        setShow(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <div className="comments">
-        <h1>Comments :- </h1>
+        <h1>Comments : </h1>
         {comment &&
           comment.map((elem, i) => {
             return (
@@ -88,10 +96,7 @@ const AddTravelComment = ({ travel_id }) => {
                           src={elem.profile_image}
                           className="member_image"
                         ></img>
-                        <p className="text" style={{ textAlign: "center" }}>
-                          {" "}
-                          {elem.first_name}
-                        </p>
+                        <p className="text"> {elem.first_name}</p>
                       </div>
                     </Link>
                   ) : (
@@ -101,21 +106,64 @@ const AddTravelComment = ({ travel_id }) => {
                           src={elem.profile_image}
                           className="member_image"
                         ></img>
-                        <p className="text" style={{ textAlign: "center" }}>
-                          {" "}
-                          {elem.first_name}
-                        </p>
+                        <p className="text"> {elem.first_name}</p>
                       </div>
                     </Link>
                   )}
-                  {(state.token && state.id == elem.user_id) ? <>{(!show) ? <div className="commentActRight">
-                    <p className="text"> {elem.content}</p>
-                    <button onClick={() => { setShow(true) }}>Update</button> <button onClick={() => { deleteComment(elem.id) }}>Delete</button> </div> : <div className="commentActRight">
-                    <textarea defaultValue={elem.content} onChange={(e) => { setContent(e.target.value) }} />
-                    <button onClick={() => { update(elem.id) }}>Update</button> <button onClick={() => { setShow(false) }}>Cancel</button>
-                  </div>} </> : <div className="commentActRight">
-                    <p className="text"> {elem.content}</p>
-                  </div>}
+                  {state.token && state.id == elem.user_id ? (
+                    <>
+                      {!show ? (
+                        <div className="commentActRight">
+                          <p className="text"> {elem.content}</p>
+                          <div className="update_delete">
+                            <button
+                              onClick={() => {
+                                setShow(true);
+                              }}
+                            >
+                              Update
+                            </button>{" "}
+                            <button
+                              onClick={() => {
+                                deleteComment(elem.id);
+                              }}
+                            >
+                              Delete
+                            </button>{" "}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="commentActRight">
+                          <textarea
+                            defaultValue={elem.content}
+                            onChange={(e) => {
+                              setContent(e.target.value);
+                            }}
+                          />
+                          <div className="update_delete">
+                            <button
+                              onClick={() => {
+                                update(elem.id);
+                              }}
+                            >
+                              Update
+                            </button>{" "}
+                            <button
+                              onClick={() => {
+                                setShow(false);
+                              }}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      )}{" "}
+                    </>
+                  ) : (
+                    <div className="commentActRight">
+                      <p className="text"> {elem.content}</p>
+                    </div>
+                  )}
                   {/* 
                   <div className="commentActRight">
                     <p className="text"> {elem.content}</p>
@@ -131,22 +179,20 @@ const AddTravelComment = ({ travel_id }) => {
                       ""
                     )}
                   </div> */}
-
                 </div>
               </>
             );
           })}
-
-
-        <textarea
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
-          placeholder="Write your comment here"
-        />
-        <button onClick={add}>Add Comment</button>
+        <div className="comment_text_area">
+          <textarea
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
+            placeholder="Write your comment here"
+          />
+          <button onClick={add}>Add Comment</button>
+        </div>
       </div>
-
     </>
   );
 };

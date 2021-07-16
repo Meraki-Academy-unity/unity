@@ -63,7 +63,7 @@ const AddComment = ({ activity_id }) => {
       )
       .then((result) => {
         console.log(result);
-        setShow(false)
+        setShow(false);
       })
       .catch((err) => {
         console.log(err);
@@ -88,7 +88,7 @@ const AddComment = ({ activity_id }) => {
   return (
     <>
       <div className="comments">
-        <h1>Comments :- </h1>
+        <h1>Comments : </h1>
         {comment &&
           comment.map((elem, i) => {
             return (
@@ -101,10 +101,7 @@ const AddComment = ({ activity_id }) => {
                           src={elem.profile_image}
                           className="member_image"
                         ></img>
-                        <p className="text" style={{ textAlign: "center" }}>
-                          {" "}
-                          {elem.first_name}
-                        </p>
+                        <p className="text"> {elem.first_name}</p>
                       </div>
                     </Link>
                   ) : (
@@ -114,22 +111,65 @@ const AddComment = ({ activity_id }) => {
                           src={elem.profile_image}
                           className="member_image"
                         ></img>
-                        <p className="text" style={{ textAlign: "center" }}>
-                          {" "}
-                          {elem.first_name}
-                        </p>
+                        <p className="text"> {elem.first_name}</p>
                       </div>
                     </Link>
                   )}
 
-                  {(state.token && state.id == elem.user_id) ? <>{(!show) ? <div className="commentActRight">
-                    <p className="text"> {elem.content}</p>
-                    <button onClick={() => { setShow(true) }}>Update</button> <button onClick={() => { deleteComment(elem.id) }}>Delete</button> </div> : <div className="commentActRight">
-                    <textarea defaultValue={elem.content} onChange={(e) => { setContent(e.target.value) }} />
-                    <button onClick={() => { update(elem.id) }}>Update</button> <button onClick={() => { setShow(false) }}>Cancel</button>
-                  </div>} </> : <div className="commentActRight">
-                    <p className="text"> {elem.content}</p>
-                  </div>}
+                  {state.token && state.id == elem.user_id ? (
+                    <>
+                      {!show ? (
+                        <div className="commentActRight">
+                          <p className="text"> {elem.content}</p>
+                          <div className="update_delete">
+                            <button
+                              onClick={() => {
+                                setShow(true);
+                              }}
+                            >
+                              Edit
+                            </button>{" "}
+                            <button
+                              onClick={() => {
+                                deleteComment(elem.id);
+                              }}
+                            >
+                              Delete
+                            </button>{" "}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="commentActRight">
+                          <textarea
+                            defaultValue={elem.content}
+                            onChange={(e) => {
+                              setContent(e.target.value);
+                            }}
+                          />
+                          <div className="update_delete">
+                            <button
+                              onClick={() => {
+                                update(elem.id);
+                              }}
+                            >
+                              Update
+                            </button>{" "}
+                            <button
+                              onClick={() => {
+                                setShow(false);
+                              }}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      )}{" "}
+                    </>
+                  ) : (
+                    <div className="commentActRight">
+                      <p className="text"> {elem.content}</p>
+                    </div>
+                  )}
 
                   {/* {state.token ? (
                       <button onClick={() => setShow(!show)}>update</button>
@@ -142,19 +182,19 @@ const AddComment = ({ activity_id }) => {
                     ) : (
                       ""
                     )} */}
-
                 </div>
               </>
             );
           })}
-
-        <textarea
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
-          placeholder="Write your comment here"
-        />
-        <button onClick={add}>Add Comment</button>
+        <div className="comment_text_area">
+          <textarea
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
+            placeholder="Write your comment here"
+          />
+          <button onClick={add}>Add Comment</button>
+        </div>
       </div>
     </>
   );

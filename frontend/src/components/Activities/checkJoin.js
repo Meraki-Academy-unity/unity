@@ -94,7 +94,6 @@ const CheckJoin = ({ activity_id }) => {
           </button>
         )}
 
-
         {show ? (
           <button className="show" onClick={ShowMembers}>
             Show All Members
@@ -114,45 +113,33 @@ const CheckJoin = ({ activity_id }) => {
             Hide Members
           </button>
         )}
-
       </div>
       <div className="member_page">
-      {members &&
-        members.map((elem, i) => {
-          return (
-            <div key={i} >
-
-              {state.id != elem.id ? (
-                
-                <Link className="link" to={`/users/user/${elem.id}`}>
-                  <img
-                    src={elem.profile_image}
-                    className ="member_image"
-                  ></img>
-                  <p className="text" style={{textAlign:"center"}}>
-                    {elem.first_name} 
-                  </p>
-                  
-                </Link>
-                
-              ) : (
-                
-                <Link className="link" to={`/profile`}>
-                
-                  <img
-                    src={elem.profile_image}
-                    className ="member_image"
-                  ></img>
-                  <p className="text" style={{textAlign:"center"}}>
-                    {elem.first_name}
-                  </p>
-                  
-                </Link>
-              )}
-            </div>
-          );
-        })}
-        </div>
+        {members &&
+          members.map((elem, i) => {
+            return (
+              <div className="joined_member" key={i}>
+                {state.id != elem.id ? (
+                  <Link className="link" to={`/users/user/${elem.id}`}>
+                    <img
+                      src={elem.profile_image}
+                      className="member_image"
+                    ></img>
+                    <p className="text">{elem.first_name}</p>
+                  </Link>
+                ) : (
+                  <Link className="link" to={`/profile`}>
+                    <img
+                      src={elem.profile_image}
+                      className="member_image"
+                    ></img>
+                    <p className="text">{elem.first_name}</p>
+                  </Link>
+                )}
+              </div>
+            );
+          })}
+      </div>
     </>
   );
 };
