@@ -147,7 +147,7 @@
     font-weight: lighter;
   }
 
-  form {
+  .regCont form {
       display: flex;
       flex-direction: row;
       gap: 50px;
