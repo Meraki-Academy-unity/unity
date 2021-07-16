@@ -3,54 +3,61 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Album from "./Album";
 import { setPhoto } from "./../../reducers/photoAlbum";
-import "./image.css"
-
-
+import "./image.css";
 
 const ImageGrid = () => {
-    const [photoAlbum, setPhotoAlbum] = useState([])
-    const dispatch = useDispatch();
-    const state = useSelector((state) => {
-        return {
-            token: state.login.token,
-            photo: state.photo.photo
-        };
-    });
+  const [photoAlbum, setPhotoAlbum] = useState([]);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => {
+    return {
+      token: state.login.token,
+      photo: state.photo.photo,
+    };
+  });
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/photoAlbum/", {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      .then((result) => {
+        setPhotoAlbum(result.data);
+      })
+      .catch((err) => {
+        console.log("err in photo", err);
+      });
+  }, [state.token]);
 
-    useEffect(() => {
-
-        axios.get("http://localhost:5000/photoAlbum/", {
-            headers: {
-                Authorization: `Bearer ${state.token}`,
-            },
-        })
-            .then((result) => {
-                setPhotoAlbum(result.data)
-            })
-            .catch((err) => {
-                console.log("err in photo", err)
-            })
-    }, [state.token])
-
-
-    return (
+  return (
+    <>
+      <div className="profileAlbum">
         <>
-            <div className="imageGrid">
-               <> <Album/> </>
-                {photoAlbum && photoAlbum.map((elem, i) => {
-                    return <div key={i}>
-                        {elem.images&&<img src={elem.images} onClick={() => {
-                            dispatch(setPhoto(elem))
-
-                        }} style={{ height: "300px", width: "300px" }} />}
-                    </div>
-
-                })}
-            </div>
+          {" "}
+          <Album />{" "}
         </>
-    )
 
-
-}
-export default ImageGrid
+        {photoAlbum &&
+          photoAlbum.map((elem, i) => {
+            return (
+              <div className="albumTab">
+                <div className="pic" key={i}>
+                  {elem.images && (
+                    <img
+                      src={elem.images}
+                      onClick={() => {
+                        dispatch(setPhoto(elem));
+                      }}
+                      style={{ height: "300px", width: "300px" }}
+                    />
+                  )}
+                </div>
+              </div>
+            );
+          })}
+      </div>
+    </>
+  );
+};
+export default ImageGrid;

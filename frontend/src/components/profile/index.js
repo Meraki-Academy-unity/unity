@@ -8,13 +8,22 @@ import moment from "moment";
 import EditMyProfile from "./editProfile";
 import ShowFriends from "./showFriend";
 import Matching from "./../preferences/matching";
+import ProfilePlans from "./profilePlans";
+import GetMyPreferences from "./../preferences/ShowPreference";
+import ImageGrid from "./../Album/showAlbum";
 
 const Profile = () => {
   const [profile, setProfile] = useState([]);
   const [edit, setEdit] = useState(false);
   const [friends, setFriends] = useState(false);
   const [matches, setMatches] = useState(false);
+  const [plans, setPlans] = useState(false);
+  const [preferences, setPreferences] = useState(false);
+  const [pics, setPics] = useState(false);
+  const [ownActivity, setOwnActivity] = useState(false);
+
   const history = useHistory();
+
   const state = useSelector((state) => {
     return {
       token: state.login.token,
@@ -40,18 +49,70 @@ const Profile = () => {
     setEdit(true);
     setFriends(false);
     setMatches(false);
+    setPlans(false);
+    setPreferences(false);
+    setPics(false);
+    setOwnActivity(false);
   };
 
   const showFriends = () => {
     setEdit(false);
     setFriends(true);
     setMatches(false);
+    setPlans(false);
+    setPreferences(false);
+    setPics(false);
+    setOwnActivity(false);
   };
 
   const matching = () => {
     setEdit(false);
     setFriends(false);
     setMatches(true);
+    setPlans(false);
+    setPreferences(false);
+    setPics(false);
+    setOwnActivity(false);
+  };
+
+  const ownPlans = () => {
+    setEdit(false);
+    setFriends(false);
+    setMatches(false);
+    setPlans(true);
+    setPreferences(false);
+    setPics(false);
+    setOwnActivity(false);
+  };
+
+  const ownPreferences = () => {
+    setEdit(false);
+    setFriends(false);
+    setMatches(false);
+    setPlans(false);
+    setPreferences(true);
+    setPics(false);
+    setOwnActivity(false);
+  };
+
+  const album = () => {
+    setEdit(false);
+    setFriends(false);
+    setMatches(false);
+    setPlans(false);
+    setPreferences(false);
+    setPics(true);
+    setOwnActivity(false);
+  };
+
+  const myActivity = () => {
+    setEdit(false);
+    setFriends(false);
+    setMatches(false);
+    setPlans(false);
+    setPreferences(false);
+    setPics(false);
+    setOwnActivity(true);
   };
 
   return (
@@ -134,28 +195,16 @@ const Profile = () => {
         <div className="right-side">
           <div className="nav">
             <ul>
-              <li
-                className="user-post"
-                onClick={(e) => history.push("/profile/plans")}
-              >
+              <li className="user-post" onClick={ownPlans}>
                 Posts
               </li>
-              <li
-                className="user-post"
-                onClick={(e) => history.push("/profile/activities")}
-              >
+              <li className="user-post" onClick={myActivity}>
                 Activities
               </li>
-              <li
-                className="user-post"
-                onClick={(e) => history.push("/profile/preferences")}
-              >
+              <li className="user-post" onClick={ownPreferences}>
                 Preferences
               </li>
-              <li
-                className="user-post"
-                onClick={(e) => history.push("/photoAlbum")}
-              >
+              <li className="user-post" onClick={album}>
                 Photos
               </li>
             </ul>
@@ -182,20 +231,50 @@ const Profile = () => {
             ) : (
               ""
             )}
+            {plans ? (
+              <div>
+                <ProfilePlans />
+              </div>
+            ) : (
+              ""
+            )}
+            {preferences ? (
+              <div>
+                <GetMyPreferences />
+              </div>
+            ) : (
+              ""
+            )}
+            {pics ? (
+              <div>
+                <ImageGrid />
+              </div>
+            ) : (
+              ""
+            )}
+            {ownActivity ? (
+              <div>
+                <ProfileActivities />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
-
-        {/* <Link to="/profile/info">Edit Profile</Link> */}
-        {/* <Link to="/profile/activities">My Acticities</Link> */}
-        {/* <Link to="/profile/plans">My Plans</Link> */}
-        {/* <Link to="/newsFeed">News Feed</Link> */}
-        {/* <Link to="/profile/preferences">Preferences</Link> */}
-        {/* <Link to="/profile/showFriend">Friends</Link>
-        <Link to="/match">Matching</Link> */}
-        {/* <Link to="/photoAlbum"> Photo Album</Link> */}
       </div>
     </div>
   );
 };
 
 export default Profile;
+
+{
+  /* <Link to="/profile/info">Edit Profile</Link> 
+<Link to="/profile/activities">My Acticities</Link> 
+<Link to="/profile/plans">My Plans</Link> 
+<Link to="/newsFeed">News Feed</Link> 
+<Link to="/profile/preferences">Preferences</Link> 
+<Link to="/profile/showFriend">Friends</Link>
+<Link to="/match">Matching</Link> 
+<Link to="/photoAlbum"> Photo Album</Link>  */
+}

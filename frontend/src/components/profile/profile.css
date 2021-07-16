@@ -344,3 +344,32 @@ form {
 .edit_details input {
   padding: 4px;
 }
+
+.profileAlbum {
+  padding: 20px;
+}
+
+.albumTab {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.pic {
+  margin-top: 20px;
+}
+
+.profile_post_page {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 30px;
+  margin-top: 30px;
+  justify-items: center;
+}
+
+.profile_post_details {
+  padding: 20px;
+}
+
+.profile_post_details p {
+  margin-top: 10px;
+}

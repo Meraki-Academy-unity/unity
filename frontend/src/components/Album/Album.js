@@ -10,7 +10,6 @@ const Album = () => {
   const [done, setDone] = useState(false);
   const [message, setMessage] = useState();
 
-
   const types = ["image/png", "image/jpeg"];
 
   const state = useSelector((state) => {
@@ -21,7 +20,6 @@ const Album = () => {
   });
 
   useEffect(() => {
-
     axios
       .post(
         "http://localhost:5000/photoAlbum/",
@@ -36,22 +34,21 @@ const Album = () => {
       )
       .then((result) => {
         console.log(result.data);
-        setDone(false)
-        setMessage("image has been added successfully")
+        setDone(false);
+        setMessage("image has been added successfully");
       })
       .catch((err) => {
         console.log(err);
       });
   }, [image]);
 
-
   const uploadImage = (e) => {
     let selectedImage = e.target.files[0];
     if (selectedImage && types.includes(selectedImage.type)) {
       console.log(selectedImage);
       setFile(selectedImage);
-      setDone(true)
-      setMessage("")
+      setDone(true);
+      setMessage("");
       setErrorImgMessage("");
     } else {
       setFile(null);
@@ -61,19 +58,28 @@ const Album = () => {
 
   return (
     <>
-      <input type="file" onChange={uploadImage} />
-      {file && <LoaderBar file={file} setFile={setFile} />}
-      {errorImgMessage && <div>{errorImgMessage}</div>}
-      {!file && done ? <button
-        onClick={
-          () => {
-            setImage(state.url);
-          }
-        }
-      >
-        Add Image
-      </button> : ""}
-      {message && <div>{message}</div>}
+      <div style={{ display: "flex", fontSize: "20px" }}>
+        <input
+          style={{ fontSize: "20px" }}
+          type="file"
+          onChange={uploadImage}
+        />
+        {file && <LoaderBar file={file} setFile={setFile} />}
+        {errorImgMessage && <div>{errorImgMessage}</div>}
+        {!file && done ? (
+          <button
+            style={{ fontSize: "20px" }}
+            onClick={() => {
+              setImage(state.url);
+            }}
+          >
+            &nbsp;Add Image &nbsp;
+          </button>
+        ) : (
+          ""
+        )}
+        {message && <div>{message}</div>}
+      </div>
     </>
   );
 };
