@@ -74,7 +74,11 @@ const Chat = ({setIsHome}) => {
 
   // useEffect(async () => {
      axios
-      .get(`http://localhost:5000/messages/${room}`)
+      .get(`http://localhost:5000/messages/${room}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
       .then((result) => {
         setChatHistory(result.data);
       })
