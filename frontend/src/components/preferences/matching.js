@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import axios from "axios";
 import "./matching.css";
+import AddPerferences from "./addPreferences"
 
 const Matching = () => {
-  const [stateMatch, setStateMatch] = useState("both");
+  const [stateMatch, setStateMatch] = useState("");
   const [content, setContent] = useState([]);
-
+  const [add , setAdd] = useState(false)
   const history = useHistory();
 
   const state = useSelector((state) => {
@@ -17,59 +18,151 @@ const Matching = () => {
       token: state.login.token,
     };
   });
+
+  const check = ()=>{
+    setContent([])
+  }
+
+  const CheckPreferences = ()=>{
+    useEffect (()=>{
+      axios
+      .get(`http://localhost:5000/preferences/user`, {
+          headers: {
+              Authorization: `Bearer ${state.token}`,
+          }
+      })
+      .then((result) => {
+        if(result.data.length == 0 ){
+          setStateMatch("")
+        }else {
+          setStateMatch("both")
+        }
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    } , [stateMatch])
+  }
+
+
+
   const MatchByLoaction = () => {
     useEffect(() => {
       axios
-        .get("http://localhost:5000/preferences/locationMatch", {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
+        .get(`http://localhost:5000/preferences/user`, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            }
         })
         .then((result) => {
-          setContent(result.data);
+           if(result.data.length){
+            axios
+            .get("http://localhost:5000/preferences/locationMatch", {
+              headers: {
+                Authorization: `Bearer ${state.token}`,
+              },
+            })
+            .then((result) => {
+              setContent(result.data);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
+           }else{
+            check()
+           }
+
         })
         .catch((err) => {
-          console.log("error", err);
+            throw err;
         });
+     
     }, [stateMatch]);
   };
+
+  
 
   const MatchByDate = () => {
     useEffect(() => {
       axios
-        .get("http://localhost:5000/preferences/dateMatch", {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
+        .get(`http://localhost:5000/preferences/user`, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            }
         })
         .then((result) => {
-          setContent(result.data);
+           if(result.data.length){
+            axios
+            .get("http://localhost:5000/preferences/dateMatch", {
+              headers: {
+                Authorization: `Bearer ${state.token}`,
+              },
+            })
+            .then((result) => {
+              setContent(result.data);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
+           }else{
+            check()
+           }
+
         })
         .catch((err) => {
-          console.log("error", err);
+            throw err;
         });
+     
     }, [stateMatch]);
   };
 
+  
   const MatchByDateAndLocation = () => {
     useEffect(() => {
       axios
-        .get("http://localhost:5000/preferences/match", {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
+        .get(`http://localhost:5000/preferences/user`, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            }
         })
         .then((result) => {
-          setContent(result.data);
+           if(result.data.length){
+            axios
+            .get("http://localhost:5000/preferences/match", {
+              headers: {
+                Authorization: `Bearer ${state.token}`,
+              },
+            })
+            .then((result) => {
+              setContent(result.data);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
+           }else{
+            check()
+           }
+
         })
         .catch((err) => {
-          console.log("error", err);
+            throw err;
         });
+     
     }, [stateMatch]);
   };
 
   return (
     <>
+    {stateMatch == "" ? <>{CheckPreferences()}</>  : ""}
+    {stateMatch == "location" ? <>{MatchByLoaction()}</> : ""}
+    {stateMatch == "date" ? <>{MatchByDate()}</> : ""}
+    {stateMatch == "both" ? <>{MatchByDateAndLocation()}</> : ""}
+    {content.length == 0 && stateMatch.length == 0 ? <div className="matchingPage"> <p> You dont have preferences please fill your preferences <button onClick={()=>{
+      setAdd(true)
+    }}> Click here</button></p>
+    {add ? <AddPerferences /> : ""}
+    
+    </div> :
       <div className="matchingPage">
         <button
           className="interactionButton"
@@ -78,7 +171,7 @@ const Matching = () => {
           }}
         >
           {" "}
-          Matching
+          Match by location + date
         </button>
         <button
           className="interactionButton"
@@ -100,10 +193,8 @@ const Matching = () => {
           Match By Date
         </button>
 
-        {stateMatch == "location" ? <>{MatchByLoaction()}</> : ""}
-        {stateMatch == "date" ? <>{MatchByDate()}</> : ""}
-        {stateMatch == "both" ? <>{MatchByDateAndLocation()}</> : ""}
 
+        {content.length == 0 ? <div><p>No Matching found</p></div> : <>
         {content &&
           content.map((elem, i) => {
             return (
@@ -150,8 +241,8 @@ const Matching = () => {
                 </div>
               </div>
             );
-          })}
-      </div>
+          })}</>}
+      </div>}
     </>
   );
 };

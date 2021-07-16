@@ -57,7 +57,7 @@ const CheckInList = ({ setCheckInList }) => {
               borderStyle: "solid",
               borderWidth: "1px",
               marginLeft: "5px",
-              marginTop:"4px"
+              marginTop: "4px",
             }}
           />
         )}
