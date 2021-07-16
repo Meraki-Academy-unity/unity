@@ -1,7 +1,33 @@
+.inbox_page{
+  display: grid;
+ grid-template-rows: 100px;
+  row-gap:10px;
+  /* margin-top: 4%; */
+  margin-left: 2%;
+  /* margin-bottom: 40%; */
+}
 .inbox {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  margin: 20px;
+  /* margin: 20px; */
   padding: 5px;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sender{
+  display: grid;
+  grid-template-columns: 125px 1fr; 
+}
+.senderInfo{
+
+  display: grid;
+  grid-template-rows: 50px 50px ;
+  /* margin: 5px; */
+}
+
+.sender img {
+  border-radius: 80%;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
