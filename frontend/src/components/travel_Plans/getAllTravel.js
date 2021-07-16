@@ -51,7 +51,7 @@ const GetAllTravel = () => {
       ) : (
         ""
       )}
-      <div className="post_page">
+      {!travels.length ? <div > <p>No Travels to show</p> </div> :<div className="post_page">
         {travels &&
           travels.map((element, index) => {
             return (
@@ -107,7 +107,7 @@ const GetAllTravel = () => {
               </div>
             );
           })}
-      </div>
+      </div>}
     </>
   );
 };

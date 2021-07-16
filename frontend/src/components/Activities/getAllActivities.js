@@ -38,29 +38,26 @@ const Activities = () => {
     <>
       <div className="content">
         {state.token ? (
-          <div className="add">
+          
             <button
-              style={{
-                backgroundColor: "rgb(240, 240, 240)",
-                border: "none",
-              }}
+            style={{marginLeft:"95%", marginTop:"100px"  }}
               onClick={() => {
                 history.push("/addActivity");
               }}
             >
               <IconContext.Provider
                 value={{
-                  style: { fontSize: "35px", color: "rgb(232, 180, 48)" },
+                  style: { fontSize: "35px", color: "rgb(232, 180, 48)"   },
                 }}
               >
                 <FaPlus />
               </IconContext.Provider>
             </button>
-          </div>
+          
         ) : (
           ""
         )}
-        <div className="post_page">
+        {!activities.length ? <div > <p>No Activities to show</p> </div> : <div className="post_page">
           {activities &&
             activities.map((element, index) => {
               return (
@@ -118,7 +115,7 @@ const Activities = () => {
                 </div>
               );
             })}
-        </div>
+        </div> }
       </div>
     </>
   );
