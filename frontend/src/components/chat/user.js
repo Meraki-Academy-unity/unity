@@ -123,9 +123,10 @@ const Chat = ({setIsHome}) => {
 
   
 
-  function handleOnEnter(message) {
-    console.log('enter', message)
-  }
+  // function handleOnEnter(message) {
+  //   setMessage(message);
+  //   console.log('enter', message)
+  // }
 
   return (
     <>
@@ -186,7 +187,7 @@ const Chat = ({setIsHome}) => {
                       value={message}
                       onChange={setMessage}
                       cleanOnEnter
-                      onEnter={handleOnEnter}
+                      onEnter={sendMessage}
                       placeholder="Type a message"
                       borderRadius="5px"
                       borderColor="rgba(0, 0, 0, 0.3)"

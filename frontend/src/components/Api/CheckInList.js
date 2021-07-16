@@ -28,7 +28,7 @@ const CheckInList = ({ setCheckInList }) => {
         }}
       >
         <select
-          style={{ padding: "3px" }}
+          style={{ padding: "3px" ,width:"330px",fontSize:"18px"}}
           name="image"
           id="image"
           onChange={(e) => {
@@ -56,7 +56,8 @@ const CheckInList = ({ setCheckInList }) => {
               height: "22px",
               borderStyle: "solid",
               borderWidth: "1px",
-              marginLeft: "2px",
+              marginLeft: "5px",
+              marginTop:"4px"
             }}
           />
         )}

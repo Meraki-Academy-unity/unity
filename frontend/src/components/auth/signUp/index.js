@@ -255,14 +255,14 @@ const SecondStep = ({
           <div className="regForm">
             {/* _____________________________________________ */}
             <div className="firstName">
-              <label>Region:</label>
+              <label>Place Of Birth : </label>
 
               <CountryList setCountryList={setCountryList} />
               {setRegion(countryList)}
             </div>
             {/* _____________________________________________ */}
             <div className="lastName">
-              <label>Current location:</label>
+              <label>Current Location:</label>
 
               <CheckInList setCheckInList={setCheckInList} />
               {setCurrentlyIn(checkInLis)}
@@ -289,7 +289,7 @@ const SecondStep = ({
               />
             </div>
             <div className="lastName">
-              <label>Birth Date:</label>
+              <label> Date Of Birth :</label>
               <input
                 onChange={(e) => {
                   setDateOfBirth(e.target.value);
