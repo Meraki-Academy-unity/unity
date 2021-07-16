@@ -31,8 +31,7 @@ import Home from "./Pages";
 import ShowFriends from "./components/profile/showFriend";
 import Chat from "./components/chat/user";
 import Navigation from "./components/navigation";
-import Inobx from "./components/chat/inbox";
-import SecNavigation from "./components/navigation/SecondNavbar";
+import Inbox from "./components/chat/inbox";
 
 const App = () => {
   const [isHome,setIsHome] = useState(false);
@@ -56,7 +55,7 @@ const App = () => {
       <Route exact path="/addActivity" render={() => <AddActivities/>} />
       <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
       <Route exact path="/preferences" render={() => <AddPerferences/>} />
-      <Route exact path="/inbox" render={() => <Inobx setIsHome={setIsHome}/>} />
+      <Route exact path="/inbox" render={() => <Inbox setIsHome={setIsHome}/>} />
       <Route
         exact
         path="/profile/activities"
