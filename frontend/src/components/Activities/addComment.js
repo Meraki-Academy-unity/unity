@@ -126,7 +126,7 @@ const AddComment = ({ activity_id }) => {
                     <p className="text"> {elem.content}</p>
                     <button onClick={() => { setShow(true) }}>Update</button> <button onClick={() => { deleteComment(elem.id) }}>Delete</button> </div> : <div className="commentActRight">
                     <textarea defaultValue={elem.content} onChange={(e) => { setContent(e.target.value) }} />
-                    <button onClick={() => { update(elem.id) }}>Update</button> <button onClick={() => { setShow(true) }}>Cancel</button>
+                    <button onClick={() => { update(elem.id) }}>Update</button> <button onClick={() => { setShow(false) }}>Cancel</button>
                   </div>} </> : <div className="commentActRight">
                     <p className="text"> {elem.content}</p>
                   </div>}
