@@ -98,7 +98,7 @@ const AddComment = ({ activity_id }) => {
                     <Link className="link" to={"/users/user/" + elem.user_id}>
                       <div key={i} className="commentActLeft">
                         <img
-                          src={elem.profile_image}
+                   cd 
                           className="member_image"
                         ></img>
                         <p className="text" style={{ textAlign: "center" }}>

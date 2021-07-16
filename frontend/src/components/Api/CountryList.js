@@ -18,41 +18,49 @@ const CountryList = ({ setCountryList }) => {
             });
     }, []);
 
-
-    
     return (
         <>
-            <select
-                name="image"
-                id="image"
-                onChange={(e) => {
-                    setLocation(e.target.value.split(",")[0]);
-                    setIndex(e.target.value.split(",")[1]);
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    marginTop: "10px",
                 }}
             >
-                <option>choose your Region</option>
-                {country &&
-                    country.map((elem, i) => {
-                        return (
-                            <option key={i} value={[elem.name, i]}>
-                                {elem.name}
-                            </option>
-                        );
-                    })}
-            </select>
-            {country[index] && setCountryList(country[index].name)}
-            {country[index] && (
-                <img
-                    src={country[index].flag}
-                    style={{
-                        borderRadius: "50% ",
-                        width: "17px",
-                        height: "17px",
-                        borderStyle: "solid",
-                        borderWidth: "2px",
+                <select
+                 style={{ padding: "3px" }}
+                    name="image"
+                    id="image"
+                    onChange={(e) => {
+                        setLocation(e.target.value.split(",")[0]);
+                        setIndex(e.target.value.split(",")[1]);
                     }}
-                />
-            )}
+                >
+                    <option>choose your Region</option>
+                    {country &&
+                        country.map((elem, i) => {
+                            return (
+                                <option key={i} value={[elem.name, i]}>
+                                    {elem.name}
+                                </option>
+                            );
+                        })}
+                </select>
+                {country[index] && setCountryList(country[index].name)}
+                {country[index] && (
+                    <img
+                        src={country[index].flag}
+                        style={{
+                            borderRadius: "50% ",
+                            width: "22px",
+                            height: "22px",
+                            borderStyle: "solid",
+                            borderWidth: "1px",
+                            // marginLeft: "2px",
+                          }}
+                    />
+                )}
+            </div>
         </>
     );
 };
