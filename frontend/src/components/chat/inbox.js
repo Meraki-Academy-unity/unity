@@ -75,7 +75,7 @@ const Inobx = ({ setIsHome }) => {
     <>
 
       <div className="inbox_page">
-        <p style={{ margin: "10px" }}>Inbox</p>
+        <h1>Inbox</h1>
         {inbox &&
           inbox.map((elem, i) => {
             return (
