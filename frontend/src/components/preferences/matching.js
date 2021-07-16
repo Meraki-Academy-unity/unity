@@ -22,6 +22,26 @@ const Matching = () => {
     setContent([])
   }
 
+  const CheckPreferences = ()=>{
+    useEffect (()=>{
+      axios
+      .get(`http://localhost:5000/preferences/user`, {
+          headers: {
+              Authorization: `Bearer ${state.token}`,
+          }
+      })
+      .then((result) => {
+        if(result.data.length == 0 ){
+          setStateMatch("")
+        }
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    } , [stateMatch])
+  }
+
+
 
   const MatchByLoaction = () => {
     useEffect(() => {
@@ -130,7 +150,11 @@ const Matching = () => {
 
   return (
     <>
-    
+    {stateMatch == "" ? <>{CheckPreferences()}</>  : ""}
+    {stateMatch == "location" ? <>{MatchByLoaction()}</> : ""}
+    {stateMatch == "date" ? <>{MatchByDate()}</> : ""}
+    {stateMatch == "both" ? <>{MatchByDateAndLocation()}</> : ""}
+    {content.length == 0 ? <div className="matchingPage"> <p> You dont have preferences please fill your preferences</p></div> :
       <div className="matchingPage">
         <button
           className="interactionButton"
@@ -161,10 +185,8 @@ const Matching = () => {
           Match By Date
         </button>
 
-        {stateMatch == "location" ? <>{MatchByLoaction()}</> : ""}
-        {stateMatch == "date" ? <>{MatchByDate()}</> : ""}
-        {stateMatch == "both" ? <>{MatchByDateAndLocation()}</> : ""}
-        {content.length == 0 ? <div className="matchingPage"> <p> You dont have preferences please fill your preferences</p></div> :<>
+
+
         {content &&
           content.map((elem, i) => {
             return (
@@ -211,8 +233,8 @@ const Matching = () => {
                 </div>
               </div>
             );
-          })}</> }
-      </div>
+          })}
+      </div>}
     </>
   );
 };
