@@ -116,44 +116,43 @@ const CheckJoin = ({ activity_id }) => {
         )}
 
       </div>
+      <div className="member_page">
       {members &&
         members.map((elem, i) => {
           return (
-            <div key={i}>
-              {state.id !== elem.id ? (
+            <div key={i} >
+
+              {state.id != elem.id ? (
+                
                 <Link className="link" to={`/users/user/${elem.id}`}>
                   <img
                     src={elem.profile_image}
-                    style={{
-                      width: "70px",
-                      borderRadius: "50%",
-                      borderStyle: "solid",
-                      height: "70px",
-                    }}
+                    className ="member_image"
                   ></img>
-                  <p className="text">
-                    {elem.first_name} {elem.last_name}
+                  <p className="text" style={{textAlign:"center"}}>
+                    {elem.first_name} 
                   </p>
+                  
                 </Link>
+                
               ) : (
+                
                 <Link className="link" to={`/profile`}>
+                
                   <img
                     src={elem.profile_image}
-                    style={{
-                      width: "70px",
-                      borderRadius: "50%",
-                      borderStyle: "solid",
-                      height: "70px",
-                    }}
+                    className ="member_image"
                   ></img>
-                  <p className="text">
-                    {elem.first_name} {elem.last_name}
+                  <p className="text" style={{textAlign:"center"}}>
+                    {elem.first_name}
                   </p>
+                  
                 </Link>
               )}
             </div>
           );
         })}
+        </div>
     </>
   );
 };

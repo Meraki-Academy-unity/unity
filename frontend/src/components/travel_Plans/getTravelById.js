@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import AddTravelComment from './addComment';
-
+import moment from 'moment';
 import CheckTravelJoin from './checkJoin';
 import "./../Activities/style.css"
 
@@ -32,34 +32,39 @@ const GetTravelById = (id) => {
     }, [])
 
     return (<>
-        <div>
+       <div style={{marginTop:"85px"}}>
+        <div className="post">
+          <div className = "postCont">
+          <img src={travel.images} className="postImg"></img>
+          <h1 className="title">{travel.title}</h1>
+          <p className="text">Location: {travel.location}</p>
+          <p className="text">Start date: {moment(travel.start_date, "YYYY-MM-DD")
+                        .add(1, "days")
+                        .format("DD-MM-YYYY")}</p>
+          <p className="text" >Finish date: {moment(travel.finish_date, "YYYY-MM-DD")
+                        .add(1, "days")
+                        .format("DD-MM-YYYY")}</p>
+          <p className="text">Details : {travel.details}</p>
+          <p className="text">Requirements: {travel.requirements}</p>
+          <p className="text">Activities: {travel.activities}</p>
+          <p className="text">Estimated budget: {travel.estimated_budget}</p>
+          <p className="text">
+            Created by :{" "}
+            {state.id !== travel.user_id ? (<Link className="link" to={`/users/user/${travel.user_id}`}>
+              {travel.first_name} {travel.last_name}
+            </Link>) : (<Link className="link" to={`/profile`}>
+              {travel.first_name} {travel.last_name}
+            </Link>)}
+          </p>
+          {state.token ? <CheckTravelJoin travel_id={travel.id} /> : ""}
+          {state.token ? <AddTravelComment travel_id={travel.id} /> : ""}
+          </div>
+        
 
-            <div className="post">
-                <h1>{travel.title}</h1>
-                <img src={travel.images} className="postImg"></img>
-                <p>countries: {travel.countries}</p>
-                <p>activities: {travel.activities}</p>
-                <p>requirements: {travel.requirements}</p>
-                <p>details : {travel.details}</p>
-                <p>activities: {travel.activities}</p>
-                <p>estimated budget: {travel.estimated_budget}</p>
-                <p>
-                    created by :{" "}
-                    {state.id !== travel.user_id ? (<Link to={`/users/user/${travel.user_id}`}>
-                        {travel.first_name} {travel.last_name}
-                    </Link>) : (<Link to={`/profile`}>
-                        {travel.first_name} {travel.last_name}
-                    </Link>)}
-                </p>
-                <br />
-            </div>
-            {state.token ? <CheckTravelJoin travel_id={travel.id} /> : ""}
-
-
-
-            {state.token ? <AddTravelComment travel_id={travel.id} /> : ""}
-
-        </div>
+        
+        
+      </div>
+      </div>
 
     </>)
 }

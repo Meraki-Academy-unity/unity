@@ -6,6 +6,7 @@ import { Link, Route, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UpdateComment from "./updateComment";
 import DeleteComments from "./deleteComment";
+import id from "../../reducers/userID";
 
 const AddComment = ({ activity_id }) => {
   const [content, setContent] = useState("");
@@ -16,7 +17,6 @@ const AddComment = ({ activity_id }) => {
       token: state.login.token,
 
       id: state.id.id,
-
     };
   });
 
@@ -30,7 +30,6 @@ const AddComment = ({ activity_id }) => {
         throw err;
       });
   }, [comment]);
-
 
   const add = () => {
     axios
@@ -50,6 +49,42 @@ const AddComment = ({ activity_id }) => {
         console.log(err);
       });
   };
+
+  const update = (id) => {
+    axios
+      .put(
+        `http://localhost:5000/activities/comment/${id}`,
+        { content },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result);
+        setShow(false)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteComment = (id) => {
+    axios
+      .delete(`http://localhost:5000/activities/comment/${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <div className="comments">
@@ -59,17 +94,12 @@ const AddComment = ({ activity_id }) => {
             return (
               <>
                 <div className="commentAct">
-                  {state.id !== elem.user_id ? (
+                  {state.id != elem.user_id ? (
                     <Link className="link" to={"/users/user/" + elem.user_id}>
                       <div key={i} className="commentActLeft">
                         <img
                           src={elem.profile_image}
-                          style={{
-                            width: "70px",
-                            borderRadius: "50%",
-                            borderStyle: "solid",
-                            height: "70px",
-                          }}
+                          className="member_image"
                         ></img>
                         <p className="text" style={{ textAlign: "center" }}>
                           {" "}
@@ -82,12 +112,7 @@ const AddComment = ({ activity_id }) => {
                       <div key={i} className="commentActLeft">
                         <img
                           src={elem.profile_image}
-                          style={{
-                            width: "70px",
-                            borderRadius: "50%",
-                            borderStyle: "solid",
-                            height: "70px",
-                          }}
+                          className="member_image"
                         ></img>
                         <p className="text" style={{ textAlign: "center" }}>
                           {" "}
@@ -96,10 +121,17 @@ const AddComment = ({ activity_id }) => {
                       </div>
                     </Link>
                   )}
+                  
+                  {(state.token && state.id == elem.user_id) ? <>{ (!show) ? <div className="commentActRight"> 
+                  <p className="text"> {elem.content}</p>
+                  <button onClick={()=>{setShow(true)}}>Update</button> <button onClick={()=>{deleteComment(elem.id)}}>Delete</button> </div> : <div className="commentActRight">
+                  <textarea defaultValue={elem.content} onChange={(e)=>{setContent(e.target.value)}} /> 
+                  <button onClick={()=>{update(elem.id)}}>Update</button> <button onClick={()=>{setShow(true)}}>Cancel</button> 
+                  </div> } </> : <div className="commentActRight">
+                  <p className="text"> {elem.content}</p>
+                      </div>}
 
-                  <div className="commentActRight">
-                    <p className="text"> {elem.content}</p>
-                    {state.token ? (
+                    {/* {state.token ? (
                       <button onClick={() => setShow(!show)}>update</button>
                     ) : (
                       ""
@@ -109,14 +141,12 @@ const AddComment = ({ activity_id }) => {
                       <UpdateComment comment_id={elem.id} />
                     ) : (
                       ""
-                    )}
-                  </div>
-
+                    )} */}
+                  
                 </div>
               </>
             );
           })}
-
 
         <textarea
           onChange={(e) => {
@@ -126,7 +156,6 @@ const AddComment = ({ activity_id }) => {
         />
         <button onClick={add}>Add Comment</button>
       </div>
-
     </>
   );
 };

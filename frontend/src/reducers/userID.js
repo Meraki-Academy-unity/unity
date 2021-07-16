@@ -1,12 +1,13 @@
-
+const id1 = localStorage.getItem("user_id") || "";
 const initialState = {
-    id: 0,
+
+    id : id1 ,
 };
 
 const id = (state = initialState, { type, payload }) => {
     switch (type) {
         case "SET_ID":
-            return { id: payload };
+            return { id: payload  };
         default:
             return state;
     }

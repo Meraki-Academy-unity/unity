@@ -57,18 +57,15 @@ const GetActivityById = (id) => {
           <p className="text">Estimated budget: {activity.estimated_budget}</p>
           <p className="text">
             Created by :{" "}
-            {state.id !== activity.user_id ? (<Link className="link" to={`/users/user/${activity.user_id}`}>
+            {state.id != activity.user_id ? (<Link className="link" to={`/users/user/${activity.user_id}`}>
               {activity.first_name} {activity.last_name}
             </Link>) : (<Link className="link" to={`/profile`}>
               {activity.first_name} {activity.last_name}
             </Link>)}
           </p>
           {state.token ? <CheckJoin activity_id={activity.id} /> : ""}
+          {state.token ? <AddComment activity_id={activity.id} /> : ""}
           </div>
-        
-
-        
-        {state.token ? <AddComment activity_id={activity.id} /> : ""}
       </div>
       </div>
     </>
