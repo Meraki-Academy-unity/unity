@@ -115,11 +115,18 @@ const EditMyProfile = () => {
             </p>
             <p>Email : {profile.email}</p>
             <p>Place of birth : {profile.region}</p>
-
-            <p>
-              Currently In :- <CheckInList setCheckInList={setCheckInList} />
-            </p>
-
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "20px",
+                marginTop: "10px",
+                padding: "0px",
+              }}
+            >
+              Currently In :&nbsp;{" "}
+              <CheckInList setCheckInList={setCheckInList} />
+            </div>
             <p>
               Language :{" "}
               <input
