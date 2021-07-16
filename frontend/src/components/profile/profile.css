@@ -373,3 +373,13 @@ form {
 .profile_post_details p {
   margin-top: 10px;
 }
+
+.pref_page {
+  padding: 20px;
+}
+
+.pref_page p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #000;
+}
