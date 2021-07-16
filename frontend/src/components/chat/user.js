@@ -69,18 +69,17 @@ const Chat = ({setIsHome}) => {
 
   const connectToRoom = () => {
     setLoggedIn(true);
-    socket.emit("join_room", room); //raise event
+    socket.emit("join_room", room); 
   };
 
   // useEffect(async () => {
      axios
-      .get(`http://localhost:5000/messages/${room}`,{
+      .get(`http://localhost:5000/messages/${room}`, {
         headers: {
           Authorization: `Bearer ${state.token}`,
         },
       })
       .then((result) => {
-        console.log("chat history: ", result);
         setChatHistory(result.data);
       })
       .catch((err) => {

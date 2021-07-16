@@ -10,7 +10,7 @@ const {
 const MessagesRouter = express.Router();
 
 MessagesRouter.post("/", authentication, addMessages);
-MessagesRouter.get("/:room_id", authentication,showMessages);
+MessagesRouter.get("/:room_id",authentication,showMessages);
 MessagesRouter.get("/", authentication, inboxMessages);
 
 module.exports = MessagesRouter;
