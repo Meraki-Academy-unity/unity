@@ -58,7 +58,14 @@ const Album = () => {
 
   return (
     <>
-      <div style={{ display: "flex", fontSize: "20px" }}>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "20px",
+          marginTop: "30px",
+          marginLeft: "30px",
+        }}
+      >
         <input
           style={{ fontSize: "20px" }}
           type="file"

@@ -49,7 +49,7 @@ const ImageGrid = () => {
                       onClick={() => {
                         dispatch(setPhoto(elem));
                       }}
-                      style={{ height: "300px", width: "300px" }}
+                      style={{ height: "400px", width: "400px" }}
                     />
                   )}
                 </div>
