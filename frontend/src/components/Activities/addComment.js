@@ -98,7 +98,7 @@ const AddComment = ({ activity_id }) => {
                     <Link className="link" to={"/users/user/" + elem.user_id}>
                       <div key={i} className="commentActLeft">
                         <img
-                   cd 
+                          src={elem.profile_image}
                           className="member_image"
                         ></img>
                         <p className="text" style={{ textAlign: "center" }}>
@@ -121,17 +121,17 @@ const AddComment = ({ activity_id }) => {
                       </div>
                     </Link>
                   )}
-                  
-                  {(state.token && state.id == elem.user_id) ? <>{ (!show) ? <div className="commentActRight"> 
-                  <p className="text"> {elem.content}</p>
-                  <button onClick={()=>{setShow(true)}}>Update</button> <button onClick={()=>{deleteComment(elem.id)}}>Delete</button> </div> : <div className="commentActRight">
-                  <textarea defaultValue={elem.content} onChange={(e)=>{setContent(e.target.value)}} /> 
-                  <button onClick={()=>{update(elem.id)}}>Update</button> <button onClick={()=>{setShow(true)}}>Cancel</button> 
-                  </div> } </> : <div className="commentActRight">
-                  <p className="text"> {elem.content}</p>
-                      </div>}
 
-                    {/* {state.token ? (
+                  {(state.token && state.id == elem.user_id) ? <>{(!show) ? <div className="commentActRight">
+                    <p className="text"> {elem.content}</p>
+                    <button onClick={() => { setShow(true) }}>Update</button> <button onClick={() => { deleteComment(elem.id) }}>Delete</button> </div> : <div className="commentActRight">
+                    <textarea defaultValue={elem.content} onChange={(e) => { setContent(e.target.value) }} />
+                    <button onClick={() => { update(elem.id) }}>Update</button> <button onClick={() => { setShow(true) }}>Cancel</button>
+                  </div>} </> : <div className="commentActRight">
+                    <p className="text"> {elem.content}</p>
+                  </div>}
+
+                  {/* {state.token ? (
                       <button onClick={() => setShow(!show)}>update</button>
                     ) : (
                       ""
@@ -142,7 +142,7 @@ const AddComment = ({ activity_id }) => {
                     ) : (
                       ""
                     )} */}
-                  
+
                 </div>
               </>
             );
