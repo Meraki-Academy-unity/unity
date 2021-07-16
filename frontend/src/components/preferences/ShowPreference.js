@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
-
+import AddPerferences from "./addPreferences"
 import { Link, Route } from "react-router-dom";
 import "./../Activities/style.css";
 import { useDispatch, useSelector } from "react-redux";
 
 const GetMyPreferences = () => {
   const [preferences, setPreferences] = useState([]);
-
+  const [add , setAdd] = useState(false)
   const state = useSelector((state) => {
     return {
       token: state.login.token,
@@ -32,8 +32,10 @@ const GetMyPreferences = () => {
   }, []);
 
   return (
-    <>
-      <div className="pref_page">
+    <> {preferences.length == 0 ? <div><p> You dont have preferences please fill your preferences <button onClick={()=>{
+      setAdd(true)
+    }}> Click here</button></p>
+    {add ? <AddPerferences />  : ""}</div> :  <div className="pref_page">
         {preferences &&
           preferences.map((elem, i) => {
             return (
@@ -51,7 +53,8 @@ const GetMyPreferences = () => {
               </div>
             );
           })}
-      </div>
+      </div> }
+
     </>
   );
 };
