@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import axios from "axios";
 import "./matching.css";
+import AddPerferences from "./addPreferences"
 
 const Matching = () => {
-  const [stateMatch, setStateMatch] = useState("both");
+  const [stateMatch, setStateMatch] = useState("");
   const [content, setContent] = useState([]);
-  const [err , setErr] = useState(false)
+  const [add , setAdd] = useState(false)
   const history = useHistory();
 
   const state = useSelector((state) => {
@@ -21,6 +22,28 @@ const Matching = () => {
   const check = ()=>{
     setContent([])
   }
+
+  const CheckPreferences = ()=>{
+    useEffect (()=>{
+      axios
+      .get(`http://localhost:5000/preferences/user`, {
+          headers: {
+              Authorization: `Bearer ${state.token}`,
+          }
+      })
+      .then((result) => {
+        if(result.data.length == 0 ){
+          setStateMatch("")
+        }else {
+          setStateMatch("both")
+        }
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    } , [stateMatch])
+  }
+
 
 
   const MatchByLoaction = () => {
@@ -130,7 +153,16 @@ const Matching = () => {
 
   return (
     <>
+    {stateMatch == "" ? <>{CheckPreferences()}</>  : ""}
+    {stateMatch == "location" ? <>{MatchByLoaction()}</> : ""}
+    {stateMatch == "date" ? <>{MatchByDate()}</> : ""}
+    {stateMatch == "both" ? <>{MatchByDateAndLocation()}</> : ""}
+    {content.length == 0 && stateMatch.length == 0 ? <div className="matchingPage"> <p> You dont have preferences please fill your preferences <button onClick={()=>{
+      setAdd(true)
+    }}> Click here</button></p>
+    {add ? <AddPerferences /> : ""}
     
+    </div> :
       <div className="matchingPage">
         <button
           className="interactionButton"
@@ -139,7 +171,7 @@ const Matching = () => {
           }}
         >
           {" "}
-          Matching
+          Match by location + date
         </button>
         <button
           className="interactionButton"
@@ -161,10 +193,8 @@ const Matching = () => {
           Match By Date
         </button>
 
-        {stateMatch == "location" ? <>{MatchByLoaction()}</> : ""}
-        {stateMatch == "date" ? <>{MatchByDate()}</> : ""}
-        {stateMatch == "both" ? <>{MatchByDateAndLocation()}</> : ""}
-        {content.length == 0 ? <div className="matchingPage"> <p> You dont have preferences please fill your preferences</p></div> :<>
+
+        {content.length == 0 ? <div><p>No Matching found</p></div> : <>
         {content &&
           content.map((elem, i) => {
             return (
@@ -211,8 +241,8 @@ const Matching = () => {
                 </div>
               </div>
             );
-          })}</> }
-      </div>
+          })}</>}
+      </div>}
     </>
   );
 };
