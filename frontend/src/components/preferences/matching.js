@@ -17,7 +17,6 @@ const Matching = () => {
       token: state.login.token,
     };
   });
-
   const MatchByLoaction = () => {
     useEffect(() => {
       axios

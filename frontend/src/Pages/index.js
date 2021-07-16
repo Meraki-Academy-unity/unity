@@ -3,13 +3,17 @@ import Sidebar from "../components/navigation/sidebar";
 import InfoSection from "../components/InfoSection";
 import Hero from "../components/HeroSection";
 import React, { useState } from "react";
-import { HomeObjOne, HomeObjThree, HomeObjTwo } from "../components/InfoSection/data";
+import {
+  HomeObjOne,
+  HomeObjThree,
+  HomeObjTwo,
+} from "../components/InfoSection/data";
 import Services from "../components/Services";
 import Footer from "../components/footer";
 
-const Home = () => {
+const Home = ({setIsHome}) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  setIsHome(true);
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -17,14 +21,13 @@ const Home = () => {
 
   return (
     <>
-      <Navigation toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Hero />
-      <InfoSection {...HomeObjOne}/>
-      <InfoSection {...HomeObjTwo}/>
-      <Services/>
-      <InfoSection {...HomeObjThree}/>
-      <Footer/>
+      <InfoSection {...HomeObjOne} />
+      <InfoSection {...HomeObjTwo} />
+      <Services />
+      <InfoSection {...HomeObjThree} />
+      <Footer />
     </>
   );
 };

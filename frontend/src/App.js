@@ -32,8 +32,10 @@ import ShowFriends from "./components/profile/showFriend";
 import Chat from "./components/chat/user";
 import Navigation from "./components/navigation";
 import Inobx from "./components/chat/inbox";
+import SecNavigation from "./components/navigation/SecondNavbar";
 
 const App = () => {
+  const [isHome,setIsHome] = useState(false);
   const history = useHistory();
   const state = useSelector((state) => {
     return {
@@ -43,61 +45,61 @@ const App = () => {
 
   return (
     <div className="App">
-      <Route exact path="/" render={() => <Home />} />
-      <Navigation />
-      <Route exact path="/login" render={() => <Login />} />
-      <Route exact path="/register" render={() => <SignUp />} />
+      <Navigation  isHome={isHome} />
+      <Route exact path="/" render={() => <Home setIsHome={setIsHome}/>} />
+      <Route exact path="/login" render={() => <Login setIsHome={setIsHome}/>} />
+      <Route exact path="/register" render={() => <SignUp setIsHome={setIsHome}/>} />
       <Route exact path="/contactUs" render={() => <ContactUs />} />
       <Route exact path="/plans" component={GetAllTravel} />
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
       <Route exact path="/activities" component={GetAllActivities} />
-      <Route exact path="/addActivity" render={() => <AddActivities />} />
-      <Route exact path="/addTravel" render={() => <AddTravelPlans />} />
-      <Route exact path="/preferences" render={() => <AddPerferences />} />
-      <Route exact path="/inbox" render={() => <Inobx />} />
+      <Route exact path="/addActivity" render={() => <AddActivities/>} />
+      <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
+      <Route exact path="/preferences" render={() => <AddPerferences/>} />
+      <Route exact path="/inbox" render={() => <Inobx setIsHome={setIsHome}/>} />
       <Route
         exact
         path="/profile/activities"
-        render={() => <ProfileActivities />}
+        render={() => <ProfileActivities setIsHome={setIsHome}/>}
       />
-      <Route exact path="/profile/plans" render={() => <ProfilePlans />} />
+      <Route exact path="/profile/plans" render={() => <ProfilePlans setIsHome={setIsHome}/>} />
       <Route
         exact
         path="/profile/preferences"
         render={() => <GetMyPreferences />}
       />
-      <Route exact path="/users/user/:id" render={() => <UserProfile />} />
+      <Route exact path="/users/user/:id" render={() => <UserProfile setIsHome={setIsHome}/>} />
       <Route
         exact
         path="/ProfileUsers/activities/:id"
-        render={() => <ProfileUserActivities />}
+        render={() => <ProfileUserActivities/>}
       />
       <Route
         exact
         path="/ProfileUsers/plans/:id"
-        render={() => <ProfileUserPlans />}
+        render={() => <ProfileUserPlans/>}
       />
       <Route
         exact
         path="/profileUser/preferences/:id"
-        render={() => <GetUserPreferences />}
+        render={() => <GetUserPreferences/>}
       />
-      <Route exact path="/photoAlbum" render={() => <ImageGrid />} />
+      <Route exact path="/photoAlbum" render={() => <ImageGrid/>} />
       <Route
         exact
         path="/userphotoAlbum/:id"
         render={() => <ImageUserGrid />}
       />
-      <Route exact path="/profile/showFriend" render={() => <ShowFriends />} />
-      <Route exact path="/match" render={() => <Matching />} />
-      <Route exact path="/chat/:id" render={() => <Chat />} />
+      <Route exact path="/profile/showFriend" render={() => <ShowFriends/>} />
+      <Route exact path="/match" render={() => <Matching/>} />
+      <Route exact path="/chat/:id" render={() => <Chat setIsHome={setIsHome}/>} />
 
       <Route
         exact
         path="/activities/activity/:id"
         component={GetActivityById}
       />
-      <Route exact path="/profile" render={() => <Profile />} />
+      <Route exact path="/profile" render={() => <Profile setIsHome={setIsHome}/>} />
       <Route exact path="/profile/info" render={() => <EditMyProfile />} />
 
       {/* <Login /> */}

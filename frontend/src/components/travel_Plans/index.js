@@ -19,7 +19,6 @@ const AddTravelPlans = () => {
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [prefenecesLocation, setPrefenecesLocation] = useState("");
   const [file, setFile] = useState(null);
-
   const types = ["image/png", "image/jpeg"];
 
   const history = useHistory();
