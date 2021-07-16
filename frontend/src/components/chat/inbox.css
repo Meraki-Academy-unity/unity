@@ -1,17 +1,13 @@
 .inbox_page{
   display: grid;
- grid-template-rows: 100px;
+  grid-template-rows: 100px;
   row-gap:6px;
-  /* margin-top: 4%; */
   margin-left:25%;
   margin-right:25%;
-
-  /* margin-bottom: 40%; */
 }
 .inbox {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  /* margin: 20px; */
   padding: 15px;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
 }
@@ -21,10 +17,8 @@
   grid-template-columns: 125px 1fr; 
 }
 .senderInfo{
-
   display: grid;
   grid-template-rows: 50px 50px ;
-  /* margin: 5px; */
 }
 
 .sender img {
