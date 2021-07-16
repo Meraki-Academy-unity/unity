@@ -32,7 +32,7 @@ const ProfileActivities = ({ setIsHome }) => {
 
   return (
     <>
-      <div className="post_page">
+      <div className="profile_post_page">
         {activitiesProf &&
           activitiesProf.map((elem, index) => {
             return (

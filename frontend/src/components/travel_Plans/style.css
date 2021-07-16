@@ -5,10 +5,12 @@ body {
 .post_page {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 90px;
-  margin-top: 4%;
+  row-gap: 120px;
+  /* margin-top: 4%;
   margin-left: 9.5%;
-  margin-bottom: 4%;
+  margin-bottom: 4%; */
+  margin: auto 10%;
+  padding: 30px;
 }
 
 .post_card {
@@ -160,16 +162,15 @@ button:hover {
   cursor: pointer;
 }
 
-.member_page{
+.member_page {
   display: grid;
-  grid-template-columns: 100px  100px 100px  ;
+  grid-template-columns: 100px 100px 100px;
   justify-content: space-around;
 }
 
-
-.member_image{
+.member_image {
   width: 100px;
   border-radius: 50%;
-  border:1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   height: 100px;
 }
