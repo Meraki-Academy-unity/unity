@@ -12,7 +12,8 @@ import moment from "moment";
 const GetActivityById = (id) => {
   const [activity, setActivity] = useState([]);
 
-  const history = useHistory();
+  const history = useHistory()
+
   const state = useSelector((state) => {
     return {
       token: state.login.token,
