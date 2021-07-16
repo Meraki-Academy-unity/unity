@@ -5,7 +5,7 @@ import axios from "axios";
 import "./profile.css";
 import moment from "moment";
 
-const ProfileActivities = ({setIsHome}) => {
+const ProfileActivities = ({ setIsHome }) => {
   const [activitiesProf, setActivitiesProf] = useState([]);
   const history = useHistory();
   const state = useSelector((state) => {
@@ -13,7 +13,7 @@ const ProfileActivities = ({setIsHome}) => {
       token: state.login.token,
     };
   });
-  setIsHome(false)
+  // setIsHome(false)
 
   useEffect(() => {
     axios
@@ -32,7 +32,7 @@ const ProfileActivities = ({setIsHome}) => {
 
   return (
     <>
-      <div className="post_page">
+      <div className="profile_post_page">
         {activitiesProf &&
           activitiesProf.map((elem, index) => {
             return (
@@ -46,13 +46,13 @@ const ProfileActivities = ({setIsHome}) => {
                     }}
                   />
                 </div>
-                <div className="post_details">
-                  <div className="uploader">
+                <div className="profile_post_details">
+                  {/* <div className="uploader">
                     <img src={elem.profile_image} className="img"></img>
                     <p style={{ color: "black" }}>
                       {elem.first_name} {elem.last_name}
                     </p>
-                  </div>
+                  </div> */}
                   <div
                     className="post_info"
                     onClick={() => {

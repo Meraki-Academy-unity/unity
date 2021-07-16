@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import "./inbox.css";
 
-const Inobx = ({setIsHome}) => {
+const Inobx = ({ setIsHome }) => {
   const [inbox, setInbox] = useState("");
   const [myData, setMyData] = useState("");
   const [userData, setUserData] = useState([]);
-  setIsHome(false)
-  const history = useHistory()
+  setIsHome(false);
+  const history = useHistory();
 
   const state = useSelector((state) => {
     return {
@@ -35,7 +35,11 @@ const Inobx = ({setIsHome}) => {
 
   const getUserInfo = (id) => {
     axios
-      .get(`http://localhost:5000/users/user/${id}`)
+      .get(`http://localhost:5000/users/user/${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
       .then((result) => {
         setUserData((userData) => [...userData, result.data[0]]);
       })
@@ -52,6 +56,7 @@ const Inobx = ({setIsHome}) => {
         },
       })
       .then((result) => {
+        // console.log("result",result.data)
         setInbox(result.data);
         for (let i = 0; i < result.data.length; i++) {
           if (result.data[i].sender_id !== state.id)
@@ -67,47 +72,91 @@ const Inobx = ({setIsHome}) => {
   }, []);
 
   return (
-    <div>
-      <h1>Inbox</h1>
-      {inbox &&
-        inbox.map((elem, i) => {
-          return (
-            <div key={i} className="inbox">
+    <>
+      <div className="inbox_page">
+        <h1>Inbox</h1>
+        {inbox &&
+          inbox.map((elem, i) => {
+            return (
+              <div key={i} className="inbox">
+                {elem.sender_id == state.id ? (
+                  <div
+                    className="sender"
+                    onClick={() => {
+                      history.push(`/chat/${elem.receiver_id}`);
+                    }}
+                  >
+                    <img src={elem.profile_image} style={{ width: "100px" }} />
+                    <div className="senderInfo">
+                      <p
+                        style={{
+                          marginTop: "15px",
+                          fontSize: "22px",
+                          color: "black",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {elem.first_name}
+                      </p>
+                      <p
+                        style={{
+                          marginTop: "5px",
+                          fontSize: "16px",
+                          color: "black",
+                        }}
+                      >
+                        {" "}
+                        You : {elem.content}
+                      </p>
+                    </div>
 
-              {elem.sender_id === state.id ? (
-
-                <div onClick={() => {
-                  history.push(`/chat/${elem.receiver_id}`)
-                }}>
-                  <img src={myData.profile_image} style={{ width: "100px" }} />
-                  <p>{myData.first_name}</p>
-                  sent to
-                  <img src={elem.profile_image} style={{ width: "100px" }} />
-                  <p>{elem.first_name}</p>
-                  <p>{elem.content}</p>
-                </div>
-
-
-              ) : (
-                <div onClick={() => {
-                  history.push(`/chat/${elem.receiver_id}`)
-                }}>
-                  <img src={myData.profile_image} style={{ width: "100px" }} />
-                  <p>{myData.first_name}</p>
-                  received from
-                  <img
-                    style={{ width: "100px" }}
-                    src={userData[i] && userData[i].profile_image}
-                  />
-                  <p>{userData[i] && userData[i].first_name}</p>
-                  <p>{elem.content}</p>
-                </div>
-
-              )}
-            </div>
-          );
-        })}
-    </div>
+                    {/* <img src={myData.profile_image} style={{ width: "100px" }} />
+                  <p>{myData.first_name}</p> */}
+                    {/* sent to */}
+                  </div>
+                ) : (
+                  <div
+                    className="sender"
+                    onClick={() => {
+                      history.push(`/chat/${elem.receiver_id}`);
+                    }}
+                  >
+                    <img
+                      style={{ width: "100px" }}
+                      src={userData[i] && userData[i].profile_image}
+                    />
+                    <div className="senderInfo">
+                      <p
+                        style={{
+                          marginTop: "15px",
+                          fontSize: "22px",
+                          color: "black",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {userData[i] && userData[i].first_name}
+                      </p>
+                      <p
+                        style={{
+                          marginTop: "5px",
+                          fontSize: "16px",
+                          color: "black",
+                        }}
+                      >
+                        {" "}
+                        {userData[i] && userData[i].first_name} : {elem.content}
+                      </p>
+                    </div>
+                    {/* <img src={myData.profile_image} style={{ width: "100px" }} />
+                  <p>{myData.first_name}</p> */}
+                    {/* received from */}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 

@@ -18,6 +18,7 @@ const Activities = () => {
   const state = useSelector((state) => {
     return {
       token: state.login.token,
+      id: state.id.id,
     };
   });
   useEffect(() => {
@@ -74,9 +75,25 @@ const Activities = () => {
                   <div className="post_details">
                     <div className="uploader">
                       <img src={element.profile_image} className="img"></img>
-                      <p style={{ color: "black" }}>
+                      {/* <p style={{ color: "black" }}>
                         {element.first_name} {element.last_name}
-                      </p>
+                      </p> */}
+                      {state.id != element.user_id ? (
+                        <Link
+                          className="link"
+                          to={`/users/user/${element.user_id}`}
+                        >
+                          <p style={{ color: "black" }}>
+                            {element.first_name} {element.last_name}
+                          </p>
+                        </Link>
+                      ) : (
+                        <Link className="link" to={`/profile`}>
+                          <p style={{ color: "black" }}>
+                            {element.first_name} {element.last_name}
+                          </p>
+                        </Link>
+                      )}
                     </div>
 
                     <div
@@ -92,12 +109,10 @@ const Activities = () => {
                       </h2>
                       <p className="text">location : {element.location}</p>
                       <p className="text">
-
                         start date :{" "}
                         {moment(element.start_date, "YYYY-MM-DD")
                           .add(1, "days")
                           .format("DD-MM-YYYY")}
-
                       </p>
                       <p className="text">
                         finish date :{" "}

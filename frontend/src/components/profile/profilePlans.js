@@ -5,7 +5,7 @@ import axios from "axios";
 import "./profile.css";
 import moment from "moment";
 
-const ProfilePlans = ({setIsHome}) => {
+const ProfilePlans = ({ setIsHome }) => {
   const [plansProf, setPlansProf] = useState([]);
   const history = useHistory();
   const state = useSelector((state) => {
@@ -13,7 +13,7 @@ const ProfilePlans = ({setIsHome}) => {
       token: state.login.token,
     };
   });
-  setIsHome(false)
+  // setIsHome(false);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/travelPlans/profile/plans`, {
@@ -32,13 +32,11 @@ const ProfilePlans = ({setIsHome}) => {
 
   return (
     <>
-
-      <div className="post_page">
+      <div className="profile_post_page">
         {plansProf &&
           plansProf.map((element, index) => {
             return (
               <div className="post_card" key={index}>
-
                 <div>
                   <img
                     className="poster_image"
@@ -48,13 +46,13 @@ const ProfilePlans = ({setIsHome}) => {
                     }}
                   />
                 </div>
-                <div className="post_details">
-                  <div className="uploader">
+                <div className="profile_post_details">
+                  {/* <div className="uploader">
                     <img src={element.profile_image} className="img"></img>
                     <p style={{ color: "black" }}>
                       {element.first_name} {element.last_name}
                     </p>
-                  </div>
+                  </div> */}
 
                   <div
                     className="post_info"
@@ -86,15 +84,12 @@ const ProfilePlans = ({setIsHome}) => {
                     <p className="text">
                       estimated budget : {element.estimated_budget} $
                     </p>
-                    <br />
                   </div>
                 </div>
               </div>
-
             );
           })}
       </div>
-
     </>
   );
 };

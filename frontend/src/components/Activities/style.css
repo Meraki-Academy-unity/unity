@@ -6,9 +6,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 90px;
-  margin-top: 4%;
-  margin-left: 9.5%;
-  margin-bottom: 4%;
+  justify-items: center;
 }
 
 .post_card {
@@ -18,7 +16,6 @@
   background-color: rgba(230, 230, 230, 0.9);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -99,12 +96,10 @@
   margin-bottom: 20px;
 }
 
-
 .commentActLeft {
   display: grid;
   padding: 5px;
 }
-
 
 .commentActRight {
   display: flex;
@@ -296,21 +291,17 @@
 
 .title {
   color: rgb(232, 180, 48);
+}
 
- }
-
-  .member_page{
+.member_page {
   display: grid;
-  grid-template-columns: 100px  100px 100px  ;
+  grid-template-columns: 100px 100px 100px;
   justify-content: space-around;
 }
 
-.member_image{
+.member_image {
   width: 100px;
   border-radius: 50%;
-  border:1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   height: 100px;
 }
-
-
-

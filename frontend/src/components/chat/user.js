@@ -74,7 +74,11 @@ const Chat = ({setIsHome}) => {
 
   // useEffect(async () => {
      axios
-      .get(`http://localhost:5000/messages/${room}`)
+      .get(`http://localhost:5000/messages/${room}`,{
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      })
       .then((result) => {
         console.log("chat history: ", result);
         setChatHistory(result.data);
@@ -123,9 +127,10 @@ const Chat = ({setIsHome}) => {
 
   
 
-  function handleOnEnter(message) {
-    console.log('enter', message)
-  }
+  // function handleOnEnter(message) {
+  //   setMessage(message);
+  //   console.log('enter', message)
+  // }
 
   return (
     <>
@@ -148,13 +153,13 @@ const Chat = ({setIsHome}) => {
         </div>
         <div className="chatHome">
           <div className="chatPageContainer">
-            <div className="chatPage">
+            <div className="chatPage"  >
               {chatHistory &&
                 chatHistory.map((elem, i) => {
                   return (
                     <div key={i}>
 
-                      {(elem.sender_id === state.id) ? <div className="myChat">
+                      {(elem.sender_id == state.id) ? <div className="myChat">
                         <div className="myInfo">
 
                           <p className="myContent" >{elem.content}</p>
@@ -186,7 +191,7 @@ const Chat = ({setIsHome}) => {
                       value={message}
                       onChange={setMessage}
                       cleanOnEnter
-                      onEnter={handleOnEnter}
+                      onEnter={sendMessage}
                       placeholder="Type a message"
                       borderRadius="5px"
                       borderColor="rgba(0, 0, 0, 0.3)"

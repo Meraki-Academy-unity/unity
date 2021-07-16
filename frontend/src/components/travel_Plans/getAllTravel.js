@@ -14,6 +14,7 @@ const GetAllTravel = () => {
     return {
       url: state.imgUploader.url,
       token: state.login.token,
+      id: state.id.id,
     };
   });
   const history = useHistory();
@@ -68,9 +69,16 @@ const GetAllTravel = () => {
                 <div className="post_details">
                   <div className="uploader">
                     <img src={element.profile_image} className="img"></img>
-                    <p style={{ color: "black" }}>
-                      {element.first_name} {element.last_name}
-                    </p>
+                    
+                    {state.id != element.user_id ? (<Link className="link" to={`/users/user/${element.user_id}`}>
+                      <p style={{ color: "black" }}>
+                        {element.first_name} {element.last_name}
+                      </p>
+                    </Link>) : (<Link className="link" to={`/profile`}>
+                      <p style={{ color: "black" }}>
+                        {element.first_name} {element.last_name}
+                      </p>
+                    </Link>)}
                   </div>
 
                   <div
