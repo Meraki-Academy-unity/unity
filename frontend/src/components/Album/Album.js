@@ -8,7 +8,6 @@ const Album = () => {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState();
   const [done, setDone] = useState(false);
-  const [message, setMessage] = useState();
 
   const types = ["image/png", "image/jpeg"];
 
@@ -35,7 +34,6 @@ const Album = () => {
       .then((result) => {
         console.log(result.data);
         setDone(false);
-        setMessage("image has been added successfully");
       })
       .catch((err) => {
         console.log(err);
@@ -48,7 +46,6 @@ const Album = () => {
       console.log(selectedImage);
       setFile(selectedImage);
       setDone(true);
-      setMessage("");
       setErrorImgMessage("");
     } else {
       setFile(null);
@@ -85,7 +82,6 @@ const Album = () => {
         ) : (
           ""
         )}
-        {message && <div>{message}</div>}
       </div>
     </>
   );
