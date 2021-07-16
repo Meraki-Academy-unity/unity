@@ -56,7 +56,6 @@ const Inobx = ({ setIsHome }) => {
         },
       })
       .then((result) => {
-        // console.log("result",result.data)
         setInbox(result.data);
         for (let i = 0; i < result.data.length; i++) {
           if (result.data[i].sender_id !== state.id)
@@ -79,6 +78,7 @@ const Inobx = ({ setIsHome }) => {
           inbox.map((elem, i) => {
             return (
               <div key={i} className="inbox">
+
                 {elem.sender_id == state.id ? (
                   <div
                     className="sender"
@@ -110,15 +110,12 @@ const Inobx = ({ setIsHome }) => {
                       </p>
                     </div>
 
-                    {/* <img src={myData.profile_image} style={{ width: "100px" }} />
-                  <p>{myData.first_name}</p> */}
-                    {/* sent to */}
                   </div>
                 ) : (
                   <div
                     className="sender"
                     onClick={() => {
-                      history.push(`/chat/${elem.receiver_id}`);
+                      history.push(`/chat/${elem.sender_id}`);
                     }}
                   >
                     <img
@@ -147,9 +144,6 @@ const Inobx = ({ setIsHome }) => {
                         {userData[i] && userData[i].first_name} : {elem.content}
                       </p>
                     </div>
-                    {/* <img src={myData.profile_image} style={{ width: "100px" }} />
-                  <p>{myData.first_name}</p> */}
-                    {/* received from */}
                   </div>
                 )}
               </div>
