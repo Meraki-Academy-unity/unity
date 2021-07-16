@@ -13,12 +13,11 @@ import {
   NavBtnLink,
   NavBtnContent,
   NavDropLinks,
-  NavServBtn,
-} from "./navbarStyle";
+} from "./SecNavbarStyle";
 import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 
-const Navigation = ({ toggle, isHome }) => {
+const SecNavigation = ({ toggle }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -31,7 +30,7 @@ const Navigation = ({ toggle, isHome }) => {
     dispatch(setToken(""));
   };
   return (
-    <Nav isHome={isHome}>
+    <Nav>
       <NavbarContainer>
         <NavLogo to="/">
           <h2>Travelio</h2>
@@ -41,25 +40,16 @@ const Navigation = ({ toggle, isHome }) => {
         </MobileIcon>
         <NavMenu>
           <NavItem>
-            <NavLinks to="/Home">Home</NavLinks>
+            <NavLinks to="/">Home</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="About">About</NavLinks>
+            <NavLinks to="/Activities">Activities</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="Services">
-              <NavServBtn>
-                Services
-                <NavBtnContent id="services">
-                  <NavDropLinks to="/Activities">Activities</NavDropLinks>
-                  <NavDropLinks to="/Plans">Travel Plans</NavDropLinks>
-                  <NavDropLinks to="/match">Matches</NavDropLinks>
-                </NavBtnContent>
-              </NavServBtn>
-            </NavLinks>
+            <NavLinks to="/Plans">Travel Plans</NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="ContactUs">Contact Us</NavLinks>
+            <NavLinks to="/match">Matches</NavLinks>
           </NavItem>
         </NavMenu>
         <NavBtn>
@@ -87,4 +77,4 @@ const Navigation = ({ toggle, isHome }) => {
   );
 };
 
-export default Navigation;
+export default SecNavigation;

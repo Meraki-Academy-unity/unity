@@ -5,7 +5,7 @@ import axios from "axios";
 import "./profile.css";
 import moment from "moment";
 
-const ProfileActivities = () => {
+const ProfileActivities = ({setIsHome}) => {
   const [activitiesProf, setActivitiesProf] = useState([]);
   const history = useHistory();
   const state = useSelector((state) => {
@@ -13,6 +13,8 @@ const ProfileActivities = () => {
       token: state.login.token,
     };
   });
+  setIsHome(false)
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/activities/myProfile`, {

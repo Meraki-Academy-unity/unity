@@ -5,7 +5,7 @@ import axios from "axios";
 import "./profile.css";
 import moment from "moment";
 
-const ProfilePlans = () => {
+const ProfilePlans = ({setIsHome}) => {
   const [plansProf, setPlansProf] = useState([]);
   const history = useHistory();
   const state = useSelector((state) => {
@@ -13,6 +13,7 @@ const ProfilePlans = () => {
       token: state.login.token,
     };
   });
+  setIsHome(false)
   useEffect(() => {
     axios
       .get(`http://localhost:5000/travelPlans/profile/plans`, {

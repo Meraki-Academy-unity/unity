@@ -16,7 +16,7 @@ import {
   deleteUser,
 } from "../../../reducers/signUp";
 
-const SignUp = () => {
+const SignUp = ({setIsHome}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -35,7 +35,7 @@ const SignUp = () => {
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
   const [done, setDone] = useState(false);
-
+  setIsHome(false)
   const types = ["image/png", "image/jpeg"];
 
   const dispatch = useDispatch();
