@@ -290,7 +290,7 @@ body {
 
 .friend_page {
   display: grid;
-  grid-template-columns: 125px 125px 125px 125px;
+  grid-template-columns: 25% 25% 25% 25%;
   row-gap: 30px;
   margin-top: 30px;
   /* margin-left: 15%; */

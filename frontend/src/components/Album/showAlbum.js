@@ -28,7 +28,7 @@ const ImageGrid = () => {
       .catch((err) => {
         console.log("err in photo", err);
       });
-  }, [state.token]);
+  }, [photoAlbum || state.token]);
 
   return (
     <>

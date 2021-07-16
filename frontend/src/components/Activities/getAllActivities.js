@@ -39,98 +39,106 @@ const Activities = () => {
     <>
       <div className="content">
         {state.token ? (
-          
-            <button
-            style={{marginLeft:"95%", marginTop:"100px"  }}
-              onClick={() => {
-                history.push("/addActivity");
+          <button
+            style={{ marginLeft: "95%", marginTop: "100px" }}
+            onClick={() => {
+              history.push("/addActivity");
+            }}
+          >
+            <IconContext.Provider
+              value={{
+                style: { fontSize: "35px", color: "rgb(232, 180, 48)" },
               }}
             >
-              <IconContext.Provider
-                value={{
-                  style: { fontSize: "35px", color: "rgb(232, 180, 48)"   },
-                }}
-              >
-                <FaPlus />
-              </IconContext.Provider>
-            </button>
-          
+              <FaPlus />
+            </IconContext.Provider>
+          </button>
         ) : (
           ""
         )}
-        {!activities.length ? <div > <p>No Activities to show</p> </div> : <div className="post_page">
-          {activities &&
-            activities.map((element, index) => {
-              return (
-                <div key={index} className="post_card">
-                  <div>
-                    <img
-                      className="poster_image"
-                      src={element.images}
-                      onClick={() => {
-                        history.push(`/activities/activity/${element.id}`);
-                      }}
-                    />
-                  </div>
-                  <div className="post_details">
-                    <div className="uploader">
-                      <img src={element.profile_image} className="img"></img>
-                      {/* <p style={{ color: "black" }}>
+        {!activities.length ? (
+          <div>
+            {" "}
+            <p>No Activities to show</p>{" "}
+          </div>
+        ) : (
+          <div className="post_page">
+            {activities &&
+              activities.map((element, index) => {
+                return (
+                  <div key={index} className="post_card">
+                    <div>
+                      <img
+                        className="poster_image"
+                        src={element.images}
+                        onClick={() => {
+                          history.push(`/activities/activity/${element.id}`);
+                        }}
+                      />
+                    </div>
+                    <div className="post_details">
+                      <div className="uploader">
+                        <img src={element.profile_image} className="img"></img>
+                        {/* <p style={{ color: "black" }}>
                         {element.first_name} {element.last_name}
                       </p> */}
-                      {state.id != element.user_id ? (
-                        <Link
-                          className="link"
-                          to={`/users/user/${element.user_id}`}
-                        >
-                          <p style={{ color: "black" }}>
-                            {element.first_name} {element.last_name}
-                          </p>
-                        </Link>
-                      ) : (
-                        <Link className="link" to={`/profile`}>
-                          <p style={{ color: "black" }}>
-                            {element.first_name} {element.last_name}
-                          </p>
-                        </Link>
-                      )}
-                    </div>
+                        {state.id != element.user_id ? (
+                          <Link
+                            className="link"
+                            to={`/users/user/${element.user_id}`}
+                          >
+                            <p style={{ color: "black" }}>
+                              {element.first_name} {element.last_name}
+                            </p>
+                          </Link>
+                        ) : (
+                          <Link className="link" to={`/profile`}>
+                            <p style={{ color: "black" }}>
+                              {element.first_name} {element.last_name}
+                            </p>
+                          </Link>
+                        )}
+                      </div>
 
-                    <div
-                      className="post_info"
-                      onClick={() => {
-                        history.push(`/activities/activity/${element.id}`);
-                      }}
-                    >
-                      <h2
-                        style={{ color: "rgb(232,180,48)", fontWeight: "bold" }}
+                      <div
+                        className="post_info"
+                        onClick={() => {
+                          history.push(`/activities/activity/${element.id}`);
+                        }}
                       >
-                        {element.title}
-                      </h2>
-                      <p className="text">location : {element.location}</p>
-                      <p className="text">
-                        start date :{" "}
-                        {moment(element.start_date, "YYYY-MM-DD")
-                          .add(1, "days")
-                          .format("DD-MM-YYYY")}
-                      </p>
-                      <p className="text">
-                        finish date :{" "}
-                        {moment(element.finish_date, "YYYY-MM-DD")
-                          .add(1, "days")
-                          .format("DD-MM-YYYY")}
-                      </p>
-                      <div style={{ display: "flex", gap: "116px" }}>
+                        <h2
+                          style={{
+                            color: "rgb(232,180,48)",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {element.title}
+                        </h2>
+                        <p className="text">location : {element.location}</p>
                         <p className="text">
-                          estimated budget : {element.estimated_budget} $
+                          start date :{" "}
+                          {moment(element.start_date, "YYYY-MM-DD")
+                            .add(1, "days")
+                            .format("DD-MM-YYYY")}
                         </p>
+                        <p className="text">
+                          finish date :{" "}
+                          {moment(element.finish_date, "YYYY-MM-DD")
+                            .add(1, "days")
+                            .format("DD-MM-YYYY")}
+                        </p>
+                        <div style={{ display: "flex", gap: "116px" }}>
+                          <p className="text">
+                            estimated budget : {element.estimated_budget} $
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-        </div> }
+                );
+              })}
+          </div>
+        )}
       </div>
     </>
   );
