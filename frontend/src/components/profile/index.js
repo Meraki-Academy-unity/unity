@@ -155,7 +155,7 @@ const Profile = () => {
             <p>Language : {profile.language}</p>
             <p>
               <i className="fas fa-user-edit"></i>
-              <div>
+              <div className="Edit-buttons">
                 <div
                   style={{
                     borderTop: "1px solid rgba(0,0,0,0.3)",

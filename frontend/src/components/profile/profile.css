@@ -310,6 +310,7 @@ body {
   height: 125px;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+
 .friend_card p {
   margin-top: 15px;
 }
@@ -337,7 +338,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-form {
+.container form {
   display: flex;
   justify-content: flex-start;
   margin-top: 10px;
@@ -385,6 +386,13 @@ form {
 
 .pref_page {
   padding: 20px;
+}
+.Edit-buttons button {
+  color: goldenrod;
+}
+
+.Edit-buttons button:hover {
+  color: rgba(172, 131, 30, 0.959);
 }
 
 .pref_page p {

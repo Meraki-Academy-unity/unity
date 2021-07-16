@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 550px;
+    height: 100%;
   }
 
   .rightAuthReg{
@@ -163,8 +163,9 @@
   .regCont form {
       display: flex;
       flex-direction: row;
-      gap: 50px;
+      gap: 20px;
       font-size: 20px;
       justify-content: center;
       align-items: center;
+      margin-top:20px;
   }

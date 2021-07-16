@@ -28,7 +28,7 @@ const CountryList = ({ setCountryList }) => {
                 }}
             >
                 <select
-                 style={{ padding: "3px" ,width:"330px",fontSize:"18px"}}
+                 style={{ padding: "3px" ,width:"100%",fontSize:"18px"}}
                     name="image"
                     id="image"
                     onChange={(e) => {
