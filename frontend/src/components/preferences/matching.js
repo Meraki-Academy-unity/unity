@@ -8,7 +8,7 @@ import "./matching.css";
 const Matching = () => {
   const [stateMatch, setStateMatch] = useState("both");
   const [content, setContent] = useState([]);
-
+  const [err , setErr] = useState(false)
   const history = useHistory();
 
   const state = useSelector((state) => {
@@ -17,59 +17,120 @@ const Matching = () => {
       token: state.login.token,
     };
   });
+
+  const check = ()=>{
+    setContent([])
+  }
+
+
   const MatchByLoaction = () => {
     useEffect(() => {
       axios
-        .get("http://localhost:5000/preferences/locationMatch", {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
+        .get(`http://localhost:5000/preferences/user`, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            }
         })
         .then((result) => {
-          setContent(result.data);
+           if(result.data.length){
+            axios
+            .get("http://localhost:5000/preferences/locationMatch", {
+              headers: {
+                Authorization: `Bearer ${state.token}`,
+              },
+            })
+            .then((result) => {
+              setContent(result.data);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
+           }else{
+            check()
+           }
+
         })
         .catch((err) => {
-          console.log("error", err);
+            throw err;
         });
+     
     }, [stateMatch]);
   };
+
+  
 
   const MatchByDate = () => {
     useEffect(() => {
       axios
-        .get("http://localhost:5000/preferences/dateMatch", {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
+        .get(`http://localhost:5000/preferences/user`, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            }
         })
         .then((result) => {
-          setContent(result.data);
+           if(result.data.length){
+            axios
+            .get("http://localhost:5000/preferences/dateMatch", {
+              headers: {
+                Authorization: `Bearer ${state.token}`,
+              },
+            })
+            .then((result) => {
+              setContent(result.data);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
+           }else{
+            check()
+           }
+
         })
         .catch((err) => {
-          console.log("error", err);
+            throw err;
         });
+     
     }, [stateMatch]);
   };
 
+  
   const MatchByDateAndLocation = () => {
     useEffect(() => {
       axios
-        .get("http://localhost:5000/preferences/match", {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
+        .get(`http://localhost:5000/preferences/user`, {
+            headers: {
+                Authorization: `Bearer ${state.token}`,
+            }
         })
         .then((result) => {
-          setContent(result.data);
+           if(result.data.length){
+            axios
+            .get("http://localhost:5000/preferences/match", {
+              headers: {
+                Authorization: `Bearer ${state.token}`,
+              },
+            })
+            .then((result) => {
+              setContent(result.data);
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
+           }else{
+            check()
+           }
+
         })
         .catch((err) => {
-          console.log("error", err);
+            throw err;
         });
+     
     }, [stateMatch]);
   };
 
   return (
     <>
+    
       <div className="matchingPage">
         <button
           className="interactionButton"
@@ -103,7 +164,7 @@ const Matching = () => {
         {stateMatch == "location" ? <>{MatchByLoaction()}</> : ""}
         {stateMatch == "date" ? <>{MatchByDate()}</> : ""}
         {stateMatch == "both" ? <>{MatchByDateAndLocation()}</> : ""}
-
+        {content.length == 0 ? <div className="matchingPage"> <p> You dont have preferences please fill your preferences</p></div> :<>
         {content &&
           content.map((elem, i) => {
             return (
@@ -150,7 +211,7 @@ const Matching = () => {
                 </div>
               </div>
             );
-          })}
+          })}</> }
       </div>
     </>
   );
