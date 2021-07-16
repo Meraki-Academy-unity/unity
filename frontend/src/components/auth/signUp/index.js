@@ -216,7 +216,7 @@ const FirstStep = ({
               <button onClick={signUpFirstStep}>Sign-Up</button>
               {errorMessage ? <p>{errorMessage}</p> : ""}
               <small>
-                Already Have Account?<Link to="/login">Login</Link>
+                Already Have Account?<Link id="link" to="/login">Login</Link>
               </small>
             </div>
           </div>
@@ -340,7 +340,7 @@ const SecondStep = ({
             <div className="createAccount">
               <button onClick={signUpSecondStep}>Next</button>
               <small>
-                <Link to="/preferences">skip</Link>
+                <Link to="/preferences">Skip</Link>
               </small>
             </div>
           </div>

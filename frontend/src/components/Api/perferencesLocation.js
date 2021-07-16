@@ -29,7 +29,7 @@ const PerferencesLocation = ({ setPrefenecesLocation }) => {
       >
 
         <select
-          style={{ padding: "4px" }}
+          style={{ padding: "10px",width:"100%" }}
           name="image"
           id="image"
           onChange={(e) => {

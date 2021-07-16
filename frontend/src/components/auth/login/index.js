@@ -90,7 +90,7 @@ const Login = ({setIsHome}) => {
               </td>
             </tr>
           </table>
-          <p>{message}</p>
+          <p id="error">{message}</p>
           <p>
             Don't have account?{" "}
             <Link to="/register" className="authLink">
