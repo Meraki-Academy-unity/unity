@@ -99,12 +99,10 @@
   margin-bottom: 20px;
 }
 
-
 .commentActLeft {
   display: grid;
   padding: 5px;
 }
-
 
 .commentActRight {
   display: flex;
@@ -116,7 +114,8 @@
 
 .add {
   margin-left: 85%;
-  margin-top: 7%;
+  /* margin-top: 30px; */
+  margin-bottom: 60px;
 }
 
 .form {
@@ -299,21 +298,17 @@
 
 .title {
   color: rgb(232, 180, 48);
+}
 
- }
-
-  .member_page{
+.member_page {
   display: grid;
-  grid-template-columns: 100px  100px 100px  ;
+  grid-template-columns: 100px 100px 100px;
   justify-content: space-around;
 }
 
-.member_image{
+.member_image {
   width: 100px;
   border-radius: 50%;
-  border:1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   height: 100px;
 }
-
-
-

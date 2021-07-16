@@ -8,8 +8,8 @@ const Inobx = ({ setIsHome }) => {
   const [inbox, setInbox] = useState("");
   const [myData, setMyData] = useState("");
   const [userData, setUserData] = useState([]);
-  setIsHome(false)
-  const history = useHistory()
+  setIsHome(false);
+  const history = useHistory();
 
   const state = useSelector((state) => {
     return {
@@ -73,7 +73,6 @@ const Inobx = ({ setIsHome }) => {
 
   return (
     <>
-
       <div className="inbox_page">
         <h1>Inbox</h1>
         {inbox &&
@@ -81,46 +80,84 @@ const Inobx = ({ setIsHome }) => {
             return (
               <div key={i} className="inbox">
                 {elem.sender_id == state.id ? (
-                  <div className="sender" onClick={() => {
-                    history.push(`/chat/${elem.receiver_id}`)
-                  }}>
+                  <div
+                    className="sender"
+                    onClick={() => {
+                      history.push(`/chat/${elem.receiver_id}`);
+                    }}
+                  >
                     <img src={elem.profile_image} style={{ width: "100px" }} />
                     <div className="senderInfo">
-                      <p style={{ marginTop: "15px", fontSize: "22px", color: "black", fontWeight: "bold" }}>{elem.first_name}</p>
-                      <p style={{ marginTop: "5px", fontSize: "16px", color: "black" }}> You : {elem.content}</p>
+                      <p
+                        style={{
+                          marginTop: "15px",
+                          fontSize: "22px",
+                          color: "black",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {elem.first_name}
+                      </p>
+                      <p
+                        style={{
+                          marginTop: "5px",
+                          fontSize: "16px",
+                          color: "black",
+                        }}
+                      >
+                        {" "}
+                        You : {elem.content}
+                      </p>
                     </div>
 
                     {/* <img src={myData.profile_image} style={{ width: "100px" }} />
                   <p>{myData.first_name}</p> */}
                     {/* sent to */}
-
                   </div>
-
-
                 ) : (
-                  <div className="sender" onClick={() => {
-                    history.push(`/chat/${elem.receiver_id}`)
-                  }}>
+                  <div
+                    className="sender"
+                    onClick={() => {
+                      history.push(`/chat/${elem.receiver_id}`);
+                    }}
+                  >
                     <img
                       style={{ width: "100px" }}
                       src={userData[i] && userData[i].profile_image}
                     />
                     <div className="senderInfo">
-                      <p style={{ marginTop: "15px", fontSize: "22px", color: "black", fontWeight: "bold" }}>{userData[i] && userData[i].first_name}</p>
-                      <p style={{ marginTop: "5px", fontSize: "16px", color: "black" }}> {userData[i] && userData[i].first_name} : {elem.content}</p>
+                      <p
+                        style={{
+                          marginTop: "15px",
+                          fontSize: "22px",
+                          color: "black",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {userData[i] && userData[i].first_name}
+                      </p>
+                      <p
+                        style={{
+                          marginTop: "5px",
+                          fontSize: "16px",
+                          color: "black",
+                        }}
+                      >
+                        {" "}
+                        {userData[i] && userData[i].first_name} : {elem.content}
+                      </p>
                     </div>
                     {/* <img src={myData.profile_image} style={{ width: "100px" }} />
                   <p>{myData.first_name}</p> */}
                     {/* received from */}
                   </div>
-
-
                 )}
               </div>
             );
           })}
       </div>
-    </>);
+    </>
+  );
 };
 
 export default Inobx;
