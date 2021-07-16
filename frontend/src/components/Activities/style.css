@@ -32,7 +32,6 @@
   grid-template-columns: 25% 1fr;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-
   background-color: rgba(245, 245, 245, 0.9);
 }
 
@@ -124,20 +123,31 @@
   padding: 5px;
 }
 
-
-
 .form {
   display: grid;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  grid-template-columns: auto;
-  gap: 20px;
+  /* grid-template-columns: auto; */
   padding-top: 150px;
 }
 
 .input_cont {
   display: grid;
   gap: 5px;
+  width: 720px;
+}
+
+/* .input_cont input {
+  margin-bottom: 10px;
+} */
+
+.input_cont label {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.input_cont textarea {
+  resize: none;
 }
 
 .input {

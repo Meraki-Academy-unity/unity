@@ -65,13 +65,13 @@ const GetAllTravel = () => {
             </IconContext.Provider>
           </button>
 
-          <div>
-            <h1>Filter</h1>
-            <label>desired travel location :-</label>
+          <div className="filter_page">
+            <label>Choose Your Desired Travel Location :</label>
             <PerferencesLocation
               setPrefenecesLocation={setPrefenecesLocation}
             />
             <button
+              className="interactionButton"
               onClick={() => {
                 filter();
                 setFilterStatus(true);
@@ -81,6 +81,7 @@ const GetAllTravel = () => {
             </button>
 
             <button
+              className="interactionButton"
               onClick={() => {
                 setFilterStatus(false);
               }}
@@ -90,10 +91,11 @@ const GetAllTravel = () => {
           </div>
         </>
       ) : (
-        <div className="Perferences">
+        <div className="filter_page">
           <label>desired travel location :-</label>
           <PerferencesLocation setPrefenecesLocation={setPrefenecesLocation} />
           <button
+            className="interactionButton"
             onClick={() => {
               filter();
               setFilterStatus(true);
@@ -103,6 +105,7 @@ const GetAllTravel = () => {
           </button>
 
           <button
+            className="interactionButton"
             onClick={() => {
               setFilterStatus(false);
             }}

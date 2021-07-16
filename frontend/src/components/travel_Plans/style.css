@@ -174,3 +174,12 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.3);
   height: 100px;
 }
+
+.filter_page {
+  display: flex;
+  height: 100%;
+  margin: auto 15%;
+  align-items: center;
+  /* justify-items: center; */
+  gap: 10px;
+}

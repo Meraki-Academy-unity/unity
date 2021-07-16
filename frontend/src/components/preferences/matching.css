@@ -21,6 +21,10 @@
   border-radius: 5px;
 }
 
+.interactionButton:hover {
+  cursor: pointer;
+}
+
 .matchBox img {
   border-radius: 50%;
   width: 100px;
