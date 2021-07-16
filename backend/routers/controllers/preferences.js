@@ -96,7 +96,7 @@ const matchByLocation = (req, res) => {
     if (result) {
       // res.status(200).json("Preference Updated Successfully!");
       const query1 =
-        "SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities, preferences.start_date,preferences.finish_date FROM preferences INNER JOIN users ON user_id = users.id WHERE location =? AND NOT users.id=?";
+        "SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities, preferences.start_date,preferences.finish_date ,preferences.user_id FROM preferences INNER JOIN users ON user_id = users.id WHERE location =? AND NOT users.id=?";
       const data1 = [result[0].location, user_id];
       connection.query(query1, data1, (err, result_1) => {
         if (result_1) res.status(200).json(result_1);
@@ -115,7 +115,7 @@ const matchByDate = (req, res) => {
     if (result) {
       const date1 = moment(result[0].start_date, "YYYY-MM-DD");
       const date2 = moment(result[0].finish_date, "YYYY-MM-DD");
-      const query1 = `SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities , preferences.start_date , preferences.finish_date FROM preferences INNER JOIN users ON user_id = users.id WHERE  NOT users.id=?`;
+      const query1 = `SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities , preferences.start_date , preferences.finish_date,preferences.user_id FROM preferences INNER JOIN users ON user_id = users.id WHERE  NOT users.id=?`;
       const data1 = [user_id];
       connection.query(query1, data1, (err, result_1) => {
         if (result_1) {
@@ -123,15 +123,15 @@ const matchByDate = (req, res) => {
           result_1.filter((elem, i) => {
             if (
               date1.get("year") <=
-                moment(elem.start_date, "YYYY-MM-DD").get("year") &&
+              moment(elem.start_date, "YYYY-MM-DD").get("year") &&
               date2.get("year") >=
-                moment(elem.finish_date, "YYYY-MM-DD").get("year")
+              moment(elem.finish_date, "YYYY-MM-DD").get("year")
             ) {
               if (
                 date1.get("month") <=
-                  moment(elem.start_date, "YYYY-MM-DD").get("month") &&
+                moment(elem.start_date, "YYYY-MM-DD").get("month") &&
                 date2.get("month") >=
-                  moment(elem.finish_date, "YYYY-MM-DD").get("month")
+                moment(elem.finish_date, "YYYY-MM-DD").get("month")
               ) {
                 return arr.push(elem);
               }
@@ -154,7 +154,7 @@ const matching = (req, res) => {
       const date1 = moment(result[0].start_date, "YYYY-MM-DD");
       const date2 = moment(result[0].finish_date, "YYYY-MM-DD");
       const query1 =
-        "SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities, preferences.start_date,preferences.finish_date FROM preferences INNER JOIN users ON user_id = users.id WHERE location =? AND NOT users.id=?";
+        "SELECT  users.first_name ,users.last_name ,users.id,users.profile_image,users.birth_date ,preferences.location ,preferences.activities, preferences.start_date,preferences.finish_date,preferences.user_id FROM preferences INNER JOIN users ON user_id = users.id WHERE location =? AND NOT users.id=?";
       const data1 = [result[0].location, user_id];
       connection.query(query1, data1, (err, result_1) => {
         if (result_1) {
@@ -162,15 +162,15 @@ const matching = (req, res) => {
           result_1.filter((elem, i) => {
             if (
               date1.get("year") <=
-                moment(elem.start_date, "YYYY-MM-DD").get("year") &&
+              moment(elem.start_date, "YYYY-MM-DD").get("year") &&
               date2.get("year") >=
-                moment(elem.finish_date, "YYYY-MM-DD").get("year")
+              moment(elem.finish_date, "YYYY-MM-DD").get("year")
             ) {
               if (
                 date1.get("month") <=
-                  moment(elem.start_date, "YYYY-MM-DD").get("month") &&
+                moment(elem.start_date, "YYYY-MM-DD").get("month") &&
                 date2.get("month") >=
-                  moment(elem.finish_date, "YYYY-MM-DD").get("month")
+                moment(elem.finish_date, "YYYY-MM-DD").get("month")
               ) {
                 return arr.push(elem);
               }

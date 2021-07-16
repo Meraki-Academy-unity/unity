@@ -116,8 +116,11 @@ const Matching = () => {
                   <div className="UserName">
                     {elem.first_name} {elem.last_name}
                   </div>
+                  {console.log("idddd",elem.user_id)}
                   <div>
-                    <button className="interactionButton">
+                    <button className="interactionButton" onClick={()=>{
+                      history.push(`/chat/${elem.user_id}`)
+                    }}>
                       {" "}
                       Direct Message
                     </button>
