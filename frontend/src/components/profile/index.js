@@ -17,7 +17,7 @@ const Profile = () => {
   const [edit, setEdit] = useState(false);
   const [friends, setFriends] = useState(false);
   const [matches, setMatches] = useState(false);
-  const [plans, setPlans] = useState(false);
+  const [plans, setPlans] = useState(true);
   const [preferences, setPreferences] = useState(false);
   const [pics, setPics] = useState(false);
   const [ownActivity, setOwnActivity] = useState(false);

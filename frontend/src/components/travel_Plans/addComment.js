@@ -121,7 +121,7 @@ const AddTravelComment = ({ travel_id }) => {
                                 setShow(true);
                               }}
                             >
-                              Update
+                              Edit
                             </button>{" "}
                             <button
                               onClick={() => {

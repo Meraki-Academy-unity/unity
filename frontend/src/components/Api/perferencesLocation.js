@@ -24,10 +24,8 @@ const PerferencesLocation = ({ setPrefenecesLocation }) => {
         style={{
           display: "flex",
           justifyContent: "flex-start",
-          marginTop: "10px",
         }}
       >
-
         <select
           style={{ padding: "4px" }}
           name="image"
@@ -37,7 +35,7 @@ const PerferencesLocation = ({ setPrefenecesLocation }) => {
             setIndex(e.target.value.split(",")[1]);
           }}
         >
-          <option>choose your desired travel destinations</option>
+          <option>Choose Your Desired Travel Destinations</option>
           {country &&
             country.map((elem, i) => {
               return (

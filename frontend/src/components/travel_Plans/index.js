@@ -168,7 +168,7 @@ const AddTravelPlans = () => {
         </div>
 
         <button className="button" onClick={addNewTravelPlans}>
-          create Travel Plans
+          Create Travel Plans
         </button>
       </div>
     </>
