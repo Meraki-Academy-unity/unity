@@ -1,6 +1,6 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Join from "./activityJoin";
 
@@ -99,7 +99,7 @@ const CheckJoin = ({ activity_id }) => {
           </button>
         ) : (
           <button
-            className="show"
+            className="actionButton"
             onClick={() => {
               {
                 setShow(true);

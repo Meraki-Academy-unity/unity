@@ -89,7 +89,9 @@ const EditMyProfile = () => {
             <p>Currently In : {profile.currently_in}</p>
             <p>Language : {profile.language}</p>
             <p>Gender : {profile.gender}</p>
-            <button onClick={editProfile}>Edit</button>
+            <button classname="interactionButton" onClick={editProfile}>
+              Edit
+            </button>
           </div>
         ) : (
           <div className="edit_details">
