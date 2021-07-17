@@ -62,6 +62,7 @@ const showPreferenceByUser = (req, res) => {
   });
 };
 const updatePreferenceById = (req, res) => {
+  const user_id=req.token.user_id;
   const {
     location,
     start_date,
@@ -69,9 +70,8 @@ const updatePreferenceById = (req, res) => {
     activities,
     similar_age,
     same_gender,
-    preference_id,
   } = req.body;
-  const query = `UPDATE preferences SET location=?,start_date=?,finish_date=?,activities=?,similar_age=?,same_gender=? WHERE id = ?`;
+  const query = `UPDATE preferences SET location=?,start_date=?,finish_date=?,activities=?,similar_age=?,same_gender=? WHERE user_id = ?`;
   const data = [
     location,
     start_date,
@@ -79,7 +79,7 @@ const updatePreferenceById = (req, res) => {
     activities,
     similar_age,
     same_gender,
-    preference_id,
+    user_id
   ];
 
   connection.query(query, data, (err, result) => {
