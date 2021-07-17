@@ -153,6 +153,8 @@ const Matching = () => {
             {" "}
             You dont have preferences please fill your preferences{" "}
             <button
+              className="interactionButton"
+              style={{ fontSize: "16px" }}
               onClick={() => {
                 setAdd(true);
               }}

@@ -163,37 +163,79 @@ INSERT INTO status (status) VALUES ('ongoing');
 INSERT INTO status (status) VALUES ('completed');
 
 -- Users Insertions
-INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Bayan","Alsafadi", "bayan@hotmail.com","Jordan","123456");
-INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Deyaa","Mosa", "deyaa@hotmail.com","Jordan","123456");
-INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Roaa","Maghayda", "roaa@hotmail.com","Jordan","123456");
-INSERT INTO users (first_name,last_name,email,currently_in,password) VALUES ("Tariq","Bazadough", "tariq@hotmail.com","Jordan","123456");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Bayan","Alsafadi", "bayan@hotmail.com","Jordan","123456","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIWt8sKjIJVbD87NnClgD6dSIKtYTDe4Crhw&usqp=CAU");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Deyaa","Mosa", "deyaa@hotmail.com","Jordan","123456","https://images.unsplash.com/photo-1444464666168-49d633b86797?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1649&q=80");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Roaa","Maghayda", "roaa@hotmail.com","Jordan","123456","https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2020/04/20/Pictures/baby-cat-inside-blue-jeans-pocket_5da62eee-82ca-11ea-a351-6978c1d205f3.jpg");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Tariq","Bazadough", "tariq@hotmail.com","Jordan","123456","https://i.pinimg.com/originals/7d/a8/03/7da8035ebf74acd77a47a271676ed29d.png");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Jad","Zayton", "olive@hotmail.com","Jordan","123456","https://www.thespruce.com/thmb/LPg5W8soet5nogIY3w3OC59A3EI=/2466x2466/smart/filters:no_upscale()/fruitless-olive-tree-profile-4158521-hero-f11d6bb714f94b81b7c8c080079d5e68.jpg");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Mohd","Jouza", "Jouza@hotmail.com","Jordan","123456","https://i.pinimg.com/originals/12/8d/e8/128de8ce51ee0c498a4dfa67610f5843.jpg");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Mohd","Khames", "Thursday@hotmail.com","Jordan","123456","https://i.pinimg.com/originals/a5/45/40/a54540303f9bd06f42f93cb77949130d.jpg");
+INSERT INTO users (first_name,last_name,email,currently_in,password,profile_image) VALUES ("Mostufa","Al-Jalmnee", "jalmneeeeee@hotmail.com","Jordan","123456","https://images.hugoboss.com/is/image/hugobossdm/HBME_110_2021_BOSS_MTM_020_sRGB?%24large%24&align=0,-1&fit=crop,1&ts=1614091971370&wid=512");
 
 -- Preferences Insertions
-INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Germany","2020-05-08","2020-08-25","climbing,swimming,..",true,false,1);
-INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Italy","2020-09-08","2020-02-25","climbing,swimming,..",true,true,2);
-INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("France","2020-03-08","2020-01-25","climbing,swimming,..",true,false,3);
-INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Germany","2020-09-08","2020-07-25","climbing,swimming,..",true,true,4);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Germany","2021-11-08","2022-01-02","Explore Germany",true,false,1);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Italy","2021-10-08","2021-11-25","Eat Pizza",true,true,2);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("France","2021-09-08","2021-10-25","visit evil tower and louver museum",true,false,3);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Germany","2021-08-08","2021-08-25","nothing in particular",true,true,4);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Belgium","2021-08-08","2021-08-25","Eat All The Brosted Chickens",true,true,6);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Belgium","2021-08-08","2021-08-25","Nothing Suspicious",true,true,5);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("Italy","2021-08-08","2021-08-25","Eat All The Food I Can",true,true,7);
+INSERT INTO preferences (location,start_date,finish_date,activities,similar_age,same_gender,user_id) VALUES ("France","2021-09-08","2021-11-25","Spend Summer In France",true,true,8);
 
 -- Travel_Plans insertions
-INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (1,"Camping","2020-03-08","2020-01-25", "jordan,germany..", "Camping,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 509 );
-INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (2,"To Germany","2020-03-08","2020-01-25", "Italy,germany..", "Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 580 );
-INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (3,"Traveling","2020-03-08","2020-01-25", "jordan,germany..", "Playing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 200 );
-INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (4,"To France","2020-03-08","2020-01-25", "jordan,France..", "Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 500 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (1,"2 Week Trip To Wadi Rum","2021-09-08","2021-10-05", "Jordan", "Camping, Walking, Rock Climbing ", "get a sleeping bag", "Lets Relax and enjoy the view", "https://images.unsplash.com/photo-1559213606-41c9054a460e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80", 200 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (2,"Summer Time In Germany","2021-08-08","2021-09-25", "Germany", "Just Relax", "no requirements", "ENJOY THE JOURNEY", "https://images.unsplash.com/photo-1528819837997-629b477fb7dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1097&q=80", 1000 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (3,"Exploring South Of France","2021-09-08","2021-10-25", "France", "sightseeing", "no requirements", "lets explore south of france", "https://images.unsplash.com/photo-1572907564143-ee1ef5882732?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1085&q=80", 1200 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (4,"A Month Trip To Belgium","2021-10-08","2021-11-08", "Belgium", "Rock Climbing, Swimming and Sky Diving", "Brave Heart", "ENJOY THE JOURNEY", "https://images.unsplash.com/photo-1615711088116-03b5a9fd345a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1119&q=80", 1000 );
+INSERT INTO travel_plans (user_id,title, start_date, finish_date , countries , activities , requirements , details , images , estimated_budget) VALUES (5,"Tokyo","2021-10-08","2021-11-08", "Japan", "Exploring Tokyo", "Nothing Is Required", "lets have great time", "https://images.unsplash.com/photo-1553292770-c3d14b814242?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1073&q=80", 1500 );
 
 -- Activities insertions
-INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (1,"Camping","Jordan","2020-03-08","2020-01-25" ,"Camping,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 509);
-INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (2,"To Germany","France","2020-03-08","2020-01-25" ,"Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 580);
-INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (3,"Traveling","Germany","2020-03-08","2020-01-25","Playing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 200);
-INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (4,"To France","America","2020-03-08","2020-01-25", "Climbing,Swimming..", "JUST COME", "ENJOY THE JOURNEY", "./images/img1", 500);
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (1,"weekend trip to petra","Jordan","2021-07-25","2021-7-28" ,"sightseeing", "hat to protect you from the sun", "ENJOY THE JOURNEY", "https://images.unsplash.com/photo-1579629625630-a99da9fd4c83?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80", 550);
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (2,"France","France","2021-08-08","2021-09-25" ,"sightseeing", "JUST COME", "ENJOY THE JOURNEY", "https://images.unsplash.com/photo-1526893381913-e311045b8064?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80", 550);
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (3,"Traveling In Germany","Germany","2021-08-08","2021-09-25","Hiking", "JUST COME", "ENJOY THE JOURNEY", "https://images.unsplash.com/photo-1582785513879-fcd3ea2b5af8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80", 200);
+INSERT INTO activities (user_id,title,location, start_date, finish_date , activities , requirements , details , images , estimated_budget) VALUES (4,"Wadi Rum","Jordan","2021-08-08","2021-09-25", "Climbing and Hiking", "JUST COME", "ENJOY THE JOURNEY", "https://images.unsplash.com/photo-1492693429561-1c283eb1b2e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80", 80);
 
 -- Activiy_comments insertions
 INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Sounds Great To Join !",1,1);
-INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Seems Great To Join !",2,2);
-INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Sounds Great To Join !",3,2);
-INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Not Interested !",4,1);
+INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Looking forward for it  !",2,2);
+INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("Sounds allot of Fun !",3,2);
+INSERT INTO activity_comments (content,user_id,activity_id) VALUES ("That's Looks Awesome !",4,1);
 
 -- Travel_Plans_Comments insertions
 INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",1,1);
-INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",2,2);
-INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",3,2);
-INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds Great To Join !",4,1);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Looking forward for it !",2,2);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("Sounds allot of Fun !",3,2);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("That's Looks Awesome !",7,1);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("That's Looks Awesome !",6,5);
+INSERT INTO travel_plans_comments (content,user_id,travel_plans_id) VALUES ("That's Looks Awesome !",4,5);
+
+-- friend_list insertions
+INSERT INTO friend_list (user_id, friend_id) VALUES (1,2);
+INSERT INTO friend_list (user_id, friend_id) VALUES (1,3);
+INSERT INTO friend_list (user_id, friend_id) VALUES (1,4);
+INSERT INTO friend_list (user_id, friend_id) VALUES (3,2);
+INSERT INTO friend_list (user_id, friend_id) VALUES (4,2);
+INSERT INTO friend_list (user_id, friend_id) VALUES (5,2);
+INSERT INTO friend_list (user_id, friend_id) VALUES (6,7);
+INSERT INTO friend_list (user_id, friend_id) VALUES (6,1);
+INSERT INTO friend_list (user_id, friend_id) VALUES (6,2);
+
+-- plan_members
+INSERT INTO plan_members (user_id, plan_id) VALUES (1,1);
+INSERT INTO plan_members (user_id, plan_id) VALUES (2,2);
+INSERT INTO plan_members (user_id, plan_id) VALUES (3,3);
+INSERT INTO plan_members (user_id, plan_id) VALUES (4,4);
+INSERT INTO plan_members (user_id, plan_id) VALUES (5,5);
+
+-- activity_members
+INSERT INTO activity_members (user_id, activity_id) VALUES (1,1);
+INSERT INTO activity_members (user_id, activity_id) VALUES (2,2);
+INSERT INTO activity_members (user_id, activity_id) VALUES (3,3);
+INSERT INTO activity_members (user_id, activity_id) VALUES (4,4);
+
+-- images
+INSERT INTO images (user_id, images) VALUES (1,"https://images.unsplash.com/photo-1543965860-0a2c912bc32f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1056&q=80");
+INSERT INTO images (user_id, images) VALUES (2,"https://images.unsplash.com/photo-1471180625745-944903837c22?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80");
+INSERT INTO images (user_id, images) VALUES (2,"https://images.unsplash.com/photo-1566704351700-da9069468d94?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80");
+INSERT INTO images (user_id, images) VALUES (3,"https://images.unsplash.com/photo-1553856622-d1b352e9a211?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80");
+INSERT INTO images (user_id, images) VALUES (4,"https://images.unsplash.com/photo-1606318621597-c057f7d4926e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80");
