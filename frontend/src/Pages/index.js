@@ -3,6 +3,7 @@ import Sidebar from "../components/navigation/sidebar";
 import InfoSection from "../components/InfoSection";
 import Hero from "../components/HeroSection";
 import React, { useState } from "react";
+import ContactSection from '../components/InfoSection/contactSection'
 import {
   HomeObjOne,
   HomeObjThree,
@@ -26,7 +27,7 @@ const Home = ({setIsHome}) => {
       <InfoSection {...HomeObjOne} />
       <InfoSection {...HomeObjTwo} />
       <Services />
-      <InfoSection {...HomeObjThree} />
+      <ContactSection {...HomeObjThree} />
       <Footer />
     </>
   );

@@ -1,3 +1,13 @@
+.contactForm input {
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.contactForm textarea {
+  resize: none;
+}
+
+
 .icon {
   width: 30px;
 }
