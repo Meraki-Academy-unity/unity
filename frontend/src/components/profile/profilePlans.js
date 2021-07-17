@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./profile.css";
 import moment from "moment";
+import img from '../chat/notFound.png'
 
 const ProfilePlans = ({ setIsHome }) => {
   const [plansProf, setPlansProf] = useState([]);
@@ -32,9 +33,10 @@ const ProfilePlans = ({ setIsHome }) => {
 
   return (
     <>
-    {!plansProf.length ?(  <div>
-              {" "}
-              <p>No Travels to show</p>{" "}
+    {!plansProf.length ?(  <div className="notFound">
+        {" "}
+        <img width="500px" src={img}/>
+              <p>No Added Posts</p>{" "}
             </div>) :  
       <div className="profile_post_page">
         {plansProf &&

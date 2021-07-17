@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import img from './notFound.png'
 import "./inbox.css";
 
 const Inobx = ({ setIsHome }) => {
@@ -72,9 +73,10 @@ const Inobx = ({ setIsHome }) => {
 
   return (
     <>
-    {!inbox.length ?(  <div>
+    {!inbox.length ?(  <div className="notFound">
         {" "}
-        <p>No messages to show</p>{" "}
+        <img width="500px" src={img}/>
+        <p>Inbox is empty</p>{" "}
       </div>) :
       <div className="inbox_page">
         <h1>Inbox</h1>

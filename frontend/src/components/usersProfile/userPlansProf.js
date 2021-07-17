@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import {useParams, useHistory } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
+import img from '../chat/notFound.png'
+
 
 const ProfileUserPlans = ({ id }) => {
   console.log("id", id)
@@ -28,8 +30,9 @@ const ProfileUserPlans = ({ id }) => {
 
   return (
     <>
-      {!plansProf ? (<div>
+      {!plansProf ? (<div className="notFound">
         {" "}
+        <img width="500px" src={img}/>
         <p>No Activities to show</p>{" "}
       </div>) :
         <div className="profile_post_page">

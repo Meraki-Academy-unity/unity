@@ -3,6 +3,8 @@ import {useSelector } from "react-redux";
 import {useParams, useHistory } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
+import img from '../chat/notFound.png'
+
 
 const ProfileUserActivities = () => {
   const [activitiesProf, setActivitiesProf] = useState([]);
@@ -26,8 +28,9 @@ const ProfileUserActivities = () => {
 
   return (
     <>
-      {!activitiesProf.length ? (<div>
+      {!activitiesProf.length ? (<div className="notFound">
         {" "}
+        <img width="500px" src={img}/>
         <p>No Activities to show</p>{" "}
       </div>) :
         <div className="profile_post_page">
