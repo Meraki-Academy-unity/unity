@@ -33,9 +33,10 @@ const ImageUserGrid = () => {
 
     return (
         <>
-            <div className="imageGrid">
+
+            <div className="profileAlbum">
                 {photoAlbum && photoAlbum.map((elem, i) => {
-                    return <div key={i}>
+                    return <div className="albumTab" key={i}>
                         {elem.images &&
                             <img src={elem.images} onClick={() => {
                                 dispatch(setPhoto(elem))
