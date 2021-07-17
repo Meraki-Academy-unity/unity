@@ -16,7 +16,7 @@ import {
   deleteUser,
 } from "../../../reducers/signUp";
 
-const SignUp = ({setIsHome}) => {
+const SignUp = ({ setIsHome }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -35,7 +35,7 @@ const SignUp = ({setIsHome}) => {
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
   const [done, setDone] = useState(false);
-  setIsHome(false)
+  setIsHome(false);
   const types = ["image/png", "image/jpeg"];
 
   const dispatch = useDispatch();
@@ -216,7 +216,10 @@ const FirstStep = ({
               <button onClick={signUpFirstStep}>Sign-Up</button>
               {errorMessage ? <p>{errorMessage}</p> : ""}
               <small>
-                Already Have Account?<Link id="link" to="/login">Login</Link>
+                Already Have Account?
+                <Link id="link" to="/login">
+                  Login
+                </Link>
               </small>
             </div>
           </div>

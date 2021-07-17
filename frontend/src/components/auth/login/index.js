@@ -40,7 +40,7 @@ const Login = ({setIsHome}) => {
       });
   };
   return (
-    <div className="container">
+    <div>
       <div className="auth">
         <div className="leftAuth">
           <img src={loginImg} alt="" />
