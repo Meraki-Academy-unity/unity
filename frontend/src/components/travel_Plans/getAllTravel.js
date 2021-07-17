@@ -72,7 +72,7 @@ const GetAllTravel = ({setIsHome}) => {
       {state.token ? (
         <>
           <button
-            style={{ marginLeft: "95%", marginTop: "100px" }}
+            style={{ marginLeft: "95%", marginTop: "50px" }}
             onClick={() => {
               history.push("/addTravel");
             }}
@@ -93,7 +93,7 @@ const GetAllTravel = ({setIsHome}) => {
               setPrefenecesLocation={setPrefenecesLocation}
             />
             <button
-              className="interactionButton"
+              className="actionButton"
               onClick={() => {
                 filter();
                 setFilterStatus(true);
@@ -103,7 +103,7 @@ const GetAllTravel = ({setIsHome}) => {
             </button>
 
             <button
-              className="interactionButton"
+              className="actionButton"
               onClick={() => {
                 setFilterStatus(false);
               }}

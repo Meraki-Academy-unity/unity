@@ -53,7 +53,6 @@ const Navigation = ({ toggle, isHome }) => {
                 <NavBtnContent id="services">
                   <NavDropLinks to="/Activities">Activities</NavDropLinks>
                   <NavDropLinks to="/Plans">Travel Plans</NavDropLinks>
-                  <NavDropLinks to="/match">Matches</NavDropLinks>
                 </NavBtnContent>
               </NavServBtn>
             </NavLinks>
