@@ -178,8 +178,23 @@ body {
 .filter_page {
   display: flex;
   height: 100%;
-  margin: auto 15%;
+  margin-top: 50px;
+  margin-left: 250px;
   align-items: center;
-  /* justify-items: center; */
+  justify-items: center;
   gap: 10px;
+}
+
+
+.actionButton{
+  width: 100px;
+  padding: 11px;
+  background-color: rgb(243, 183, 31);
+  border:none;
+  border-radius:5px;
+  cursor: pointer;
+}
+
+.actionButton:hover{
+  background-color: rgba(243, 183, 31, 0.801);
 }

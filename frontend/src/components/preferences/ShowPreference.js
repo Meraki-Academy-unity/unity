@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
-import AddPerferences from "./addPreferences";
+import EditPerferences from "./EditPref";
 import PerferencesLocation from "./../Api/perferencesLocation"
 import { Link, Route } from "react-router-dom";
 import "./../Activities/style.css";
@@ -81,7 +81,7 @@ const GetMyPreferences = () => {
         <> {preferences.length == 0 ? <div><p> You dont have preferences please fill your preferences <button onClick={() => {
           setAdd(true)
         }}> Click here</button></p>
-          {add ? <AddPerferences /> : ""}</div> : <div className="pref_page">
+          {add ? <EditPerferences /> : ""}</div> : <div className="pref_page">
           {preferences &&
             preferences.map((elem, i) => {
               return (

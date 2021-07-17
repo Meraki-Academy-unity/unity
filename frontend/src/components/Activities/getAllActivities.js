@@ -9,9 +9,11 @@ import AddActivities from "./addActivities";
 import { FaPlus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import moment from "moment";
+import img from "../chat/notFound.png";
 
-const Activities = () => {
+const Activities = ({ setIsHome }) => {
   const [activities, setactivities] = useState("");
+  setIsHome(false);
 
   const [visitorActivities, setVisitorActivities] = useState("");
   const history = useHistory();
@@ -22,83 +24,84 @@ const Activities = () => {
       id: state.id.id,
     };
   });
-  const UserData = ()=>{
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/activities/`, {
-        headers: {
-          Authorization: `Bearer ${state.token}`,
-        },
-      })
-      .then((result) => {
-        if (result.data.length) {
-          const arr = [];
-          let date = moment(new Date(), "YYYY-MM-DD").format("YYYY-MM-DD");
-          result.data.map((elem, i) => {
-            let startDate = moment(elem.start_date, "YYYY-MM-DD").format(
-              "YYYY-MM-DD"
+
+  const UserData = () => {
+    useEffect(() => {
+      axios
+        .get(`http://localhost:5000/activities/`, {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        })
+        .then((result) => {
+          if (result.data.length) {
+            const arr = [];
+            let date = moment(new Date(), "YYYY-MM-DD").format("YYYY-MM-DD");
+            result.data.map((elem, i) => {
+              let startDate = moment(elem.start_date, "YYYY-MM-DD").format(
+                "YYYY-MM-DD"
+              );
+              let compare = moment(startDate).isAfter(date, "days");
+              if (compare) {
+                arr.push(elem);
+              }
+            });
+            const sortedArray = arr.sort(
+              (a, b) =>
+                new moment(a.start_date).format("YYYYMMDD") -
+                new moment(b.start_date).format("YYYYMMDD")
             );
-            let compare = moment(startDate).isAfter(date, "days");
-            if (compare) {
-              arr.push(elem);
-            }
-          });
-          const sortedArray = arr.sort(
-            (a, b) =>
-              new moment(a.start_date).format("YYYYMMDD") -
-              new moment(b.start_date).format("YYYYMMDD")
-          );
-          setactivities(sortedArray);
-        } else {
-          setactivities(result.data);
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }, [])}
+            setactivities(sortedArray);
+          } else {
+            setactivities(result.data);
+          }
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }, []);
+  };
 
-  const VisitorData = ()=>{
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/activities/visitor`)
+  const VisitorData = () => {
+    useEffect(() => {
+      axios
+        .get(`http://localhost:5000/activities/visitor`)
 
-      .then((result) => {
-        if (result.data.length) {
-          const arr = [];
-          let date = moment(new Date(), "YYYY-MM-DD").format("YYYY-MM-DD");
-          result.data.map((elem, i) => {
-            let startDate = moment(elem.start_date, "YYYY-MM-DD").format(
-              "YYYY-MM-DD"
+        .then((result) => {
+          if (result.data.length) {
+            const arr = [];
+            let date = moment(new Date(), "YYYY-MM-DD").format("YYYY-MM-DD");
+            result.data.map((elem, i) => {
+              let startDate = moment(elem.start_date, "YYYY-MM-DD").format(
+                "YYYY-MM-DD"
+              );
+              let compare = moment(startDate).isAfter(date, "days");
+              if (compare) {
+                arr.push(elem);
+              }
+            });
+            const sortedArray = arr.sort(
+              (a, b) =>
+                new moment(a.start_date).format("YYYYMMDD") -
+                new moment(b.start_date).format("YYYYMMDD")
             );
-            let compare = moment(startDate).isAfter(date, "days");
-            if (compare) {
-              arr.push(elem);
-            }
-          });
-          const sortedArray = arr.sort(
-            (a, b) =>
-              new moment(a.start_date).format("YYYYMMDD") -
-              new moment(b.start_date).format("YYYYMMDD")
-          );
-          setVisitorActivities(sortedArray);
-        } else {
-          setVisitorActivities(result.data);
-        }
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }, []);}
-
-
+            setVisitorActivities(sortedArray);
+          } else {
+            setVisitorActivities(result.data);
+          }
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }, []);
+  };
 
   return (
     <>
       <div className="content">
         {state.token ? (
           <>
-          {UserData()}
+            {UserData()}
             <button
               style={{ marginLeft: "95%", marginTop: "100px" }}
               onClick={() => {
@@ -115,8 +118,9 @@ const Activities = () => {
             </button>
 
             {!activities.length ? (
-              <div style={{ marginTop: "100px" }}>
+              <div className="notFound">
                 {" "}
+                <img width="500px" src={img} />
                 <p>No Activities to show</p>{" "}
               </div>
             ) : (
@@ -207,10 +211,11 @@ const Activities = () => {
           </>
         ) : (
           <>
-          {VisitorData()}
+            {VisitorData()}
             {!visitorActivities.length ? (
-              <div style={{ marginTop: "100px" }}>
+              <div className="notFound">
                 {" "}
+                <img width="500px" src={img} />
                 <p>No Activities to show</p>{" "}
               </div>
             ) : (
