@@ -31,3 +31,14 @@
 .inbox_page h1 {
   margin-top: 35px;
 }
+
+.notFound{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.notFound p{
+  font-size: 20px;
+}

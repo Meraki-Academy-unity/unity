@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./profile.css";
 import moment from "moment";
+import img from '../chat/notFound.png'
+
 
 const ProfileActivities = ({ setIsHome }) => {
   const [activitiesProf, setActivitiesProf] = useState([]);
@@ -32,8 +34,9 @@ const ProfileActivities = ({ setIsHome }) => {
 
   return (
     <>
-    {!activitiesProf.length ?(  <div>
-              {" "}
+    {!activitiesProf.length ?(  <div className="notFound">
+        {" "}
+        <img width="500px" src={img}/>
               <p>No Activities to show</p>{" "}
             </div>) : 
       <div className="profile_post_page">

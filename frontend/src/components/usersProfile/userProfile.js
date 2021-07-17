@@ -170,22 +170,17 @@ const UserProfile = ({ setIsHome }) => {
           <div className="nav">
             <ul>
               <li className="user-post" onClick={userActivity}>
-                {/* <Link to={`/ProfileUsers/activities/${profile && profile.id}`}> */}
                 Acticities
-                {/* </Link> */}
               </li>
               <li className="user-post" onClick={userPlans}>
-                {/* <Link to={`/ProfileUsers/plans/${profile && profile.id}`}> */}
                 Plans
-                {/* </Link> */}
+                
               </li>
               <li className="user-post" onClick={userPreferences}>
-                {/* <Link to={`/profileUser/preferences/${profile && profile.id}`}> */}
-                Preferences {/* </Link> */}
+                Preferences 
               </li>
               <li className="user-post" onClick={album}>
-                {/* <Link to={`/userphotoAlbum/${profile && profile.id}`}> */}
-                Photo Album {/* </Link> */}
+                Photo Album 
               </li>
             </ul>
           </div>

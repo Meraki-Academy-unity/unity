@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./profile.css";
+import img from '../chat/notFound.png'
+
 
 
 const ShowFriends = () => {
@@ -25,8 +27,9 @@ const ShowFriends = () => {
         })
     }, [])
 
-    return (<>{!friend.length ?(  <div>
-        {" "}
+    return (<>{!friend.length ?(  <div className="notFound">
+    {" "}
+    <img width="500px" src={img}/>
         <p>No Friends to show</p>{" "}
       </div>) :
         <div className="friend_page" >
