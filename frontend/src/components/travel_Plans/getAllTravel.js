@@ -26,12 +26,29 @@ const GetAllTravel = () => {
     axios
       .get(`http://localhost:5000/travelPlans`)
       .then((result) => {
-        setTravels(result.data);
+        if (result.data.length){
+          const arr = []
+          let date = moment(new Date(), "YYYY-MM-DD")
+          .format("YYYY-MM-DD");
+          result.data.map((elem , i )=>{
+            let startDate = moment(elem.start_date, "YYYY-MM-DD")
+            .format("YYYY-MM-DD");
+            let compare =moment(startDate).isAfter(date, 'days');
+            if(compare){
+              arr.push(elem)
+            }
+          })
+        const sortedArray  = arr.sort((a,b) => new moment(a.start_date).format('YYYYMMDD') - new moment(b.start_date).format('YYYYMMDD'))
+        setTravels(sortedArray);
+        }
+        else {
+          setTravels(result.data);
+        }
       })
       .catch((err) => {
         throw err;
       });
-  }, []);
+  }, [travels]);
 
   const filter = () => {
     const arr = [];
