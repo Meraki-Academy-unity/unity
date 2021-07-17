@@ -72,6 +72,10 @@ const Inobx = ({ setIsHome }) => {
 
   return (
     <>
+    {!inbox.length ?(  <div>
+        {" "}
+        <p>No messages to show</p>{" "}
+      </div>) :
       <div className="inbox_page">
         <h1>Inbox</h1>
         {inbox &&
@@ -149,7 +153,7 @@ const Inobx = ({ setIsHome }) => {
               </div>
             );
           })}
-      </div>
+      </div>}
     </>
   );
 };

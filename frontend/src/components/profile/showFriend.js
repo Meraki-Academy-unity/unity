@@ -25,7 +25,10 @@ const ShowFriends = () => {
         })
     }, [])
 
-    return (<>
+    return (<>{!friend.length ?(  <div>
+        {" "}
+        <p>No Friends to show</p>{" "}
+      </div>) :
         <div className="friend_page" >
             {friend && friend.map((elem, i) => {
                 return (
@@ -38,7 +41,7 @@ const ShowFriends = () => {
                     </div>
                 )
             })}
-        </div>
+        </div>}
     </>)
 }
 
