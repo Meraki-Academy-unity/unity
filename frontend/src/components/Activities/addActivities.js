@@ -66,6 +66,22 @@ const AddActivities = () => {
         }
       )
       .then((result) => {
+        axios
+      .post(
+        `http://localhost:5000/activities/activity/${result.data.insertId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
         console.log("res", result.data);
         history.push("/Activities");
       })

@@ -31,7 +31,7 @@ const createTravelPlans = (req, res) => {
       console.log("err", err);
     }
     res.status(201);
-    res.json("added complete");
+    res.json(results);
   });
 };
 
