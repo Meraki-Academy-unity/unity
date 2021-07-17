@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
-import userActivityComp from "../usersProfile/userActivitiesProF";
-import userPlansComp from "../usersProfile/userPlansProf";
-import userPref from "../preferences/showUserPreference";
-import userPics from "../Album/showUserAlbum";
+import  ProfileUserActivities from "../usersProfile/userActivitiesProF";
+import ProfileUserPlans from "../usersProfile/userPlansProf";
+import GetUserPreferences from "../preferences/showUserPreference";
+import ImageUserGrid from "../Album/showUserAlbum";
 import Chat from "../chat/user";
 import AddFriend from "./addFriend";
 import axios from "axios";
@@ -192,14 +192,14 @@ const UserProfile = ({ setIsHome }) => {
           <div class="profile-body">
             {plans ? (
               <div>
-                <userPlansComp />
+                <ProfileUserPlans id={id}/>
               </div>
             ) : (
               ""
             )}
             {preferences ? (
               <div>
-                <userPref />
+                <GetUserPreferences id={id} />
               </div>
             ) : (
               ""
@@ -207,14 +207,14 @@ const UserProfile = ({ setIsHome }) => {
 
             {pics ? (
               <div>
-                <userPics />
+                <ImageUserGrid id={id} />
               </div>
             ) : (
               ""
             )}
             {userActivities ? (
               <div>
-                <userActivityComp />
+                < ProfileUserActivities id={id}/>
               </div>
             ) : (
               ""

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-const ProfileUserPlans = () => {
+const ProfileUserPlans = ({id}) => {
+  console.log("id",id)
   const [plansProf, setPlansProf] = useState([]);
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const state = useSelector((state) => {
     return {
