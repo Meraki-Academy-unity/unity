@@ -43,8 +43,8 @@ export const HomeObjThree = {
   topLine: "Keep In Touch",
   headLine: "Rapid Response At Any Time",
   description:
-    "Have you ever joined a group tour (like the ones offered by packaged tour companies where you might have been a bit apprehensive about travelling with strangers strangely, many people who have been on these organized group tours will tell you that after a week, you’ve felt like you’ve known the people in your group for years. ",
-  buttonLabel: "Get Started",
+    "We Will Be Gratefull For Any Feedback , Given From You. Contact Us Any Time And We Will Get Back To You As Soon As Possible ",
+  buttonLabel: "Send Email",
   imgStart: false,
   img: require("../../Images/contact.png"),
   alt: "group",

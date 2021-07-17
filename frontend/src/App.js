@@ -7,7 +7,6 @@ import AddTravelPlans from "./components/travel_Plans/index";
 import AddPerferences from "./components/preferences/addPreferences";
 import GetAllActivities from "./components/Activities/getAllActivities";
 import GetAllTravel from "./components/travel_Plans/getAllTravel";
-import ContactUs from "./components/contactUs";
 import GetTravelById from "./components/travel_Plans/getTravelById";
 import GetActivityById from "./components/Activities/getActivityById";
 import Profile from "./components/profile";
@@ -48,7 +47,6 @@ const App = () => {
       <Route exact path="/" render={() => <Home setIsHome={setIsHome}/>} />
       <Route exact path="/login" render={() => <Login setIsHome={setIsHome}/>} />
       <Route exact path="/register" render={() => <SignUp setIsHome={setIsHome}/>} />
-      <Route exact path="/contactUs" render={() => <ContactUs />} />
       <Route exact path="/plans" component={GetAllTravel} />
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
       <Route exact path="/activities" component={GetAllActivities} />
