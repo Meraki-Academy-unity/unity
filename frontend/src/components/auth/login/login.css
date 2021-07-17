@@ -6,7 +6,7 @@
   .auth {
     width: 100%;
     display: flex;
-    margin-top:-80px;
+    justify-content: center;
   }
   
   .leftAuth {
@@ -111,6 +111,8 @@
   
   .rightAuth table tr input:focus {
     color: rgb(8, 4, 56);
+    font-size:15px;
+    padding:15px;
     background-color: rgba(141, 141, 141, 0.103);
   }
   
