@@ -86,17 +86,17 @@ const CheckTravelJoin = ({ travel_id }) => {
     <>
       <div className="btnCont">
         {!join ? (
-          <button className="join" onClick={AddMember}>
+          <button className="actionButton" onClick={AddMember}>
             Join
           </button>
         ) : (
-          <button className="join" onClick={DeleteMember}>
+          <button className="actionButton" onClick={DeleteMember}>
             Leave
           </button>
         )}
 
         {show ? (
-          <button className="show" onClick={ShowMembers}>
+          <button className="actionButton" onClick={ShowMembers}>
             Show All Members
           </button>
         ) : (
