@@ -22,6 +22,7 @@ const UserProfile = ({ setIsHome }) => {
   const state = useSelector((state) => {
     return {
       token: state.login.token,
+      id: state.id.id
     };
   });
   setIsHome(false);
@@ -150,6 +151,7 @@ const UserProfile = ({ setIsHome }) => {
             <p>Gender : {profile.gender}</p>
             <p>Language : {profile.language}</p>
             <div className="profile-btn">
+              { state.id && state.token ? <>
               <Link className="chat-btn" to={`/chat/${profile && profile.id}`}>
                 {" "}
                 <span id="msg">Message</span>
@@ -163,6 +165,7 @@ const UserProfile = ({ setIsHome }) => {
                   Remove
                 </button>
               )}
+              </> : ""}
             </div>
           </div>
         </div>
