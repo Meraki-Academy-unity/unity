@@ -44,7 +44,7 @@ const AddTravelPlans = () => {
           activities,
           requirements,
           details,
-          images,
+          images:images||"https://lh3.googleusercontent.com/proxy/zB-imYMtce4BvJYtDrRnOxmmpcwAjsXpGpJ85-aCYq70A9o4k2YwSb56Z1CAruHz7SPo0tIxdzSNKQG_FYYonQ5aoiQTvTXbSsDp_tjQSWbImeSTIdY",
           estimated_budget,
         },
         {
