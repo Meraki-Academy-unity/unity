@@ -237,6 +237,7 @@ const Activities = () => {
                               className="img"
                             ></img>
 
+                            
                               <Link
                                 className="link"
                                 to={`/users/user/${element.user_id}`}
