@@ -32,6 +32,10 @@ const ProfilePlans = ({ setIsHome }) => {
 
   return (
     <>
+    {!plansProf.length ?(  <div>
+              {" "}
+              <p>No Travels to show</p>{" "}
+            </div>) :  
       <div className="profile_post_page">
         {plansProf &&
           plansProf.map((element, index) => {
@@ -89,7 +93,7 @@ const ProfilePlans = ({ setIsHome }) => {
               </div>
             );
           })}
-      </div>
+      </div>}
     </>
   );
 };

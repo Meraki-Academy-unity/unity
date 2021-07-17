@@ -32,6 +32,10 @@ const ProfileActivities = ({ setIsHome }) => {
 
   return (
     <>
+    {!activitiesProf.length ?(  <div>
+              {" "}
+              <p>No Activities to show</p>{" "}
+            </div>) : 
       <div className="profile_post_page">
         {activitiesProf &&
           activitiesProf.map((elem, index) => {
@@ -87,7 +91,7 @@ const ProfileActivities = ({ setIsHome }) => {
               </div>
             );
           })}
-      </div>
+      </div> }
     </>
   );
 };
