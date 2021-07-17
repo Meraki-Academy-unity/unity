@@ -7,13 +7,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaPlus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import moment from "moment";
+import img from '../chat/notFound.png'
+ 
 import PerferencesLocation from "../Api/perferencesLocation";
 
-const GetAllTravel = () => {
+const GetAllTravel = ({setIsHome}) => {
   const [travels, setTravels] = useState([]);
   const [prefenecesLocation, setPrefenecesLocation] = useState();
   const [filterData, setFilterData] = useState([]);
   const [filterStatus, setFilterStatus] = useState(false);
+  setIsHome(false)
+
   const state = useSelector((state) => {
     return {
       url: state.imgUploader.url,
@@ -21,6 +25,7 @@ const GetAllTravel = () => {
       id: state.id.id,
     };
   });
+
   const history = useHistory();
   useEffect(() => {
     axios
@@ -67,7 +72,7 @@ const GetAllTravel = () => {
       {state.token ? (
         <>
           <button
-            style={{ marginLeft: "95%", marginTop: "100px" }}
+            style={{ marginLeft: "95%", marginTop: "50px" }}
             onClick={() => {
               history.push("/addTravel");
             }}
@@ -88,7 +93,7 @@ const GetAllTravel = () => {
               setPrefenecesLocation={setPrefenecesLocation}
             />
             <button
-              className="interactionButton"
+              className="actionButton"
               onClick={() => {
                 filter();
                 setFilterStatus(true);
@@ -98,7 +103,7 @@ const GetAllTravel = () => {
             </button>
 
             <button
-              className="interactionButton"
+              className="actionButton"
               onClick={() => {
                 setFilterStatus(false);
               }}
@@ -112,7 +117,7 @@ const GetAllTravel = () => {
           <label>desired travel location :-</label>
           <PerferencesLocation setPrefenecesLocation={setPrefenecesLocation} />
           <button
-            className="interactionButton"
+            className="actionButton"
             onClick={() => {
               filter();
               setFilterStatus(true);
@@ -122,7 +127,7 @@ const GetAllTravel = () => {
           </button>
 
           <button
-            className="interactionButton"
+            className="actionButton"
             onClick={() => {
               setFilterStatus(false);
             }}
@@ -134,9 +139,9 @@ const GetAllTravel = () => {
       {filterStatus ? (
         <>
           {!filterData.length ? (
-            <div>
-              {" "}
-              <p>No Travels to show</p>{" "}
+            <div className="notFound">
+            {" "}
+            <img width="500px" src={img}/>
             </div>
           ) : (
             <div className="post_page">
@@ -223,9 +228,9 @@ const GetAllTravel = () => {
       ) : (
         <>
           {!travels.length ? (
-            <div>
-              {" "}
-              <p>No Travels to show</p>{" "}
+            <div className="notFound">
+            {" "}
+            <img width="500px" src={img}/>
             </div>
           ) : (
             <div className="post_page">

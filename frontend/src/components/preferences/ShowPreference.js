@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+
 import AddPerferences from "./addPreferences";
 import PerferencesLocation from "./../Api/perferencesLocation";
+
+import EditPerferences from "./EditPref";
+
+
 import { Link, Route } from "react-router-dom";
 import "./../Activities/style.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -88,6 +93,7 @@ const GetMyPreferences = () => {
     .format("YYYY-MM-DD");
   return (
     <>
+
       <div className="edit_page">
         {!edit ? (
           <>
@@ -146,6 +152,7 @@ const GetMyPreferences = () => {
         ) : (
           <div className="edit_details">
             <div
+
               style={{
                 display: "flex",
                 alignItems: "center",

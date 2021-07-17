@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, {useState } from "react";
 import axios from "axios";
-import { Link, Route } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import Join from "./activityJoin";
 
@@ -85,17 +84,17 @@ const CheckJoin = ({ activity_id }) => {
     <>
       <div className="btnCont">
         {!join ? (
-          <button className="join" onClick={AddMember}>
+          <button className="actionButton" onClick={AddMember}>
             Join
           </button>
         ) : (
-          <button className="join" onClick={DeleteMember}>
+          <button className="actionButton" onClick={DeleteMember}>
             Leave
           </button>
         )}
 
         {show ? (
-          <button className="show" onClick={ShowMembers}>
+          <button className="actionButton" onClick={ShowMembers}>
             Show All Members
           </button>
         ) : (

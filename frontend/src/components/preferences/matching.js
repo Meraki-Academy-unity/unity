@@ -212,8 +212,12 @@ const Matching = () => {
                           <img src={elem.profile_image} />
                         </div>
                         <div className="UserName">
-                          {elem.first_name} {elem.last_name}
+                          {/* {elem.first_name} {elem.last_name} */}
+                          <Link to={`/users/user/${elem.user_id}`}>
+                            <p> {elem.first_name} {elem.last_name} </p>
+                          </Link>
                         </div>
+
                         {console.log("idddd", elem.user_id)}
                         <div>
                           <button

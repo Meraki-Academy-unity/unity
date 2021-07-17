@@ -47,9 +47,9 @@ const App = () => {
       <Route exact path="/" render={() => <Home setIsHome={setIsHome}/>} />
       <Route exact path="/login" render={() => <Login setIsHome={setIsHome}/>} />
       <Route exact path="/register" render={() => <SignUp setIsHome={setIsHome}/>} />
-      <Route exact path="/plans" component={GetAllTravel} />
+      <Route exact path="/plans" render={()=><GetAllTravel setIsHome={setIsHome}/>}/>
       <Route exact path="/travelPlans/:id" component={GetTravelById} />
-      <Route exact path="/activities" component={GetAllActivities} />
+      <Route exact path="/activities" render={()=><GetAllActivities setIsHome={setIsHome}/>}/>
       <Route exact path="/addActivity" render={() => <AddActivities/>} />
       <Route exact path="/addTravel" render={() => <AddTravelPlans/>} />
       <Route exact path="/preferences" render={() => <AddPerferences/>} />
