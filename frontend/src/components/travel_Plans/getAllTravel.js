@@ -160,7 +160,7 @@ const GetAllTravel = () => {
                             className="img"
                           ></img>
 
-                          {state.id != element.user_id ? (
+                          {(state.id != element.user_id) && state.id? (
                             <Link
                               className="link"
                               to={`/users/user/${element.user_id}`}

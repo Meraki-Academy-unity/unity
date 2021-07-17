@@ -237,7 +237,6 @@ const Activities = () => {
                               className="img"
                             ></img>
 
-                            {state.id != element.user_id ? (
                               <Link
                                 className="link"
                                 to={`/users/user/${element.user_id}`}
@@ -246,13 +245,7 @@ const Activities = () => {
                                   {element.first_name} {element.last_name}
                                 </p>
                               </Link>
-                            ) : (
-                              <Link className="link" to={`/profile`}>
-                                <p style={{ color: "black" }}>
-                                  {element.first_name} {element.last_name}
-                                </p>
-                              </Link>
-                            )}
+                            
                           </div>
 
                           <div
