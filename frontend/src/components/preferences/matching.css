@@ -42,3 +42,7 @@
   margin-bottom: 10px;
   color: rgb(232, 180, 48);
 }
+
+.UserName a{
+  text-decoration:none;
+}
