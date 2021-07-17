@@ -17,6 +17,7 @@ const {
   getMember,
   getMembers,
   getMyActivities,
+  getAllActivitiesByVisitors
 } = require("../controllers/activity");
 
 const activitiesRouter = express.Router();
@@ -24,6 +25,7 @@ const activitiesRouter = express.Router();
 activitiesRouter.post("/", authentication, addActivity);
 activitiesRouter.get("/all/user/:id", getAllActivitiesByUser);
 activitiesRouter.get("/", authentication, getAllActivities);
+activitiesRouter.get("/visitor", getAllActivitiesByVisitors);
 activitiesRouter.get("/activity/:id", getActivitiesById);
 activitiesRouter.delete("/:id", deleteActivitiesById);
 activitiesRouter.put("/:id", updateActivitiesById);

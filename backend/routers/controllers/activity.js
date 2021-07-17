@@ -54,6 +54,15 @@ const getAllActivities = (req, res) => {
   });
 };
 
+const getAllActivitiesByVisitors = (req, res) => {
+      const query1 = `SELECT activities.user_id, activities.images, activities.title , activities.activities ,activities.id  , activities.location, activities.creation_time, activities.estimated_budget, activities.start_date , activities.finish_date , users.first_name , users.last_name , users.profile_image FROM activities INNER JOIN  users ON activities.user_id = users.id `;
+      db.query(query1, (err, results) => {
+        if (err) throw err;
+        res.status(200);
+        res.json(results);
+      })
+  }
+
 const getMyActivities = (req, res) => {
   const user_id = req.token.user_id;
   const query =
@@ -243,4 +252,5 @@ module.exports = {
   getMember,
   getMembers,
   getMyActivities,
+  getAllActivitiesByVisitors
 };
