@@ -29,7 +29,27 @@ const Activities = () => {
         },
       })
       .then((result) => {
-        setactivities(result.data);
+        if (result.data.length){
+          const arr = []
+          let date = moment(new Date(), "YYYY-MM-DD")
+          .format("YYYY-MM-DD");
+          result.data.map((elem , i )=>{
+            let startDate = moment(elem.start_date, "YYYY-MM-DD")
+            .format("YYYY-MM-DD");
+            let compare =moment(startDate).isAfter(date, 'days');
+            if(compare){
+              arr.push(elem)
+            }
+          })
+          const sortedArray  = arr.sort((a,b) => new moment(a.start_date).format('YYYYMMDD') - new moment(b.start_date).format('YYYYMMDD'))
+          setactivities(sortedArray);
+        }
+        else {
+          setactivities(result.data);
+        }
+
+
+        
       })
       .catch((err) => {
         throw err;
