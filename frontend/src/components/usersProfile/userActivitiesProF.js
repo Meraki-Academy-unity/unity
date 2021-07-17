@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useHistory } from "react-router-dom";
+import {useSelector } from "react-redux";
+import {useParams, useHistory } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
