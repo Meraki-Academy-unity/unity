@@ -17,7 +17,7 @@ const {
   getMember,
   getMembers,
   getMyActivities,
-  getAllActivitiesByVisitors
+  getAllActivitiesByVisitors,
 } = require("../controllers/activity");
 
 const activitiesRouter = express.Router();

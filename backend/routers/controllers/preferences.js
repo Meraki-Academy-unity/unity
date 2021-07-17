@@ -62,7 +62,7 @@ const showPreferenceByUser = (req, res) => {
   });
 };
 const updatePreferenceById = (req, res) => {
-  const user_id=req.token.user_id;
+  const user_id = req.token.user_id;
   const {
     location,
     start_date,
@@ -79,7 +79,7 @@ const updatePreferenceById = (req, res) => {
     activities,
     similar_age,
     same_gender,
-    user_id
+    user_id,
   ];
 
   connection.query(query, data, (err, result) => {
@@ -123,15 +123,15 @@ const matchByDate = (req, res) => {
           result_1.filter((elem, i) => {
             if (
               date1.get("year") <=
-              moment(elem.start_date, "YYYY-MM-DD").get("year") &&
+                moment(elem.start_date, "YYYY-MM-DD").get("year") &&
               date2.get("year") >=
-              moment(elem.finish_date, "YYYY-MM-DD").get("year")
+                moment(elem.finish_date, "YYYY-MM-DD").get("year")
             ) {
               if (
                 date1.get("month") <=
-                moment(elem.start_date, "YYYY-MM-DD").get("month") &&
+                  moment(elem.start_date, "YYYY-MM-DD").get("month") &&
                 date2.get("month") >=
-                moment(elem.finish_date, "YYYY-MM-DD").get("month")
+                  moment(elem.finish_date, "YYYY-MM-DD").get("month")
               ) {
                 return arr.push(elem);
               }
@@ -162,15 +162,15 @@ const matching = (req, res) => {
           result_1.filter((elem, i) => {
             if (
               date1.get("year") <=
-              moment(elem.start_date, "YYYY-MM-DD").get("year") &&
+                moment(elem.start_date, "YYYY-MM-DD").get("year") &&
               date2.get("year") >=
-              moment(elem.finish_date, "YYYY-MM-DD").get("year")
+                moment(elem.finish_date, "YYYY-MM-DD").get("year")
             ) {
               if (
                 date1.get("month") <=
-                moment(elem.start_date, "YYYY-MM-DD").get("month") &&
+                  moment(elem.start_date, "YYYY-MM-DD").get("month") &&
                 date2.get("month") >=
-                moment(elem.finish_date, "YYYY-MM-DD").get("month")
+                  moment(elem.finish_date, "YYYY-MM-DD").get("month")
               ) {
                 return arr.push(elem);
               }
