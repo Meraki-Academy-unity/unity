@@ -42,7 +42,7 @@ const AddActivities = () => {
 
   const AddNewActivities = () => {
     setDone(1);
-    setImages(state.url);
+    // setImages(state.url);
     console.log("inf", done, "images: ", images);
 
     console.log("in", done, "images: ", images);
@@ -56,7 +56,7 @@ const AddActivities = () => {
           details,
           requirements,
           activities,
-          images:images||"https://img.freepik.com/free-vector/people-doing-summer-sports_23-2148626870.jpg?size=626&ext=jpg",
+          images:state.url||"https://img.freepik.com/free-vector/people-doing-summer-sports_23-2148626870.jpg?size=626&ext=jpg",
           estimated_budget,
         },
         {
