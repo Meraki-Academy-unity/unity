@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-// import { setToken } from './../reducer/login/index';
 import { useDispatch, useSelector } from "react-redux";
 import LoaderBar from "../loadingBar/loaderBar";
 import axios from "axios";
@@ -18,7 +17,6 @@ const AddActivities = () => {
   const [errorImgMessage, setErrorImgMessage] = useState();
   const [file, setFile] = useState(null);
   const [done, setDone] = useState(0);
-  console.log("out", done, "images: ", images);
   const types = ["image/png", "image/jpeg"];
   const history = useHistory();
   const dispatch = useDispatch();
@@ -56,7 +54,9 @@ const AddActivities = () => {
           details,
           requirements,
           activities,
-          images:images||"https://img.freepik.com/free-vector/people-doing-summer-sports_23-2148626870.jpg?size=626&ext=jpg",
+          images:
+            images ||
+            "https://img.freepik.com/free-vector/people-doing-summer-sports_23-2148626870.jpg?size=626&ext=jpg",
           estimated_budget,
         },
         {
@@ -90,30 +90,6 @@ const AddActivities = () => {
       });
   };
 
-  // useEffect(()=>{
-  //   setDone(true);
-  // },[images])
-
-  // await axios
-  // .post(`http://localhost:5000/activities/`, {
-  //   title,
-  //   start_date,
-  //   finish_date,
-  //   location,
-  //   details,
-  //   requirements,
-  //   activities,
-  //   images,
-  //   estimated_budget,
-  // } ,{headers: {
-  //   Authorization: `Bearer ${state.token}`,
-  // }})
-  // .then((result) => {
-  //   console.log("res", result.data);
-  // })
-  // .catch((err) => {
-  //   throw err;
-  // })
   let minStartDate = moment(new Date(), "YYYY-MM-DD")
     .add(5, "days")
     .format("YYYY-MM-DD");

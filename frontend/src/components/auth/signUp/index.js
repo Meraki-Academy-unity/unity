@@ -57,7 +57,9 @@ const SignUp = ({ setIsHome }) => {
         language,
         gender,
         birth_date: dateOfBirth,
-        profile_image: profileImage ||"https://jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png",
+        profile_image:
+          profileImage ||
+          "https://jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png",
         display_name: displayName,
       })
       .then((result) => {

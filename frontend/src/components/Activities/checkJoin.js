@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, {useState } from "react";
 import axios from "axios";
-import { Link, Route } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import Join from "./activityJoin";
 
