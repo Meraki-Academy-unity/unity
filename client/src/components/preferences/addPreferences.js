@@ -16,7 +16,7 @@ const AddPerferences = () => {
   const [similar_age, setSimilar_age] = useState(0);
   const [same_gender, setSame_gender] = useState(0);
   const [prefenecesLocation, setPrefenecesLocation] = useState("");
-  const [done, setDone] = useState(false);
+  // const [done, setDone] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -27,33 +27,52 @@ const AddPerferences = () => {
   });
   console.log("id state", state.id);
 
-  useEffect(() => {
-    if (done) {
-      axios
-        .post(`/preferences/`, {
-          location,
-          start_date,
-          finish_date,
-          activities,
-          similar_age,
-          same_gender,
-          user_id: state.id,
-        })
-        .then((result) => {
-          console.log("res", result.data);
-          setSame_gender(0);
-          setSimilar_age(0);
-          history.push("/login");
-        })
-        .catch((err) => {
-          throw err;
-        });
-    }
-  }, [done]);
+
+  // useEffect(() => {
+  //   axios
+  //     .post(`/preferences/`, {
+  //       location,
+  //       start_date,
+  //       finish_date,
+  //       activities,
+  //       similar_age,
+  //       same_gender,
+  //       user_id: state.id,
+  //     })
+  //     .then((result) => {
+  //       console.log("res", result.data);
+  //       setSame_gender(0);
+  //       setSimilar_age(0);
+  //       history.push("/login");
+  //     })
+  //     .catch((err) => {
+  //       throw err;
+  //     });
+  // }, [done]);
 
   const addNewPerferences = () => {
     setLocation(prefenecesLocation);
-    setDone(!done);
+    axios
+      .post(`/preferences/`, {
+        location,
+        start_date,
+        finish_date,
+        activities,
+        similar_age,
+        same_gender,
+        user_id: state.id,
+      })
+      .then((result) => {
+        console.log("res", result.data);
+        setSame_gender(0);
+        setSimilar_age(0);
+        history.push("/login");
+      })
+      .catch((err) => {
+        throw err;
+      });
+    // setDone(!done);
+
   };
   let minStartDate = moment(new Date(), "YYYY-MM-DD")
     .add(5, "days")
