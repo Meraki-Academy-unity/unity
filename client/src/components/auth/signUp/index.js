@@ -49,26 +49,27 @@ const SignUp = ({ setIsHome }) => {
 
   useEffect(() => {
     console.log("useEffect profileImage :", profileImage);
-
-    axios
-      .put(`/signUp/secondStep/${id}`, {
-        region,
-        currently_in: currentlyIn,
-        language,
-        gender,
-        birth_date: dateOfBirth,
-        profile_image:
-          profileImage ||
-          "https://jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png",
-        display_name: displayName,
-      })
-      .then((result) => {
-        // for develpoment stage we are pushing into home ( later we will push to perefernces)
-        history.push("/preferences");
-      })
-      .catch((err) => {
-        throw err;
-      });
+    if (done) {
+      axios
+        .put(`/signUp/secondStep/${id}`, {
+          region,
+          currently_in: currentlyIn,
+          language,
+          gender,
+          birth_date: dateOfBirth,
+          profile_image:
+            profileImage ||
+            "https://jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png",
+          display_name: displayName,
+        })
+        .then((result) => {
+          // for develpoment stage we are pushing into home ( later we will push to perefernces)
+          history.push("/preferences");
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }
   }, [done]);
 
   const signUpFirstStep = () => {

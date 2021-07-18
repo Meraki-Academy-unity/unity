@@ -27,6 +27,7 @@ const AddPerferences = () => {
   });
   console.log("id state", state.id);
 
+
   // useEffect(() => {
   //   axios
   //     .post(`/preferences/`, {
@@ -71,6 +72,7 @@ const AddPerferences = () => {
         throw err;
       });
     // setDone(!done);
+
   };
   let minStartDate = moment(new Date(), "YYYY-MM-DD")
     .add(5, "days")
