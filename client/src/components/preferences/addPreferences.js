@@ -28,25 +28,27 @@ const AddPerferences = () => {
   console.log("id state", state.id);
 
   useEffect(() => {
-    axios
-      .post(`/preferences/`, {
-        location,
-        start_date,
-        finish_date,
-        activities,
-        similar_age,
-        same_gender,
-        user_id: state.id,
-      })
-      .then((result) => {
-        console.log("res", result.data);
-        setSame_gender(0);
-        setSimilar_age(0);
-        history.push("/login");
-      })
-      .catch((err) => {
-        throw err;
-      });
+    if (done) {
+      axios
+        .post(`/preferences/`, {
+          location,
+          start_date,
+          finish_date,
+          activities,
+          similar_age,
+          same_gender,
+          user_id: state.id,
+        })
+        .then((result) => {
+          console.log("res", result.data);
+          setSame_gender(0);
+          setSimilar_age(0);
+          history.push("/login");
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }
   }, [done]);
 
   const addNewPerferences = () => {
