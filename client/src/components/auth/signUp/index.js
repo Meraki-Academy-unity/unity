@@ -64,7 +64,10 @@ const SignUp = ({ setIsHome }) => {
       })
       .then((result) => {
         // for develpoment stage we are pushing into home ( later we will push to perefernces)
-        history.push("/preferences");
+        console.log(result);
+        if (result.status === 201) {
+          history.push("/preferences");
+        }
       })
       .catch((err) => {
         throw err;
